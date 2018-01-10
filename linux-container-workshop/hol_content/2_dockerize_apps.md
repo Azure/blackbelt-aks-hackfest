@@ -1,8 +1,10 @@
 # Dockerizing Applications
 
-## Web Container
+## Build Container Images
 
 For the first container, we will be creating a Dockerfile from scratch. For the other containers, the Dockerfiles are provided.
+
+### Web Container
 
 1. Create a Dockerfile
 
@@ -32,25 +34,11 @@ For the first container, we will be creating a Dockerfile from scratch. For the 
     cd ./Linux_Container_Azure_Workshop/app/web
 
     docker build -t rating-web .
-
-    # validate the image is created
-    docker images
     ```
 
-3. Run web app container
+3. Validate image was created with `docker images`
 
-    ```
-    docker run -d --name web -p 8080:8080 rating-web
-
-    # validate the container is running
-    docker ps -a
-    ```
-
-4. Test web app by browsing to http://localhost:8080
-
-    You should see a base web page load with some links, but the full page will render after the next few steps.
-
-## API Container
+### API Container
 
 In this step, the Dockerfile has been created for you. 
 
@@ -60,23 +48,11 @@ In this step, the Dockerfile has been created for you.
     cd ./Linux_Container_Azure_Workshop/app/api
 
     docker build -t rating-api .
-
-    # validate the image is created
-    docker images
     ```
 
-2. Run api app container
+2. Validate image was created with `docker images`
 
-    ```
-    docker run -d --name api -p 3000:3000 rating-api
-
-    # validate the container is running
-    docker ps -a
-    ```
-
-3. Test api app by browsing to http://localhost:3000 
-
-## MongoDB Container
+### MongoDB Container
 
 1. Create a MongoDB image with data files
 
@@ -89,14 +65,20 @@ In this step, the Dockerfile has been created for you.
     docker images
     ```
 
-2. Run mongo container
+2. Validate image was created with `docker images`
+
+
+## Run Containers
+
+### MongoDB Container
+
+1. Run mongo container
 
     ```
-    docker run -d --name db -p 27017:27017 mongoratings
-
-    # validate the container is running
-    docker ps -a
+    docker run -d --name db -p 27017:27017 rating-db
     ```
+
+2. Validate by running `docker ps -a`
 
 3. Import data into database
 
@@ -113,6 +95,32 @@ In this step, the Dockerfile has been created for you.
     2018-01-10T19:26:07.776+0000	connected to: localhost
     2018-01-10T19:26:07.787+0000	imported 72 documents
     ```
+
+### API Container
+
+2. Run api app container
+
+    ```
+    docker run -d --name api -p 3000:3000 rating-api
+
+    # validate the container is running
+    docker ps -a
+    ```
+
+3. Test api app by browsing to http://localhost:3000 
+
+### Web Container
+
+1. Run web app container
+
+    ```
+    docker run -d --name web -p 8080:8080 rating-web
+    ```
+
+2. Validate by running `docker ps -a`
+
+3. Test web app by browsing to http://localhost:8080
+
 
 ## Azure Container Registry (ACR)
 
