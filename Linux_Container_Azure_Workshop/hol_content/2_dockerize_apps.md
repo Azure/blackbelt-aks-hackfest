@@ -10,19 +10,19 @@ For the first container, we will be creating a Dockerfile from scratch. For the 
     * In the "Linux_Container_Azure_Workshop/app/web" directory, add a file called "Dockerfile"
     * Add the following lines and save:
 
-    ```
-    FROM node:carbon
+        ```
+        FROM node:carbon
 
-    WORKDIR /usr/src/app
-    COPY package*.json ./
-    RUN npm install
+        WORKDIR /usr/src/app
+        COPY package*.json ./
+        RUN npm install
 
-    COPY . .
+        COPY . .
 
-    EXPOSE 8080
+        EXPOSE 8080
 
-    CMD [ "npm", "run", "staging" ]
-    ```
+        CMD [ "npm", "run", "staging" ]
+        ```
 
 2. Create a container image for the node.js Web app
 
@@ -76,7 +76,7 @@ In this step, the Dockerfile has been created for you.
 
 3. Test api app by browsing to http://localhost:3000 
 
-## MongoDB container
+## MongoDB Container
 
 1. Create a MongoDB image with data files
 
@@ -114,9 +114,18 @@ In this step, the Dockerfile has been created for you.
     2018-01-10T19:26:07.787+0000	imported 72 documents
     ```
 
-## Create Azure Container Registry (ACR)
+## Azure Container Registry (ACR)
+
+Now that we have container images for our application components, we need to store them in a secure, central location. In this lab we will use Azure Container Registry for this.
+
+1. Create Azure Container Registry instance
 
 
-## Push images to ACR
+2. Tag images with repository
 
+
+3. Push images to registry
+
+
+4. Validate
 
