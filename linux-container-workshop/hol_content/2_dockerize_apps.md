@@ -98,7 +98,7 @@ In this step, the Dockerfile has been created for you.
 
 ### API Container
 
-2. Run api app container
+1. Run api app container
 
     ```
     docker run -d --name api -p 3000:3000 rating-api
@@ -106,6 +106,8 @@ In this step, the Dockerfile has been created for you.
     # validate the container is running
     docker ps -a
     ```
+    
+2. Validate by running `docker ps -a`
 
 3. Test api app by browsing to http://localhost:3000 
 
