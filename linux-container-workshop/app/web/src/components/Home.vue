@@ -1,8 +1,13 @@
 <template>
   <section>
     <div class="row at-row flex-center flex-middle">
+      <div class="col-lg-24 credits">
+        This Node is : {{imageTag}}
+      </div>
+    </div>
+    <div class="row at-row flex-center flex-middle">
       <div class="col-lg-24">
-        <img class="super-justice" :src="headerImage">
+        <a href="/"><img class="super-justice" :src="headerImage"></a>
         <h1 class="super-header">{{subtitle}}</h1>
       </div>
     </div>
@@ -10,7 +15,7 @@
       <div class="col-lg-3">
       </div>
       <div class="col-lg-6">
-        <at-button @click="link('Rating')" icon="icon-star" class="mid-btn" type="primary"  hollow>Rate the Heroes</at-button>
+        <at-button @click="link('Rating')" icon="icon-star" class="mid-btn" type="primary"  hollow>Start Rating</at-button>
       </div>
       <div class="col-lg-6">
         <at-button @click="link('Leaderboard')" icon="icon-bar-chart-2" class="mid-btn" type="success" hollow>View Leaderboard</at-button>
@@ -36,6 +41,7 @@ export default {
     return {
       headerImage: "",
       subtitle: "",
+      imageTag: process.env.IMAGE_TAG,
       errors: []
     };
   },

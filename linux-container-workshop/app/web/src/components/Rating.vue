@@ -2,8 +2,13 @@
 <template>
   <section>
     <div class="row at-row flex-center flex-middle">
+      <div class="col-lg-24 credits">
+        This Node is : {{imageTag}}
+      </div>
+    </div>
+    <div class="row at-row flex-center flex-middle">
       <div class="col-lg-24">
-        <img class="super-justice" src="/static/img/justice.png">
+        <a href="/"><img class="super-justice" :src="headerImage"></a>
         <h1 class="super-header">{{subtitle}}</h1>
       </div>
     </div>
@@ -42,6 +47,7 @@ export default {
       subtitle: "",
       userIp: "",
       heroes: [],
+      imageTag: process.env.IMAGE_TAG,
       errors: []
     }
   },
@@ -56,7 +62,7 @@ export default {
         })
         .then(response => {
           this.heroes = response.data.payload
-          this.$Notify({ title: 'Heroes loaded', message: 'Retrieved list of Heroes', type: 'success' })
+          this.$Notify({ title: 'Data loaded', message: 'Retrieved list of items to rate', type: 'success' })
           return axios.get("//jsonip.com")
         })
         .then(response => {
