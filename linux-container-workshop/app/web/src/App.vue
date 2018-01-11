@@ -40,6 +40,14 @@ export default {
     font-family: 'Graduate', sans-serif;
     font-size: 12px;
   }
+  
+  .credits-small{
+    padding-top: 40px;
+    font-family: 'Graduate', sans-serif;
+    font-size: 10px;
+    color:#000;
+  }
+
   .footspace{
     margin-top: 90px;
     border-color: #ccc;
@@ -48,7 +56,7 @@ export default {
   .app {
     width: 85%;
     color: #fff;
-    margin-top: 5%;
+    margin-top: 1%;
     text-align: left;
   }
 
