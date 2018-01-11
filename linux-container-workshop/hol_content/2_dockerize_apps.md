@@ -138,39 +138,39 @@ docker network create --subnet=172.18.0.0/16 my-network
 
 Now that we have container images for our application components, we need to store them in a secure, central location. In this lab we will use Azure Container Registry for this.
 
-1. Create Azure Container Registry instance
+### Create Azure Container Registry instance
 
-    * In the browser, sign in to the Azure portal at https://portal.azure.com
-    * Click "Create a resource" and select "Azure Container Registry"
-    * Provide a name for your registry (this must be unique)
-    * Use a new Resource Group
-    * Enable the Admin user
-    * Use the 'Standard' SKU (default)
+    1. In the browser, sign in to the Azure portal at https://portal.azure.com
+    2. Click "Create a resource" and select "Azure Container Registry"
+    3. Provide a name for your registry (this must be unique)
+    4. Use a new Resource Group
+    5. Enable the Admin user
+    6. Use the 'Standard' SKU (default)
 
+        > The Standard registry offers the same capabilities as Basic, but with increased storage limits and image throughput. Standard registries should satisfy the needs of most production scenarios.
 
-    > The Standard registry offers the same capabilities as Basic, but with increased storage limits and image throughput. Standard registries should satisfy the needs of most production scenarios.
+### Login to your ACR with Docker
 
-2. Login to your ACR with Docker
+    1. Browse to your Container Registry in the Azure Portal
+    2. Click on "Access keys"
+    3. Make note of the "Login server", "Username", and "password"
+    4. Login in your Bash shell: 
 
-    * Browse to your Container Registry in the Azure Portal
-    * Click on "Access keys"
-    * Make note of the "Login server", "Username", and "password"
-    * Login in your Bash shell: 
+        ```
+        docker login --username <username> --password <password> <login server>
+        ```
 
-
-    ```
-    docker login --username <username> --password <password> <login server>
-    ```
-
-3. Tag images with ACR server and repository (be sure to replace the login server value)
+### Tag images with ACR server and repository 
 
     ```
+    # Be sure to replace the login server value
+
     docker tag rating-db <login server>/azureworkshop/rating-db:v1
     docker tag rating-api <login server>/azureworkshop/rating-api:v1
     docker tag rating-web <login server>/azureworkshop/rating-web:v1
     ```
 
-3. Push images to registry
+### Push images to registry
 
     ```
     docker push <login server>/azureworkshop/rating-db:v1
@@ -198,7 +198,7 @@ Now that we have container images for our application components, we need to sto
     v1: digest: sha256:f84eba148dfe244f8f8ad0d4ea57ebf82b6ff41f27a903cbb7e3fbe377bb290a size: 3028
     ```
 
-4. Validate images in Azure
+### Validate images in Azure
 
-    * Return to the Azure Portal in your browser and validate that the images appear in your Container Registry under the "Repositories" area.
-    * Under tags, you will see "v1" listed.
+    1. Return to the Azure Portal in your browser and validate that the images appear in your Container Registry under the "Repositories" area.
+    2. Under tags, you will see "v1" listed.
