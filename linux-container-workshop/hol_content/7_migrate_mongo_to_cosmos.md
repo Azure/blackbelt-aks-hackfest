@@ -20,7 +20,7 @@ The Azure-CLI Command Line Tool is available and supported for Windows, macOS an
 # Set variables for the new account, database, and collection
 resourceGroupName='someResourceGroupName'
 location1='southcentralus'
-location1='northcentralus'
+location2='northcentralus'
 name='someCosmosdbName'
 databaseName='someDatabaseName'
 collectionName='someCollectionName'
@@ -43,7 +43,7 @@ az cosmosdb create \
 #### Method 2: via Azure Web Portal
 
 
-## Connecting to CosmosDB
+## 01 - Connecting to CosmosDB
 
 In this section we will learn how to retrieve the CosmosDB connection string that is required in order to connect to your new database in Azure.  The connection string takes the format: ```mongodb://<username>:<password>@<cosmosdb-url>:10255/?ssl=true```.  The connection string is broken down into three important parts:
 
@@ -65,6 +65,6 @@ The simplest/quickest method for retrieving your CosmosDB Connection string is v
 az cosmosdb list-connection-strings -g <resource-group-name> -n <cosmos-db-name>
 ```
 
-## Migrating Data From Mongo to CosmosDB
+## 02 - Migrating Data From Mongo to CosmosDB
 
 1. Export your MongoDB to a json file
