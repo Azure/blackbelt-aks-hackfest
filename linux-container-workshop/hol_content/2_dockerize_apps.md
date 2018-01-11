@@ -124,8 +124,7 @@ docker network create --subnet=172.18.0.0/16 my-network
     --ip 172.18.0.12 -p 8080:8080 \
     -e "API=http://localhost:3000/api" \
     -e "SITE=http://localhost:8080/static/data/site.json" \
-    -e "HEROES=http://localhost:8080/static/data/heroes.json" \ 
-    rating-web
+    -e "HEROES=http://localhost:8080/static/data/heroes.json" rating-web
     ```
 
     > Note that environment variables are used here to direct the web page to necessary components.
@@ -148,6 +147,7 @@ Now that we have container images for our application components, we need to sto
     * Enable the Admin user
     * Use the 'Standard' SKU (default)
 
+
     > The Standard registry offers the same capabilities as Basic, but with increased storage limits and image throughput. Standard registries should satisfy the needs of most production scenarios.
 
 2. Login to your ACR with Docker
@@ -156,6 +156,7 @@ Now that we have container images for our application components, we need to sto
     * Click on "Access keys"
     * Make note of the "Login server", "Username", and "password"
     * Login in your Bash shell: 
+
 
     ```
     docker login --username <username> --password <password> <login server>
@@ -199,5 +200,5 @@ Now that we have container images for our application components, we need to sto
 
 4. Validate images in Azure
 
-* Return to the Azure Portal in your browser and validate that the images appear in your Container Registry under the "Repositories" area.
-* Under tags, you will see "v1" listed.
+    * Return to the Azure Portal in your browser and validate that the images appear in your Container Registry under the "Repositories" area.
+    * Under tags, you will see "v1" listed.
