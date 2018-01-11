@@ -4,7 +4,7 @@
   "description": "Rating App",
   "author": "Joey Schluchter <jschluchter@gmail.com>",
   "scripts": {
-    "dev": "cross-env IMAGE_TAG=DEV API='http://localhost:3000/api' HEROES='http://localhost:8080/static/data/boeing/planes.json' SITE='http://localhost:8080/static/data/boeing/boeing-site.json' NODE_ENV=development webpack-dev-server --open --hot",
+    "dev": "cross-env IMAGE_TAG=DEV API='http://localhost:3000/api' HEROES='http://localhost:8080/static/data/justice/heroes.json' SITE='http://localhost:8080/static/data/justice/heroes-site.json' NODE_ENV=development webpack-dev-server --open --hot",
     "staging": "cross-env IMAGE_TAG=STAGING NODE_ENV=development webpack-dev-server",
     "build": "cross-env API='http://localhost:3000/api' HEROES='http://localhost:8080/static/data/heroes.json' SITE='http://localhost:8080/static/data/site.json' NODE_ENV=production webpack --progress --hide-modules"
   },
