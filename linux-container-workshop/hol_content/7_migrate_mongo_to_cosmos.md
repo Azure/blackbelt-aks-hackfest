@@ -100,5 +100,49 @@ az cosmosdb list-connection-strings -g <resource-group-name> -n <cosmos-db-name>
 
 ## 02 - Migrating Data From MongoDB to CosmosDB
 
-In this section we will export data from MongoDB and then import this data to CosmosDB.  The methods used in this section are simple by design and may not be the right method for your production migrations.  We would recommend working with a MongoDB DBA and Architect who is experienced with MongoDB data migration in a production environment to minimize downtime.
+In this section we will use the ```mongodump``` and ```mongorestore``` commands to export data from MongoDB and then import back into CosmosDB.  
 
+The method used in this section is simple by design and may not be the right method for your production migrations.  We would recommend working with a MongoDB DBA and Architect who is experienced with MongoDB data migration in a production environment to minimize downtime.  Please refer to: [Guide for a successful migration
+](https://docs.microsoft.com/en-us/azure/cosmos-db/mongodb-migrate#guide-for-a-successful-migration) in the Azure Docs for CosmosDB.
+
+### Exporting data from MongoDB
+
+Using the ```mongodump``` command you will do a full DB dump of your MongoDB server.  
+
+**Note**: For Windows users you may need to run the command as ```mongodump.exe``` not ```mongodump``` AND in the same directory that the command is located in.
+
+You will need to:
+1. Name your backup - this will be used to create a new folder where your backup files will be saved to.
+2. Choose a destination path in your local filesystem where your backup folder will be created in.
+
+```:bash
+mongodump -d <name-of-backup> -o <path-to-backup>
+```
+
+When this is complete, you should have at least 2 files - a ```.bson``` and ```.json``` file.  Both of these will be needed to restore the DB to CosmosDB.
+
+### Importing data into CosmosDB
+
+Using the ```mongorestore``` command you can do a full DB restore to your CosmosDB instance.
+
+**Note**: For Windows users you may need to run the command as ```mongorestore.exe``` not ```mongorestore``` AND in the same directory that the command is located in.
+
+You will need:
+1. Your CosmosDB url (```<your-cosmosdb-name>.documents.azure.com```)
+2. Your CosmosDB name - this is also your CosmosDB username
+3. Your CosmosDB password - this is one of two 88 character hash strings you can find in the CosmosDB Azure Portal
+4. The FULL path to your backup e.g. ```/full/path/to/your/name-of-backup```
+
+```:bash
+mongorestore --host <your-cosmosdb-url>:10255 -u <your-cosmosdb-name> -p <your-password> --db <your-cosmosdb-name> --ssl --sslAllowInvalidCertificates <full-path-to-backup>
+```
+
+When the restore is complete, you will see output pertaining to the restore.
+
+## Exploring and using data
+
+When the restore/import of your database is complete you can now connect to CosmosDB and access the data. 
+
+### In your Application
+
+Hopefully you are leveraging environment variables in your Application to reference the MongoDB URI connection string.  If not you will need to find where this string is coded into your application and replace it with your CosmosDB connection string in the above [Connecting To CosmosDB](#01--connecting-to-cosmosdb) section.
