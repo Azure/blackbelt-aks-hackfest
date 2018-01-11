@@ -1,0 +1,42 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name:  heroes-api-deploy
+  labels:
+    name:  heroes-api
+spec:
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        name:  heroes-api
+    spec:
+      containers:
+      - image: <login server>/azureworkshop/rating-api:v1
+        name:  heroes-api-cntnr
+        resources:
+          requests:
+            cpu: "20m"
+            memory: "55M"
+        livenessProbe:
+          httpGet:
+            path: /_status/healthz
+            port: 5000
+          initialDelaySeconds: 90
+          timeoutSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /_status/healthz
+            port: 5000
+          initialDelaySeconds: 30
+          timeoutSeconds: 10
+        ports:
+        - containerPort:  3000
+          name:  heroes-api
+      restartPolicy: Always
+      imagePullPolicy: Always
