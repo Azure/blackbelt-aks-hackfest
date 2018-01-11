@@ -73,7 +73,7 @@ module.exports = {
         HEROES: JSON.stringify(process.env.HEROES),
         SITE: JSON.stringify(process.env.SITE),
         API: JSON.stringify(process.env.API),
-        IMAGE_TAG: JSON.stringify(process.env.IMAGE_TAG)
+        IMAGE_TAG: JSON.stringify(process.env.IMAGE_TAG || "TESTING")
       }
     })
   ]
@@ -87,7 +87,8 @@ if (process.env.NODE_ENV === 'production') {
         NODE_ENV: '"production"',
         HEROES: JSON.stringify(process.env.HEROES),
         SITE: JSON.stringify(process.env.SITE),
-        API: JSON.stringify(process.env.API)
+        API: JSON.stringify(process.env.API),
+        IMAGE_TAG: JSON.stringify(process.env.IMAGE_TAG || "TESTING")
       }
     }),
     new webpack.optimize.UglifyJsPlugin({
