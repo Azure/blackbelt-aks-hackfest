@@ -71,9 +71,9 @@ In this step, the Dockerfile has been created for you.
 
 Create a docker bridge network to allow the containers to communicate internally. 
 
-    ```
-    docker network create --subnet=172.18.0.0/16 my-network
-    ```
+```
+docker network create --subnet=172.18.0.0/16 my-network
+```
 
 ### MongoDB Container
 
