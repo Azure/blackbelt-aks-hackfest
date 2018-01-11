@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "dev": "NODE_ENV='development' MONGODB_URI='mongodb://localhost:27017/webratings' node ./bin/www",
+    "dev": "NODE_ENV='development' MONGODB_URI='mongodb://172.18.0.10:27017/webratings' node ./bin/www",
     "prod": "NODE_ENV='production' node ./bin/www"
   },
   "dependencies": {
