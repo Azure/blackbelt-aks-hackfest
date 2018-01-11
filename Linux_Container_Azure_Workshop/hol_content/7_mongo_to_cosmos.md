@@ -1,5 +1,7 @@
 # Moving your data services to Hosted Data Solutions (CosmosDB)
 
+In this section we will be creating a CosmosDB instance in your Azure account to migrate/export your MongoDB data to CosmosDB.  You can use CosmosDB as a drop in replacement for MongoDB, since CosmosDB uses a MongoDB compatibale API.  As such, you are only required to replace/change the MongoDB URI connection string with one supplied by CosmosDB in the dashboard. 
+
 ## 00 - Setup
 
 You will need to prepare and setup your environment in order to move data from your MongoDB Server to CosmosDB.
@@ -41,4 +43,28 @@ az cosmosdb create \
 #### Method 2: via Azure Web Portal
 
 
-## 01 - 
+## Connecting to CosmosDB
+
+In this section we will learn how to retrieve the CosmosDB connection string that is required in order to connect to your new database in Azure.  The connection string takes the format: ```mongodb://<username>:<password>@<cosmosdb-url>:10255/?ssl=true```.  The connection string is broken down into three important parts:
+
+- ```<username>```: The username to connect to your instance, this is the same value as the name of your database
+- ```<password>```: This is one of two auto generated 88 character hashed passwords provided for you.  You can regenerate/revoke a password when you need to.
+- ```<cosmos-url>```: This is the CosmosDB url where your instance can be reached.  Typically it should follow the format ```<your-cosmosdb-name>.documents.azure.com
+
+Note:
+- Port number (```10255```) - CosmosDB does not use the standard MongoDB port of ```21017```
+- SSL - this is on by default and is recommended when communicating to CosmosDB.  This is good practice and ensures your data is not sent in clear unencrypted text over the network.
+
+### Method 1: via Azure-CLI
+
+The simplest/quickest method for retrieving your CosmosDB Connection string is via the command line.  If you have the Azure-CLI installed you can simply run the following command, replacing ```<resource-group-name>``` and ```<cosmos-db-name>``` with the corresponding values for your CosmosDB instance.
+
+```:bash
+# !!!REPLACE <resource-group-name> and <cosmos-db-name> with your databases respective information!!!
+
+az cosmosdb list-connection-strings -g <resource-group-name> -n <cosmos-db-name>
+```
+
+## Migrating Data From Mongo to CosmosDB
+
+1. Export your MongoDB to a json file
