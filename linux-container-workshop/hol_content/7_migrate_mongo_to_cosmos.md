@@ -143,6 +143,44 @@ When the restore is complete, you will see output pertaining to the restore.
 
 When the restore/import of your database is complete you can now connect to CosmosDB and access the data. 
 
+### Via the Azure Portal
+
+When you navigate to your CosmosDB instance in the Azure portal, you can view your Database, Collections and Documents by navigating to the "Data Explorer" section of your CosmosDB instance.  You can perform CRUD, Query and other operations on your database here as well.
+
+![Cosmos Data Explorer](img/cosmos_data_explorer.png "Cosmos Data Explorer")
+
 ### In your Application
 
-Hopefully you are leveraging environment variables in your Application to reference the MongoDB URI connection string.  If not you will need to find where this string is coded into your application and replace it with your CosmosDB connection string in the above [Connecting To CosmosDB](#01--connecting-to-cosmosdb) section.
+CosmosDB instances which were setup using the MongoDB API (like our lab), are compatible with MongoDB drivers/APIs.  As such you can continue to use the SDK/API/Drivers that you are currently using in your application(s) and simply need to replace the old MongoDB connection string pointing to your old server, with the new connection string pointing to the new CosmosDB instance in Azure.
+
+#### Environment Variable Example
+
+If you are leveraging shell environment variables to reference the MongoDB URI connection string, all you will need to do is update this environment variable and all your applications leveraging this method to obtain the connection string will automatically benefit from the update.  
+
+```:bash
+# Linux Bash Shell Variables
+# Replace the previous MongoDB connection string with the new CosmosDB connection string
+MONGO_DBCONNECTION="mongodb://<username>:<password>@<cosmosdb-url>:10255/?ssl=true"
+```
+
+#### Hard Coded Connection Strings in Applications
+
+If have hard coded the connection string value in your application, you will need to locate and replace the old MongoDB connection string value inside your application code with your new CosmosDB connection string value.  Instructions to find the new CosmosDB connection string value is found in the above "[Connecting To CosmosDB](#01---connecting-to-cosmosdb)" section.
+
+
+```:javascript
+// Node JS Example using Mongoose as the driver/ODM to a MongoDB backend
+var mongoose = require('mongoose');
+
+mongoose.connect('mongodb://<username>:<password>@<cosmosdb-url>:10255/?ssl=true');
+```
+
+**Note**: Some drivers/language environments/runtimes may require you to URI encode your password. CosmosDB uses an 88 character long hash for it's password and includes characters which may require you to URI encode it.  This is generally good practice.
+
+```:javascript 
+var mongoose = require('mongoose');
+var password = "your-cosmosdb-88-character-long-password-hash";
+password = encodeURIComponent(password);
+
+mongoose.connect("mongodb://<username>:" + password + "@<cosmosdb-url>:10255/?ssl=true");
+```
