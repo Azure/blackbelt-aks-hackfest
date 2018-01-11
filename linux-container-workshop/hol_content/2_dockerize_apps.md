@@ -60,9 +60,6 @@ In this step, the Dockerfile has been created for you.
     cd ./Linux_Container_Azure_Workshop/app/db
 
     docker build -t rating-db .
-
-    # validate the image is created
-    docker images
     ```
 
 2. Validate image was created with `docker images`
@@ -70,12 +67,20 @@ In this step, the Dockerfile has been created for you.
 
 ## Run Containers
 
+### Setup Docker Network
+
+Create a docker bridge network to allow the containers to communicate internally. 
+
+    ```
+    docker network create --subnet=172.18.0.0/16 my-network
+    ```
+
 ### MongoDB Container
 
 1. Run mongo container
 
     ```
-    docker run -d --name db -p 27017:27017 rating-db
+    docker run -d --name db --net my-network --ip 172.18.0.10 -p 27017:27017 rating-db
     ```
 
 2. Validate by running `docker ps -a`
@@ -96,25 +101,29 @@ In this step, the Dockerfile has been created for you.
     2018-01-10T19:26:07.787+0000	imported 72 documents
     ```
 
+4. Type `exit` to exit out of container
+
 ### API Container
 
 1. Run api app container
 
     ```
-    docker run -d --name api -p 3000:3000 rating-api
+    docker run -d --name api --net my-network --ip 172.18.0.11 -p 3000:3000 rating-api
     ```
 
 2. Validate by running `docker ps -a`
 
-3. Test api app by browsing to http://localhost:3000 
+3. Test api app by browsing to http://localhost:3000/api/heroes 
 
 ### Web Container
 
 1. Run web app container
 
     ```
-    docker run -d --name web -p 8080:8080 rating-web
+    docker run -d --name web --net my-network --ip 172.18.0.12 -p 8080:8080 -e "API=http://localhost:3000/api" -e "SITE=http://localhost:8080/static/data/site.json" -e "HEROES=http://localhost:8080/static/data/heroes.json" rating-web
     ```
+
+    > Note that environment variables are used here to direct the web page to necessary components.
 
 2. Validate by running `docker ps -a`
 
