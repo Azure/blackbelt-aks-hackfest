@@ -35,7 +35,7 @@
   export default {
     data() {
       return {
-        imageTag: process.env.IMAGE_TAG,
+        imageTag: process.env.IMAGE_TAG
       };
     }
   };
