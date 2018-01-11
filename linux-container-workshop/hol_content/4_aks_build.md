@@ -27,3 +27,4 @@ az aks get-credentials -n xxx-aks-c1 -g xxx-aks-rg
 kubectl get nodes
 ```
 
+You should now have a Kubernetes cluster running with 2 nodes. You do not see the master servers for the cluster because these are managed by Microsoft. The Control Plane services which manage the Kubernetes cluster such as scheduling, API access, Configuration data store and object controllers are all provided as services to the nodes. 
