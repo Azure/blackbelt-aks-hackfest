@@ -9,15 +9,19 @@ You will need to prepare and setup your environment in order to move data from y
 ### Creating a CosmosDB Service/Instance
 
 You can create a CosmosDB service/instance in one (1) of two (2) ways:
-1. Via the cross-platform [Azure-CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest) command line tool --**or**--
-2. Via the Azure Web Portal
+1. Via the [Azure-CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest) command line tool --**OR**--
+2. Via the [Azure Web Portal](https://portal.azure.com)
 
 #### Method 1: via Azure-CLI
 
 The Azure-CLI Command Line Tool is available and supported for Windows, macOS and Linux. The following uses the cross plaform Azure-CLI in a Linux bash shell to deploy an instance of CosmosDB into your Azure Subscription/Account.
 
+Note:
+- We are leveraging Linux bash environment variables to script our deployment.  You should change **ALL** the values for each variable listed to fit your preferred deployment.  As an example ```location1``` and ```location2``` should be changed to your desired Azure datacentre.
+- The ```\``` slashes in the below example are used for escaping new lines for readability purposes (they are not a requirement), as such you may remove them to form a single line command.
+
 ```
-# Set variables for the new account, database, and collection
+# !!!Set variables for the new account, database, and collection etc.!!!
 resourceGroupName='someResourceGroupName'
 location1='southcentralus'
 location2='northcentralus'
@@ -40,8 +44,37 @@ az cosmosdb create \
 	--max-staleness-prefix 200
 ```
 
+Once you've run the above command, your CosmosDB instance will be provisioned within minutes.  When the deployment is sucessful you will see output in your terminal with information about your CosmosDB deployment.
+
 #### Method 2: via Azure Web Portal
 
+If you prefer a more visual and guided walk through for creating an Azure CosmosDB instance, the Azure Web Portal is your best option.  You will need to open a browser and enter the address ```https://portal.azure.com```.
+
+Your portal should look something like the following image:
+
+![Azure Portal](img/azure_portal.png "Azure Portal")
+
+You will then need to navigate in the portal and do the following:
+
+1. Click on ```Create a Resource``` in the top left corner of the portal
+2. Type "azure cosmos db" in the ```search marketplace``` search field and select ```Azure Cosmos DB``` in the results
+3. Click the blue ```Create``` button at the bottom of the new blade that appears
+
+![Finding CosmosDB in the Azure Portal](img/finding_cosmos.png "Finding CosmosDB in the Azure Portal")
+
+You will now be able to fill in a form to deploy your CosmosDB instance.
+
+You will need to fill in the following information:
+
+1. ```ID``` - The unique name to give to your Azure CosmosDB account
+2. ```API```- The API to use to access your CosmosDB - this can be one of [```SQL```, ```MongoDB```, ```Cassandra```, ```Azure Table```, ```Gremlin```] and corresponds with the underlying data model types for each protocol.  We will choose ```MongoDB``` for this lab.
+3. ```Subscription``` - If you have multiple Azure subscriptions/accounts you may choose which one to deploy to.
+4. ```Resource Group```- The name of an exisiting or new resource group to deploy your CosmosDB instance into.  This helps to keep your resources organized (think of it as a logical naming space like a folder/directory).
+5. ```Location``` - The Datacentre you wish to deploy to e.g. ```Canada Central```
+
+![Creating CosmosDB in the Azure Portal](img/creating_cosmos.png "Creating CosmosDB in the Azure Portal")
+
+Once you've clicked create, your CosmosDB instance will be provisioned within minutes.  You will be notified with an alert in the top right corner of your Portal Dashboard.
 
 ## 01 - Connecting to CosmosDB
 
@@ -65,6 +98,7 @@ The simplest/quickest method for retrieving your CosmosDB Connection string is v
 az cosmosdb list-connection-strings -g <resource-group-name> -n <cosmos-db-name>
 ```
 
-## 02 - Migrating Data From Mongo to CosmosDB
+## 02 - Migrating Data From MongoDB to CosmosDB
 
-1. Export your MongoDB to a json file
+In this section we will export data from MongoDB and then import this data to CosmosDB.  The methods used in this section are simple by design and may not be the right method for your production migrations.  We would recommend working with a MongoDB DBA and Architect who is experienced with MongoDB data migration in a production environment to minimize downtime.
+
