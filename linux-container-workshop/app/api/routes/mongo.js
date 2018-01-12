@@ -12,36 +12,33 @@ router.get('/', function(req, res, next) {
 });
 
 /* GET All Heroes*/
-// router.get('/heroes/rated', function(req, res, next) {
-//   Hero.find({}).then(function(heroes){
-//     var rated = [];
-//     var i = 0;
-    
-//     heroes.forEach((item, index, array) => {
-//       i++;
-      
-
-//       Rate.aggregate([{$group: {_id: "$heroRated", AvgRating: { $avg: "$rating" } }}])
-//       Rate.aggregate([
-//         {$match: {"$heroRated": item._id}},
-//         {$group: {"$heroRated": item._id, "average": {$avg: "$rating"}}}
-//       ],
-//       function(err, result){
-//         console.log(err);
-//         console.log(result);
-//         item["rating"]=result.average;
-//         rated.push(item);
-//       });
-      
-//       if(i === array.length) {
-//         var response = new jsonResponse('ok', 200, rated);
-//         res.json(response).status(response.status);
-//       }
-//     });
-
-//   }).catch(next);
-
-// });
+router.get('/heroes/rated', function(req, res, next) {
+  Rate.aggregate(
+  [
+  {
+    $group: {
+      _id: '$heroRated', 
+      AvgRating: { $avg: '$rating' }
+    }
+  },
+  {
+    $lookup: {
+        "from": 'heroes', 
+        "localField": '_id', 
+        "foreignField": '_id', 
+        "as": 'Hero' 
+    }
+  }], 
+  function(err, results){
+    if(err) {
+      console.log(err);
+      next(err);
+    }
+    else {
+      res.json(results);
+    }
+  });
+});
 
 
 /* Get Heroes */
@@ -86,6 +83,5 @@ router.post('/rate', function(req, res, next){
   var response = new jsonResponse('ok', 200, ratings);
   res.json(response).status(response.status);
 });
-
 
 module.exports = router;
