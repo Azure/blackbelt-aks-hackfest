@@ -1,7 +1,7 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name:  heroes-web-deploy
+  name:  heroes-web
   labels:
     name:  heroes-web
 spec:
@@ -17,33 +17,21 @@ spec:
         name:  heroes-web
     spec:
       containers:
-      - image: <login server>/azureworkshop/rating-web:v1
+      - image: <login server>/rating-web:v1
         name:  heroes-web-cntnr
         resources:
           requests:
             cpu: "20m"
             memory: "55M"
-        livenessProbe:
-          httpGet:
-            path: /_status/healthz
-            port: 5000
-          initialDelaySeconds: 90
-          timeoutSeconds: 10
-        readinessProbe:
-          httpGet:
-            path: /_status/healthz
-            port: 5000
-          initialDelaySeconds: 30
-          timeoutSeconds: 10
         env:
         - name:  API
-          value:  http://heroes-api:3000/api     
+          value:  http://40.121.194.253:3000/api     
         - name:  SITE
-          value:  http://heroes-web:8080/static/data/site.json
+          value:  http://40.71.39.235:8080/static/data/justice/heroes-site.json
         - name:  HEROES
-          value:  http://heroes-web:8080/static/data/heroes.json
+          value:  http://40.71.39.235:8080/static/data/justice/heroes.json
         ports:
         - containerPort:  8080
           name:  heroes-web
+        imagePullPolicy: Always
       restartPolicy: Always
-      imagePullPolicy: Always

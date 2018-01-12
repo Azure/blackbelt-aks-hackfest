@@ -1,3 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: heroes-api
+  labels:
+    name: heroes-api
+spec:
+  type: LoadBalancer
+  ports:
+  - name: http
+    port: 3000
+    targetPort: 3000
+  selector:
+    name: heroes-api
+---
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
@@ -17,26 +32,17 @@ spec:
         name:  heroes-api
     spec:
       containers:
-      - image: <login server>/azureworkshop/rating-api:v1
+      - image: <login server>/rating-api:v1
         name:  heroes-api-cntnr
         resources:
           requests:
             cpu: "20m"
             memory: "55M"
-        livenessProbe:
-          httpGet:
-            path: /_status/healthz
-            port: 5000
-          initialDelaySeconds: 90
-          timeoutSeconds: 10
-        readinessProbe:
-          httpGet:
-            path: /_status/healthz
-            port: 5000
-          initialDelaySeconds: 30
-          timeoutSeconds: 10
+        env:
+        - name:  MONGODB_URI
+          value:  mongodb://heroes-db:27017/webratings
         ports:
         - containerPort:  3000
           name:  heroes-api
+        imagePullPolicy: Always
       restartPolicy: Always
-      imagePullPolicy: Always

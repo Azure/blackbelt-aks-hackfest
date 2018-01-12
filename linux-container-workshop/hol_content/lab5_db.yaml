@@ -1,3 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: heroes-db
+  labels:
+    name: heroes-db
+spec:
+  type: ClusterIP
+  ports:
+  - name: http
+    port: 27017
+    targetPort: 27017
+  selector:
+    name: heroes-db
+---
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
@@ -16,32 +31,20 @@ spec:
         name:  heroes-db
     spec:
       containers:
-      - image:  <login server>/azureworkshop/rating-db:v1
+      - image:  <login server>/rating-db:v1
         name:  heroes-db-cntnr
         resources:
           requests:
             cpu: "20m"
             memory: "55M"
-        livenessProbe:
-          httpGet:
-            path: /_status/healthz
-            port: 5000
-          initialDelaySeconds: 90
-          timeoutSeconds: 10
-        readinessProbe:
-          httpGet:
-            path: /_status/healthz
-            port: 5000
-          initialDelaySeconds: 30
-          timeoutSeconds: 10      
         ports:
         - containerPort:  27017
           name:  heroes-db
         volumeMounts:
         - mountPath: /data
           name: data
+        imagePullPolicy: Always
       volumes:
         - name: data
           emptyDir: {}
       restartPolicy: Always
-      imagePullPolicy: Always
