@@ -46,13 +46,13 @@ export default {
     }
   },
     created() {
-      axios.get(process.env.API + "/sites/" + process.env.SITE_CODE)
+      axios.get("/api/sites/" + process.env.SITE_CODE)
         .then(response => {
           var page = response.data.payload.pages.Rating
           document.title = page.title
           this.headerImage = page.headerImage
           this.subtitle = page.subtitle
-          return axios.get(process.env.API + "/heroes") 
+          return axios.get("/api/heroes") 
         })
         .then(response => {
           this.heroes = response.data.payload
@@ -84,7 +84,7 @@ export default {
           rate.ratings.push({ id: h, rating: Number( refs[h][0].currentValue || 0 ) })
         }   
 
-        axios.post(process.env.API + "/rate", rate)
+        axios.post("/api/rate", rate)
         .then(response => {
           router.push('leaderboard')
         })

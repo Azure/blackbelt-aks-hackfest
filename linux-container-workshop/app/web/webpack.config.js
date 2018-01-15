@@ -1,6 +1,7 @@
 const path = require('path')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const API = process.env.API
 
 module.exports = {
   entry: './src/main.js',
@@ -52,17 +53,6 @@ module.exports = {
       'vue$': 'vue/dist/vue.esm.js'
     }
   },
-  devServer: {
-    headers: {
-      'Access-Control-Allow-Origin': '*',
-    },
-    host: '0.0.0.0',
-    port: 8080,
-    noInfo: true,
-    historyApiFallback: {
-      index: '/dist/'
-    },
-  },
   devtool: '#eval-source-map',
   plugins: [
     new HtmlWebpackPlugin({
@@ -75,7 +65,24 @@ module.exports = {
         IMAGE_TAG: JSON.stringify(process.env.IMAGE_TAG || "TESTING")
       }
     })
-  ]
+  ],
+  devServer: {
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+    },
+    host: '0.0.0.0',
+    port: 8080,
+    noInfo: true,
+    historyApiFallback: {
+      index: '/dist/'
+    },
+    proxy: {
+      "api": {
+        target: process.env.API,
+        secure: false
+      }
+    }
+  }
 }
 
 if (process.env.NODE_ENV === 'production') {

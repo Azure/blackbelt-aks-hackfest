@@ -44,13 +44,13 @@ export default {
     }
   },
     created() {
-      axios.get(process.env.API + "/sites/" + process.env.SITE_CODE)
+      axios.get("/api/sites/" + process.env.SITE_CODE)
         .then(response => {
           var page = response.data.payload.pages.Leaderboard
           document.title = page.title
           this.headerImage = page.headerImage
           this.subtitle = page.subtitle
-          return axios.get(process.env.API + "/heroes/rated") 
+          return axios.get("/api/heroes/rated") 
         })
         .then(response => {
           this.heroes = response.data.payload
