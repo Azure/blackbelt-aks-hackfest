@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: heroes-api
+  name: api
   labels:
-    name: heroes-api
+    name: api
 spec:
   type: LoadBalancer
   ports:
@@ -40,7 +40,7 @@ spec:
             memory: "55M"
         env:
         - name:  MONGODB_URI
-          value:  mongodb://heroes-db:27017/webratings
+          value:  mongodb://mongodb:27017/webratings
         ports:
         - containerPort:  3000
           name:  heroes-api

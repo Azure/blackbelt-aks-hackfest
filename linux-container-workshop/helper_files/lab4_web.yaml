@@ -1,3 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: web
+  labels:
+    name: web
+spec:
+  type: LoadBalancer
+  ports:
+  - name: http
+    port: 8080
+    targetPort: 8080
+  selector:
+    name: heroes-web
+---
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
@@ -25,11 +40,7 @@ spec:
             memory: "55M"
         env:
         - name:  API
-          value:  http://<PUBLIC_IP_OF_HEROES_API_GOES_HERE>:3000/api     
-        - name:  SITE
-          value:  http://<PUBLIC_IP_OF_HEROES_WEB_GOES_HERE>:8080/static/data/justice/heroes-site.json
-        - name:  HEROES
-          value:  http://<PUBLIC_IP_OF_HEROES_WEB_GOES_HERE>:8080/static/data/justice/heroes.json
+          value:  http://api:3000/api
         ports:
         - containerPort:  8080
           name:  heroes-web

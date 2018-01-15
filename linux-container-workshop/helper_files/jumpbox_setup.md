@@ -28,7 +28,7 @@ gpgkey=https://www.mongodb.org/static/pgp/server-3.6.asc
 ## Update tools (eg AZ CLI)
 
 Avoid version 2.4 since it has a bug. Use version 2.3
-`yum install azure-cli-2.0.23-1.el7` 
+`sudo yum install azure-cli-2.0.23-1.el7` 
 
 ## Clean up Docker
 

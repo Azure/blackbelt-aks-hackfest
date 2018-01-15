@@ -1,17 +1,49 @@
-# Deploying your first Application to Kubernetes
-_Type: Lab_
+# Deploy the Superhero Ratings App to AKS
 
-_Duration: 3 Mins_
+## Review/Edit the YAML Config Files
 
-Once you have a running Kubernetes cluster, you can deploy your containerized applications on top of it. To do so, you create a Kubernetes Deployment configuration. The Deployment instructs Kubernetes how to create and update instances of your application. Once you've created a Deployment, the Kubernetes master schedules mentioned application instances onto individual Nodes in the cluster.
+* In VS Code, open the `helper_files` directory and review the yaml files: 
 
-Once the application instances are created, a Kubernetes Deployment Controller continuously monitors those instances. If the Node hosting an instance goes down or is deleted, the Deployment controller replaces it. This provides a self-healing mechanism to address machine failure or maintenance.
+    * lab4_db.yaml
+    * lab4_api.yaml
+    * lab4_web.yaml
 
-When you create a Deployment, Kubernetes creates a Pod to host your application instance. A Pod is a Kubernetes abstraction that represents a group of one or more application containers, and some shared resources for those containers. Pods are placed on Nodes that are physical or VMs that the Masters will manage placing workloads on based on resource availability across the nodes.
+* Note the environment variables that direct each app to other services.
+* Update the yaml files for the proper container image name. 
+    * You will need to replace the `<login server>` with the ACR login server created in Lab 2. 
+    * Repeat this for all 3 yaml files. Example: 
 
-For now let's just get an application deployed into Kubernetes.
+        ```
+        spec:
+        containers:
+        - image: mycontainerregistry.azurecr.io/rating-web:v1
+            name:  heroes-web-cntnr
+        ```
 
-## Exercise 1 - Review the Web service Deployment and Service Manifest
+## Deploy the Applications to AKS
 
-1. Using VSCode open your folder from the clones github library for this lab and open ``~/blackbelt-aks-hackfest/linux-container-workshop/hol_content/lab5_web.yaml``
-2. 
+* Use the kubectl CLI to deploy each app
+
+    ```
+    cd ./Linux_Container_Azure_Workshop/helper_files
+
+    kubectl apply -f lab4_db.yaml
+    kubectl apply -f lab4_api.yaml
+    kubectl apply -f lab4_web.yaml
+    ```
+
+## Validate
+
+* Check to see if pods are running in your cluster
+
+    ```
+    kubectl get pods
+    ```
+
+* Check to see if services are deployed
+
+    ```
+    kubectl get service
+    ```
+
+* Browse to the public IP for your web application and try the app
