@@ -31,7 +31,7 @@ spec:
         name:  heroes-db
     spec:
       containers:
-      - image:  <login server>/rating-db:v1
+      - image:  <login server>/azureworkshop/rating-db:v1
         name:  heroes-db-cntnr
         resources:
           requests:
