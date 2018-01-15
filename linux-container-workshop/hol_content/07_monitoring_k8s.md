@@ -103,7 +103,7 @@ Use the EXTERNAL-IP value from the previous step and put that into your browser:
 ![](img/8-grafana_dashboardimport.png)
 
 
-* Use the file located [here](./helper_files/gbb_hackfest_grafana_dashboard.json) to import the json dashboard configuration by clicking the **Upload File** button.
+* Use the file located [here](https://github.com/Azure/blackbelt-aks-hackfest/blob/master/linux-container-workshop/helper_files/gbb_hackfest_grafana_dashboard.json) to import the json dashboard configuration by clicking the **Upload File** button.
 
 
 ![](img/8-grafana_dashboardid.png)
