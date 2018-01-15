@@ -49,3 +49,7 @@ Mongo is already running. We need to import the data for our application.
     ```
 
 * Test web locally http://localhost:8080 
+
+## Clean-up
+
+Close or `ctrl-c` out of web and app applications.

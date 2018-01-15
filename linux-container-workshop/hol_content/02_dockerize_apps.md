@@ -9,11 +9,11 @@ For the first container, we will be creating a Dockerfile from scratch. For the 
 1. Create a Dockerfile
 
     * Open Visual Studio Code
-    * In the "Linux_Container_Azure_Workshop/app/web" directory, add a file called "Dockerfile"
+    * In the "./linux-container-workshop/app/web" directory, add a file called "Dockerfile"
     * Add the following lines and save:
 
         ```
-        FROM node:carbon
+        FROM node:9.4.0-alpine
 
         WORKDIR /usr/src/app
         COPY package*.json ./
@@ -23,7 +23,7 @@ For the first container, we will be creating a Dockerfile from scratch. For the 
 
         EXPOSE 8080
 
-        CMD [ "npm", "run", "staging" ]
+        CMD [ "npm", "run", "container" ]
         ```
 
 2. Create a container image for the node.js Web app
@@ -31,7 +31,7 @@ For the first container, we will be creating a Dockerfile from scratch. For the 
     From bash shell: 
 
     ```
-    cd ./Linux_Container_Azure_Workshop/app/web
+    cd ./linux-container-workshop/app/web
 
     docker build -t rating-web .
     ```
@@ -45,7 +45,7 @@ In this step, the Dockerfile has been created for you.
 1. Create a container image for the node.js API app
 
     ```
-    cd ./Linux_Container_Azure_Workshop/app/api
+    cd ./linux-container-workshop/app/api
 
     docker build -t rating-api .
     ```
@@ -57,7 +57,7 @@ In this step, the Dockerfile has been created for you.
 1. Create a MongoDB image with data files
 
     ```
-    cd ./Linux_Container_Azure_Workshop/app/db
+    cd ./linux-container-workshop/app/db
 
     docker build -t rating-db .
     ```
@@ -99,6 +99,8 @@ docker network create --subnet=172.18.0.0/16 my-network
     2018-01-10T19:26:07.761+0000	imported 4 documents
     2018-01-10T19:26:07.776+0000	connected to: localhost
     2018-01-10T19:26:07.787+0000	imported 72 documents
+    2018-01-10T19:26:07.746+0000	connected to: localhost
+    2018-01-10T19:26:07.761+0000	imported 2 documents
     ```
 
 4. Type `exit` to exit out of container
@@ -108,8 +110,10 @@ docker network create --subnet=172.18.0.0/16 my-network
 1. Run api app container
 
     ```
-    docker run -d --name api --net my-network --ip 172.18.0.11 -p 3000:3000 rating-api
+    docker run -d --name api -e "MONGODB_URI=mongodb://172.18.0.10:27017/webratings" --net my-network --ip 172.18.0.11 -p 3000:3000 rating-api
     ```
+
+    > Note that environment variables are used here to direct the api app to mongo.
 
 2. Validate by running `docker ps -a`
 
@@ -120,14 +124,8 @@ docker network create --subnet=172.18.0.0/16 my-network
 1. Run web app container
 
     ```
-    docker run -d --name web --net my-network \
-    --ip 172.18.0.12 -p 8080:8080 \
-    -e "API=http://localhost:3000/api" \
-    -e "SITE=http://localhost:8080/static/data/site.json" \
-    -e "HEROES=http://localhost:8080/static/data/heroes.json" rating-web
+    docker run -d --name web -e "API=http://172.18.0.11:3000/api" --net my-network --ip 172.18.0.12 -p 8080:8080 rating-web
     ```
-
-    > Note that environment variables are used here to direct the web page to necessary components.
 
 2. Validate by running `docker ps -a`
 
