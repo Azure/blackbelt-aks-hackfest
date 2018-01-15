@@ -53,7 +53,6 @@ export default {
   },
   methods: {
     link(rel) {
-      if (re)
       this.$router.push({ name: rel });
     }
   }
