@@ -32,7 +32,7 @@ spec:
         name:  heroes-api
     spec:
       containers:
-      - image: <login server>/rating-api:v1
+      - image: <login server>/azureworkshop/rating-api:v1
         name:  heroes-api-cntnr
         resources:
           requests:
