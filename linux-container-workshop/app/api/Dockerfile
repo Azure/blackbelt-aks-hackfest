@@ -1,4 +1,4 @@
-FROM node:carbon
+FROM node:9.4.0-alpine
 
 WORKDIR /usr/src/app
 COPY package*.json ./
@@ -8,6 +8,6 @@ COPY . .
 
 EXPOSE 3000
 
-CMD [ "npm", "run", "prod" ]
+CMD [ "npm", "run", "container" ]
 
 
