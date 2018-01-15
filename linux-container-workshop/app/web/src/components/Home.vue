@@ -16,7 +16,7 @@
         <at-button @click="link('Leaderboard')" icon="icon-bar-chart-2" class="mid-btn" type="success" hollow>View Leaderboard</at-button>
       </div>
       <div class="col-lg-6">
-        <at-button @click="link('Leaderboard')" icon="icon-github" class="mid-btn" type="info" hollow>Steal This Code</at-button>
+        <a href="https://github.com/Azure/blackbelt-aks-hackfest" target="_blank"><at-button icon="icon-github" class="mid-btn" type="info" hollow>Steal This Code</at-button></a>
       </div>
       <div class="col-lg-3">
       </div>
@@ -53,6 +53,7 @@ export default {
   },
   methods: {
     link(rel) {
+      if (re)
       this.$router.push({ name: rel });
     }
   }
