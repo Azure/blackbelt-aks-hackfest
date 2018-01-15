@@ -10,7 +10,7 @@
 <script>
 export default {
   name: 'app'
-}
+} 
 </script>
 
 
@@ -73,8 +73,12 @@ export default {
 
 
 // .at-related
-  .at-row {
-    margin: 10px;
+  // .at-row {
+  //   margin: 10px;
+  // }
+  
+  .at-card{
+    margin-bottom:10px;
   }
 
   .at-card__head {
@@ -83,6 +87,7 @@ export default {
 
   .at-card__body {
     background-color: #444;
+    padding:33px 33px 15px 33px;
   }
 
   .at-rate {
@@ -161,22 +166,52 @@ export default {
   }
 
   .super-image {
-    margin: 0px 0px 0px 18px;
     -webkit-filter: drop-shadow(3px 3px 3px #111);
     filter: drop-shadow(3px 3px 3px #111);
-    width: 180px;
+    width: 100%;
   }
 
   .super-name {
     font-size: 28px;
-    color: #fff;
+    color: #FFF;
     font-family: 'Bangers', cursive;
     font-weight: 100;
     text-shadow: 4px 4px 6px #000;
   }
+  .super-name-lead{
+    font-size: 48px;
+    font-family: 'Bangers', cursive;
+    font-weight: 100;
+    text-shadow: 4px 4px 6px #000;
+  }
+  .super-name-first{
+    color: rgb(25, 255, 25);
+  }
+  .super-name-else{
+    color: rgb(251, 255, 6);
+  }
+  .super-name-last{
+    color: rgb(255, 21, 21);
+  }
 
   .super-rate-foot {
     text-align: center;
+  }
+
+  .super-star-text-shell .at-rate__icon{
+    padding-top: 7px;
+    color: rgb(255, 254, 198);
+    text-shadow: 4px 4px 6px #000;
+  }
+
+  .super-star-text{
+    padding-left: 4px;
+    padding-right: 6px;
+    font-size: 24px;
+    color: rgb(255, 254, 198);
+    font-family: 'Bangers', cursive;
+    font-weight: 100;
+    text-shadow: 4px 4px 6px #000;
   }
 
   .super-vote {

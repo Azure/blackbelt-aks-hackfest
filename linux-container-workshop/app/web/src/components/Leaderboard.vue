@@ -8,16 +8,19 @@
       </div>
     </div>
     <div class="row at-row">
-      <div class="col-lg-6" v-for="(item) in heroes">
+      <div class="col-lg-6 leader-card" v-for="(item, index) in heroes">
         <div class="at-box-row">
-          <at-card :bordered="false">
+          <at-card :bordered="false" class="flex-center flex-middle" v-bind:style="index | formatPlace">
             <h4 slot="title" class="super-name">
-              {{item.Hero.name}}
+              {{item.name}}
             </h4>
             <div>
-              <img class="super-image" :src="item.Hero.img">
+              <img class="super-image" :src="item.img">
               <div class="super-rate-foot">
-               {{item.AvgRating}}
+                <span v-bind:class="index | formatRatingColor">{{ item.AvgRating | formatRating }}</span>
+              </div>
+              <div class="flex-center flex-middle super-star-text-shell">
+                <span class="super-star-text">Stars</span>
               </div>
             </div>
           </at-card>
@@ -29,6 +32,7 @@
 
 <script>
 import axios from 'axios'
+import numeral from 'numeral'
 
 export default {
   data () {
@@ -40,10 +44,9 @@ export default {
     }
   },
     created() {
-      axios.get(process.env.SITE)
+      axios.get(process.env.API + "/sites/" + process.env.SITE_CODE)
         .then(response => {
-          // console.log(`got the site info`)
-          var page = response.data.pages.Leaderboard
+          var page = response.data.payload.pages.Leaderboard
           document.title = page.title
           this.headerImage = page.headerImage
           this.subtitle = page.subtitle
@@ -55,9 +58,30 @@ export default {
         .catch(e => {
           this.errors.push(e)
         })
-
     },
     methods: {
+    },
+    filters: {
+      formatRating: function(value){
+        return numeral(value).format("0.00")
+      },
+      formatRatingColor: function(index){
+        var ratingClass = "super-name-lead ";
+        switch(index){
+          case 0:
+            return ratingClass + "super-name-first";
+            break;
+          case 3:
+            return ratingClass + "super-name-last";
+            break;
+          default:
+            return ratingClass + "super-name-else";
+        }
+      },
+      formatPlace: function(index){
+        // placeholder for modifying place
+        return ""
+      }
     }
   };
 </script>

@@ -1,4 +1,6 @@
 {
+    "name":"Justice League",
+    "shortCode":"JLA",
     "pages":
     {
         "Home":{
@@ -17,5 +19,4 @@
             "subtitle": "Current Leaderboard - Brian is super cool"
         }
     }
-    
 }

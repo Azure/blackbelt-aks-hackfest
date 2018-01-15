@@ -40,17 +40,16 @@ export default {
     };
   },
   created() {
-    axios
-      .get(process.env.SITE)
+    axios.get(process.env.API + "/sites/" + process.env.SITE_CODE)
       .then(response => {
-        var page = response.data.pages.Home
+        var page = response.data.payload.pages.Home
         document.title = page.title
         this.headerImage = page.headerImage
         this.subtitle = page.subtitle
+      }).catch(e => {
+        console.log(e)
+        this.errors.push(e)
       })
-      .catch(e => {
-        this.errors.push(e);
-      });
   },
   methods: {
     link(rel) {

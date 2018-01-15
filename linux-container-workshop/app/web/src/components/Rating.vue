@@ -46,9 +46,9 @@ export default {
     }
   },
     created() {
-      axios.get(process.env.SITE)
+      axios.get(process.env.API + "/sites/" + process.env.SITE_CODE)
         .then(response => {
-          var page = response.data.pages.Rating
+          var page = response.data.payload.pages.Rating
           document.title = page.title
           this.headerImage = page.headerImage
           this.subtitle = page.subtitle

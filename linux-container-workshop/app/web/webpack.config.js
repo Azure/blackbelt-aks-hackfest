@@ -70,9 +70,8 @@ module.exports = {
     }),
     new webpack.DefinePlugin({
       'process.env': {
-        HEROES: JSON.stringify(process.env.HEROES),
-        SITE: JSON.stringify(process.env.SITE),
         API: JSON.stringify(process.env.API),
+        SITE_CODE: JSON.stringify(process.env.SITE_CODE || "JLA"),
         IMAGE_TAG: JSON.stringify(process.env.IMAGE_TAG || "TESTING")
       }
     })
@@ -85,9 +84,8 @@ if (process.env.NODE_ENV === 'production') {
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: '"production"',
-        HEROES: JSON.stringify(process.env.HEROES),
-        SITE: JSON.stringify(process.env.SITE),
         API: JSON.stringify(process.env.API),
+        SITE_CODE: JSON.stringify(process.env.SITE_CODE || "JLA"),
         IMAGE_TAG: JSON.stringify(process.env.IMAGE_TAG || "TESTING")
       }
     }),

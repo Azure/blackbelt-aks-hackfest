@@ -1,0 +1,44 @@
+[
+    {
+        "name": "Boeing",
+        "shortCode": "BOE",
+        "pages": {
+            "Home": {
+                "title": "Boeing Planes Rating :: Project Homepage",
+                "headerImage": "/static/img/boeing/boeing.png",
+                "subtitle": "Boeing Planes Rating :: Project Homepage"
+            },
+            "Rating": {
+                "title": "Boeing Planes Rating :: Rate the Planes",
+                "headerImage": "/static/img/boeing/boeing.png",
+                "subtitle": "Rate the Boeing Planes"
+            },
+            "Leaderboard": {
+                "title": "Boeing Planes Rating :: Current Leaderboard",
+                "headerImage": "/static/img/boeing/boeing.png",
+                "subtitle": "Current Leaderboard"
+            }
+        }
+    },
+    {
+        "name": "Justice League",
+        "shortCode": "JLA",
+        "pages": {
+            "Home": {
+                "title": "Superhero Rating :: Project Homepage",
+                "headerImage": "/static/img/justice/justice.png",
+                "subtitle": "Superhero Rating - Project Homepage"
+            },
+            "Rating": {
+                "title": "Superhero Rating :: Rate the Superheroes",
+                "headerImage": "/static/img/justice/justice.png",
+                "subtitle": "Rate the Superheroes"
+            },
+            "Leaderboard": {
+                "title": "Superhero Rating :: Current Leaderboard",
+                "headerImage": "/static/img/justice/justice.png",
+                "subtitle": "Current Leaderboard - Brian is super cool"
+            }
+        }
+    }
+]
