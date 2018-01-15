@@ -9,7 +9,7 @@ For the first container, we will be creating a Dockerfile from scratch. For the 
 1. Create a Dockerfile
 
     * Open Visual Studio Code
-    * In the "Linux_Container_Azure_Workshop/app/web" directory, add a file called "Dockerfile"
+    * In the "./linux-container-workshop/app/web" directory, add a file called "Dockerfile"
     * Add the following lines and save:
 
         ```
@@ -31,7 +31,7 @@ For the first container, we will be creating a Dockerfile from scratch. For the 
     From bash shell: 
 
     ```
-    cd ./Linux_Container_Azure_Workshop/app/web
+    cd ./linux-container-workshop/app/web
 
     docker build -t rating-web .
     ```
@@ -45,7 +45,7 @@ In this step, the Dockerfile has been created for you.
 1. Create a container image for the node.js API app
 
     ```
-    cd ./Linux_Container_Azure_Workshop/app/api
+    cd ./linux-container-workshop/app/api
 
     docker build -t rating-api .
     ```
@@ -57,7 +57,7 @@ In this step, the Dockerfile has been created for you.
 1. Create a MongoDB image with data files
 
     ```
-    cd ./Linux_Container_Azure_Workshop/app/db
+    cd ./linux-container-workshop/app/db
 
     docker build -t rating-db .
     ```
@@ -100,7 +100,7 @@ docker network create --subnet=172.18.0.0/16 my-network
     2018-01-10T19:26:07.776+0000	connected to: localhost
     2018-01-10T19:26:07.787+0000	imported 72 documents
     2018-01-10T19:26:07.746+0000	connected to: localhost
-    2018-01-10T19:26:07.761+0000	imported 4 documents
+    2018-01-10T19:26:07.761+0000	imported 2 documents
     ```
 
 4. Type `exit` to exit out of container
