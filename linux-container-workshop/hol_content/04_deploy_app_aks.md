@@ -44,6 +44,24 @@
     heroes-db-deploy-2357291595-k7wjk    1/1       Running   0          3m
     heroes-web-1645635641-pfzf9          1/1       Running   0          2m
     ```
+* Run script to import data into MongoDB
+
+    ```
+    # replace the pod name below with your db pod name
+    # once you exec into pod, run the `import.sh` script
+
+    kubectl exec -it heroes-db-deploy-2357291595-xb4xm bash
+    root@heroes-db-deploy-2357291595-xb4xm:/# ./import.sh
+    2018-01-16T21:38:44.819+0000	connected to: localhost
+    2018-01-16T21:38:44.918+0000	imported 4 documents
+    2018-01-16T21:38:44.927+0000	connected to: localhost
+    2018-01-16T21:38:45.031+0000	imported 72 documents
+    2018-01-16T21:38:45.040+0000	connected to: localhost
+    2018-01-16T21:38:45.152+0000	imported 2 documents
+    root@heroes-db-deploy-2357291595-xb4xm:/# exit
+
+    # be sure to exit pod as shown above
+    ```
 
 * Check to see if services are deployed
 
