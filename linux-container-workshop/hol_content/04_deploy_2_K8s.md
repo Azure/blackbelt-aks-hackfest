@@ -16,7 +16,7 @@
         ```
         spec:
         containers:
-        - image: mycontainerregistry.azurecr.io/rating-web:v1
+        - image: mycontainerregistry.azurecr.io/azureworkshop/rating-web:v1
             name:  heroes-web-cntnr
         ```
 
@@ -25,7 +25,7 @@
 * Use the kubectl CLI to deploy each app
 
     ```
-    cd ./Linux_Container_Azure_Workshop/helper_files
+    cd ./linux-container-workshop/helper_files
 
     kubectl apply -f lab4_db.yaml
     kubectl apply -f lab4_api.yaml
