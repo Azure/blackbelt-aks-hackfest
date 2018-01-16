@@ -16,28 +16,28 @@ heroes-api-deploy-1165643395-fwjtm             1/1       Running   0          2d
 heroes-db-deploy-839157328-4656j               1/1       Running   0          2d
 heroes-web-1677855039-8t57k                    1/1       Running   0          2d
 ```
-3. Scale # Web Pods
-* To simulate a real-world scenario we are going to scale the application.
+3. Scale out the Web application
+* To simulate a real-world scenario we are going to scale the web app to handle increased load.
 ```bash
 # This command will create multiple replicas of the heroes-web pod to simulate additional load on the cluster.
-kubectl scale deploy/heroes-web --replicas=20
+kubectl scale deploy/heroes-web --replicas=4
 ```
-4. Check to see number of pods now running via Grafana Dashboard.
+4. Check to see number of pods now running via Grafana Dashboard
 
 ![](img/9-grafana_podsrunning.png)
 
-5. Check to see number of heroes pods running via K8s CLI.
+5. Check to see number of heroes pods running via kubectl
 ```bash
 kubectl get svc | grep heroes
 # You should see something like the following as output (more than one heroes-web pod and some of them in different states):
-heroes-api-deploy-1165643395-fwjtm             1/1       Running             0          2d
-heroes-db-deploy-839157328-4656j               1/1       Running             0          2d
-heroes-web-1677855039-0dgk3                    0/1       Pending             0          11s
-heroes-web-1677855039-0j5qp                    0/1       Pending             0          10s
-heroes-web-1677855039-0lp93                    0/1       Pending             0          8s
-heroes-web-1677855039-116sv                    0/1       Pending             0          11s
+NAME                                                              READY     STATUS    RESTARTS   AGE
+heroes-web-3683626428-4m1v4                                       0/1       Pending   0          2m
+heroes-web-3683626428-hcs49                                       1/1       Running   0          4m
+heroes-web-3683626428-z1t1j                                       0/1       Pending   0          2m
+heroes-web-3683626428-zxp2s                                       1/1       Running   0          2m
 ```
-6. Check up on Pods Running in Grafana dashboard.
+
+6. Check up on Pods Running in Grafana dashboard
 * As you can see we have a number of pods that are in the pending state which means they are trying to be scheduled to run. In this scenario the cluster is out of capacity so they are not able to be scheduled.
 
 ![](img/9-grafana_podspending.png)
@@ -49,24 +49,31 @@ heroes-web-1677855039-116sv                    0/1       Pending             0  
 kubectl get nodes
 # You should see something like the following as output (there is one node in the cluster):
 NAME                       STATUS    ROLES     AGE       VERSION
-aks-nodepool1-29249874-0   Ready     agent     22h       v1.8.1
+aks-nodepool1-42552728-0   Ready     agent     4h        v1.7.7
+aks-nodepool1-42552728-1   Ready     agent     4h        v1.7.7
 ```
-2. Add another node to the cluster.
+2. Scale out AKS cluster to accomodate the demand
 ```bash
-az aks scale -g <RESOURCE_GROUP_NAME> -n <AKS_CLUSTER_NAME> --node-count 2
+az aks scale -g $RESOURCE_GROUP_NAME -n $AKS_CLUSTER_NAME --node-count 4 --no-wait
 ```
-3. Check to see number of nodes has increased or decreased.
+
+> Note this may take some time. Good time to get some coffee. 
+
+3. Check to see if the new nodes are deployed and "Ready"
 ```bash
 kubectl get nodes
-# You should see something like the following as output (there are now two nodes in the cluster):
+# You should see something like the following as output (there are now 4 nodes in the cluster):
 NAME                       STATUS    ROLES     AGE       VERSION
-aks-nodepool1-29249874-0   Ready     agent     22h       v1.8.1
-aks-nodepool1-29249874-1   Ready     agent     30s       v1.8.1
+aks-nodepool1-42552728-0   Ready     agent     5h        v1.7.7
+aks-nodepool1-42552728-1   Ready     agent     5h        v1.7.7
+aks-nodepool1-42552728-2   Ready     agent     7m        v1.7.7
+aks-nodepool1-42552728-3   Ready     agent     7m        v1.7.7
 ```
+
 4. Re-visit Grafana Dasboard to validate cluster scale is working.
-* Take a look at hte **Pods Pending Count** again and you should see that after a few minutes the number of pending pods is going down.
+* Take a look at the **Pods Pending Count** again and you should see that after a few minutes the number of pending pods is going down.
 
 ![](img/9-grafana_podsscaling.png)
 
 
-You now have additional node capacity in your Azure Kubernetes Service cluster to be able to provision more PODS.
+You now have additional node capacity in your Azure Kubernetes Service cluster to be able to provision more pods.

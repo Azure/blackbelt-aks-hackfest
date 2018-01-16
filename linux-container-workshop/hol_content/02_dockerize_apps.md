@@ -152,10 +152,16 @@ Now that we have container images for our application components, we need to sto
 1. Browse to your Container Registry in the Azure Portal
 2. Click on "Access keys"
 3. Make note of the "Login server", "Username", and "password"
-4. Login in your Bash shell: 
+4. Set each value to a variable as shown below.
+5. Login in your Bash shell: 
 
     ```
-    docker login --username <username> --password <password> <login server>
+    # set these values to yours
+    ACR_SERVER=
+    ACR_USER=
+    ACR_PWD=
+
+    docker login --username $ACR_USER --password $ACR_PWD $ACR_SERVER
     ```
 
 ### Tag images with ACR server and repository 
@@ -163,17 +169,17 @@ Now that we have container images for our application components, we need to sto
 ```
 # Be sure to replace the login server value
 
-docker tag rating-db <login server>/azureworkshop/rating-db:v1
-docker tag rating-api <login server>/azureworkshop/rating-api:v1
-docker tag rating-web <login server>/azureworkshop/rating-web:v1
+docker tag rating-db $ACR_SERVER/azureworkshop/rating-db:v1
+docker tag rating-api $ACR_SERVER/azureworkshop/rating-api:v1
+docker tag rating-web $ACR_SERVER/azureworkshop/rating-web:v1
 ```
 
 ### Push images to registry
 
 ```
-docker push <login server>/azureworkshop/rating-db:v1
-docker push <login server>/azureworkshop/rating-api:v1
-docker push <login server>/azureworkshop/rating-web:v1
+docker push $ACR_SERVER/azureworkshop/rating-db:v1
+docker push $ACR_SERVER/azureworkshop/rating-api:v1
+docker push $ACR_SERVER/azureworkshop/rating-web:v1
 ```
 
 Output from a successful `docker push` command is similar to:

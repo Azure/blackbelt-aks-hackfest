@@ -1,4 +1,4 @@
-# Azure Kubernetes Service Deployment
+# Azure Kubernetes Service (AKS) Deployment
 
 ## Create AKS cluster through Azure CLI
 
@@ -18,7 +18,7 @@
     
     ```
     UUID=$(uuidgen)
-    NAME="HEROES"-${UUID:0:8}
+    NAME="heroes"-${UUID:0:8}
     
     # create the RG
     az group create -n $NAME-aks-rg -l centralus
