@@ -59,14 +59,17 @@ az aks scale -g $RESOURCE_GROUP_NAME -n $AKS_CLUSTER_NAME --node-count 4 --no-wa
 
 > Note this may take some time. Good time to get some coffee. 
 
-3. Check to see number of nodes has increased or decreased.
+3. Check to see if the new nodes are deployed and "Ready"
 ```bash
 kubectl get nodes
-# You should see something like the following as output (there are now two nodes in the cluster):
+# You should see something like the following as output (there are now 4 nodes in the cluster):
 NAME                       STATUS    ROLES     AGE       VERSION
-aks-nodepool1-29249874-0   Ready     agent     22h       v1.8.1
-aks-nodepool1-29249874-1   Ready     agent     30s       v1.8.1
+aks-nodepool1-42552728-0   Ready     agent     5h        v1.7.7
+aks-nodepool1-42552728-1   Ready     agent     5h        v1.7.7
+aks-nodepool1-42552728-2   Ready     agent     7m        v1.7.7
+aks-nodepool1-42552728-3   Ready     agent     7m        v1.7.7
 ```
+
 4. Re-visit Grafana Dasboard to validate cluster scale is working.
 * Take a look at the **Pods Pending Count** again and you should see that after a few minutes the number of pending pods is going down.
 
