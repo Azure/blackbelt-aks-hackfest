@@ -47,7 +47,6 @@ export default {
         this.headerImage = page.headerImage
         this.subtitle = page.subtitle
       }).catch(e => {
-        console.log(e)
         this.errors.push(e)
       })
   },

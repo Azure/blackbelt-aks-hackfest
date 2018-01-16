@@ -20,7 +20,7 @@ For the first container, we will be creating a Dockerfile from scratch. For the 
         RUN npm install
 
         COPY . .
-
+        RUN apk --no-cache add curl
         EXPOSE 8080
 
         CMD [ "npm", "run", "container" ]
@@ -124,7 +124,7 @@ docker network create --subnet=172.18.0.0/16 my-network
 1. Run web app container
 
     ```
-    docker run -d --name web -e "API=http://172.18.0.11:3000/api" --net my-network --ip 172.18.0.12 -p 8080:8080 rating-web
+    docker run -d --name web -e "API=http://172.18.0.11:3000/" --net my-network --ip 172.18.0.12 -p 8080:8080 rating-web
     ```
 
 2. Validate by running `docker ps -a`
