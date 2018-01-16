@@ -40,7 +40,7 @@ spec:
             memory: "55M"
         env:
         - name:  API
-          value:  http://api:3000/api
+          value:  http://api:3000/
         ports:
         - containerPort:  8080
           name:  heroes-web
