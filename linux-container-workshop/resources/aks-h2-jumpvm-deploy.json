@@ -69,7 +69,7 @@
     "subnetRef": "[concat(variables('vnetId'), '/subnets/', parameters('subnetName'))]",
     "jumpVMPublicIpName": "[concat('jump-vm-',parameters('adminUsername'), '-', uniqueString(resourceGroup().id))]",
     "resourceGroupName": "[resourceGroup().name]",
-    "scriptName": "cse-acs-create.sh",
+    "scriptName": "aks-workshop-init.sh",
     "customScriptCommand": "su -c'sh ",
     "scriptClose": "'"
   },
@@ -241,7 +241,7 @@
         "autoUpgradeMinorVersion": true,
         "settings": {
           "fileUris": [
-            "https://experienceazurecloud.blob.core.windows.net/gbbossteam/cse-acs-create.sh"
+            "https://raw.githubusercontent.com/Azure/blackbelt-aks-hackfest/master/linux-container-workshop/resources/aks-workshop-init.sh"
           ],
           "commandToExecute": "[concat(variables('customScriptCommand'),' ',variables('scriptName'),' ',reference(resourceId('Microsoft.Network/publicIPAddresses', variables('jumpVMPublicIpName'))).dnsSettings.fqdn,' ',parameters('adminUsername'),' ',parameters('adminPassword'),' ',variables('resourceGroupName'),' ',parameters('azureUserName'),' ',parameters('azureUserPassword'),' ',parameters('applicationDisplayName'),' ',parameters('applicationSecretKey'),' ',variables('scriptClose'))]"
         }
