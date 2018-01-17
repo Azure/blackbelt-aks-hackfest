@@ -101,11 +101,13 @@ Set these as environment variables for later use. You can retrieve the values us
 
 ```
 # update the lines below with your config details
-RG=
-NAME=
-USER=
-PWD=
+USER_NAME=
+PASSWORD=
 COSMOS_URL=
+
+CONNECT_STRING=mongodb://$USER_NAME:$PASSWORD@$COSMOS_URL:10255/?ssl=true
+
+echo $CONNECT_STRING
 ```
 
 ## Migrating Data From MongoDB to CosmosDB
