@@ -10,7 +10,7 @@
     <div class="row at-row">
       <div class="col-lg-6 leader-card" v-for="(item, index) in heroes">
         <div class="at-box-row">
-          <at-card :bordered="false" class="flex-center flex-middle" v-bind:style="index | formatPlace">
+          <at-card :bordered="false" v-bind:style="index | formatPlace">
             <h4 slot="title" class="super-name">
               {{item.name}}
             </h4>

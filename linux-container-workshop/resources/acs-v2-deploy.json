@@ -1,0 +1,265 @@
+{
+  "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "location": {
+      "type": "string"
+    },
+    "virtualMachineName": {
+      "type": "string"
+    },
+    "virtualMachineSize": {
+      "type": "string"
+    },
+    "adminUsername": {
+      "type": "string"
+    },
+    "virtualNetworkName": {
+      "type": "string"
+    },
+    "networkInterfaceName": {
+      "type": "string"
+    },
+    "networkSecurityGroupName": {
+      "type": "string"
+    },
+    "adminPassword": {
+      "type": "securestring"
+    },
+    "diagnosticsStorageAccountName": {
+      "type": "string"
+    },
+    "diagnosticsStorageAccountType": {
+      "type": "string"
+    },
+    "addressPrefix": {
+      "type": "string"
+    },
+    "subnetName": {
+      "type": "string"
+    },
+    "subnetPrefix": {
+      "type": "string"
+    },
+    "publicIpAddressName": {
+      "type": "string"
+    },
+    "publicIpAddressType": {
+      "type": "string"
+    },
+    "publicIpAddressSku": {
+      "type": "string"
+    },
+    "applicationDisplayName": {
+      "type": "string"
+    },
+    "applicationSecretKey": {
+      "type": "securestring"
+    },
+    "azureUserName":{
+      "type": "string"
+    },
+    "azureUserPassword":{
+      "type":"securestring"
+    }
+  },
+  "variables": {
+    "diagnosticsStorageAccountName": "[concat(parameters('diagnosticsStorageAccountName'), uniqueString(resourceGroup().id))]",
+    "vnetId": "[resourceId(resourceGroup().name,'Microsoft.Network/virtualNetworks', parameters('virtualNetworkName'))]",
+    "subnetRef": "[concat(variables('vnetId'), '/subnets/', parameters('subnetName'))]",
+    "jumpVMPublicIpName": "[concat('jump-vm-',parameters('adminUsername'), '-', uniqueString(resourceGroup().id))]",
+    "resourceGroupName": "[resourceGroup().name]",
+    "scriptName": "cse-acs-create.sh",
+    "customScriptCommand": "su -c'sh ",
+    "scriptClose": "'"
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Compute/virtualMachines",
+      "name": "[parameters('virtualMachineName')]",
+      "apiVersion": "2016-04-30-preview",
+      "location": "[parameters('location')]",
+      "properties": {
+        "osProfile": {
+          "computerName": "[parameters('virtualMachineName')]",
+          "adminUsername": "[parameters('adminUsername')]",
+          "adminPassword": "[parameters('adminPassword')]"
+        },
+        "hardwareProfile": {
+          "vmSize": "[parameters('virtualMachineSize')]"
+        },
+        "storageProfile": {
+          "imageReference": {
+            "id": "/subscriptions/b23accae-e655-44e6-a08d-85fb5f1bb854/resourceGroups/aks-labs-jumpbox-resources/providers/Microsoft.Compute/images/h2aksvm-image"
+          },
+          "osDisk": {
+            "createOption": "fromImage",
+            "managedDisk": {
+              "storageAccountType": "Standard_LRS"
+            }
+          }
+        },
+        "networkProfile": {
+          "networkInterfaces": [
+            {
+              "id": "[resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaceName'))]"
+            }
+          ]
+        }
+      },
+      "dependsOn": [
+        "[concat('Microsoft.Network/networkInterfaces/', parameters('networkInterfaceName'))]",
+      ]
+    },
+    {
+      "type": "Microsoft.Network/virtualNetworks",
+      "name": "[parameters('virtualNetworkName')]",
+      "apiVersion": "2016-12-01",
+      "location": "[parameters('location')]",
+      "properties": {
+        "addressSpace": {
+          "addressPrefixes": [
+            "[parameters('addressPrefix')]"
+          ]
+        },
+        "subnets": [
+          {
+            "name": "[parameters('subnetName')]",
+            "properties": {
+              "addressPrefix": "[parameters('subnetPrefix')]"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "Microsoft.Network/networkInterfaces",
+      "name": "[parameters('networkInterfaceName')]",
+      "apiVersion": "2016-09-01",
+      "location": "[parameters('location')]",
+      "properties": {
+        "ipConfigurations": [
+          {
+            "name": "ipconfig1",
+            "properties": {
+              "subnet": {
+                "id": "[variables('subnetRef')]"
+              },
+              "privateIPAllocationMethod": "Dynamic",
+              "publicIpAddress": {
+                "id": "[resourceId(resourceGroup().name,'Microsoft.Network/publicIpAddresses', variables('jumpVMPublicIpName'))]"
+              }
+            }
+          }
+        ],
+        "networkSecurityGroup": {
+          "id": "[resourceId(resourceGroup().name, 'Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroupName'))]"
+        }
+      },
+      "dependsOn": [
+        "[concat('Microsoft.Network/virtualNetworks/', parameters('virtualNetworkName'))]",
+        "[concat('Microsoft.Network/publicIpAddresses/', variables('jumpVMPublicIpName'))]",
+        "[concat('Microsoft.Network/networkSecurityGroups/', parameters('networkSecurityGroupName'))]"
+      ]
+    },
+    {
+      "type": "Microsoft.Network/publicIpAddresses",
+      "sku": {
+        "name": "[parameters('publicIpAddressSku')]"
+      },
+      "name": "[variables('jumpVMPublicIpName')]",
+      "apiVersion": "2017-08-01",
+      "location": "[parameters('location')]",
+      "properties": {
+        "publicIpAllocationMethod": "[parameters('publicIpAddressType')]",
+        "dnsSettings": {
+          "domainNameLabel": "[variables('jumpVMPublicIpName')]"
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Network/networkSecurityGroups",
+      "name": "[parameters('networkSecurityGroupName')]",
+      "apiVersion": "2017-06-01",
+      "location": "[parameters('location')]",
+      "properties": {
+        "securityRules": [
+          {
+            "name": "default-allow-ssh",
+            "properties": {
+              "priority": 1000,
+              "protocol": "Tcp",
+              "access": "Allow",
+              "direction": "Inbound",
+              "sourceAddressPrefix": "*",
+              "sourcePortRange": "*",
+              "destinationAddressPrefix": "*",
+              "destinationPortRange": "22"
+            }
+          },
+          {
+            "name": "default-allow-rdp",
+            "properties": {
+              "priority": 1010,
+              "protocol": "Tcp",
+              "access": "Allow",
+              "direction": "Inbound",
+              "sourceAddressPrefix": "*",
+              "sourcePortRange": "*",
+              "destinationAddressPrefix": "*",
+              "destinationPortRange": "3389"
+            }
+          },
+          {
+            "name": "default-allow-http",
+            "properties": {
+              "priority": 1020,
+              "protocol": "Tcp",
+              "access": "Allow",
+              "direction": "Inbound",
+              "sourceAddressPrefix": "*",
+              "sourcePortRange": "*",
+              "destinationAddressPrefix": "*",
+              "destinationPortRange": "6080"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "Microsoft.Compute/virtualMachines/extensions",
+      "name": "[concat(parameters('virtualMachineName'),'/mycustomscriptextension')]",
+      "apiVersion": "2015-06-15",
+      "location": "[parameters('location')]",
+      "dependsOn": [
+        "[concat('Microsoft.Compute/virtualMachines/',parameters('virtualMachineName'))]"
+      ],
+      "properties": {
+        "publisher": "Microsoft.Azure.Extensions",
+        "type": "CustomScript",
+        "typeHandlerVersion": "2.0",
+        "autoUpgradeMinorVersion": true,
+        "settings": {
+          "fileUris": [
+            "https://experienceazurecloud.blob.core.windows.net/gbbossteam/cse-acs-create.sh"
+          ],
+          "commandToExecute": "[concat(variables('customScriptCommand'),' ',variables('scriptName'),' ',reference(resourceId('Microsoft.Network/publicIPAddresses', variables('jumpVMPublicIpName'))).dnsSettings.fqdn,' ',parameters('adminUsername'),' ',parameters('adminPassword'),' ',variables('resourceGroupName'),' ',parameters('azureUserName'),' ',parameters('azureUserPassword'),' ',parameters('applicationDisplayName'),' ',parameters('applicationSecretKey'),' ',variables('scriptClose'))]"
+        }
+      }
+    }
+  ],
+  "outputs": {
+    "jumpVMDNSName": {
+      "value": "[reference(resourceId('Microsoft.Network/publicIPAddresses', variables('jumpVMPublicIpName'))).dnsSettings.fqdn]",
+      "type": "string"
+    },
+    "adminUsername": {
+      "type": "string",
+      "value": "[parameters('adminUsername')]"
+    },
+    "adminPassword": {
+      "value": "[parameters('adminPassword')]",
+      "type": "string"
+    }
+  }
+}
