@@ -72,20 +72,57 @@ You will need to fill in the following information:
 
 Once you've clicked create, your CosmosDB instance will be provisioned within minutes.  You will be notified with an alert in the top right corner of your Portal Dashboard.
 
-## Create Cosmos database/collection
+## Migrating Data From MongoDB to CosmosDB
 
-Now that our CosmosDB account is created, we must create a collection. 
+In this section we will use the ```mongodump``` and ```mongorestore``` commands to export data from MongoDB and then import back into CosmosDB.  
 
-1. Open the Cosmos account in the Azure portal.
-2. Click on Collections, Browse.
-3. Click Add Collection.
-4. Enter a Database and Collection ID and use Fixed, 10 GB as capacity. 
+The method used in this section is simple by design and may not be the right method for your production migrations.  We would recommend working with a MongoDB DBA and Architect who is experienced with MongoDB data migration in a production environment to minimize downtime.  Please refer to: [Guide for a successful migration
+](https://docs.microsoft.com/en-us/azure/cosmos-db/mongodb-migrate#guide-for-a-successful-migration) in the Azure Docs for CosmosDB.
 
-![Creating CosmosDB collection](img/cosmos_create_collection.png "Creating CosmosDB collection")
+### Export/Import Data
 
-5. Click OK
+These commands will be run from inside our MongoDB pod.
 
-## Setup CosmosDB Connection String
+1. Exec into mongo database pod and export data
+	```
+	# list pods in the cluster and set the variable to your pod name
+	kubectl get pod
+	NAME                                                              READY     STATUS    RESTARTS   AGE
+	heroes-api-deploy-1140957751-v2pqc                                1/1       Running   0          20h
+	heroes-db-deploy-2357291595-xb4xm                                 1/1       Running   0          20h
+	heroes-web-3683626428-9m8wp                                       1/1       Running   0          20h
+
+	MONGO_POD=heroes-db-deploy-2357291595-xb4xm
+
+	kubectl exec -it $MONGO_POD bash
+
+	root@heroes-db-deploy-2357291595-xb4xm:/# mongodump
+	```
+
+2. Import the data using ```mongorestore```
+	
+	From the same prompt inside the pod, set the variables below and run the command.
+
+	```
+	# fill in values here:
+	NAME=
+	USER_NAME=
+	COSMOS_URL=
+	PASSWORD=
+
+	mongorestore --host $COSMOS_URL:10255 -u $USER_NAME -p $PASSWORD --db $NAME --ssl --sslAllowInvalidCertificates /dump/webratings
+	```
+3. Exit from pod by typing `exit`
+
+### View data the Azure Portal
+
+When you navigate to your CosmosDB instance in the Azure portal, you can view your Database, Collections and Documents by navigating to the "Data Explorer" section of your CosmosDB instance.  You can perform CRUD, Query and other operations on your database here as well.
+
+![Cosmos Data Explorer](img/cosmos_data_explorer.png "Cosmos Data Explorer")
+
+## Update the Heroes App to use CosmosDB
+
+### Setup CosmosDB Connection String
 
 In this section we will learn how to retrieve the CosmosDB connection string that is required in order to connect to your new database in Azure.  The connection string takes the format: ```mongodb://<username>:<password>@<cosmosdb-url>:10255/?ssl=true```.  The connection string is broken down into three important parts:
 
@@ -108,93 +145,29 @@ COSMOS_URL=
 CONNECT_STRING=mongodb://$USER_NAME:$PASSWORD@$COSMOS_URL:10255/?ssl=true
 
 echo $CONNECT_STRING
+mongodb://userid:longpassword@cosmosacct.documents.azure.com:10255/?ssl=true
+
+# make note of this. you will use this value in the next step
 ```
 
-## Migrating Data From MongoDB to CosmosDB
+### Update the API deployment to use the new CosmosDB connect string
 
-In this section we will use the ```mongodump``` and ```mongorestore``` commands to export data from MongoDB and then import back into CosmosDB.  
-
-The method used in this section is simple by design and may not be the right method for your production migrations.  We would recommend working with a MongoDB DBA and Architect who is experienced with MongoDB data migration in a production environment to minimize downtime.  Please refer to: [Guide for a successful migration
-](https://docs.microsoft.com/en-us/azure/cosmos-db/mongodb-migrate#guide-for-a-successful-migration) in the Azure Docs for CosmosDB.
-
-### Exporting data from MongoDB
-
-These commands will be run from inside our MongoDB pod.
-
-1. Exec into mongo database pod
+1. Edit the `lab4_api.yaml` file
+	The snippet below is the section that must be udpated. We are replacing the `MONGODB_URI` value with the new connect string created in the prior section
 	```
-	# list pods in the cluster and set the variable to your pod name
-	kubectl get pod
-	NAME                                                              READY     STATUS    RESTARTS   AGE
-	heroes-api-deploy-1140957751-v2pqc                                1/1       Running   0          20h
-	heroes-db-deploy-2357291595-xb4xm                                 1/1       Running   0          20h
-	heroes-web-3683626428-9m8wp                                       1/1       Running   0          20h
-
-	MONGO_POD=heroes-db-deploy-2357291595-xb4xm
-
-	kubectl exec -it $MONGO_POD bash
+	env:
+	- name:  MONGODB_URI
+		value: mongodb://userid:longpassword@cosmosacct.documents.azure.com:10255/?ssl=true
+	ports:
+	- containerPort:  3000
+		name:  heroes-api
+	imagePullPolicy: Always
+	restartPolicy: Always
 	```
 
-2. Export the data using ```mongodump```
+2. Apply the new config in AKS
+	```
+	kubectl apply -f lab4_api.yaml
+	```
 
-3. 
-
-
-### Importing data into CosmosDB
-
-Using the ```mongorestore``` command you can do a full DB restore to your CosmosDB instance.
-
-
-
-```:bash
-mongorestore --host <your-cosmosdb-url>:10255 -u <your-cosmosdb-name> -p <your-password> --db <your-cosmosdb-name> --ssl --sslAllowInvalidCertificates <full-path-to-backup>
-```
-
-When the restore is complete, you will see output pertaining to the restore.
-
-
-## Exploring and using data
-
-When the restore/import of your database is complete you can now connect to CosmosDB and access the data. 
-
-### Via the Azure Portal
-
-When you navigate to your CosmosDB instance in the Azure portal, you can view your Database, Collections and Documents by navigating to the "Data Explorer" section of your CosmosDB instance.  You can perform CRUD, Query and other operations on your database here as well.
-
-![Cosmos Data Explorer](img/cosmos_data_explorer.png "Cosmos Data Explorer")
-
-### In your Application
-
-CosmosDB instances which were setup using the MongoDB API (like our lab), are compatible with MongoDB drivers/APIs.  As such you can continue to use the SDK/API/Drivers that you are currently using in your application(s) and simply need to replace the old MongoDB connection string pointing to your old server, with the new connection string pointing to the new CosmosDB instance in Azure.
-
-#### Environment Variable Example
-
-If you are leveraging shell environment variables to reference the MongoDB URI connection string, all you will need to do is update this environment variable and all your applications leveraging this method to obtain the connection string will automatically benefit from the update.  
-
-```:bash
-# Linux Bash Shell Variables
-# Replace the previous MongoDB connection string with the new CosmosDB connection string
-MONGO_DBCONNECTION="mongodb://<username>:<password>@<cosmosdb-url>:10255/?ssl=true"
-```
-
-#### Hard Coded Connection Strings in Applications
-
-If have hard coded the connection string value in your application, you will need to locate and replace the old MongoDB connection string value inside your application code with your new CosmosDB connection string value.  Instructions to find the new CosmosDB connection string value is found in the above "[Connecting To CosmosDB](#01---connecting-to-cosmosdb)" section.
-
-
-```:javascript
-// Node JS Example using Mongoose as the driver/ODM to a MongoDB backend
-var mongoose = require('mongoose');
-
-mongoose.connect('mongodb://<username>:<password>@<cosmosdb-url>:10255/?ssl=true');
-```
-
-**Note**: Some drivers/language environments/runtimes may require you to URI encode your password. CosmosDB uses an 88 character long hash for it's password and includes characters which may require you to URI encode it.  This is generally good practice.
-
-```:javascript 
-var mongoose = require('mongoose');
-var password = "your-cosmosdb-88-character-long-password-hash";
-password = encodeURIComponent(password);
-
-mongoose.connect("mongodb://<username>:" + password + "@<cosmosdb-url>:10255/?ssl=true");
-```
+## Browse to the heroes web app and test the result
