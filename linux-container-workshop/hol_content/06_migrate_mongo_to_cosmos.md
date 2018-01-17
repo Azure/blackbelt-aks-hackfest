@@ -119,37 +119,39 @@ The method used in this section is simple by design and may not be the right met
 
 ### Exporting data from MongoDB
 
-Using the ```mongodump``` command you will do a full DB dump of your MongoDB server.  
+These commands will be run from inside our MongoDB pod.
 
-**Note**: For Windows users you may need to run the command as ```mongodump.exe``` not ```mongodump``` AND in the same directory that the command is located in.
+1. Exec into mongo database pod
+	```
+	# list pods in the cluster and set the variable to your pod name
+	kubectl get pod
+	NAME                                                              READY     STATUS    RESTARTS   AGE
+	heroes-api-deploy-1140957751-v2pqc                                1/1       Running   0          20h
+	heroes-db-deploy-2357291595-xb4xm                                 1/1       Running   0          20h
+	heroes-web-3683626428-9m8wp                                       1/1       Running   0          20h
 
-You will need to:
-1. Name your backup - this will be used to create a new folder where your backup files will be saved to.
-2. Choose a destination path in your local filesystem where your backup folder will be created in.
+	MONGO_POD=heroes-db-deploy-2357291595-xb4xm
 
-```:bash
-mongodump -d <name-of-backup> -o <path-to-backup>
-```
+	kubectl exec -it $MONGO_POD bash
+	```
 
-When this is complete, you should have at least 2 files - a ```.bson``` and ```.json``` file.  Both of these will be needed to restore the DB to CosmosDB.
+2. Export the data using ```mongodump```
+
+3. 
+
 
 ### Importing data into CosmosDB
 
 Using the ```mongorestore``` command you can do a full DB restore to your CosmosDB instance.
 
-**Note**: For Windows users you may need to run the command as ```mongorestore.exe``` not ```mongorestore``` AND in the same directory that the command is located in.
 
-You will need:
-1. Your CosmosDB url (```<your-cosmosdb-name>.documents.azure.com```)
-2. Your CosmosDB name - this is also your CosmosDB username
-3. Your CosmosDB password - this is one of two 88 character hash strings you can find in the CosmosDB Azure Portal
-4. The FULL path to your backup e.g. ```/full/path/to/your/name-of-backup```
 
 ```:bash
 mongorestore --host <your-cosmosdb-url>:10255 -u <your-cosmosdb-name> -p <your-password> --db <your-cosmosdb-name> --ssl --sslAllowInvalidCertificates <full-path-to-backup>
 ```
 
 When the restore is complete, you will see output pertaining to the restore.
+
 
 ## Exploring and using data
 
