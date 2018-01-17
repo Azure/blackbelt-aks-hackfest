@@ -2,17 +2,13 @@
 
 In this section we will be creating a CosmosDB instance in your Azure account to migrate/export your MongoDB data to CosmosDB.  You can use CosmosDB as a drop in replacement for MongoDB, since CosmosDB uses a MongoDB compatibale API.  As such, you are only required to replace/change the MongoDB URI connection string with one supplied by CosmosDB in the dashboard. 
 
-## 00 - Setup
-
-You will need to prepare and setup your environment in order to move data from your MongoDB Server to CosmosDB.
-
-### Creating a CosmosDB Service/Instance
+## Setup CosmosDB
 
 You can create a CosmosDB service/instance in one (1) of two (2) ways:
 1. Via the [Azure-CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest) command line tool --**OR**--
 2. Via the [Azure Web Portal](https://portal.azure.com)
 
-#### Method 1: via Azure-CLI
+### Method 1: via Azure-CLI
 
 The Azure-CLI Command Line Tool is available and supported for Windows, macOS and Linux. The following uses the cross plaform Azure-CLI in a Linux bash shell to deploy an instance of CosmosDB into your Azure Subscription/Account.
 
@@ -46,7 +42,7 @@ az cosmosdb create \
 
 Once you've run the above command, your CosmosDB instance will be provisioned within minutes.  When the deployment is sucessful you will see output in your terminal with information about your CosmosDB deployment.
 
-#### Method 2: via Azure Web Portal
+### Method 2: via Azure Web Portal
 
 If you prefer a more visual and guided walk through for creating an Azure CosmosDB instance, the Azure Web Portal is your best option.  You will need to open a browser and enter the address ```https://portal.azure.com```.
 
@@ -76,7 +72,20 @@ You will need to fill in the following information:
 
 Once you've clicked create, your CosmosDB instance will be provisioned within minutes.  You will be notified with an alert in the top right corner of your Portal Dashboard.
 
-## 01 - Connecting to CosmosDB
+## Create Cosmos database/collection
+
+Now that our CosmosDB account is created, we must create a collection. 
+
+1. Open the Cosmos account in the Azure portal.
+2. Click on Collections, Browse.
+3. Click Add Collection.
+4. Enter a Database and Collection ID and use Fixed, 10 GB as capacity. 
+
+![Creating CosmosDB collection](img/cosmos_create_collection.png "Creating CosmosDB collection")
+
+5. Click OK
+
+## Setup CosmosDB Connection String
 
 In this section we will learn how to retrieve the CosmosDB connection string that is required in order to connect to your new database in Azure.  The connection string takes the format: ```mongodb://<username>:<password>@<cosmosdb-url>:10255/?ssl=true```.  The connection string is broken down into three important parts:
 
@@ -88,17 +97,18 @@ Note:
 - Port number (```10255```) - CosmosDB does not use the standard MongoDB port of ```21017```
 - SSL - this is on by default and is recommended when communicating to CosmosDB.  This is good practice and ensures your data is not sent in clear unencrypted text over the network.
 
-### Method 1: via Azure-CLI
+Set these as environment variables for later use. You can retrieve the values using the Azure Portal or the CLI. 
 
-The simplest/quickest method for retrieving your CosmosDB Connection string is via the command line.  If you have the Azure-CLI installed you can simply run the following command, replacing ```<resource-group-name>``` and ```<cosmos-db-name>``` with the corresponding values for your CosmosDB instance.
-
-```:bash
-# !!!REPLACE <resource-group-name> and <cosmos-db-name> with your databases respective information!!!
-
-az cosmosdb list-connection-strings -g <resource-group-name> -n <cosmos-db-name>
+```
+# update the lines below with your config details
+RG=
+NAME=
+USER=
+PWD=
+COSMOS_URL=
 ```
 
-## 02 - Migrating Data From MongoDB to CosmosDB
+## Migrating Data From MongoDB to CosmosDB
 
 In this section we will use the ```mongodump``` and ```mongorestore``` commands to export data from MongoDB and then import back into CosmosDB.  
 
