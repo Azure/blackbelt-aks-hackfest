@@ -9,8 +9,6 @@ The lab files must be cloned to the local machine to complete all of the exercis
 
     ```
     git clone https://github.com/Azure/blackbelt-aks-hackfest.git
-
-    cd blackbelt-aks-hackfest/linux-container-workshop
     ```
 
 ## Run Applications
@@ -19,18 +17,18 @@ The lab files must be cloned to the local machine to complete all of the exercis
 
 Mongo is already running. We need to import the data for our application.
 
-    ```
-    mongoimport --host localhost:27019 --db webratings --collection heroes --type json --file ./heroes.json --jsonArray
-    mongoimport --host localhost:27019 --db webratings --collection ratings --type json --file ./ratings.json --jsonArray
-    mongoimport --host localhost:27019 --db webratings --collection sites --type json --file ./sites.json --jsonArray
-    ```
+```
+cd ~/blackbelt-aks-hackfest/linux-container-workshop/app/db
+
+mongoimport --host localhost:27019 --db webratings --collection heroes --type json --file ./heroes.json --jsonArray && mongoimport --host localhost:27019 --db webratings --collection ratings --type json --file ./ratings.json --jsonArray && mongoimport --host localhost:27019 --db webratings --collection sites --type json --file ./sites.json --jsonArray
+```
 
 ### API Application
 
 * Update dependencies and run app via node
 
     ```
-    cd blackbelt-aks-hackfest/linux-container-workshop/app/api
+    cd ~/blackbelt-aks-hackfest/linux-container-workshop/app/api
 
     npm install && npm run localmachine
     ```
@@ -43,7 +41,7 @@ Mongo is already running. We need to import the data for our application.
 * Update dependencies and run app via node
 
     ```
-    cd blackbelt-aks-hackfest/linux-container-workshop/app/web
+    cd ~/blackbelt-aks-hackfest/linux-container-workshop/app/web
 
     npm install && npm run localmachine
     ```

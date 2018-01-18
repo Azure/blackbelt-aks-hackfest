@@ -6,10 +6,10 @@
   3. Build an Azure Kubernetes Service (AKS) cluster
   4. Deploy application to Azure Kubernetes Service
   5. Kubernetes UI Overview
-  6. Moving your data services to Azure PaaS (CosmosDB)
-  7. Operational Monitoring and Log Management
-  8. Application and Infrastructure Scaling
-  9. AKS Cluster Upgrading
+  6. Operational Monitoring and Log Management
+  7. Application and Infrastructure Scaling
+  8. AKS Cluster Upgrading
+  9. Moving your data services to Azure PaaS (CosmosDB)
   
 
 

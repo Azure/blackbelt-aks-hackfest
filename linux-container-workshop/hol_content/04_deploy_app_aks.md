@@ -2,16 +2,11 @@
 
 ## Review/Edit the YAML Config Files
 
-* In VS Code, open the `helper_files` directory and review the yaml files: 
-
-    * lab4_db.yaml
-    * lab4_api.yaml
-    * lab4_web.yaml
-
+* In VS Code (or vi), open the `helper_files` directory and review the yaml file: `heroes.yaml`
 * Note the environment variables that direct each app to other services.
-* Update the yaml files for the proper container image name. 
+* Update the yaml file for the proper container image names. 
     * You will need to replace the `<login server>` with the ACR login server created in Lab 2. 
-    * Repeat this for all 3 yaml files. Example: 
+    * Repeat this **THREE** times in the heroes yaml file (for the web, api, and db images). Example: 
 
         ```
         spec:
@@ -20,16 +15,29 @@
             name:  heroes-web-cntnr
         ```
 
+## Setup AKS with access to Azure Container Registry
+
+There are a few ways that AKS clusters can access your private Azure Container Registry. Generally the service account that kubernetes utilizes will have rights based on its Azure credentials. In our lab config, we must create a secret to allow this access. 
+
+```
+# set these values to yours
+ACR_SERVER=
+ACR_USER=
+ACR_PWD=
+
+kubectl create secret docker-registry acr-secret --docker-server=$ACR_SERVER --docker-username=$ACR_USER --docker-password=$ACR_PWD --docker-email=superman@heroes.com
+```
+
+> Note: You can review the `heroes.yaml` and see where the `imagePullSecrets` is configured.
+
 ## Deploy the Applications to AKS
 
 * Use the kubectl CLI to deploy each app
 
     ```
-    cd ./linux-container-workshop/helper_files
+    cd ~/blackbelt-aks-hackfest/linux-container-workshop/helper_files
 
-    kubectl apply -f lab4_db.yaml
-    kubectl apply -f lab4_api.yaml
-    kubectl apply -f lab4_web.yaml
+    kubectl apply -f heroes.yaml
     ```
 
 ## Validate
