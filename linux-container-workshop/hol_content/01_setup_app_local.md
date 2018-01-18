@@ -17,13 +17,11 @@ The lab files must be cloned to the local machine to complete all of the exercis
 
 Mongo is already running. We need to import the data for our application.
 
-    ```
-    cd ~/blackbelt-aks-hackfest/linux-container-workshop/app/db
+```
+cd ~/blackbelt-aks-hackfest/linux-container-workshop/app/db
 
-    mongoimport --host localhost:27019 --db webratings --collection heroes --type json --file ./heroes.json --jsonArray
-    mongoimport --host localhost:27019 --db webratings --collection ratings --type json --file ./ratings.json --jsonArray
-    mongoimport --host localhost:27019 --db webratings --collection sites --type json --file ./sites.json --jsonArray
-    ```
+mongoimport --host localhost:27019 --db webratings --collection heroes --type json --file ./heroes.json --jsonArray && mongoimport --host localhost:27019 --db webratings --collection ratings --type json --file ./ratings.json --jsonArray && mongoimport --host localhost:27019 --db webratings --collection sites --type json --file ./sites.json --jsonArray
+```
 
 ### API Application
 
