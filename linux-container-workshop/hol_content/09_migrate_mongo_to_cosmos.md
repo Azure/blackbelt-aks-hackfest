@@ -18,7 +18,7 @@ Note:
 
 ```
 # !!!Set variables for the new account, database, and collection etc.!!!
-resourceGroupName='someResourceGroupName'
+resourceGroupName='your_resource_group_from_portal'
 location1='southcentralus'
 location2='northcentralus'
 name='someCosmosdbName'
