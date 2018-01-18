@@ -14,11 +14,20 @@ SSH_KEY_PATH='~/.ssh/id_rsa.pub'
 
 echo "\n"
 
+echo **** AZURE CREDENTIALS ***** >> /home/$adminUsername/credentials.txt
 echo AZ_USER_NAME=$AZ_USER_NAME >> /home/$adminUsername/credentials.txt
 echo AZ_USER_PASSWORD=$AZ_USER_PASSWORD >> /home/$adminUsername/credentials.txt
+echo " " >> /home/$adminUsername/credentials.txt
+
+echo **** VM INFO / USER / PASS / SSH CREDENTIALS ***** >> /home/$adminUsername/credentials.txt
 echo JUMP_VM_FQDN=$JUMP_VM_FQDN >> /home/$adminUsername/credentials.txt
 echo JUMP_VM_USER_NAME=$JUMP_VM_USER_NAME >> /home/$adminUsername/credentials.txt
 echo JUMP_VM_USER_PASSWORD=$JUMP_VM_USER_PASSWORD >> /home/$adminUsername/credentials.txt
+echo SERVICE_PRINCIPAL_USER=$SP_NAME >> /home/$adminUsername/credentials.txt
+echo SERVICE_PRINCIPAL_SECRET=$SP_SECRET >> /home/$adminUsername/credentials.txt
+echo " " >> /home/$adminUsername/credentials.txt
+
+echo **** LAB GUIDE URL ***** >> /home/$adminUsername/credentials.txt
 echo GUIDE_URL=https://github.com/azure/blackbelt-aks-hackfest/linux-container-workshop >> /home/$adminUsername/credentials.txt
 
 yum -y install novnc python-websockify numpy tigervnc-server
@@ -36,6 +45,7 @@ systemctl enable vncserver@:4.service
 systemctl enable websockify.service
 systemctl start vncserver@:4.service
 systemctl start websockify.service
+
 
 # Enable Copy/Paste to RDP
 yum groups install "server with gui" -y
