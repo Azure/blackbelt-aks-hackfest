@@ -34,10 +34,9 @@ Prometheus is a Cloud Native Computing Foundation (CNCF) project used to collect
 
 1. Install Prometheus using Helm CLI
 
-* Create a file in your local directory named **prometheus-configforhelm.yaml** leveraging the file located [here](prometheus-configforhelm.yaml).
 * Switch to the `helper_files` directory and view the `prometheus-configforhelm.yaml` file. This configures Helm to install Prometheus with our desired settings.
 ```bash
-cd ./linux-container-workshop/helper_files
+cd ~/blackbelt-aks-hackfest/linux-container-workshop/helper_files
 # The following command will install Prometheus into the K8s cluster using custom settings.
 helm install --name gbbhackprometheus stable/prometheus -f prometheus-configforhelm.yaml
 ```

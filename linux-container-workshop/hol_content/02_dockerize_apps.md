@@ -9,7 +9,7 @@ For the first container, we will be creating a Dockerfile from scratch. For the 
 1. Create a Dockerfile
 
     * Open Visual Studio Code
-    * In the "./linux-container-workshop/app/web" directory, add a file called "Dockerfile"
+    * In the `~/blackbelt-aks-hackfest/linux-container-workshop/app/web` directory, add a file called "Dockerfile"
     * Add the following lines and save:
 
         ```
@@ -31,7 +31,7 @@ For the first container, we will be creating a Dockerfile from scratch. For the 
     From bash shell: 
 
     ```
-    cd ./linux-container-workshop/app/web
+    cd ~/blackbelt-aks-hackfest/linux-container-workshop/app/web
 
     docker build -t rating-web .
     ```
@@ -45,7 +45,7 @@ In this step, the Dockerfile has been created for you.
 1. Create a container image for the node.js API app
 
     ```
-    cd ./linux-container-workshop/app/api
+    cd ~/blackbelt-aks-hackfest/linux-container-workshop/app/api
 
     docker build -t rating-api .
     ```
@@ -57,7 +57,7 @@ In this step, the Dockerfile has been created for you.
 1. Create a MongoDB image with data files
 
     ```
-    cd ./linux-container-workshop/app/db
+    cd ~/blackbelt-aks-hackfest/linux-container-workshop/app/db
 
     docker build -t rating-db .
     ```
@@ -141,7 +141,7 @@ Now that we have container images for our application components, we need to sto
 1. In the browser, sign in to the Azure portal at https://portal.azure.com
 2. Click "Create a resource" and select "Azure Container Registry"
 3. Provide a name for your registry (this must be unique)
-4. Use a new Resource Group
+4. Use the existing Resource Group
 5. Enable the Admin user
 6. Use the 'Standard' SKU (default)
 
