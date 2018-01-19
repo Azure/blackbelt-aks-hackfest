@@ -90,7 +90,7 @@ kubectl create secret docker-registry acr-secret --docker-server=$ACR_SERVER --d
     heroes-web-1645635641-pfzf9          1/1       Running   0          2m
     ```
 
-* Check to see if services are deployed
+* Check to see if services are deployed.
     ```
     kubectl get service
 
@@ -102,3 +102,5 @@ kubectl create secret docker-registry acr-secret --docker-server=$ACR_SERVER --d
     ```
 
 * Browse to the External IP for your web application (on port 8080) and try the app
+
+> The public IP can take a few minutes to create with a new cluster. Sit back and relax. Maybe check Facebook. 
