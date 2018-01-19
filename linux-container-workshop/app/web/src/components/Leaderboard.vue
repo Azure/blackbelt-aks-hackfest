@@ -27,7 +27,7 @@
             <div class="flex-center flex-middle super-star-text-shell pad4 padbottom10">
               <span class="super-star-text">Stars</span>
             </div>
-            <div class="flex-center flex-middle super-star-total-shell pad4">
+            <div class="flex-center flex-middle super-star-total-shell">
               <span class="super-star-text-totals">{{item.stars}} stars / {{item.votes}} ratings</span>
             </div>
           </at-card>

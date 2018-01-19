@@ -64,17 +64,22 @@ export default {
     -moz-osx-font-smoothing: grayscale;
   }
 
+
   .credits{
     font-family: 'Graduate', sans-serif;
     font-size: 12px;
+    color:#FFF;
   }
   
-  .credits-small{
-    padding-top: 40px;
+  .credits-black{
     font-family: 'Graduate', sans-serif;
-    font-size: 10px;
+    font-size: 12px;
     color:#000;
   }
+  .credits-tag{
+    padding-top: 40px;
+  }
+
 
   .footspace{
     margin-top: 90px;
@@ -115,7 +120,6 @@ export default {
 
   .at-card__body {
     background-color: #444;
-    // padding:33px 33px 15px 33px;
   }
 
   .at-rate {
@@ -124,7 +128,7 @@ export default {
 
   .at-rate__icon {
     position: relative;
-    text-shadow: 2px 2px 9px #666;
+    text-shadow: 2px 2px 6px #111;
   }
 
   .at-rate__left {
@@ -232,28 +236,30 @@ export default {
   }
   
   .super-star-total-shell{
-    background-color: #555;
-    padding: 4px;
+    border: 1px solid #777;
+    background-color: #333;
+    padding: 10px 8px 8px 8px;
   }
   
   .super-star-total-rate{
-    background-color: #555;
+    border: 1px solid #646464;
+    background-color: #484848;
     padding: 0 0 10px 0;
   }
 
   .super-star-text{
     padding-left: 4px;
     padding-right: 6px;
-    font-size: 24px;
-    color: rgb(255, 254, 198);
+    font-size: 16px;
+    color: #CCC;
     font-family: 'Bangers', cursive;
     font-weight: 100;
-    text-shadow: 4px 4px 6px #000;
+    text-shadow: 2px 2px 1px #000;
   }
   .super-star-text-totals{
-    font-size: 16px;
-    color:#ccc;
-    font-family: 'Permanent Marker', cursive;
+    font-size: 18px;
+    color:#FFF;
+    font-family: 'Bangers', cursive;
   }
 
   .super-vote {

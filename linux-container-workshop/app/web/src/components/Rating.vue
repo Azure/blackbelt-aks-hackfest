@@ -61,14 +61,13 @@ export default {
         .then(response => {
           this.heroes = response.data.payload
           this.$Notify({ title: 'Ready to Rate', message: 'Data Retrieved', type:'success' })
-          return axios.get("//jsonip.com")
-        })
-        .then(response => {
-          this.userIp = response.data.ip
+          // hardcoding this for now
+          this.userIp = '127.0.0.1'
         })
         .catch(e => {
+          // lets console errors, but turn the notify off
           console.log(e);
-          this.$Notify({ title: 'ERROR', message: e, type:'error' })
+          // this.$Notify({ title: 'ERROR', message: e, type:'error' })
           this.errors.push(e)
         })
 
