@@ -1,6 +1,16 @@
-# Table Of Contents
+# Linux Containers on Azure Workshop
 
-## Hands On Labs Guide
+_Delivering modern cloud native applications with ​open source technologies on Azure​_
+
+## Overview
+
+This workshop will guide you through migrating an application from "on-premise" to container running in Azure Kubernetes Service.
+
+The labs are based upon a node.js application that allows for voting on the Justice League Superheroes. Data is stored in MongoDB.
+
+> Note: These labs are designed to run on a Linux CentOS VM running in Azure (jumpbox) along with Azure Cloud Shell. They can potentially be run locally on a Mac or Windows, but the instructions are not written towards that experience. ie - "You're on your own." 
+
+## Hands-on Lab Guide
   1. Run app locally to test components
   2. Create Docker images for apps and push to Azure Container Registry
   3. Build an Azure Kubernetes Service (AKS) cluster
@@ -8,8 +18,16 @@
   5. Kubernetes UI Overview
   6. Operational Monitoring and Log Management
   7. Application and Infrastructure Scaling
-  8. AKS Cluster Upgrading
-  9. Moving your data services to Azure PaaS (CosmosDB)
+  8. Moving your data services to Azure PaaS (CosmosDB)
+  9. AKS Cluster Upgrading
+
+## Advanced Labs (Coming Soon)
+  1. CI/CD Automation
+  2. Persistent Storage
+  3. Stateful Sets
+  4. Ingress Controllers
+  5. Azure Container Instances
+  6. Azure Service Broker
   
 
 
