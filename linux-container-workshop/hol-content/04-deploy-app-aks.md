@@ -2,11 +2,11 @@
 
 ## Review/Edit the YAML Config Files
 
-* In VS Code (or vi), open the `helper_files` directory and review the yaml file: `heroes.yaml`
+* In VS Code (or vi), open the `helper-files` directory and review the yaml files: `heroes-db.yaml`, `heroes-web-api.yaml`
 * Note the environment variables that direct each app to other services.
 * Update the yaml file for the proper container image names. 
     * You will need to replace the `<login server>` with the ACR login server created in Lab 2. 
-    * Repeat this **THREE** times in the heroes yaml file (for the web, api, and db images). Example: 
+    * Repeat this **THREE** times in the heroes yaml files (for the web, api, and db images). Example: 
 
         ```
         spec:
@@ -28,37 +28,34 @@ ACR_PWD=
 kubectl create secret docker-registry acr-secret --docker-server=$ACR_SERVER --docker-username=$ACR_USER --docker-password=$ACR_PWD --docker-email=superman@heroes.com
 ```
 
-> Note: You can review the `heroes.yaml` and see where the `imagePullSecrets` is configured.
+> Note: You can review the `heroes-db.yaml` and `heroes-web-api.yaml` to see where the `imagePullSecrets` are configured.
 
-## Deploy the Applications to AKS
+## Deploy database container to AKS
 
 * Use the kubectl CLI to deploy each app
-
     ```
-    cd ~/blackbelt-aks-hackfest/linux-container-workshop/helper_files
+    cd ~/blackbelt-aks-hackfest/linux-container-workshop/helper-files
 
-    kubectl apply -f heroes.yaml
+    kubectl apply -f heroes-db.yaml
     ```
 
-## Validate
-
-* Check to see if pods are running in your cluster
-
+* Get mongodb pod name
     ```
     kubectl get pods
 
     NAME                                 READY     STATUS    RESTARTS   AGE
-    heroes-api-deploy-1140957751-2z16s   1/1       Running   0          2m
     heroes-db-deploy-2357291595-k7wjk    1/1       Running   0          3m
-    heroes-web-1645635641-pfzf9          1/1       Running   0          2m
-    ```
-* Run script to import data into MongoDB
 
+    MONGO_POD=heroes-db-deploy-2357291595-k7wjk
     ```
-    # replace the pod name below with your db pod name
+
+* Import data into MongoDB using script
+    ```
+    # ensure the pod name variable is set to your pod name
     # once you exec into pod, run the `import.sh` script
 
-    kubectl exec -it heroes-db-deploy-2357291595-xb4xm bash
+    kubectl exec -it $MONGO_POD bash
+
     root@heroes-db-deploy-2357291595-xb4xm:/# ./import.sh
     2018-01-16T21:38:44.819+0000	connected to: localhost
     2018-01-16T21:38:44.918+0000	imported 4 documents
@@ -71,8 +68,29 @@ kubectl create secret docker-registry acr-secret --docker-server=$ACR_SERVER --d
     # be sure to exit pod as shown above
     ```
 
-* Check to see if services are deployed
+## Deploy the web and api containers to AKS
 
+* Use the kubectl CLI to deploy each app
+
+    ```
+    cd ~/blackbelt-aks-hackfest/linux-container-workshop/helper-files
+
+    kubectl apply -f heroes-web-api.yaml
+    ```
+
+## Validate
+
+* Check to see if pods are running in your cluster
+    ```
+    kubectl get pods
+
+    NAME                                 READY     STATUS    RESTARTS   AGE
+    heroes-api-deploy-1140957751-2z16s   1/1       Running   0          2m
+    heroes-db-deploy-2357291595-k7wjk    1/1       Running   0          3m
+    heroes-web-1645635641-pfzf9          1/1       Running   0          2m
+    ```
+
+* Check to see if services are deployed
     ```
     kubectl get service
 

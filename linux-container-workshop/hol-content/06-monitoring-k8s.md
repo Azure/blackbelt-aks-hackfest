@@ -34,9 +34,9 @@ Prometheus is a Cloud Native Computing Foundation (CNCF) project used to collect
 
 1. Install Prometheus using Helm CLI
 
-* Switch to the `helper_files` directory and view the `prometheus-configforhelm.yaml` file. This configures Helm to install Prometheus with our desired settings.
+* Switch to the `helper-files` directory and view the `prometheus-configforhelm.yaml` file. This configures Helm to install Prometheus with our desired settings.
 ```bash
-cd ~/blackbelt-aks-hackfest/linux-container-workshop/helper_files
+cd ~/blackbelt-aks-hackfest/linux-container-workshop/helper-files
 # The following command will install Prometheus into the K8s cluster using custom settings.
 helm install --name gbbhackprometheus stable/prometheus -f prometheus-configforhelm.yaml
 ```
@@ -106,7 +106,7 @@ Use the EXTERNAL-IP value from the previous step and put that into your browser:
 
 ![](img/8-grafana_dashboardimport.png)
 
-* Click on the **Upload File** button and browse to the `gbb_hackfest_grafana_dashboard` in the `linux-container-workshop/helper_files` directory.
+* Click on the **Upload File** button and browse to the `grafana-dashboard.json` in the `linux-container-workshop/helper-files` directory. You can also paste the contents of the json into the text box.
 
 ![](img/8-grafana_dashboardid.png)
 
