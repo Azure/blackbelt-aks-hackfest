@@ -4,6 +4,10 @@
     <div class="row at-row flex-center flex-middle">
       <div class="col-lg-24">
         <a href="/"><img class="super-justice" :src="headerImage"></a>
+      </div>
+    </div>
+    <div class="row at-row flex-center flex-middle">
+      <div class="col-lg-24">
         <h1 class="super-header">{{subtitle}}</h1>
       </div>
     </div>
@@ -14,14 +18,17 @@
             <h4 slot="title" class="super-name">
               {{item.name}}
             </h4>
-            <div>
+            <div class="flex-center flex-middle">
               <img class="super-image" :src="item.img">
-              <div class="super-rate-foot">
-                <span v-bind:class="index | formatRatingColor">{{ item.AvgRating | formatRating }}</span>
-              </div>
-              <div class="flex-center flex-middle super-star-text-shell">
-                <span class="super-star-text">Stars</span>
-              </div>
+            </div>
+            <div class="flex-center flex-middle pad4">
+              <span v-bind:class="index | formatRatingColor">{{ item.average | formatRating }}</span>
+            </div>
+            <div class="flex-center flex-middle super-star-text-shell pad4 padbottom10">
+              <span class="super-star-text">Stars</span>
+            </div>
+            <div class="flex-center flex-middle super-star-total-shell">
+              <span class="super-star-text-totals">{{item.stars}} stars / {{item.votes}} ratings</span>
             </div>
           </at-card>
         </div>

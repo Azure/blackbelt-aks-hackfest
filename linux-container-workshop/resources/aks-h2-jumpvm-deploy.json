@@ -222,6 +222,19 @@
               "destinationAddressPrefix": "*",
               "destinationPortRange": "6080"
             }
+          },
+          {
+            "name": "web-allow-http",
+            "properties": {
+              "priority": 1030,
+              "protocol": "Tcp",
+              "access": "Allow",
+              "direction": "Inbound",
+              "sourceAddressPrefix": "*",
+              "sourcePortRange": "*",
+              "destinationAddressPrefix": "*",
+              "destinationPortRange": "8080"
+            }
           }
         ]
       }
