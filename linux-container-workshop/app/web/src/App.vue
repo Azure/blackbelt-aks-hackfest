@@ -22,8 +22,36 @@ export default {
     --azure-blue:#0071C5;
     --msft-green:#4E7200;
     --msft-orange:#C72B00;
+    line-height: 1;
   }
 
+  html{
+    line-height: 1;
+  }
+
+  .at-notification {
+    position: fixed;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    right: 16px;
+    width: 320px;
+    padding: 8px 16px;
+    font-family: 'Graduate', sans-serif;
+    background-color: #444;
+    line-height: 1.5;
+    border-radius: 0px;
+  }
+  .at-notification__title {
+    color: #fff;
+    font-size: 13px;
+  }
+
+  .at-notification__message {
+    color: #fff;
+    font-size: 12px;
+    margin-top: 4px;
+  }
   .container-fluid {
     width: 85%;
     display: flex;
@@ -87,7 +115,7 @@ export default {
 
   .at-card__body {
     background-color: #444;
-    padding:33px 33px 15px 33px;
+    // padding:33px 33px 15px 33px;
   }
 
   .at-rate {
@@ -104,7 +132,7 @@ export default {
   }
 
   .at-btn--primary:hover{
-    color:var(--azure-blue);
+    color: var(--azure-blue);
     border: 2px solid var(--azure-blue);
   }
   .at-btn--success:hover{
@@ -168,7 +196,6 @@ export default {
   .super-image {
     -webkit-filter: drop-shadow(3px 3px 3px #111);
     filter: drop-shadow(3px 3px 3px #111);
-    width: 100%;
   }
 
   .super-name {
@@ -203,6 +230,16 @@ export default {
     color: rgb(255, 254, 198);
     text-shadow: 4px 4px 6px #000;
   }
+  
+  .super-star-total-shell{
+    background-color: #555;
+    padding: 4px;
+  }
+  
+  .super-star-total-rate{
+    background-color: #555;
+    padding: 0 0 10px 0;
+  }
 
   .super-star-text{
     padding-left: 4px;
@@ -213,9 +250,21 @@ export default {
     font-weight: 100;
     text-shadow: 4px 4px 6px #000;
   }
+  .super-star-text-totals{
+    font-size: 16px;
+    color:#ccc;
+    font-family: 'Permanent Marker', cursive;
+  }
 
   .super-vote {
     padding: 80px;
+  }
+
+  .pad4{
+    padding: 4px;
+  }
+  .padbottom10{
+    padding-bottom: 10px;
   }
 // end super-related
   
