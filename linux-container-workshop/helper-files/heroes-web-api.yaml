@@ -67,7 +67,7 @@ spec:
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name:  heroes-web
+  name:  heroes-web-deploy
   labels:
     name:  heroes-web
 spec:

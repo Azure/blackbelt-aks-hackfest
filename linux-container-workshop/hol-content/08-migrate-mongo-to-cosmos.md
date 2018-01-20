@@ -152,7 +152,7 @@ mongodb://userid:longpassword@cosmosacct.documents.azure.com:10255/?ssl=true
 
 ### Update the API deployment to use the new CosmosDB connect string
 
-1. Edit the `lab4_api.yaml` file
+1. Edit the `heroes-web-api.yaml` file in `helper-files`
 	The snippet below is the section that must be udpated. We are replacing the `MONGODB_URI` value with the new connect string created in the prior section
 	```
 	env:
@@ -167,7 +167,22 @@ mongodb://userid:longpassword@cosmosacct.documents.azure.com:10255/?ssl=true
 
 2. Apply the new config in AKS
 	```
-	kubectl apply -f lab4_api.yaml
+	kubectl apply -f heroes-web-api.yaml
 	```
 
 ## Browse to the heroes web app and test the result
+
+## Delete the MongoDB pod
+
+Just for the fun of it, delete your MongoDB pod and ensure your app is now fully migrated to a PaaS-based data layer. 
+
+```
+kubectl get deploy
+
+NAME                DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
+heroes-api-deploy   1         1         1            1           10m
+heroes-db-deploy    1         1         1            1           30m
+heroes-web          1         1         1            1           10m
+
+kubectl delete deploy heroes-db-deploy
+```
