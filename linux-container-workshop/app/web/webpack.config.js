@@ -3,6 +3,8 @@ const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CompressionPlugin = require("compression-webpack-plugin")
 const API = process.env.API
+const TAG = process.env.IMAGE_TAG
+const TAG_DATE = process.env.IMAGE_BUILD_DATE
 
 var onError = function (err, req, res) {
   console.log('Error with webpack proxy :', err);
