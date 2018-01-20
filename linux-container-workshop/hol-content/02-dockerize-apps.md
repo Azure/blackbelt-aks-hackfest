@@ -15,6 +15,14 @@ For the first container, we will be creating a Dockerfile from scratch. For the 
         ```
         FROM node:9.4.0-alpine
 
+        ARG VCS_REF
+        ARG BUILD_DATE
+        ARG IMAGE_TAG_REF
+
+        ENV GIT_SHA $VCS_REF
+        ENV IMAGE_BUILD_DATE $BUILD_DATE
+        ENV IMAGE_TAG $IMAGE_TAG_REF
+
         WORKDIR /usr/src/app
         COPY package*.json ./
         RUN npm install
@@ -32,8 +40,8 @@ For the first container, we will be creating a Dockerfile from scratch. For the 
 
     ```
     cd ~/blackbelt-aks-hackfest/linux-container-workshop/app/web
-
-    docker build -t rating-web .
+    
+    docker build --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` --build-arg VCS_REF=`git rev-parse --short HEAD` --build-arg IMAGE_TAG_REF=v1 -t rating-web .
     ```
 
 3. Validate image was created with `docker images`
