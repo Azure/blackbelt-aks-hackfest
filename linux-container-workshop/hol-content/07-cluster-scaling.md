@@ -28,7 +28,7 @@ kubectl scale deploy/heroes-web --replicas=4
 
 5. Check to see number of heroes pods running via kubectl
 ```bash
-kubectl get svc | grep heroes
+kubectl get pod | grep heroes
 # You should see something like the following as output (more than one heroes-web pod and some of them in different states):
 NAME                                                              READY     STATUS    RESTARTS   AGE
 heroes-web-3683626428-4m1v4                                       0/1       Pending   0          2m
