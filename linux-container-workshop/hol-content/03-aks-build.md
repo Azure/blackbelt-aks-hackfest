@@ -41,6 +41,7 @@
 
 3. Create your AKS cluster in the resource group created above with 2 nodes, targeting Kubernetes version 1.7.7
     ```
+    # This command will take a number of minutes to run as it is creating the AKS cluster
     az aks create -n $NAME -g $NAME -c 2 -k 1.7.7 --generate-ssh-keys
     ```
 

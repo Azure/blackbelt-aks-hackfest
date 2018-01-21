@@ -105,12 +105,12 @@ These commands will be run from inside our MongoDB pod.
 
 	```
 	# fill in values here:
-	NAME=
+	DBNAME=
 	USER_NAME=
 	COSMOS_URL=
 	PASSWORD=
 
-	mongorestore --host $COSMOS_URL:10255 -u $USER_NAME -p $PASSWORD --db $NAME --ssl --sslAllowInvalidCertificates /dump/webratings
+	mongorestore --host $COSMOS_URL:10255 -u $USER_NAME -p $PASSWORD --db $DBNAME --ssl --sslAllowInvalidCertificates /dump/webratings
 	```
 3. Exit from pod by typing `exit`
 
@@ -124,11 +124,12 @@ When you navigate to your CosmosDB instance in the Azure portal, you can view yo
 
 ### Setup CosmosDB Connection String
 
-In this section we will learn how to retrieve the CosmosDB connection string that is required in order to connect to your new database in Azure.  The connection string takes the format: ```mongodb://<username>:<password>@<cosmosdb-url>:10255/?ssl=true```.  The connection string is broken down into three important parts:
+In this section we will learn how to retrieve the CosmosDB connection string that is required in order to connect to your new database in Azure.  The connection string takes the format: ```mongodb://<username>:<password>@<cosmosdb-url>:10255/<dbname>?ssl=true```.  The connection string is broken down into three important parts:
 
 - ```<username>```: The username to connect to your instance, this is the same value as the name of your database
 - ```<password>```: This is one of two auto generated 88 character hashed passwords provided for you.  You can regenerate/revoke a password when you need to.
 - ```<cosmos-url>```: This is the CosmosDB url where your instance can be reached.  Typically it should follow the format ```<your-cosmosdb-name>.documents.azure.com
+- ```<dbname>```: This is the name of the collection in CosmosDB where all of the data is stored.
 
 Note:
 - Port number (```10255```) - CosmosDB does not use the standard MongoDB port of ```21017```
@@ -138,14 +139,15 @@ Set these as environment variables for later use. You can retrieve the values us
 
 ```
 # update the lines below with your config details
+DBNAME=
 USER_NAME=
 PASSWORD=
 COSMOS_URL=
 
-CONNECT_STRING=mongodb://$USER_NAME:$PASSWORD@$COSMOS_URL:10255/?ssl=true
+CONNECT_STRING=mongodb://$USER_NAME:$PASSWORD@$COSMOS_URL:10255/$DBNAME?ssl=true
 
 echo $CONNECT_STRING
-mongodb://userid:longpassword@cosmosacct.documents.azure.com:10255/?ssl=true
+mongodb://userid:longpassword@cosmosacct.documents.azure.com:10255/dbname?ssl=true
 
 # make note of this. you will use this value in the next step
 ```
@@ -157,7 +159,7 @@ mongodb://userid:longpassword@cosmosacct.documents.azure.com:10255/?ssl=true
 	```
 	env:
 	- name:  MONGODB_URI
-		value: mongodb://userid:longpassword@cosmosacct.documents.azure.com:10255/?ssl=true
+		value: mongodb://userid:longpassword@cosmosacct.documents.azure.com:10255/dbname?ssl=true
 	ports:
 	- containerPort:  3000
 		name:  heroes-api
@@ -184,5 +186,5 @@ heroes-api-deploy   1         1         1            1           10m
 heroes-db-deploy    1         1         1            1           30m
 heroes-web          1         1         1            1           10m
 
-kubectl delete deploy heroes-db-deploy
+kubectl delete -f heroes-web-api.yaml
 ```

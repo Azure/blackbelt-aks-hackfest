@@ -4,7 +4,7 @@ _Delivering modern cloud native applications with ​open source technologies on
 
 ## Overview
 
-This workshop will guide you through migrating an application from "on-premise" to container running in Azure Kubernetes Service.
+This workshop will guide you through migrating an application from "on-premise" to containers running in Azure Kubernetes Service.
 
 The labs are based upon a node.js application that allows for voting on the Justice League Superheroes. Data is stored in MongoDB.
 
