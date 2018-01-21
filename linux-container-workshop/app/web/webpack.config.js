@@ -1,7 +1,10 @@
 const path = require('path')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const CompressionPlugin = require("compression-webpack-plugin")
 const API = process.env.API
+const TAG = process.env.IMAGE_TAG
+const TAG_DATE = process.env.IMAGE_BUILD_DATE
 
 var onError = function (err, req, res) {
   console.log('Error with webpack proxy :', err);
@@ -66,8 +69,25 @@ module.exports = {
       'process.env': {
         API: JSON.stringify(process.env.API),
         SITE_CODE: JSON.stringify(process.env.SITE_CODE || "JLA"),
-        IMAGE_TAG: JSON.stringify(process.env.IMAGE_TAG || "TESTING")
+        IMAGE_BUILD_DATE: JSON.stringify(process.env.IMAGE_BUILD_DATE || "DATE OF TAG"),
+        IMAGE_TAG: JSON.stringify(process.env.IMAGE_TAG || "TAG NAME"),
+        KUBE_NODE_NAME: JSON.stringify(process.env.KUBE_NODE_NAME || "NODE NAME"),
+        KUBE_POD_NAME: JSON.stringify(process.env.KUBE_POD_NAME || "POD NAME"),
+        KUBE_POD_IP: JSON.stringify(process.env.KUBE_POD_IP || "POD IP"),
       }
+    }),
+    new webpack.optimize.UglifyJsPlugin({
+      sourceMap: true,
+      compress: {
+        warnings: false
+      }
+    }),
+    new CompressionPlugin({
+      asset: "[path].gz[query]",
+      algorithm: "gzip",
+      test: /\.js$|\.css$|\.html$|\.png$|\.jpg$|\.ico$/,
+      threshold: 10240,
+      minRatio: 0.8
     })
   ],
   devServer: {
@@ -78,6 +98,12 @@ module.exports = {
     port: 8080,
     before(app) {
       app.use((req, res, next) => {
+        console.log(`ENV IMAGE_TAG: `, process.env.IMAGE_TAG);
+        console.log(`ENV IMAGE_BUILD_DATE: `, process.env.IMAGE_BUILD_DATE);
+        console.log(`ENV KUBE_NODE_NAME: `, process.env.KUBE_NODE_NAME);
+        console.log(`ENV KUBE_POD_NAME: `, process.env.KUBE_POD_NAME);
+        console.log(`ENV KUBE_POD_IP: `, process.env.KUBE_POD_IP);
+        console.log(`ENV API: `, process.env.API);
         console.log(`Using middleware for ${req.url}`);
         next();
       });
