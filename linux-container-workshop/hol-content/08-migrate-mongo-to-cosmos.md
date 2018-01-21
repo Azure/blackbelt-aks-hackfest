@@ -186,5 +186,5 @@ heroes-api-deploy   1         1         1            1           10m
 heroes-db-deploy    1         1         1            1           30m
 heroes-web          1         1         1            1           10m
 
-kubectl delete -f heroes-web-api.yaml
+kubectl delete -f heroes-db.yaml
 ```
