@@ -82,15 +82,17 @@ There are two ways to update the application with the new version. Both are desc
     NAME                DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
     heroes-api-deploy   1         1         1            1           29m
     heroes-db-deploy    1         1         1            1           32m
-    heroes-web          1         1         1            1           29m
+    heroes-web-depoy    1         1         1            1           29m
 
-    kubectl set image deployment/heroes-web heroes-web-cntnr=briarworkshop.azurecr.io/azureworkshop/rating-web:new-version
+    kubectl set image deployment/heroes-web-deploy heroes-web-cntnr=briarworkshop.azurecr.io/azureworkshop/rating-web:new-version
     ```
 
-2. Check status
+## Check status
+
+1. You can see the updates and history for the changes from above 
     ```
     # this command will verify that latest deployment was successful
-    kubectl rollout status deployment/heroes-web
+    kubectl rollout status deployment/heroes-web-deploy
 
     # each deployment creates a new replicaset
     kubectl get replicaset | grep web
