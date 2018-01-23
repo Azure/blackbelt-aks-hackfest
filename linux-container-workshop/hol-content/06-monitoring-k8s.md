@@ -87,7 +87,7 @@ Use the EXTERNAL-IP value from the previous step and put that into your browser:
 ![](img/8-grafana_default.png)
 
 ## Exercise 4 - Setting up Grafana
-1. Log into Grafana Dashboard using *admin** for the username and password
+1. Log into Grafana Dashboard using **admin** for the username and password
 * You should see something like the following:
 
 ![](img/8-grafana_loggedin.png)
