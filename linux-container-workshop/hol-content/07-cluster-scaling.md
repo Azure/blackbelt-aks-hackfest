@@ -20,7 +20,7 @@ heroes-web-1677855039-8t57k                    1/1       Running   0          2d
 * To simulate a real-world scenario we are going to scale the web app to handle increased load.
 ```bash
 # This command will create multiple replicas of the heroes-web pod to simulate additional load on the cluster.
-kubectl scale deploy/heroes-web --replicas=4
+kubectl scale deploy/heroes-web-deploy --replicas=4
 ```
 4. Check to see number of pods now running via Grafana Dashboard
 
