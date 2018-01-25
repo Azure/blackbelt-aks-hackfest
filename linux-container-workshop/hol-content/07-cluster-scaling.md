@@ -2,7 +2,7 @@
 
 Imagine a scenario where your realize that your existing cluster is at capacity and you need to scale it out to add more nodes in order to increase capacity and be able to deploy more PODS.
 
-## Exercise 1 - Scale Application
+## Scale Application
 1. Check to see current number of pods running via Grafana Dashboard.
 * Go to the same Grafana Dashboard from exercise 8 and look at the **Pods Running Count** section. You will see the total count of Pods and the various phases they are in.
 
@@ -43,7 +43,7 @@ heroes-web-3683626428-zxp2s                                       1/1       Runn
 ![](img/9-grafana_podspending.png)
 
 
-## Exercise 2 - Scale K8s Cluster
+## Scale K8s Cluster
 1. Check to see number of current nodes running.
 ```bash
 kubectl get nodes

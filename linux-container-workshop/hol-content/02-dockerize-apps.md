@@ -158,7 +158,7 @@ Now that we have container images for our application components, we need to sto
 
 ### Create Azure Container Registry instance
 
-1. In the browser, sign in to the Azure portal at https://portal.azure.com
+1. In the browser, sign in to the Azure portal at https://portal.azure.com. Your Azure login ID will look something like `odl_user_9294@gbbossteamoutlook.onmicrosoft.com`
 2. Click "Create a resource" and select "Azure Container Registry"
 3. Provide a name for your registry (this must be unique)
 4. Use the existing Resource Group

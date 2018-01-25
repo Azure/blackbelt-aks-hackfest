@@ -16,10 +16,10 @@ Labs 1 and 2 require the Jumpbox. The subsequent labs all use the Azure Cloud Sh
 
 Once you have accessed the jumpbox, you must clone the workshop repo to the machine.
 
-* Start with a terminal on the jumpbox
-* Clone the Github repo via the command line
+1. Start with a terminal on the jumpbox
+2. Clone the Github repo via the command line
 
-    ```bash
+    ```
     git clone https://github.com/Azure/blackbelt-aks-hackfest.git
     ```
 
@@ -29,7 +29,7 @@ Once you have accessed the jumpbox, you must clone the workshop repo to the mach
 
 The underlying data store for the app is [MongoDB](https://www.mongodb.com/ "MongoDB Homepage"). It is already running. We need to import the data for our application.
 
-* Import the data using a terminal session on the jumpbox
+1. Import the data using a terminal session on the jumpbox
 
     ```bash
     cd ~/blackbelt-aks-hackfest/linux-container-workshop/app/db
@@ -41,7 +41,7 @@ The underlying data store for the app is [MongoDB](https://www.mongodb.com/ "Mon
 
 The API for the app is written in javascript, running on [Node.js](https://nodejs.org/en/ "Node.js Homepage") and [Express](http://expressjs.com/ "Express Homepage")
 
-* Update dependencies and run app via node in a terminal session on the jumpbox
+1. Update dependencies and run app via node in a terminal session on the jumpbox
 
     ```bash
     cd ~/blackbelt-aks-hackfest/linux-container-workshop/app/api
@@ -49,7 +49,7 @@ The API for the app is written in javascript, running on [Node.js](https://nodej
     npm install && npm run localmachine
     ```
 
-* Open a new terminal session on the jumpbox and test the API
+2. Open a new terminal session on the jumpbox and test the API
 
     use curl
     ```bash
@@ -61,15 +61,15 @@ The API for the app is written in javascript, running on [Node.js](https://nodej
 
 The web frontend for the app is written in [Vue.js](https://vuejs.org/Vue "Vue.js Homepage"), running on [Node.js](https://nodejs.org/en/ "Node.js Homepage") with [Webpack](https://webpack.js.org/ "Webpack Homepage")
 
-* Open a new terminal session on the jumpbox
-* Update dependencies and run app via node
+1. Open a new terminal session on the jumpbox
+2. Update dependencies and run app via node
 
     ```bash
     cd ~/blackbelt-aks-hackfest/linux-container-workshop/app/web
 
     npm install && npm run localmachine
     ```
-* Test the web front-end
+3. Test the web front-end
 
     The jumpbox has an external DNS name and port 8080 is open. You can browse your running app with a link such as: http://jump-vm-csc4f653357f-q72zm5c4ggcza.eastus.cloudapp.azure.com:8080 
 
@@ -80,4 +80,4 @@ The web frontend for the app is written in [Vue.js](https://vuejs.org/Vue "Vue.j
 
 ## Clean-up
 
-* Close the web and api apps in the terminal windows by hitting `ctrl-c` in each of the corresponding terminal windows
+Close the web and api apps in the terminal windows by hitting `ctrl-c` in each of the corresponding terminal windows

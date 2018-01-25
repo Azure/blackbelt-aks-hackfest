@@ -21,7 +21,8 @@ The labs are based upon a node.js application that allows for voting on the Just
   6. Operational Monitoring and Log Management
   7. Application and Infrastructure Scaling
   8. Moving your data services to Azure PaaS (CosmosDB)
-  9. AKS Cluster Upgrading
+  9. Update and Deploy New Version of Application
+  10. Upgrade an Azure Kubernetes Service (AKS) cluster
 
 ## Advanced Labs (Coming Soon)
   1. CI/CD Automation
