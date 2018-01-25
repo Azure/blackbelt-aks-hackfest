@@ -8,8 +8,11 @@ For the first container, we will be creating a Dockerfile from scratch. For the 
 
 1. Create a Dockerfile
 
-    * Open Visual Studio Code
+    * Access the jumpbox
     * In the `~/blackbelt-aks-hackfest/linux-container-workshop/app/web` directory, add a file called "Dockerfile"
+        * If you in in a SSH session, use vi as the editor
+        * In RDP, you can use Visual Studio Code
+
     * Add the following lines and save:
 
         ```
@@ -36,7 +39,7 @@ For the first container, we will be creating a Dockerfile from scratch. For the 
 
 2. Create a container image for the node.js Web app
 
-    From bash shell: 
+    From the terminal session: 
 
     ```
     cd ~/blackbelt-aks-hackfest/linux-container-workshop/app/web
@@ -125,7 +128,10 @@ docker network create --subnet=172.18.0.0/16 my-network
 
 2. Validate by running `docker ps -a`
 
-3. Test api app by browsing to http://localhost:3000/api/heroes 
+3. Test api app with curl
+    ```
+    curl http://localhost:3000/api/heroes
+    ```
 
 ### Web Container
 
@@ -137,8 +143,14 @@ docker network create --subnet=172.18.0.0/16 my-network
 
 2. Validate by running `docker ps -a`
 
-3. Test web app by browsing to http://localhost:8080
+3. Test web app
+    
+    The jumpbox has an external DNS name and port 8080 is open. You can browse your running app with a link such as: http://jump-vm-csc4f653357f-q72zm5c4ggcza.eastus.cloudapp.azure.com:8080 
 
+    You can also test via curl
+    ```
+    curl http://localhost:8080
+    ```
 
 ## Azure Container Registry (ACR)
 
@@ -160,8 +172,7 @@ Now that we have container images for our application components, we need to sto
 1. Browse to your Container Registry in the Azure Portal
 2. Click on "Access keys"
 3. Make note of the "Login server", "Username", and "password"
-4. Set each value to a variable as shown below.
-5. Login in your Bash shell: 
+4. In the terminal session on the jumpbox, set each value to a variable as shown below
 
     ```
     # set these values to yours

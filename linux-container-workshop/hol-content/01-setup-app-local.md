@@ -1,10 +1,22 @@
 # Initial Setup and Running App on Local Machine
 
+## Work Environment
+
+There are two environments you will be working in for the exercises today.
+
+1. **Jumpbox:** The apps and containers must be run on a Linux machine. A CentOS linux machine has been created for you in your Azure subscription.
+
+    > Note: If you have bash or ssh available on your machine, it is easiest to access the jump box via SSH. Otherwise, RDP is required.
+
+2. **Azure Cloud Shell:** The Azure Cloud Shell will be accessed by logging into the Azure Portal (http://portal.azure.com).
+
+Labs 1 and 2 require the Jumpbox. The subsequent labs all use the Azure Cloud Shell.
+
 ## Clone Lab Github Repo
 
-The lab files must be cloned to the local machine to complete all of the exercises for the day. 
+Once you have accessed the jumpbox, you must clone the workshop repo to the machine.
 
-* Open a terminal on the jumpbox to bring up a command line
+* Start with a terminal on the jumpbox
 * Clone the Github repo via the command line
 
     ```bash
@@ -17,7 +29,7 @@ The lab files must be cloned to the local machine to complete all of the exercis
 
 The underlying data store for the app is [MongoDB](https://www.mongodb.com/ "MongoDB Homepage"). It is already running. We need to import the data for our application.
 
-* Import the data via the command line
+* Import the data using a terminal session on the jumpbox
 
     ```bash
     cd ~/blackbelt-aks-hackfest/linux-container-workshop/app/db
@@ -29,7 +41,7 @@ The underlying data store for the app is [MongoDB](https://www.mongodb.com/ "Mon
 
 The API for the app is written in javascript, running on [Node.js](https://nodejs.org/en/ "Node.js Homepage") and [Express](http://expressjs.com/ "Express Homepage")
 
-* Update dependencies and run app via node in the command line
+* Update dependencies and run app via node in a terminal session on the jumpbox
 
     ```bash
     cd ~/blackbelt-aks-hackfest/linux-container-workshop/app/api
@@ -37,19 +49,19 @@ The API for the app is written in javascript, running on [Node.js](https://nodej
     npm install && npm run localmachine
     ```
 
-* Test the API locally either
+* Open a new terminal session on the jumpbox and test the API
 
-    using curl in the command line
+    use curl
     ```bash
     curl http://localhost:3000/api/heroes
     ```
-    or use the browser on the jumpbox and navigate to <http://localhost:3000/api/heroes>
+    If you are in an RDP session, you can browse to <http://localhost:3000/api/heroes>
 
 ### Web Application layer - Vue.js, Node.js
 
 The web frontend for the app is written in [Vue.js](https://vuejs.org/Vue "Vue.js Homepage"), running on [Node.js](https://nodejs.org/en/ "Node.js Homepage") with [Webpack](https://webpack.js.org/ "Webpack Homepage")
 
-* Open a new Terminal session
+* Open a new terminal session on the jumpbox
 * Update dependencies and run app via node
 
     ```bash
@@ -57,10 +69,14 @@ The web frontend for the app is written in [Vue.js](https://vuejs.org/Vue "Vue.j
 
     npm install && npm run localmachine
     ```
+* Test the web front-end
 
-* Test web locally
+    The jumpbox has an external DNS name and port 8080 is open. You can browse your running app with a link such as: http://jump-vm-csc4f653357f-q72zm5c4ggcza.eastus.cloudapp.azure.com:8080 
 
-    use the browser on the jumpbox and navigate to <http://localhost:8080>
+    You can also test from a new terminal session in the jumpbox
+    ```bash
+    curl http://localhost:8080
+    ```
 
 ## Clean-up
 
