@@ -11,7 +11,7 @@
     ```
     az account list
     ```
-3. Find your RG name
+3. Find your RG name (Location should be centralus)
 
     ```
     az group list
