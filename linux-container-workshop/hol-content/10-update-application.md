@@ -63,7 +63,7 @@ There are two ways to update the application with the new version. Both are desc
     spec:
     containers:
     - image: mycontainerregistry.azurecr.io/azureworkshop/rating-web:new-version
-        name:  heroes-web-cntnr
+      name:  heroes-web-cntnr
     ```
 
 3. Apply the new yaml file
