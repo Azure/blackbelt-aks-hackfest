@@ -1,4 +1,4 @@
-# Upgrade an Azure Container Service (AKS) cluster
+# Upgrade an Azure Kubernetes Service (AKS) cluster
 
 Azure Container Service (AKS) makes it easy to perform common management tasks including upgrading Kubernetes clusters.
 

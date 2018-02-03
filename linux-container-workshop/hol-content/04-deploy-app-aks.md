@@ -2,11 +2,36 @@
 
 ## Review/Edit the YAML Config Files
 
-* In VS Code (or vi), open the `helper-files` directory and review the yaml files: `heroes-db.yaml`, `heroes-web-api.yaml`
-* Note the environment variables that direct each app to other services.
-* Update the yaml file for the proper container image names. 
-    * You will need to replace the `<login server>` with the ACR login server created in Lab 2. 
-    * Repeat this **THREE** times in the heroes yaml files (for the web, api, and db images). Example: 
+1. In Azure Cloud Shell edit `heroes-db.yaml` using `vi`
+    ```
+    cd ~/blackbelt-aks-hackfest/linux-container-workshop/helper-files
+
+    vi heroes-db.yaml
+    ```
+    * Review the yaml file and learn about some of the settings
+    * Update the yaml file for the proper container image name
+    * You will need to replace the `<login server>` with the ACR login server created in lab 2
+    * Example: 
+
+        ```
+        spec:
+        containers:
+        - image: mycontainerregistry.azurecr.io/azureworkshop/rating-db:v1
+            name:  heroes-db-cntnr
+        ```
+
+2. In Azure Cloud Shell edit `heroes-web-api.yaml` using `vi`
+    ```
+    cd ~/blackbelt-aks-hackfest/linux-container-workshop/helper-files
+
+    vi heroes-web-api.yaml
+    ```
+    * Review the yaml file and learn about some of the settings. Note the environment variables that allow the services to connect
+    * Update the yaml file for the proper container image names.
+    * You will need to replace the `<login server>` with the ACR login server created in lab 2
+        > Note: You will update the image name TWICE updating the web and api container images.
+
+    * Example: 
 
         ```
         spec:
