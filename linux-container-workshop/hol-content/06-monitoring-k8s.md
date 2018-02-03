@@ -63,7 +63,6 @@ Prometheus is a Cloud Native Computing Foundation (CNCF) project used to collect
 Grafana is a dashboard visualization tool that can use all kinds of data sources. In our case, Prometheus will be used as the data source.
 
 1. Install Grafana using Helm CLI
-
     The following command will install Grafana into the K8s cluster with a few custom settings to make it easier to access.
     * We are setting the default username and password to **admin** to make it easier to remember
     * We are also setting the service type to **LoadBalancer** to expose the service outside of the cluster and make it accessible via the Internet

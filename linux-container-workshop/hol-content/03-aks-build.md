@@ -20,6 +20,7 @@
     ```
     az account list
     ```
+
 7. Find your RG name
 
     ```
