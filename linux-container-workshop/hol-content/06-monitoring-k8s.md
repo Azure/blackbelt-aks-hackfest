@@ -22,7 +22,7 @@ We are going to be installing Prometheus and Grafana into our K8s cluster using 
     ```
 
 3. Validate Helm and Tiller were installed successfully
-    ```bash
+    ```
     helm version
     # You should see something like the following as output:
     Client: &version.Version{SemVer:"v2.7.2", GitCommit:"8478fb4fc723885b155c924d1c8c410b7a9444e6", GitTreeState:"clean"}
@@ -35,7 +35,7 @@ Prometheus is a Cloud Native Computing Foundation (CNCF) project used to collect
 1. Install Prometheus using Helm CLI
 
     Switch to the `helper-files` directory and view the `prometheus-configforhelm.yaml` file. This configures Helm to install Prometheus with our desired settings.
-    ```bash
+    ```
     cd ~/blackbelt-aks-hackfest/linux-container-workshop/helper-files
     # The following command will install Prometheus into the K8s cluster using custom settings
 
@@ -43,7 +43,7 @@ Prometheus is a Cloud Native Computing Foundation (CNCF) project used to collect
     ```
 
 2. Validate that Prometheus was Installed
-    ``` bash
+    ``` 
     kubectl get pods | grep prometheus
     # You should see something like the following as output:
     gbbhackprometheus-prometheus-kube-state-metrics-5b9f4d9d9-vctrx   1/1       Running   0          3m
@@ -51,7 +51,7 @@ Prometheus is a Cloud Native Computing Foundation (CNCF) project used to collect
     gbbhackprometheus-prometheus-server-54f5bcb797-sbzsp              2/2       Running   0          3m
     ```
 
-    ```bash
+    ```
     kubectl get svc | grep prometheus
     # You should see something like the following as output:
     gbbhackprometheus-prometheus-kube-state-metrics   ClusterIP      None           <none>          80/TCP           3m
@@ -67,18 +67,18 @@ Grafana is a dashboard visualization tool that can use all kinds of data sources
     * We are setting the default username and password to **admin** to make it easier to remember
     * We are also setting the service type to **LoadBalancer** to expose the service outside of the cluster and make it accessible via the Internet
 
-    ```bash
-    helm install --name gbbhackgrafana stable/grafana --version 0.5.1 --set server.service.type=LoadBalancer,server.adminUser=admin,server.adminPassword=admin
+    ```
+    helm install --name gbbhackgrafana stable/grafana --version 0.5.1 --set server.service.type=LoadBalancer,server.adminUser=admin,server.adminPassword=admin,server.image=grafana/grafana:4.6.3,server.persistentVolume.enabled=false
     ```
 
 2. Validate that Grafana was Installed
-    ```bash
+    ```
     kubectl get pods | grep grafana
     # You should see something like the following as output:
     hgrafana-grafana-855db78dc4-pnzth                           1/1       Running   0          2h
     ```
 
-    ```bash
+    ```
     kubectl get svc | grep grafana
     # You should see something like the following as output, take note of the **EXTERNAL-IP column**:
     khgrafana-grafana                            LoadBalancer   10.0.163.226   "52.226.75.38"     80:31476/TCP   2h
