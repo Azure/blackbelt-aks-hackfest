@@ -39,7 +39,7 @@ Prometheus is a Cloud Native Computing Foundation (CNCF) project used to collect
     cd ~/blackbelt-aks-hackfest/linux-container-workshop/helper-files
     # The following command will install Prometheus into the K8s cluster using custom settings
 
-    helm install --name gbbhackprometheus stable/prometheus -f prometheus-configforhelm.yaml
+    helm install --name gbbhackprometheus stable/prometheus --version 4.6.13 -f prometheus-configforhelm.yaml
     ```
 
 2. Validate that Prometheus was Installed
@@ -68,7 +68,7 @@ Grafana is a dashboard visualization tool that can use all kinds of data sources
     * We are also setting the service type to **LoadBalancer** to expose the service outside of the cluster and make it accessible via the Internet
 
     ```bash
-   helm install --name gbbhackgrafana stable/grafana --set server.service.type=LoadBalancer,server.adminUser=admin,server.adminPassword=admin
+    helm install --name gbbhackgrafana stable/grafana --version 0.5.1 --set server.service.type=LoadBalancer,server.adminUser=admin,server.adminPassword=admin
     ```
 
 2. Validate that Grafana was Installed
