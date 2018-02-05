@@ -20,7 +20,7 @@ The labs are based upon a node.js application that allows for voting on the Just
   5. [Kubernetes UI Overview](hol-content/05-kubernetes-ui.md)
   6. [Operational Monitoring and Log Management](hol-content/06-monitoring-k8s.md)
   7. [Application and Infrastructure Scaling](hol-content/07-cluster-scaling.md)
-  8. [Moving your data services to Azure PaaS (CosmosDB)](hol-content/08-migrate-mongo-to-cosmos)
+  8. [Moving your data services to Azure PaaS (CosmosDB)](hol-content/08-migrate-mongo-to-cosmos.md)
   9. [Update and Deploy New Version of Application](hol-content/09-update-application.md)
   10. [Upgrade an Azure Kubernetes Service (AKS) cluster](hol-content/10-cluster-upgrading.md)
 
