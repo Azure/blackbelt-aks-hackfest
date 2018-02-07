@@ -26,10 +26,10 @@ If you are using the Workshop Classroom experience, these values will be emailed
 
 ```
 # set the below to values for your sub
-export AZURE_SUBSCRIPTION_ID=b23accae-e655-44e6-a08d-85fb5f1bb854
-export AZURE_TENANT_ID=12c5db39-b62e-4301-b848-09acda2692a5
-export AZURE_CLIENT_ID=60b48fff-399f-4cf6-bc82-9d47071adcdc
-export AZURE_CLIENT_SECRET=spzg75AFJ*rp
+export AZURE_SUBSCRIPTION_ID=
+export AZURE_TENANT_ID=
+export AZURE_CLIENT_ID=
+export AZURE_CLIENT_SECRET=
 ```
 
 4. Deploy the Service Broker chart
