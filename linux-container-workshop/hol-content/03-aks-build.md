@@ -58,7 +58,7 @@
     ```
     # This command will take a number of minutes to run as it is creating the AKS cluster
     
-    az aks create -n $CLUSTER_NAME -g $NAME -c 2 -k 1.7.7 --generate-ssh-keys
+    az aks create -n $CLUSTER_NAME -g $NAME -c 2 -k 1.7.7 --generate-ssh-keys -l eastus
     ```
 
 9. Get the Kubernetes config files for your new AKS cluster
