@@ -145,7 +145,7 @@ docker network create --subnet=172.18.0.0/16 my-network
 
 3. Test web app
     
-    The jumpbox has an external DNS name and port 8080 is open. You can browse your running app with a link such as: http://jump-vm-csc4f653357f-q72zm5c4ggcza.eastus.cloudapp.azure.com:8080 
+    The jumpbox has a Public IP address and port 8080 is open. You can browse your running app with a link such as: http://13.90.246.114:8080 
 
     You can also test via curl
     ```

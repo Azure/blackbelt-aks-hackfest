@@ -47,6 +47,10 @@
     # grab the name from the results above and set to a variable 
     
     NAME=ODL-aks-v2-gbb-8386
+
+    # We need to use a different cluster name, as sometimes the name in the group list has an underscore, and only dashes are permitted
+    
+    CLUSTER_NAME="${NAME//_}"
     
     ```
 
@@ -54,12 +58,12 @@
     ```
     # This command will take a number of minutes to run as it is creating the AKS cluster
     
-    az aks create -n $NAME -g $NAME -c 2 -k 1.7.7 --generate-ssh-keys
+    az aks create -n $CLUSTER_NAME -g $NAME -c 2 -k 1.7.7 --generate-ssh-keys
     ```
 
 9. Get the Kubernetes config files for your new AKS cluster
     ```
-    az aks get-credentials -n $NAME -g $NAME
+    az aks get-credentials -n $CLUSTER_NAME -g $NAME
     ```
 
 10. Verify you have API access to your new AKS cluster
