@@ -13,7 +13,7 @@ You can create a CosmosDB service/instance in one (1) of two (2) ways:
 The Azure-CLI Command Line Tool is available and supported for Windows, macOS and Linux. The following uses the cross plaform Azure-CLI in a Linux bash shell to deploy an instance of CosmosDB into your Azure Subscription/Account.
 
 Note:
-- We are leveraging Linux bash environment variables to script our deployment.  You should change **ALL** the values for each variable listed to fit your preferred deployment.  As an example ```location1``` and ```location2``` should be changed to your desired Azure datacentre.
+- We are leveraging Linux bash environment variables to script our deployment.  You should change **ALL** the values for each variable listed to fit your preferred deployment.  As an example ```location1``` and ```location2``` should be changed to your desired Azure datacentre. You can use ```az account list-locations | grep name``` to obtain a list of available locations.
 - The ```\``` slashes in the below example are used for escaping new lines for readability purposes (they are not a requirement), as such you may remove them to form a single line command.
 
 ```
