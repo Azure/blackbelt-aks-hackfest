@@ -34,7 +34,7 @@ spec:
       imagePullSecrets:
         - name: acr-secret
       containers:
-      - image: briaracr/azureworkshop/rating-api:v1
+      - image: briaracr.azurecr.io/azureworkshop/rating-api:v1
         name:  heroes-api-cntnr
         resources:
           requests:
@@ -45,7 +45,7 @@ spec:
           valueFrom:
             secretKeyRef:
               name: heroes-cosmosdb-secret
-              key: connectionstring
+              key: connectionString
         ports:
         - containerPort:  3000
           name:  heroes-api
@@ -88,7 +88,7 @@ spec:
       imagePullSecrets:
         - name: acr-secret
       containers:
-      - image: briaracr/azureworkshop/rating-web:v1
+      - image: briaracr.azurecr.io/azureworkshop/rating-web:v1
         name:  heroes-web-cntnr
         resources:
           requests:
