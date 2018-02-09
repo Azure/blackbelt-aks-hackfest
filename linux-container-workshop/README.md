@@ -6,7 +6,7 @@ _Delivering modern cloud native applications with ​open source technologies on
 
 This workshop will guide you through migrating an application from "on-premise" to containers running in Azure Kubernetes Service.
 
-The labs are based upon a node.js application that allows for voting on the Justice League Superheroes. Data is stored in MongoDB.
+The labs are based upon a node.js application that allows for voting on the Justice League Superheroes (with more options coming soon). Data is stored in MongoDB.
 
 > Note: These labs are designed to run on a Linux CentOS VM running in Azure (jumpbox) along with Azure Cloud Shell. They can potentially be run locally on a Mac or Windows, but the instructions are not written towards that experience. ie - "You're on your own."
 
