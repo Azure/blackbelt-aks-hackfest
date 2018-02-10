@@ -1,4 +1,4 @@
-# Moving your data services to Hosted Data Solutions (CosmosDB)
+# Migrate Data from MongoDB to Azure Cosmos DB
 
 In this section we will be creating a CosmosDB instance in your Azure account to migrate/export your MongoDB data to CosmosDB.  You can use CosmosDB as a drop in replacement for MongoDB, since CosmosDB uses a MongoDB compatibale API.  As such, you are only required to replace/change the MongoDB URI connection string with one supplied by CosmosDB in the dashboard. 
 
@@ -21,7 +21,7 @@ In this section we will be creating a CosmosDB instance in your Azure account to
 	- ```Resource Group```- Select ```Use existing``` and pick your resource group.
 	- ```Location``` - Azure region for CosmosDB. We will use ```East US```
 
-	![Creating CosmosDB in the Azure Portal](img/creating_cosmos.png "Creating CosmosDB in the Azure Portal")
+		![Creating CosmosDB in the Azure Portal](img/creating_cosmos.png "Creating CosmosDB in the Azure Portal")
 
 * Click ```Create```. Your CosmosDB instance will be provisioned within minutes.  You will be notified with an alert in the top right corner of your Portal Dashboard.
 
