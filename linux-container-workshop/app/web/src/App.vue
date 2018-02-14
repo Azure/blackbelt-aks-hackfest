@@ -203,6 +203,7 @@ h4 {
 .super-image {
   -webkit-filter: drop-shadow(3px 3px 3px #111);
   filter: drop-shadow(3px 3px 3px #111);
+  width: 100%;
 }
 
 .super-name {

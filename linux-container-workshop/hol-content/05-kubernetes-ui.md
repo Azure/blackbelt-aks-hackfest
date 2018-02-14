@@ -10,10 +10,14 @@ There are multiple ways of accessing Kubernetes dashboard. You can access throug
 
 1. Command-Line Proxy
 
-    * Open a terminal session
+    * Open an RDP session to the jumpbox IP with username and password
+    * Run ```az login``` to authenticate with Azure in order to use Azure CLI in the Jumpbox instead of Cloud Shell
+    * Run ```NAME=$(az group list | jq '.[0]."name"' -r)``` in order to retrieve the name of the resource group for your Azure account
+    * Run ```CLUSTER_NAME="${NAME//_}"``` in order to retrieve the cluster name (to remove the underscore)
+    * Run ```az aks get-credentials -n $CLUSTER_NAME -g $NAME``` in order to get the credentials to access our managed Kubernetes cluster in Azure
     * Run ```kubectl proxy```
     * This creates a local proxy to 127.0.0.1:8001
-    * Open a web browser and point to: <http://127.0.0.1:8001/api/v1/proxy/namespaces/kube-system/services/kubernetes-dashboard/#!/cluster?namespace=default>
+    * Open a web browser (Firefox is pre-installed on the Jumpbox) and point to: <http://127.0.0.1:8001/api/v1/proxy/namespaces/kube-system/services/kubernetes-dashboard/#!/cluster?namespace=default>
 
 ### Explore Kubernetes Dashboard
 
@@ -22,3 +26,5 @@ There are multiple ways of accessing Kubernetes dashboard. You can access throug
 2. Explore the different node properties avalabile through the dashboard
 3. Explore the different pod properties avaliable through the dashboard ![](img/ui_pods.png)
 4. In this lab feel free to take a look around other at  other resources Kubernetes provides through the dashboard
+
+> To learn more about Kubernetes objects and resources, browse the documentation: <https://kubernetes.io/docs/user-journeys/users/application-developer/foundational/#section-3>
