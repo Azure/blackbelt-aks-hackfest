@@ -127,8 +127,19 @@ This lab has pre-requisites. Some have been completed in prior labs.
 
 1. In your forked Github repo, add a file called ```brigade.js```
 2. Paste the contents from the sample [brigade.js](brigade.js) file in this folder
-3. Commit the new file
-4. Review the steps in the javascript that run the jobs in our pipeline
+3. Edit `brigade.js` to ensure that the image matches your ACR service name (line 63)
+
+    ```
+    function kubeJobRunner (config, k) {
+        k.storage.enabled = false
+        k.image = "lachlanevenson/k8s-kubectl:v1.8.2"
+        k.tasks = [
+            `kubectl set image deployment/heroes-web-deploy heroes-web-cntnr=<youracrhere>.azurecr.io/azureworkshop/rating-web:${config.get("imageTag")}`
+        ]
+    }
+    ```
+4. Commit the new file
+5. Review the steps in the javascript that run the jobs in our pipeline
 
 ## Configure Github Webhook
 
