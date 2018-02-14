@@ -96,6 +96,7 @@ module.exports = {
     },
     host: '0.0.0.0',
     port: 8080,
+    disableHostCheck: true,
     before(app) {
       app.use((req, res, next) => {
         console.log(`ENV IMAGE_TAG: `, process.env.IMAGE_TAG);
