@@ -60,10 +60,10 @@ Take note of the two files in this directory, [init-db-sample.yaml](init-db-samp
 
     and change
     ```yaml
-          name:  heroes-api
+          name:  heroes-web
         spec:
           containers:
-          - image: sonofjorel/rating-api:v1
+          - image: sonofjorel/rating-web:v1
     ```
 
     to
