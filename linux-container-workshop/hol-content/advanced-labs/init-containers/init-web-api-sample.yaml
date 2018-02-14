@@ -64,7 +64,7 @@ spec:
           mountPath: "/data-dir"
       - name: get-ratings-data
         image: busybox  
-        command: ['sh', '-c', 'for i in {1..100}; do sleep 1; if [ ! -f "./data-dir/sites.json" ]; then wget -O ./data-dir/sites.json https://raw.githubusercontent.com/Azure/blackbelt-aks-hackfest/jds-init-dragon-001/linux-container-workshop/app/db/ratings.json; cat ./data-dir/ratings.json; exit 1; fi; done; exit 0']
+        command: ['sh', '-c', 'for i in {1..100}; do sleep 1; if [ ! -f "./data-dir/sites.json" ]; then wget -O ./data-dir/ratings.json https://raw.githubusercontent.com/Azure/blackbelt-aks-hackfest/jds-init-dragon-001/linux-container-workshop/app/db/ratings.json; cat ./data-dir/ratings.json; exit 1; fi; done; exit 0']
         volumeMounts:
         - name: datadir
           mountPath: "/data-dir"
