@@ -101,7 +101,7 @@ There are two ways to update the application with the new version. Both are desc
     heroes-web-64f4795689          0         0         0         8m
     heroes-web-67b4b7b887          1         1         1         1m
 
-    kubectl rollout history deployment/heroes-web
+    kubectl rollout history deployment/heroes-web-deploy
     ```
 
 ## Browse to your newly deployed web application
