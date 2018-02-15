@@ -51,6 +51,64 @@ spec:
           name:  heroes-api
         imagePullPolicy: Always
       restartPolicy: Always
+      initContainers:
+      - name: get-hero-data
+        image: busybox  
+        command: ['sh', '-c', 'for i in {1..100}; do sleep 1; if [ ! -f "./data-dir/heroes.json" ]; then wget -O ./data-dir/heroes.json https://raw.githubusercontent.com/Azure/blackbelt-aks-hackfest/master/linux-container-workshop/app/db/heroes.json; cat ./data-dir/heroes.json; exit 1; fi; done; exit 0']
+        volumeMounts:
+        - name: datadir
+          mountPath: "/data-dir"
+      - name: get-site-data
+        image: busybox  
+        command: ['sh', '-c', 'for i in {1..100}; do sleep 1; if [ ! -f "./data-dir/sites.json" ]; then wget -O ./data-dir/sites.json https://raw.githubusercontent.com/Azure/blackbelt-aks-hackfest/master/linux-container-workshop/app/db/sites.json; cat ./data-dir/sites.json; exit 1; fi; done; exit 0']
+        volumeMounts:
+        - name: datadir
+          mountPath: "/data-dir"
+      - name: get-ratings-data
+        image: busybox  
+        command: ['sh', '-c', 'for i in {1..100}; do sleep 1; if [ ! -f "./data-dir/ratings.json" ]; then wget -O ./data-dir/ratings.json https://raw.githubusercontent.com/Azure/blackbelt-aks-hackfest/master/linux-container-workshop/app/db/ratings.json; cat ./data-dir/ratings.json; exit 1; fi; done; exit 0']
+        volumeMounts:
+        - name: datadir
+          mountPath: "/data-dir"
+      - name: import-hero-data
+        image: mongo:3.6.1-jessie
+        command: ['sh', '-c', 'for i in {1..100}; do sleep 1; if [ -f "./data-dir/heroes.json" ]; then mongoimport --host $MONGODB_URI:10255 --db webratings --collection heroes --file /data-dir/heroes.json --jsonArray; exit 0; fi; done; exit 1']
+        env:
+        - name: MONGODB_URI
+          valueFrom:
+            secretKeyRef:
+              name: heroes-cosmosdb-secret
+              key: host
+        volumeMounts:
+        - name: datadir
+          mountPath: "/data-dir"
+      - name: import-site-data
+        image: mongo:3.6.1-jessie
+        command: ['sh', '-c', 'for i in {1..100}; do sleep 1; if [ -f "./data-dir/sites.json" ]; then mongoimport --host $MONGODB_URI:10255 --db webratings --collection sites --file /data-dir/sites.json --jsonArray; exit 0; fi; done; exit 1']
+        env:
+        - name: MONGODB_URI
+          valueFrom:
+            secretKeyRef:
+              name: heroes-cosmosdb-secret
+              key: host
+        volumeMounts:
+        - name: datadir
+          mountPath: "/data-dir"
+      - name: import-ratings-data
+        image: mongo:3.6.1-jessie
+        command: ['sh', '-c', 'for i in {1..100}; do sleep 1; if [ -f "./data-dir/ratings.json" ]; then mongoimport --host $MONGODB_URI:10255 --db webratings --collection ratings --file /data-dir/ratings.json --jsonArray; exit 0; fi; done; exit 1']
+        env:
+        - name: MONGODB_URI
+          valueFrom:
+            secretKeyRef:
+              name: heroes-cosmosdb-secret
+              key: host
+        volumeMounts:
+        - name: datadir
+          mountPath: "/data-dir"
+      volumes:
+        - name: datadir
+          emptyDir: {}
 ---
 apiVersion: v1
 kind: Service

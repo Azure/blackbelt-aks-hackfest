@@ -62,26 +62,30 @@ osba-redis-3506537388-f6k17                       1/1       Running   0         
 
 ## Deploy App with CosmosDB instance
 
-1. Review the `heroes-cosmosdb.yaml` file
+1. Clear anything out of your cluster by deleting your deployments
+
+    ```bash
+    $ kubectl delete -f heroes-db.yaml
+    $ kubectl delete -f heroes-web-api.yaml
+    ```
+
+2. Review the `heroes-cosmosdb.yaml` file
 
 * Along with the web and api configs, you will see a `ServiceInstance` object and a `ServiceBinding` object. 
 * You will also see a secret defined in the API deployment that sets the `MONGODB_URI` environment variable.
 
-2. Deploy the application
+3. Deploy the application
 
 ```
 kubectl apply -f heroes-cosmosdb.yaml
 ```
 
-3. Review the resulting objects
+4. Review the resulting objects
 
 ```
 kubectl get pod,secret,serviceinstance,servicebinding
-
-
-
 ```
 
-4. Validate the CosmosDB instance has been created in the resource group `heroes-cosmosdb`
+5. Validate the CosmosDB instance has been created in Azure
 
 
