@@ -17,7 +17,7 @@ There are multiple ways of accessing Kubernetes dashboard. You can access throug
     * Run ```az aks get-credentials -n $CLUSTER_NAME -g $NAME``` in order to get the credentials to access our managed Kubernetes cluster in Azure
     * Run ```az aks browse -n $CLUSTER_NAME -g $NAME```
     * This creates a local proxy to 127.0.0.1:8001
-    * Open a web browser (Firefox is pre-installed on the Jumpbox) and point to: <http://127.0.0.1:8001/api/v1/proxy/namespaces/kube-system/services/kubernetes-dashboard/#!/cluster?namespace=default>
+    * Open a web browser (Firefox is pre-installed on the Jumpbox) and point to: <http://127.0.0.1:8001/>
 
 ### Explore Kubernetes Dashboard
 
