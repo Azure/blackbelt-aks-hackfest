@@ -119,7 +119,7 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: nginx
     # Add to generate certificates for this ingress
-    kubernetes.io/tls-acme: 'true'
+    kubernetes.io/tls-acme: 'false'
 spec:
   rules:
     - host:
@@ -129,9 +129,3 @@ spec:
               serviceName: web
               servicePort: 8080
             path: /
-  tls:
-    # With this configuration kube-lego will generate a secret in namespace foo called `example-tls`
-    # for the URL `www.example.com`
-    - hosts:
-        - "www.heroes-web.xip.io"
-      secretName: web-tls

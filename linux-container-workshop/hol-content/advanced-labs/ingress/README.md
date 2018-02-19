@@ -85,3 +85,25 @@ We will now deploy the application with a configured Ingress resource
     kubectl apply -f heroes-db.yaml
     kubectl apply -f heroes-web-api-ingress.yaml
     ```
+*Note: Below is an example of a Ingress object
+
+```yaml
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: heroes-web-ingress
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    # Add to generate certificates for this ingress
+    kubernetes.io/tls-acme: 'false'
+spec:
+  rules:
+    - host:
+      http:
+        paths:
+          - backend:
+              serviceName: web
+              servicePort: 8080
+            path: /
+```
