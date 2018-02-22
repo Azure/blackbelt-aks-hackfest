@@ -13,7 +13,7 @@ spec:
   selector:
     name: heroes-api
 ---
-apiVersion: extensions/v1Beta
+apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   name:  heroes-api-deploy
