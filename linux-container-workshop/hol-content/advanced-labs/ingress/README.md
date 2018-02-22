@@ -52,7 +52,7 @@ The Nginx Ingress Controller is an Ingress controller that uses a ConfigMap to s
     ingress-nginx-ingress-controller-86bf69bcfc-jqvsg        1/1       Running   0          1d
     ingress-nginx-ingress-default-backend-86d6db4c47-td2k8   1/1       Running   0          1d
     ```
-    * The nginx-ingress helm chart deploys a nginx ingress controller and also a backend for the ingress controller. The backend is used when a route is not found and will display a 404 error TODO: add more info on backend
+    * The nginx-ingress helm chart deploys a nginx ingress controller and also a backend for the ingress controller. The backend is used when a route is not found and will display a 404 error
     ``` bash
     kubectl get svc -n kube-system | grep nginx
 
