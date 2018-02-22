@@ -31,11 +31,16 @@ require('./models/mongo/site');
 mongoose.Promise = global.Promise;
 var connectOptions = { useMongoClient: true, autoIndex: false};
 
-mongoose.connect(process.env.MONGODB_URI, connectOptions, function(error){
-  if(!error){
+var dbconnect = function(){
+  mongoose.connect(process.env.MONGODB_URI, connectOptions).then(function(error){
     console.dir('CONNECTED TO ' + process.env.MONGODB_URI);
-  }
-});
+  }).catch(function(){
+    console.log('Unable to connect. Retrying in 1 second.')
+    setTimeout(dbconnect, 1000);
+  });  
+}
+
+dbconnect();
 
 var mongo = require('./routes/mongo');
 var index = require('./routes/index');
