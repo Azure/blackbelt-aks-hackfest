@@ -141,6 +141,35 @@ This lab has pre-requisites. Some have been completed in prior labs.
 4. Commit the new file
 5. Review the steps in the javascript that run the jobs in our pipeline
 
+## Add Dockerfile for web app
+
+In our earlier labs, we had to create a Dockerfile for the web app. Since you forked the repo, we have to do this again.
+
+* In the `~/blackbelt-aks-hackfest/linux-container-workshop/app/web` directory, in Github, add a file called "Dockerfile"
+* Add the following lines and save (this will be used by Brigade later)
+
+    ```
+    FROM node:9.4.0-alpine
+
+    ARG VCS_REF
+    ARG BUILD_DATE
+    ARG IMAGE_TAG_REF
+
+    ENV GIT_SHA $VCS_REF
+    ENV IMAGE_BUILD_DATE $BUILD_DATE
+    ENV IMAGE_TAG $IMAGE_TAG_REF
+
+    WORKDIR /usr/src/app
+    COPY package*.json ./
+    RUN npm install
+
+    COPY . .
+    RUN apk --no-cache add curl
+    EXPOSE 8080
+
+    CMD [ "npm", "run", "container" ]
+    ```
+
 ## Configure Github Webhook
 
 1. Get a URL for your Brigade Gateway

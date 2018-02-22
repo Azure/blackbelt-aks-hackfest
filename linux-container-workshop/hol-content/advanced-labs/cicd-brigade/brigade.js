@@ -8,7 +8,7 @@ events.on("push", (brigadeEvent, project) => {
     brigConfig.set("acrServer", project.secrets.acrServer)
     brigConfig.set("acrUsername", project.secrets.acrUsername)
     brigConfig.set("acrPassword", project.secrets.acrPassword)
-    brigConfig.set("webImage", "chzbrgr71/rating-web")
+    brigConfig.set("webImage", "azureworkshop/rating-web")
     brigConfig.set("gitSHA", brigadeEvent.commit.substr(0,7))
     brigConfig.set("eventType", brigadeEvent.type)
     brigConfig.set("branch", getBranch(gitPayload))
@@ -28,7 +28,7 @@ events.on("push", (brigadeEvent, project) => {
     
     var pipeline = new Group()
     pipeline.add(docker)
-    pipeline.add(helm)
+    pipeline.add(k8s)
     if (brigConfig.get("branch") == "master") {
         pipeline.runEach()
     } else {
