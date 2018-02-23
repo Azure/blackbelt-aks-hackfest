@@ -15,7 +15,10 @@ var MONGODB_USERNAME = process.env.MONGODB_USERNAME;
 var MONGODB_PASSWORD = process.env.MONGODB_PASSWORD;
 var MONGODB_DBNAME = process.env.MONGODB_DBNAME;
 
-var URI = "mongodb://"+ MONGODB_USERNAME + ":" + MONGODB_PASSWORD + "@" + MONGODB_HOST + ":" + MONGODB_PORT + "/" + MONGODB_DBNAME + "?ssl=true&replicaSet=globalDb";
+var URI = "mongodb://"+ MONGODB_USERNAME + ":" + MONGODB_PASSWORD + "@" + MONGODB_HOST + ":" + MONGODB_PORT + "/" + MONGODB_DBNAME + "?ssl=true";
+
+
+console.log(URI);
 
 var Schema = mongoose.Schema,
   ObjectId = mongoose.Types.ObjectId;
