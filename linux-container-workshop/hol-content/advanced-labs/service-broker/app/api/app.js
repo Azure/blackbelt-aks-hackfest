@@ -1,4 +1,3 @@
-require("dotenv").config();
 var express = require("express");
 var path = require("path");
 var favicon = require("serve-favicon");
@@ -10,12 +9,20 @@ var async = require("async");
 const mongoose = require("mongoose");
 
 var MONGODB_HOST = process.env.MONGODB_HOST;
+console.log(`HOST: `, MONGODB_HOST);
 var MONGODB_PORT = process.env.MONGODB_PORT;
+console.log(`PORT: `, MONGODB_PORT);
 var MONGODB_USERNAME = process.env.MONGODB_USERNAME;
+console.log(`USERNAME: `, MONGODB_USERNAME);
 var MONGODB_PASSWORD = process.env.MONGODB_PASSWORD;
+console.log(`PASSWORD: `, MONGODB_PASSWORD);
 var MONGODB_DBNAME = process.env.MONGODB_DBNAME;
+console.log(`DBNAME: `, MONGODB_DBNAME);
 
-var URI = "mongodb://"+ MONGODB_USERNAME + ":" + MONGODB_PASSWORD + "@" + MONGODB_HOST + ":" + MONGODB_PORT + "/" + MONGODB_DBNAME + "?ssl=true&replicaSet=globalDb";
+var proto = "mongodb://";
+var URI = proto.concat(MONGODB_USERNAME, ":", MONGODB_PASSWORD, "@", MONGODB_HOST,":", MONGODB_PORT, "/", MONGODB_DBNAME, "?ssl=true&replicaSet=globalDb");
+
+console.log(`about to connect to DB with connection string `, URI);
 
 var Schema = mongoose.Schema,
   ObjectId = mongoose.Types.ObjectId;
@@ -61,13 +68,16 @@ mongoose.Promise = require("bluebird");
 const reconnectTimeout = 10000; // ms.
 
 function connect() {
-  mongoose.connect(process.env.MONGODB_URI, connectOptions).catch(() => {});
+  mongoose.connect(URI, connectOptions).catch(() => {});
 }
+
+// make sure your connected
+// the writings on the wall
 
 const db = mongoose.connection;
 
 db.on("connecting", () => {
-  console.info(`connecting to DB..`);
+  console.info(`connecting to DB @ `, URI);
 });
 
 db.on("error", error => {
@@ -76,7 +86,7 @@ db.on("error", error => {
 });
 
 db.on("connected", () => {
-  console.info(`connected to DB!`);
+  console.info(`connected to DB @ `, URI);
   var heroes;
   var newHeroes;
 
@@ -85,23 +95,23 @@ db.on("connected", () => {
       function(cb) {
         Hero.count({})
           .then(function(total) {
-            console.log("Heroes present: ", total);
+            console.log(`Heroes present: `, total);
             if (total === 0) {
-              heroes = fs.readFileSync("./data/heroes.json", "utf8");
+              heroes = fs.readFileSync(`./data/heroes.json`, `utf8`);
               newHeroes = JSON.parse(
                 heroes,
                 (key, value) =>
-                  key === "_id"
+                  key === `_id`
                     ? mongoose.Types.ObjectId.createFromHexString(value)
                     : value
               );
               Hero.create(newHeroes)
                 .then(function(docs) {
-                  console.log("Inserted Heroes Count: ", docs.length);
+                  console.log(`Inserted Heroes Count: `, docs.length);
                   return null;
                 })
                 .catch(function(err) {
-                  console.log("Error creating heroes: ", err);
+                  console.log(`Error creating heroes: `, err);
                 })
                 .finally(function() {
                   return null;
@@ -119,17 +129,17 @@ db.on("connected", () => {
       function(cb) {
         Site.count({})
           .then(function(total) {
-            console.log("Sites present: ", total);
+            console.log(`Sites present: `, total);
             if (total === 0) {
-              var sites = fs.readFileSync("./data/sites.json", "utf8");
+              var sites = fs.readFileSync(`./data/sites.json`, `utf8`);
               var newSites = JSON.parse(sites);
               Site.create(newSites)
                 .then(function(docs) {
-                  console.log("Inserted Sites Count: ", docs.length);
+                  console.log(`Inserted Sites Count: `, docs.length);
                   return null;
                 })
                 .catch(function(err) {
-                  console.log("Error creating sites: ", err);
+                  console.log(`Error creating sites: `, err);
                 })
                 .finally(function() {
                   return null;
@@ -147,25 +157,25 @@ db.on("connected", () => {
       function(cb) {
         Rate.count({})
           .then(function(total) {
-            console.log("Ratings present: ", total);
+            console.log(`Ratings present: `, total);
             if (total === 0) {
               var ratingDocs = [];
               async.each(newHeroes, function(hero, writecb) {
                 for (var i = 0; i < 21; i++) {
                   var newRating = new Rate({
                     rating: Math.floor(Math.random() * 5) + 1,
-                    raterIp: "8.8.4.4",
+                    raterIp: `8.8.4.4`, // using g dns for now
                     heroRated: hero._id
                   });
                   ratingDocs.push(newRating);
                   if (i === 20) {
                     Rate.create(ratingDocs)
                       .then(function(docs) {
-                        console.log("Inserted Ratings Count: ", docs.length);
+                        console.log(`Inserted Ratings Count: `, docs.length);
                         return null;
                       })
                       .catch(function(err) {
-                        console.log("Error creating ratings: ", err);
+                        console.log(`Error creating ratings: `, err);
                       })
                       .finally(function() {
                         writecb();
@@ -186,7 +196,7 @@ db.on("connected", () => {
       }
     ],
     function(err, result) {
-      console.log("data import and checks complete");
+      console.log(`data import and checks complete`);
     }
   );
 });
@@ -207,12 +217,6 @@ db.on("disconnected", () => {
 });
 
 connect();
-
-// mongoose.connect(process.env.MONGODB_URI, connectOptions, function(error){
-//   if(!error){
-//     console.dir('CONNECTED TO ' + process.env.MONGODB_URI);
-//   }
-// });
 
 var mongo = require("./routes/mongo");
 var index = require("./routes/index");

@@ -5,7 +5,6 @@
   "author": "Joey Schluchter <jschluchter@gmail.com>",
   "scripts": {
     "dev": "NODE_ENV='development' MONGODB_URI='mongodb://localhost:27017/webratings' node ./bin/www",
-    "devnew" : "NODE_ENV='development' MONGODB_URI='mongodb://super-heroes:JEl6yZteXel4oibbf7uRkdYUoy35yw0AdA937s3CBXutSpk2j3w4bByifSF0Ll85hCSr0F8N2qprKpNCCeVznQ==@super-heroes.documents.azure.com:10255/newdatabase?ssl=true&replicaSet=globaldb' node ./bin/www",
     "localmachine": "NODE_ENV='development' MONGODB_URI='mongodb://localhost:27019/webratings' node ./bin/www",
     "container": "NODE_ENV='development' node ./bin/www"
   },
@@ -15,7 +14,6 @@
     "body-parser": "~1.18.2",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
-    "dotenv": "^4.0.0",
     "express": "~4.15.5",
     "fs": "0.0.1-security",
     "hbs": "~4.0.1",
