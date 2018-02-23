@@ -34,7 +34,7 @@ spec:
       imagePullSecrets:
         - name: acr-secret
       containers:
-      - image: <repository_name_goes_here>/azureworkshop/rating-api:v1
+      - image: chzbrgr71/rating-api:osba
         name:  heroes-api-cntnr
         resources:
           requests:
@@ -105,7 +105,7 @@ spec:
       imagePullSecrets:
         - name: acr-secret
       containers:
-      - image: <repository_name_goes_here>/azureworkshop/rating-web:v1
+      - image: chzbrgr71/rating-web:osba
         name:  heroes-web-cntnr
         resources:
           requests:
