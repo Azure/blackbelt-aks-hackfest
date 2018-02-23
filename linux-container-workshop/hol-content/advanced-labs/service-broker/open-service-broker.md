@@ -74,7 +74,6 @@ osba-redis-3506537388-f6k17                       1/1       Running   0         
 
 * Along with the web and api configs, you will see a `ServiceInstance` object and a `ServiceBinding` object. 
 * You will also see a secret defined in the API deployment that sets the Mongo DB environment variables for connecting to the Cosmos DB Mongo DB API.
-* Find and replace `<repository_name_goes_here>` in the yaml file with `chzbrgr71`.
 
 3. Deploy the application
 
