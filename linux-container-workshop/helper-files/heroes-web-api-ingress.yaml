@@ -34,35 +34,15 @@ spec:
       imagePullSecrets:
         - name: acr-secret
       containers:
-      - image: chzbrgr71/rating-api:osba
+      - image: <login server>/azureworkshop/rating-api:v1
         name:  heroes-api-cntnr
         resources:
           requests:
             cpu: "20m"
             memory: "55M"
         env:
-        - name: MONGODB_HOST
-          valueFrom:
-            secretKeyRef:
-              name: heroes-cosmosdb-secret
-              key: host
-        - name: MONGODB_PORT
-          valueFrom:
-            secretKeyRef:
-              name: heroes-cosmosdb-secret
-              key: port
-        - name: MONGODB_USERNAME
-          valueFrom:
-            secretKeyRef:
-              name: heroes-cosmosdb-secret
-              key: username
-        - name: MONGODB_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: heroes-cosmosdb-secret
-              key: password
-        - name: MONGODB_DBNAME
-          value: "heroratings"
+        - name:  MONGODB_URI
+          value:  mongodb://mongodb:27017/webratings
         ports:
         - containerPort:  3000
           name:  heroes-api
@@ -76,7 +56,7 @@ metadata:
   labels:
     name: web
 spec:
-  type: LoadBalancer
+  type: NodePort
   ports:
   - name: http
     port: 8080
@@ -105,7 +85,7 @@ spec:
       imagePullSecrets:
         - name: acr-secret
       containers:
-      - image: chzbrgr71/rating-web:osba
+      - image: <login server>/azureworkshop/rating-web:v1
         name:  heroes-web-cntnr
         resources:
           requests:
@@ -132,24 +112,20 @@ spec:
         imagePullPolicy: Always
       restartPolicy: Always
 ---
-apiVersion: servicecatalog.k8s.io/v1beta1
-kind: ServiceInstance
+apiVersion: extensions/v1beta1
+kind: Ingress
 metadata:
-  name: heroes-cosmosdb-instance
-  namespace: default
+  name: heroes-web-ingress
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    # Add to generate certificates for this ingress
+    kubernetes.io/tls-acme: 'false'
 spec:
-  clusterServiceClassExternalName: azure-cosmos-mongo-db
-  parameters:
-    location: eastus
-resourceGroup: heroes-cosmosdb
----
-apiVersion: servicecatalog.k8s.io/v1beta1
-kind: ServiceBinding
-metadata:
-  name: heroes-cosmosdb-binding
-  namespace: default
-spec:
-  instanceRef:
-    name: heroes-cosmosdb-instance
-  secretName: heroes-cosmosdb-secret
----
+  rules:
+    - host:
+      http:
+        paths:
+          - backend:
+              serviceName: web
+              servicePort: 8080
+            path: /

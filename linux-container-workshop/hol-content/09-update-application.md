@@ -84,7 +84,7 @@ There are two ways to update the application with the new version. Both are desc
     heroes-db-deploy    1         1         1            1           32m
     heroes-web-depoy    1         1         1            1           29m
 
-    kubectl set image deployment/heroes-web-deploy heroes-web-cntnr=briarworkshop.azurecr.io/azureworkshop/rating-web:new-version
+    kubectl set image deployment/heroes-web-deploy heroes-web-cntnr=$ACR_SERVER/azureworkshop/rating-web:new-version
     ```
 
 ## Check status
