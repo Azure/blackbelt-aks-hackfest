@@ -34,7 +34,7 @@ spec:
       imagePullSecrets:
         - name: acr-secret
       containers:
-      - image: briaracr.azurecr.io/azureworkshop/rating-api:v1
+      - image: raykao/rating-api:osba
         name:  heroes-api-cntnr
         resources:
           requests:
@@ -146,7 +146,7 @@ spec:
       imagePullSecrets:
         - name: acr-secret
       containers:
-      - image: briaracr.azurecr.io/azureworkshop/rating-web:v1
+      - image: chzbrgr71/rating-web:osba
         name:  heroes-web-cntnr
         resources:
           requests:
@@ -182,7 +182,7 @@ spec:
   clusterServiceClassExternalName: azure-cosmos-mongo-db
   parameters:
     location: eastus
-resourceGroup: heroes-cosmosdb
+    resourceGroup: heroes-cosmosdb
 ---
 apiVersion: servicecatalog.k8s.io/v1beta1
 kind: ServiceBinding
