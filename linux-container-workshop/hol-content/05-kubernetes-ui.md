@@ -15,9 +15,9 @@ There are multiple ways of accessing Kubernetes dashboard. You can access throug
     * Run ```NAME=$(az group list | jq '.[0]."name"' -r)``` in order to retrieve the name of the resource group for your Azure account
     * Run ```CLUSTER_NAME="${NAME//_}"``` in order to retrieve the cluster name (to remove the underscore)
     * Run ```az aks get-credentials -n $CLUSTER_NAME -g $NAME``` in order to get the credentials to access our managed Kubernetes cluster in Azure
-    * Run ```kubectl proxy```
+    * Run ```az aks browse -n $CLUSTER_NAME -g $NAME```
     * This creates a local proxy to 127.0.0.1:8001
-    * Open a web browser (Firefox is pre-installed on the Jumpbox) and point to: <http://127.0.0.1:8001/api/v1/proxy/namespaces/kube-system/services/kubernetes-dashboard/#!/cluster?namespace=default>
+    * Open a web browser (Firefox is pre-installed on the Jumpbox) and point to: <http://127.0.0.1:8001/>
 
 ### Explore Kubernetes Dashboard
 
