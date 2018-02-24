@@ -1,0 +1,34 @@
+# Default values for jla-vote.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+rating-web:
+  name: heroes-web
+  replicaCount: 1
+  image:
+    repository: chzbrgr71/rating-web
+    tag: osba
+    pullPolicy: Always
+  ports:
+    external: 8080
+    internal: 8080
+rating-api:
+  name: heroes-api
+  replicaCount: 1
+  image:
+    repository: raykao/rating-api
+    tag: osba
+    pullPolicy: Always
+  ports:
+    external: 3000
+    internal: 3000
+resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #  cpu: 100m
+  #  memory: 128Mi
+  # requests:
+  #  cpu: 100m
+  #  memory: 128Mi
