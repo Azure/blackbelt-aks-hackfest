@@ -29,7 +29,7 @@ spec:
   template:
     metadata:
       labels:
-        name:  heroes-api
+        name:  {{ .Values.rating-api.name }}
     spec:
       imagePullSecrets:
         - name: acr-secret
@@ -62,12 +62,12 @@ spec:
               name: heroes-cosmosdb-secret
               key: password
         - name: MONGODB_DBNAME
-          value: "heroratings"
+          value: {{ .Values.mongodb.database.name }}
         ports:
-        - containerPort:  3000
-          name:  heroes-api
-        imagePullPolicy: Always
-      restartPolicy: Always
+        - containerPort:  {{ .Values.rating-api.ports.internal }}
+          name:  {{ .Values.rating-api.name }}
+        imagePullPolicy: {{ .Values.rating-api.image.pullPolicy }}
+        restartPolicy: {{ .Values.rating-api.restartPolicy }}
 ---
 apiVersion: v1
 kind: Service
@@ -105,7 +105,7 @@ spec:
       imagePullSecrets:
         - name: acr-secret
       containers:
-      - image: chzbrgr71/rating-web:osba
+      - image: "{{ .Values.rating-web.image.repository }}:{{ .Values.rating-web.image.tage }}"
         name:  "{{ .Values.rating-web.name }}-cntnr"
         resources:
           requests:
@@ -113,7 +113,7 @@ spec:
             memory: "1Gi"
         env:
         - name:  API
-          value:  http://api:3000/
+          value:  "http://api:{{ .Values.rating-api.ports.internal }}/"
         - name: KUBE_NODE_NAME
           valueFrom:
             fieldRef:
@@ -129,8 +129,8 @@ spec:
         ports:
         - containerPort:  {{ .Values.rating-api.ports.internal }}
           name:  {{ .Values.rating-web.name }}
-        imagePullPolicy: Always
-      restartPolicy: Always
+        imagePullPolicy: {{ .Values.rating-web.image.pullPolicy }}
+        restartPolicy: {{ .Values.rating-web.restartPolicy }}
 ---
 apiVersion: servicecatalog.k8s.io/v1beta1
 kind: ServiceInstance

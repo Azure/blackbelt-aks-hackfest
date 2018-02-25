@@ -11,6 +11,7 @@ rating-web:
   ports:
     external: 8080
     internal: 8080
+  restartPolicy: Always
 rating-api:
   name: heroes-api
   replicaCount: 1
@@ -21,6 +22,7 @@ rating-api:
   ports:
     external: 3000
     internal: 3000
+  restartPolicy: Always
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
   # choice for the user. This also increases chances charts run on environments with little
