@@ -38,8 +38,8 @@ spec:
         name:  "{{ .Values.rating-api.name }}-cntnr"
         resources:
           requests:
-            cpu: "20m"
-            memory: "55M"
+            cpu: {{ .Values.rating-api.resources.cpu }}
+            memory: {{ .Values.rating-api.resources.cpu }}
         env:
         - name: MONGODB_HOST
           valueFrom:
@@ -109,8 +109,8 @@ spec:
         name:  "{{ .Values.rating-web.name }}-cntnr"
         resources:
           requests:
-            cpu: "0.5"
-            memory: "1Gi"
+            cpu: {{ .Values.rating-web.resources.cpu }}
+            memory: {{ .Values.rating-web.resources.memory }}
         env:
         - name:  API
           value:  "http://api:{{ .Values.rating-api.ports.internal }}/"
