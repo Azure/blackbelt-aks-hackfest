@@ -1,6 +1,4 @@
 # Default values for jla-vote.
-# This is a YAML-formatted file.
-# Declare variables to be passed into your templates.
 rating-web:
   name: heroes-web
   replicaCount: 1
@@ -23,9 +21,16 @@ rating-api:
     external: 3000
     internal: 3000
   restartPolicy: Always
-mongodb:
+cosmosdb:
   database:
     name: heroratings
+  service:
+    instance:
+      name: heroes-cosmosdb
+      resourceGroup:
+        name: heroes-comosdb-rg
+        location: eastus
+namespace: default
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
   # choice for the user. This also increases chances charts run on environments with little

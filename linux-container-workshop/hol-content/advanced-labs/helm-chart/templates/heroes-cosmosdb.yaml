@@ -44,25 +44,25 @@ spec:
         - name: MONGODB_HOST
           valueFrom:
             secretKeyRef:
-              name: heroes-cosmosdb-secret
+              name: "{{ .Value.cosmosdb.service.instance.name }}-secret"
               key: host
         - name: MONGODB_PORT
           valueFrom:
             secretKeyRef:
-              name: heroes-cosmosdb-secret
+              name: "{{ .Value.cosmosdb.service.instance.name }}-secret"
               key: port
         - name: MONGODB_USERNAME
           valueFrom:
             secretKeyRef:
-              name: heroes-cosmosdb-secret
+              name: "{{ .Value.cosmosdb.service.instance.name }}-secret"
               key: username
         - name: MONGODB_PASSWORD
           valueFrom:
             secretKeyRef:
-              name: heroes-cosmosdb-secret
+              name: "{{ .Value.cosmosdb.service.instance.name }}-secret"
               key: password
         - name: MONGODB_DBNAME
-          value: {{ .Values.mongodb.database.name }}
+          value: {{ .Values.cosmosdb.database.name }}
         ports:
         - containerPort:  {{ .Values.rating-api.ports.internal }}
           name:  {{ .Values.rating-api.name }}
@@ -135,21 +135,21 @@ spec:
 apiVersion: servicecatalog.k8s.io/v1beta1
 kind: ServiceInstance
 metadata:
-  name: heroes-cosmosdb-instance
-  namespace: default
+  name: "{{ .Value.cosmosdb.service.instance.name }}-instance"
+  namespace: {{ .Values.namespace }}
 spec:
   clusterServiceClassExternalName: azure-cosmos-mongo-db
   parameters:
-    location: eastus
-resourceGroup: heroes-cosmosdb
+    resourceGroup: {{ .Values.cosmosdb.service.instance.resourceGroup.name }}
+    location: {{ .Values.cosmosdb.service.instance.resourceGroup.location }}
 ---
 apiVersion: servicecatalog.k8s.io/v1beta1
 kind: ServiceBinding
 metadata:
-  name: heroes-cosmosdb-binding
-  namespace: default
+  name: "{{ .Value.cosmosdb.service.instance.name }}-binding"
+  namespace: {{ .Values.namespace }}
 spec:
   instanceRef:
-    name: heroes-cosmosdb-instance
-  secretName: heroes-cosmosdb-secret
+    name: "{{ .Value.cosmosdb.service.instance.name }}-instance"
+  secretName: "{{ .Value.cosmosdb.service.instance.name }}-secret"
 ---
