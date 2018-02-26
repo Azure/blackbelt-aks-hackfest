@@ -141,7 +141,7 @@ spec:
   clusterServiceClassExternalName: azure-cosmos-mongo-db
   parameters:
     location: eastus
-resourceGroup: heroes-cosmosdb
+    resourceGroup: heroes-cosmosdb
 ---
 apiVersion: servicecatalog.k8s.io/v1beta1
 kind: ServiceBinding
