@@ -1,0 +1,22 @@
+{
+    "name":"Justice League",
+    "shortCode":"JLA",
+    "pages":
+    {
+        "Home":{
+            "title":"Superhero Rating :: Project Homepage",
+            "headerImage":"/static/img/justice/justice.png",
+            "subtitle": "Superhero Rating - Project Homepage"
+        },
+        "Rating":{
+            "title":"Superhero Rating :: Rate the Superheroes",
+            "headerImage":"/static/img/justice/justice.png",
+            "subtitle": "Rate the Superheroes"
+        },
+        "Leaderboard":{
+            "title":"Superhero Rating :: Current Leaderboard",
+            "headerImage":"/static/img/justice/justice.png",
+            "subtitle": "Current Leaderboard - Brian is super cool"
+        }
+    }
+}

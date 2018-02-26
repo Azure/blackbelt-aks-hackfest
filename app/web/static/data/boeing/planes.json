@@ -1,0 +1,6 @@
+[
+    {"name": "Boeing 737","uid": 1,"img": "/static/img/boeing/737.png","description": "Boeing 737","aliases":"Boeing 737"},
+    {"name": "Boeing 747","uid": 2,"img": "/static/img/boeing/747.png","description": "Boeing 747","aliases":"Boeing 747"},
+    {"name": "Boeing 767","uid": 3,"img": "/static/img/boeing/767.png","description": "Boeing 767","aliases":"Boeing 767"},
+    {"name": "Boeing 777","uid": 4,"img": "/static/img/boeing/777.png","description": "Boeing 777","aliases":"Boeing 777"}
+]
