@@ -124,8 +124,11 @@ az login --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET --tenan
 # Grab the name of the Cosmos DB Account.
 az cosmosdb list -o table
 
+COSMOS_DB_ACCOUNT_NAME=$(az cosmosdb list -o table --query '[].{name:name,resourceGroup:resourceGroup}' | grep "heroes" | awk '{print $1}')
+
 # Use the name value from above and substitute into {COSMOS_DB_ACCOUNT_NAME}.
-az cosmosdb update -n {COSMOS_DB_ACCOUNT_NAME} -g heroes-cosmosdb --capabilities EnableAggregationPipeline
+# The Resource Group name comes from the K8S manifest file under ServiceInstance.
+az cosmosdb update -n $COSMOS_DB_ACCOUNT_NAME -g heroes-cosmosdb --capabilities EnableAggregationPipeline
 ```
 
 6. Validate the App Works

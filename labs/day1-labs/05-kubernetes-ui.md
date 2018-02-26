@@ -12,7 +12,7 @@ There are multiple ways of accessing Kubernetes dashboard. You can access throug
 
     * Open an RDP session to the jumpbox IP with username and password
     * Run ```az login``` to authenticate with Azure in order to use Azure CLI in the Jumpbox instead of Cloud Shell
-    * Run ```NAME=$(az group list -o table | grep ODL | awk '{print $1}'``` in order to retrieve the name of the resource group for your Azure account and put it in the NAME variable.
+    * Run ```NAME=$(az group list -o table | grep ODL | awk '{print $1}')``` in order to retrieve the name of the resource group for your Azure account and put it in the NAME variable.
     * Run ```CLUSTER_NAME="${NAME//_}"``` in order to retrieve the cluster name (to remove the underscore)
     * Run ```az aks get-credentials -n $CLUSTER_NAME -g $NAME``` in order to get the credentials to access our managed Kubernetes cluster in Azure
     * Run ```kubectl proxy```
