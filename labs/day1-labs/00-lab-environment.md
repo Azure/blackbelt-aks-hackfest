@@ -17,5 +17,5 @@ It is possible to use your own machine outside of the classroom. You will need t
 * Visual Studio Code
 * Helm
 * Kubernetes CLI (kubectl)
-* mongoDB (only lab #1 requires this)
+* MongoDB (only lab #1 requires this)
 * GitHub account and git tools
