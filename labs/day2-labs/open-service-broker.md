@@ -99,7 +99,36 @@ kubectl apply -f heroes-cosmosdb.yaml
 kubectl get pod,secret,serviceinstance,servicebinding
 ```
 
-5. Validate the CosmosDB Instance has been Created in Azure
+> **Before proceeding to the next step ensure all of the resources are created and up and running.**
+
+5. Enable Aggregation Pipelines in Cosmos DB
+
+* A preview feature of Cosmos DB is being leveraged so it needs to be enabled. In the future this will be able to be done via OSBA.
+* The first step is to log into the **az cli** via the Cloud Shell and using your Azure Service Principal.
+* Check to see that az cli version is 2.0.27 or greater.
+
+```bash
+az --version
+```
+
+* If the az cli is < 2.0.27 then update the cli.
+
+```bash
+# Do this in Cloud Shell and ensure az --version is 2.0.27 or greater
+az login --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET --tenant $AZURE_TENANT_ID
+```
+
+* You are now logged in as the Service Principal, enable the Preview Feature
+
+```bash
+# Grab the name of the Cosmos DB Account.
+az cosmosdb list -o table
+
+# Use the name value from above and substitute into {COSMOS_DB_ACCOUNT_NAME}.
+az cosmosdb update -n {COSMOS_DB_ACCOUNT_NAME} -g heroes-cosmosdb --capabilities EnableAggregationPipeline
+```
+
+6. Validate the App Works
 
 * Just like in the previous labs, find the **web** Kubernetes **svc** and use that Public IP address to hit the website in your browser.
 
