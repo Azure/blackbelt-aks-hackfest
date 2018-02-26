@@ -15,7 +15,7 @@ The labs are based upon a node.js application that allows for voting on the Just
 ## Lab Guides - Day 1
   1. [Run app locally to test components](labs/day1-labs/01-setup-app-local.md)
   2. [Create Docker images for apps and push to Azure Container Registry](labs/day1-labs/02-dockerize-apps.md)
-  3. [Build an Azure Kubernetes Service (AKS) cluster](labs/day1-labs/03-create-aks-cluster.md)
+  3. [Create an Azure Kubernetes Service (AKS) cluster](labs/day1-labs/03-create-aks-cluster.md)
   4. [Deploy application to Azure Kubernetes Service](labs/day1-labs/04-deploy-app-aks.md)
   5. [Kubernetes UI Overview](labs/day1-labs/05-kubernetes-ui.md)
   6. [Operational Monitoring and Log Management](labs/day1-labs/06-monitoring-k8s.md)
