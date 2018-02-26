@@ -1,0 +1,6 @@
+[
+    {"name": "Superman","uid": 1,"img": "/static/img/justice/superman.png","description": "The man of steel","aliases":"Clark Kent, Son of Jor-el"},
+    {"name": "Wonder Woman","uid": 2,"img": "/static/img/justice/wonderwoman.png","description":"The goddess of truth","aliases": "Diana Prince"},
+    {"name": "The Flash","uid": 3,"img": "/static/img/justice/flash.png","description":"","aliases":"Barry Allen"},
+    {"name": "Batman","uid": 4,"img": "/static/img/justice/batman.png","description":"","aliases":"Bruce Wayne, The Dark Knight"}
+]

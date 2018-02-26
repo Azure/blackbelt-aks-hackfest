@@ -1,0 +1,23 @@
+{
+    "name":"Boeing",
+    "shortCode":"BOE",
+    "pages":
+    {
+        "Home":{
+            "title":"Boeing Planes Rating :: Project Homepage",
+            "headerImage":"/static/img/boeing/boeing.png",
+            "subtitle": "Boeing Planes Rating :: Project Homepage"
+        },
+        "Rating":{
+            "title":"Boeing Planes Rating :: Rate the Planes",
+            "headerImage":"/static/img/boeing/boeing.png",
+            "subtitle": "Rate the Boeing Planes"
+        },
+        "Leaderboard":{
+            "title":"Boeing Planes Rating :: Current Leaderboard",
+            "headerImage":"/static/img/boeing/boeing.png",
+            "subtitle": "Current Leaderboard - Brian and Eddie are cool"
+        }
+    }
+    
+}
