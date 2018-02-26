@@ -13,24 +13,30 @@ The labs are based upon a node.js application that allows for voting on the Just
 > Note: Since we are working on a jumpbox, note that Copy and Paste are a bit different when working in the terminal. You can use Shift+Ctrl+C for Copy and Shift+Ctrl+V for Paste when working in the terminal. Outside of the terminal Copy and Paste behaves as expected using Ctrl+C and Ctrl+V. 
 
 ## Lab Guides - Day 1
-  1. [Run app locally to test components](hol-content/01-setup-app-local.md)
-  2. [Create Docker images for apps and push to Azure Container Registry](hol-content/02-dockerize-apps.md)
-  3. [Build an Azure Kubernetes Service (AKS) cluster](hol-content/03-aks-build.md)
-  4. [Deploy application to Azure Kubernetes Service](hol-content/04-deploy-app-aks.md)
-  5. [Kubernetes UI Overview](hol-content/05-kubernetes-ui.md)
-  6. [Operational Monitoring and Log Management](hol-content/06-monitoring-k8s.md)
-  7. [Application and Infrastructure Scaling](hol-content/07-cluster-scaling.md)
-  8. [Moving your data services to Azure PaaS (CosmosDB)](hol-content/08-migrate-mongo-to-cosmos.md)
-  9. [Update and Deploy New Version of Application](hol-content/09-update-application.md)
-  10. [Upgrade an Azure Kubernetes Service (AKS) cluster](hol-content/10-cluster-upgrading.md)
+  1. [Run app locally to test components](labs/day1-labs/01-setup-app-local.md)
+  2. [Create Docker images for apps and push to Azure Container Registry](labs/day1-labs/02-dockerize-apps.md)
+  3. [Build an Azure Kubernetes Service (AKS) cluster](labs/day1-labs/03-create-aks-cluster.md)
+  4. [Deploy application to Azure Kubernetes Service](labs/day1-labs/04-deploy-app-aks.md)
+  5. [Kubernetes UI Overview](labs/day1-labs/05-kubernetes-ui.md)
+  6. [Operational Monitoring and Log Management](labs/day1-labs/06-monitoring-k8s.md)
+  7. [Application and Infrastructure Scaling](labs/day1-labs/07-cluster-scaling.md)
+  8. [Moving your data services to Azure PaaS (CosmosDB)](labs/day1-labs/08-migrate-mongo-to-cosmos.md)
+  9. [Update and Deploy New Version of Application](labs/day1-labs/09-update-application.md)
+  10. [Upgrade an Azure Kubernetes Service (AKS) cluster](labs/day1-labs/10-cluster-upgrading.md)
 
 ## Lab Guides - Day 2
-  * CI/CD Automation
-  * Persistent Storage
-  * Stateful Sets
-  * Ingress Controllers
-  * Azure Container Instances
-  * Azure Service Broker
+
+These labs can be completed in no particular order.
+  1. [CI/CD Automation](labs/day2-labs/cicd-brigade.md)
+  2. [Kubernetes Ingress Controllers](labs/day2-labs/ingress-controller.md)
+  3. [Azure Service Broker](labs/day2-labs/open-service-broker.md)
+  4. [Persistent Storage](labs/day2-labs/persistent-volumes.md)
+  5. [Kubernetes Stateful Sets](labs/day2-labs/stateful-sets.md)
+  6. Azure Container Instances and ACI Connector (coming soon)
+  7. Secrets and ConfigMaps (coming soon)
+  8. Helm Charts deep dive (coming soon)
+  9. Troubleshooting and debugging (coming soon)
+  10. RBAC and Azure AD integration (coming soon)
   
   
 ## Contributing
