@@ -29,14 +29,15 @@ The labs are based upon a node.js application that allows for voting on the Just
 These labs can be completed in no particular order.
   1. [CI/CD Automation](labs/day2-labs/cicd-brigade.md)
   2. [Kubernetes Ingress Controllers](labs/day2-labs/ingress-controller.md)
-  3. [Azure Service Broker](labs/day2-labs/open-service-broker.md)
-  4. [Persistent Storage](labs/day2-labs/persistent-volumes.md)
-  5. [Kubernetes Stateful Sets](labs/day2-labs/stateful-sets.md)
-  6. Azure Container Instances and ACI Connector (coming soon)
-  7. Secrets and ConfigMaps (coming soon)
-  8. Helm Charts deep dive (coming soon)
-  9. Troubleshooting and debugging (coming soon)
-  10. RBAC and Azure AD integration (coming soon)
+  3. [Kubernetes InitContainers](labs/day2-labs/init-containers.md)
+  4. [Azure Service Broker](labs/day2-labs/open-service-broker.md)
+  5. [Persistent Storage](labs/day2-labs/persistent-volumes.md)
+  6. [Kubernetes Stateful Sets](labs/day2-labs/stateful-sets.md)
+  7. Azure Container Instances and ACI Connector (coming soon)
+  8. Secrets and ConfigMaps (coming soon)
+  9. Helm Charts deep dive (coming soon)
+  10. Troubleshooting and debugging (coming soon)
+  11. RBAC and Azure AD integration (coming soon)
   
   
 ## Contributing
