@@ -1,0 +1,22 @@
+{
+    "name":"Mad Men",
+    "shortCode":"MM",
+    "pages":
+    {
+        "Home":{
+            "title":"Mad Men Character Rating :: Project Homepage",
+            "headerImage":"/static/img/mm/mm-head.png",
+            "subtitle": "Mad Men Character Rating - Project Homepage"
+        },
+        "Rating":{
+            "title":"Mad Men Character Rating :: Rate the Characters",
+            "headerImage":"/static/img/mm/mm-head.png",
+            "subtitle": "Rate the Characters"
+        },
+        "Leaderboard":{
+            "title":"Mad Men Character Rating :: Current Leaderboard",
+            "headerImage":"/static/img/mm/mm-head.png",
+            "subtitle": "Current Leaderboard - Don is super cool"
+        }
+    }
+}
