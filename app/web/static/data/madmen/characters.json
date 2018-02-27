@@ -1,0 +1,6 @@
+[
+    {"name": "Don Draper","uid": 1,"img": "/static/img/mm/don.png","description": "","aliases":""},
+    {"name": "Joan Harris","uid": 2,"img": "/static/img/mm/joan.png","description":"","aliases": ""},
+    {"name": "Peggy Olson","uid": 3,"img": "/static/img/mm/peggy.png","description":"","aliases":""},
+    {"name": "Roger Sterling","uid": 4,"img": "/static/img/mm/roger.png","description":"","aliases":""}
+]
