@@ -107,7 +107,7 @@ Use the EXTERNAL-IP value from the previous step and put that into your browser:
     * Once you have filled in the values similar to the screenshot above, click the **Add** button and ensure no errors come back.
 
 4. Add K8s Monitoring Dashboard to Grafana
-    * After the datasource has been added, it is now time to add a dashboard. Grafana dashboards can be shared on Grafana.com. Go to import dashboards viam the menu in the top left.
+    * After the datasource has been added, it is now time to add a dashboard. Grafana dashboards can be shared on Grafana.com. Go to import dashboards via the menu in the top left.
 
     ![](img/8-grafana_dashboardimport.png)
 
