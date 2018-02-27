@@ -20,7 +20,7 @@ var MONGODB_DBNAME = process.env.MONGODB_DBNAME;
 console.log(`DBNAME: `, MONGODB_DBNAME);
 
 var proto = "mongodb://";
-var URI = proto.concat(MONGODB_USERNAME, ":", MONGODB_PASSWORD, "@", MONGODB_HOST,":", MONGODB_PORT, "/", MONGODB_DBNAME, "?ssl=true&replicaSet=globalDb");
+var URI = proto.concat(MONGODB_USERNAME, ":", MONGODB_PASSWORD, "@", MONGODB_HOST,":", MONGODB_PORT, "/", MONGODB_DBNAME, "?ssl=true");
 
 console.log(`about to connect to DB with connection string `, URI);
 
