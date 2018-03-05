@@ -68,7 +68,7 @@ The Deployment has a Pod with 2 containers (backend-writer and frontend-webserve
 The backend writer container writes a new line to a file in the Persistent Volume every second with the date/time + the Pod's hostname.  The frontend webserver container reads that file and serves it via Apache.
 
 ```shell
-kubectl apply -f https://raw.githubusercontent.com/lastcoolnameleft/workshops/master/kubernetes/yaml/storage/azure-file-pvc/deployment.yaml
+kubectl apply -f helper-files/azure-file-pvc/deployment.yaml
 kubectl get pod,deploy,service
 ```
 
@@ -84,7 +84,7 @@ Once the service is verified to be up, reverse the contents of the file and only
 *Run this command in a separate window to watch the volume migrate to a different host.*
 
 ```shell
-watch "curl $IP | tail -r | head -20"
+watch "curl -s $IP | tail -r | head -20"
 ```
 
 ### Run a replica on a different node
