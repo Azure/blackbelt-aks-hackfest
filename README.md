@@ -13,6 +13,7 @@ The labs are based upon a node.js application that allows for voting on the Just
 > Note: Since we are working on a jumpbox, note that Copy and Paste are a bit different when working in the terminal. You can use Shift+Ctrl+C for Copy and Shift+Ctrl+V for Paste when working in the terminal. Outside of the terminal Copy and Paste behaves as expected using Ctrl+C and Ctrl+V. 
 
 ## Lab Guides - Day 1
+  0. [Setup Lab environment](labs/day1-labs/00-lab-environment.md)
   1. [Run app locally to test components](labs/day1-labs/01-setup-app-local.md)
   2. [Create Docker images for apps and push to Azure Container Registry](labs/day1-labs/02-dockerize-apps.md)
   3. [Create an Azure Kubernetes Service (AKS) cluster](labs/day1-labs/03-create-aks-cluster.md)
