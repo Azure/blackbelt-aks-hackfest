@@ -26,7 +26,6 @@ The diagram below illustrates how Virtual-Kubelet works.
 To use Azure Container Instances, you must provide a resource group. We will use the existing Resource Group you were assigned.
 
 ```console
-export ACI_REGION=eastus
 az group list
 ```
 Output:
@@ -93,6 +92,50 @@ curl https://raw.githubusercontent.com/virtual-kubelet/virtual-kubelet/master/sc
 chmod +x createCertAndKey.sh
 . ./createCertAndKey.sh
 
+export ACI_REGION=eastus
+export RELEASE_NAME=virtual-kubelet-east
+export NODE_NAME=virtual-kubelet-east
+
+helm install ~/virtual-kubelet/charts/virtual-kubelet-for-aks/  --name "$RELEASE_NAME" \
+    --set env.azureClientId="$AZURE_CLIENT_ID",env.azureClientKey="$AZURE_CLIENT_SECRET",env.azureTenantId="$AZURE_TENANT_ID",env.azureSubscriptionId="$AZURE_SUBSCRIPTION_ID",env.aciResourceGroup="$AZURE_RG",env.nodeName="$NODE_NAME",env.nodeOsType=<Linux|Windows>,env.apiserverCert=$cert,env.apiserverKey=$key,image.tag="$VK_IMAGE_TAG"
+```
+
+Output:
+
+```console
+NAME:   virtual-kubelet
+LAST DEPLOYED: Thu Feb 15 13:17:01 2018
+NAMESPACE: default
+STATUS: DEPLOYED
+
+RESOURCES:
+==> v1/Secret
+NAME                             TYPE    DATA  AGE
+virtual-kubelet-virtual-kubelet  Opaque  3     1s
+
+==> v1beta1/Deployment
+NAME                             DESIRED  CURRENT  UP-TO-DATE  AVAILABLE  AGE
+virtual-kubelet-virtual-kubelet  1        1        1           0          1s
+
+==> v1/Pod(related)
+NAME                                              READY  STATUS             RESTARTS  AGE
+virtual-kubelet-virtual-kubelet-7bcf5dc749-6mvgp  0/1    ContainerCreating  0         1s
+
+
+NOTES:
+The virtual kubelet is getting deployed on your cluster.
+
+To verify that virtual kubelet has started, run:
+
+  kubectl --namespace=default get pods -l "app=virtual-kubelet-virtual-kubelet"
+```
+
+Deploy another virtual kubelet to West US
+
+export ACI_REGION=westus
+export RELEASE_NAME=virtual-kubelet-west
+export NODE_NAME=virtual-kubelet-west
+
 helm install ~/virtual-kubelet/charts/virtual-kubelet-for-aks/  --name "$RELEASE_NAME" \
     --set env.azureClientId="$AZURE_CLIENT_ID",env.azureClientKey="$AZURE_CLIENT_SECRET",env.azureTenantId="$AZURE_TENANT_ID",env.azureSubscriptionId="$AZURE_SUBSCRIPTION_ID",env.aciResourceGroup="$AZURE_RG",env.nodeName="$NODE_NAME",env.nodeOsType=<Linux|Windows>,env.apiserverCert=$cert,env.apiserverKey=$key,image.tag="$VK_IMAGE_TAG"
 ```
@@ -139,10 +182,134 @@ Output:
 
 ```console
 NAME                                        STATUS    ROLES     AGE       VERSION
-virtual-kubelet                             Ready     <none>    2m        v1.8.3
+virtual-kubelet-east                        Ready     <none>    2m        v1.8.3
+virtual-kubelet-west                        Ready     <none>    2m        v1.8.3
 aks-nodepool1-39289454-0                    Ready     agent     22h       v1.7.7
 aks-nodepool1-39289454-1                    Ready     agent     22h       v1.7.7
 aks-nodepool1-39289454-2                    Ready     agent     22h       v1.7.7
 ```
 
 ## Schedule a pod in ACI
+
+We will use a nodeName constraint to force the scheduler to schedule the pod to the new virtual-kubelet-east node. The yaml file is included in `~/blackbelt-aks-hackfest/labs/helper-files/east-aci-heroes.yaml`. Edit the file to point to your Azure Container Registry, edit the dnsnamelabel to add your lab number and have your CosmosDB MongoDb connection String:
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: heroes-east
+  labels:
+    name:  heroes-east
+  annotations:
+    virtualkubelet.io/dnsnamelabel: "heroes-xxxxxx"
+spec:
+  containers:
+  - image: <login_server>.azurecr.io/azureworkshop/rating-web:v1
+    imagePullPolicy: Always
+    name: ratings-web
+    resources:
+      requests:
+        memory: 1G
+        cpu: 1
+    env:
+    - name:  API
+      value:  http://localhost:3000/
+    - name: KUBE_NODE_NAME
+      value: "East US"
+    ports:
+    - containerPort: 8080
+      name: http-web
+      protocol: TCP
+  - image: <login_server>.azurecr.io/azureworkshop/rating-api:v1
+    imagePullPolicy: Always
+    name: ratings-api
+    resources:
+      requests:
+        memory: 1G
+        cpu: 1
+    env:
+    - name:  MONGODB_URI
+      value:  <value from lab#8>
+    ports:
+    - containerPort: 3000
+      name: http-api
+      protocol: TCP
+  dnsPolicy: ClusterFirst
+  nodeName: virtual-kubelet-east
+  ```
+
+  ```console
+  cd ~
+  cd blackbelt-aks-hackfest/labs/helper-files
+  kubectl apply -f east-aci-heroes.yaml 
+  ```
+
+  Then deploy another pod to the new virtual-kubelet-west node. The yaml file is included in `~/blackbelt-aks-hackfest/labs/helper-files/west-aci-heroes.yaml`. Edit the file to point to your Azure Container Registry, edit the dnsnamelabel to add your lab number and have your CosmosDB MongoDb connection String:
+
+  ```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: heroes-west
+  labels:
+    name:  heroes-west
+  annotations:
+    virtualkubelet.io/dnsnamelabel: "heroes-xxxxx"
+spec:
+  containers:
+  - image: <login_server>.azurecr.io/azureworkshop/rating-web:v1
+    imagePullPolicy: Always
+    name: ratings-web
+    resources:
+      requests:
+        memory: 1G
+        cpu: 1
+    env:
+    - name:  API
+      value:  http://localhost:3000/
+    - name: KUBE_NODE_NAME
+      value: "West US"
+    ports:
+    - containerPort: 8080
+      name: http-web
+      protocol: TCP
+  - image: <login_server>.azurecr.io/azureworkshop/rating-api:v1
+    imagePullPolicy: Always
+    name: ratings-api
+    resources:
+      requests:
+        memory: 1G
+        cpu: 1
+    env:
+    - name:  MONGODB_URI
+      value:  <value from lab#8>
+    ports:
+    - containerPort: 3000
+      name: http-api
+      protocol: TCP
+  dnsPolicy: ClusterFirst
+  nodeName: virtual-kubelet-west
+```
+
+```console
+kubectl apply -f west-aci-heroes.yaml
+```
+# Set up Azure Traffic Manager Policies to Load Balance between ACI Instances
+
+## Determine the FQDN of the ACI Instances
+
+By placing the annotation for a DNSlabel ACI will receive an Azure assigned FQDN. The pattern that ACi uses is the Kubernetes dnsLabelName.azureregion.azurecontainer.io To determine the FQDN of your ACi instance run the following commands:
+
+```console
+az container show -g $AZURE_RG -n default-heroes-east --query ipAddress.fqdn
+az container show -g $AZURE_RG -n default-heroes-west --query ipAddress.fqdn
+```
+
+The instances should have the FQDN of:
+
+```output
+heroes-14787.eastus.azurecontainer.io
+heroes-14787.westus.azurecontainer.io
+```
+
+## Create a Traffic Manager profile in the Azure Portal
