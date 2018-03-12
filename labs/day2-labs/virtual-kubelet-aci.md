@@ -312,4 +312,40 @@ heroes-14787.eastus.azurecontainer.io
 heroes-14787.westus.azurecontainer.io
 ```
 
-## Create a Traffic Manager profile in the Azure Portal
+# Create a Traffic Manager profile in the Azure Portal
+
+Microsoft Azure Traffic Manager allows you to control the distribution of user traffic for service endpoints in different datacenters. Service endpoints supported by Traffic Manager include Azure VMs, Web Apps, and cloud services. You can also use Traffic Manager with external, non-Azure endpoints.
+
+Traffic Manager uses the Domain Name System (DNS) to direct client requests to the most appropriate endpoint based on a traffic-routing method and the health of the endpoints. Traffic Manager provides a range of traffic-routing methods and endpoint monitoring options to suit different application needs and automatic failover models. Traffic Manager is resilient to failure, including the failure of an entire Azure region.
+
+## Create the Traffic Manager Profile
+
+1. Create a Traffic Manager profile giving the main FQDN a unique label such as heroes-<your_lab_number>:
+
+```console
+az network traffic-manager profile create --name vk-aci-aks-tm --resource-group $AZURE_RG --routing-method Performance --unique-dns-name heroes-xxxxxx --monitor-port 8080
+```
+
+2. Now create an endpoint for both the east and west ACI instances, using their DNS FQDN you discovered in the previous exercise
+
+```console
+az network traffic-manager endpoint create --name heroes-east --resource-group aci-aks-rg --profile-name vk-aci-aks-tm --type externalEndpoints --endpoint-location eastus --endpoint-status enabled --target heroes-177502.eastus.azurecontainer.io
+
+az network traffic-manager endpoint create --name heroes-west --resource-group aci-aks-rg --profile-name vk-aci-aks-tm --type externalEndpoints --endpoint-location westus --endpoint-status enabled --target heroes-177502.westus.azurecontainer.io
+```
+
+3. Verify that the endpoint monitor status has become online:
+```console
+az network traffic-manager endpoint show --name heroes-east --resource-group $AZURE_RG --profile-name vk-aci-aks-tm --type externalEndpoints -o table
+
+az network traffic-manager endpoint show --name heroes-west --resource-group $AZURE_RG --profile-name vk-aci-aks-tm --type externalEndpoints -o table
+```
+
+The output should be similar to the below:
+```output
+EndpointLocation    EndpointMonitorStatus    EndpointStatus    Name           Priority  ResourceGroup    Target                             Weight
+------------------  -----------------------  ----------------  -----------  ----------  ---------------  -------------------------------  --------
+East US             Online                   Enabled           heroes-east           1  vk-aci-aks-tm       heroes.eastus.azurecontainer.io         1
+```
+
+4. Now test in your browser using the url http://heroes-xxxxxx.trafficmanager.net:8080 and the Super Heroes voting page should load. In the footer of the page it will either say East US or West US based upon performance routing using Traffic Manager.
