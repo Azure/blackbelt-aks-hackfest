@@ -242,6 +242,8 @@ metadata:
   annotations:
     virtualkubelet.io/dnsnamelabel: "heroes-xxxxxx"
 spec:
+  imagePullSecrets:
+    - name: acr-secret
   containers:
   - image: <login_server>.azurecr.io/azureworkshop/rating-web:v1
     imagePullPolicy: Always
@@ -295,6 +297,8 @@ metadata:
   annotations:
     virtualkubelet.io/dnsnamelabel: "heroes-xxxxx"
 spec:
+  imagePullSecrets:
+    - name: acr-secret
   containers:
   - image: <login_server>.azurecr.io/azureworkshop/rating-web:v1
     imagePullPolicy: Always
