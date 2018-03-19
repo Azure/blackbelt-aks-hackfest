@@ -54,21 +54,40 @@ Copy the name from the results above and set to a variable:
 export AZURE_RG=ODL-aks-v2-gbb-8386
 ```
 
-### Create a service principal
+### Assign Service Principal credentials to Envieonrment Variables
 
-This creates an identity for the Virtual Kubelet ACI provider to use when provisioning
+A Service Principal creates an identity for the Virtual Kubelet ACI provider to use when provisioning
 resources on your account on behalf of Kubernetes.
 
 1. Us the service principal that was provided during the course lab enrollment:
    
 1. Save the values from Service Principal details in environment variables:
 
-    **Bash**
     ```console
     export AZURE_TENANT_ID=<Tenant>
     export AZURE_CLIENT_ID=<AppId>
     export AZURE_CLIENT_SECRET=<Password>
     ```
+
+###NOTE
+If you are running this lab in your own enviornment you must create a Service Principal with Contributor rights on the Subscription or at least the Resource Group that ACI will use. 
+
+1. In the console run
+```console
+az ad sp create-for-rbac --name virtual-kubelet-<randomized letters> -o table
+```
+2. The output should come as a tabular output similar to the following:
+```output
+AppId                                 DisplayName          Name                        Password                              Tenant
+------------------------------------  -------------------  --------------------------  ------------------------------------  ------------------------------------
+e086ee4e-35cc-4fdd-9249-766756a1687c  virtual-kubelet-ejv  http://virtual-kubelet-ejv  133b6218-8bbe-4f0d-a824-660c17e87d2e  72f988bf-86f1-41af-91ab-2d7cd011db47
+```
+Assign the AppId, Tenant and Password to the Environment variables:
+```console
+    export AZURE_TENANT_ID=<Tenant>
+    export AZURE_CLIENT_ID=<AppId>
+    export AZURE_CLIENT_SECRET=<Password>
+```
 
 ## Deployment of the ACI provider in your cluster
 
@@ -95,9 +114,19 @@ chmod +x createCertAndKey.sh
 export ACI_REGION=eastus
 export RELEASE_NAME=virtual-kubelet-east
 export NODE_NAME=virtual-kubelet-east
-
+```
+Verify that the last three variables have been recorded correctly:
+```console
+echo $ACI_REGION,$RELEASE_NAME,$NODE_NAME
+```
+Output:
+```output
+eastus,virtual-kubelet-east,virtual-kubelet-east
+```
+Now intsall the Helm package for Virtual Kubelet:
+```console
 helm install ~/virtual-kubelet/charts/virtual-kubelet-for-aks/  --name "$RELEASE_NAME" \
-    --set env.azureClientId="$AZURE_CLIENT_ID",env.azureClientKey="$AZURE_CLIENT_SECRET",env.azureTenantId="$AZURE_TENANT_ID",env.azureSubscriptionId="$AZURE_SUBSCRIPTION_ID",env.aciResourceGroup="$AZURE_RG",env.nodeName="$NODE_NAME",env.nodeOsType=<Linux|Windows>,env.apiserverCert=$cert,env.apiserverKey=$key,image.tag="$VK_IMAGE_TAG"
+    --set env.azureClientId="$AZURE_CLIENT_ID",env.azureClientKey="$AZURE_CLIENT_SECRET",env.azureTenantId="$AZURE_TENANT_ID",env.azureSubscriptionId="$AZURE_SUBSCRIPTION_ID",env.aciResourceGroup="$AZURE_RG",env.nodeName="$NODE_NAME",env.nodeOsType=Linux,env.apiserverCert=$cert,env.apiserverKey=$key,image.tag="$VK_IMAGE_TAG"
 ```
 
 Output:
@@ -131,11 +160,21 @@ To verify that virtual kubelet has started, run:
 ```
 
 Deploy another virtual kubelet to West US
-
+```console
 export ACI_REGION=westus
 export RELEASE_NAME=virtual-kubelet-west
 export NODE_NAME=virtual-kubelet-west
-
+```
+Verify that the last three variables have been recorded correctly:
+```console
+echo $ACI_REGION,$RELEASE_NAME,$NODE_NAME
+```
+Output:
+```output
+westus,virtual-kubelet-west,virtual-kubelet-west
+```
+Now intsall the Helm package for Virtual Kubelet:
+```console
 helm install ~/virtual-kubelet/charts/virtual-kubelet-for-aks/  --name "$RELEASE_NAME" \
     --set env.azureClientId="$AZURE_CLIENT_ID",env.azureClientKey="$AZURE_CLIENT_SECRET",env.azureTenantId="$AZURE_TENANT_ID",env.azureSubscriptionId="$AZURE_SUBSCRIPTION_ID",env.aciResourceGroup="$AZURE_RG",env.nodeName="$NODE_NAME",env.nodeOsType=<Linux|Windows>,env.apiserverCert=$cert,env.apiserverKey=$key,image.tag="$VK_IMAGE_TAG"
 ```
