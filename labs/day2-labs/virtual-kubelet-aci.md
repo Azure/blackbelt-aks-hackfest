@@ -51,7 +51,7 @@ Output:
 
 Copy the name from the results above and set to a variable:
 ```
-export AZURE_RG=ODL-aks-v2-gbb-8386
+export AZURE_RG=<name>
 ```
 
 ### Assign Service Principal credentials to Envieonrment Variables
@@ -69,7 +69,7 @@ resources on your account on behalf of Kubernetes.
     export AZURE_CLIENT_SECRET=<Password>
     ```
 
-###NOTE
+*** NOTE ***
 If you are running this lab in your own enviornment you must create a Service Principal with Contributor rights on the Subscription or at least the Resource Group that ACI will use. 
 
 1. In the console run
