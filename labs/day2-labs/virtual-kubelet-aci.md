@@ -61,7 +61,7 @@ resources on your account on behalf of Kubernetes.
 
 1. Us the service principal that was provided during the course lab enrollment:
    
-1. Save the values from Service Principal details in environment variables:
+2. Save the values from Service Principal details in environment variables:
 
     ```console
     export AZURE_TENANT_ID=<Tenant>
@@ -69,25 +69,25 @@ resources on your account on behalf of Kubernetes.
     export AZURE_CLIENT_SECRET=<Password>
     ```
 
-*** NOTE ***
-If you are running this lab in your own enviornment you must create a Service Principal with Contributor rights on the Subscription or at least the Resource Group that ACI will use. 
+> ***NOTE: If you are running this lab in your own enviornment you must create a Service Principal with Contributor rights on the Subscription or at least the Resource Group that ACI will use. 
 
-1. In the console run
-```console
-az ad sp create-for-rbac --name virtual-kubelet-<randomized letters> -o table
-```
-2. The output should come as a tabular output similar to the following:
-```output
-AppId                                 DisplayName          Name                        Password                              Tenant
-------------------------------------  -------------------  --------------------------  ------------------------------------  ------------------------------------
-e086ee4e-35cc-4fdd-9249-766756a1687c  virtual-kubelet-ejv  http://virtual-kubelet-ejv  133b6218-8bbe-4f0d-a824-660c17e87d2e  72f988bf-86f1-41af-91ab-2d7cd011db47
-```
-Assign the AppId, Tenant and Password to the Environment variables:
-```console
+    a. In the console run
+    ```console
+    az ad sp create-for-rbac --name virtual-kubelet-<randomized letters> -o table
+    ```
+    b. The output should come as a tabular output similar to the following:
+    ```output
+    AppId                                 DisplayName          Name                        Password                                 Tenant
+    ------------------------------------  -------------------  --------------------------  ------------------------------------  ------------------------------------
+    e086ee4e-35cc-4fdd-9249-766756a1687c  virtual-kubelet-ejv  http://virtual-kubelet-ejv  133b6218-8bbe-4f0d-a824-660c17e87d2e  72f988bf-86f1-41af-91ab-2d7cd011db47
+    ```
+
+    c. Assign the AppId, Tenant and Password to the Environment variables:
+    ```console
     export AZURE_TENANT_ID=<Tenant>
     export AZURE_CLIENT_ID=<AppId>
     export AZURE_CLIENT_SECRET=<Password>
-```
+    ```
 
 ## Deployment of the ACI provider in your cluster
 
@@ -97,11 +97,6 @@ If your cluster is an AKS cluster:
 
 ```console
 export VK_IMAGE_TAG=0.2-beta-9
-````
-
-```console
-RELEASE_NAME=virtual-kubelet
-NODE_NAME=virtual-kubelet
 
 cd ~
 git clone https://github.com/virtual-kubelet/virtual-kubelet.git
