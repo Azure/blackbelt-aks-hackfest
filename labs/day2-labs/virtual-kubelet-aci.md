@@ -69,25 +69,26 @@ resources on your account on behalf of Kubernetes.
     export AZURE_CLIENT_SECRET=<Password>
     ```
 
-> ***NOTE: If you are running this lab in your own enviornment you must create a Service Principal with Contributor rights on the Subscription or at least the Resource Group that ACI will use. 
+> NOTE: If you are running this lab in your own enviornment you must create a Service Principal with Contributor rights on the Subscription or at least the Resource Group that ACI will use. 
 
-    a. In the console run
-    ```console
-    az ad sp create-for-rbac --name virtual-kubelet-<randomized letters> -o table
-    ```
-    b. The output should come as a tabular output similar to the following:
-    ```output
+a. In the console run
+```console
+az ad sp create-for-rbac --name virtual-kubelet-<randomized letters> -o table
+```
+
+b. The output should come as a tabular output similar to the following:
+```output
     AppId                                 DisplayName          Name                        Password                                 Tenant
     ------------------------------------  -------------------  --------------------------  ------------------------------------  ------------------------------------
     e086ee4e-35cc-4fdd-9249-766756a1687c  virtual-kubelet-ejv  http://virtual-kubelet-ejv  133b6218-8bbe-4f0d-a824-660c17e87d2e  72f988bf-86f1-41af-91ab-2d7cd011db47
-    ```
+```
 
-    c. Assign the AppId, Tenant and Password to the Environment variables:
-    ```console
-    export AZURE_TENANT_ID=<Tenant>
-    export AZURE_CLIENT_ID=<AppId>
-    export AZURE_CLIENT_SECRET=<Password>
-    ```
+c. Assign the AppId, Tenant and Password to the Environment variables:
+```console
+export AZURE_TENANT_ID=<Tenant>
+export AZURE_CLIENT_ID=<AppId>
+export AZURE_CLIENT_SECRET=<Password>
+```
 
 ## Deployment of the ACI provider in your cluster
 
