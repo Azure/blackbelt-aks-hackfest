@@ -33,7 +33,7 @@ These labs can be completed in no particular order.
   3. [Kubernetes InitContainers](labs/day2-labs/init-containers.md)
   4. [Azure Service Broker](labs/day2-labs/open-service-broker.md)
   5. [Persistent Storage](labs/day2-labs/persistent-volumes.md)
-  6. [Azure Container Instances and ACI Connector] (labs/day2-labs/virtual-kubelet-aci.md)
+  6. [Azure Container Instances and ACI Connector](labs/day2-labs/virtual-kubelet-aci.md)
   7. Kubernetes Stateful Sets (coming soon)
   8. Secrets and ConfigMaps (coming soon)
   9. Helm Charts deep dive (coming soon)
