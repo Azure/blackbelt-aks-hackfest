@@ -368,9 +368,9 @@ az network traffic-manager profile create --name vk-aci-aks-tm --resource-group 
 2. Now create an endpoint for both the east and west ACI instances, using their DNS FQDN you discovered in the previous exercise
 
 ```console
-az network traffic-manager endpoint create --name heroes-east --resource-group aci-aks-rg --profile-name vk-aci-aks-tm --type externalEndpoints --endpoint-location eastus --endpoint-status enabled --target heroes-177502.eastus.azurecontainer.io
+az network traffic-manager endpoint create --name heroes-east --resource-group $AZURE_RG --profile-name vk-aci-aks-tm --type externalEndpoints --endpoint-location eastus --endpoint-status enabled --target heroes-177502.eastus.azurecontainer.io
 
-az network traffic-manager endpoint create --name heroes-west --resource-group aci-aks-rg --profile-name vk-aci-aks-tm --type externalEndpoints --endpoint-location westus --endpoint-status enabled --target heroes-177502.westus.azurecontainer.io
+az network traffic-manager endpoint create --name heroes-west --resource-group $AZURE_RG --profile-name vk-aci-aks-tm --type externalEndpoints --endpoint-location westus --endpoint-status enabled --target heroes-177502.westus.azurecontainer.io
 ```
 
 3. Verify that the endpoint monitor status has become online:
