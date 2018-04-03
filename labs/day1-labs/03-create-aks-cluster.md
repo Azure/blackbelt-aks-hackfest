@@ -24,8 +24,7 @@
 7. Find your RG name
 
     ```
-    az group list
-    
+    az group list 
     ```
     
     ```
