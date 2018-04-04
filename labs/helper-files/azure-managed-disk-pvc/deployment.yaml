@@ -1,0 +1,52 @@
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: azure-managed-hdd
+spec:
+  selector:
+    app: azure-managed-hdd
+  ports:
+  - name: web
+    protocol: TCP
+    port: 80
+    targetPort: 80
+  type: LoadBalancer
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    app: azure-managed-hdd
+  name: azure-managed-hdd
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: azure-managed-hdd
+      name: azure-managed-hdd
+    spec:
+      containers:
+      - name: busybox-writer
+        image: busybox
+        command:
+        - sh
+        - -c
+        - "while true; do sleep 1; echo $(date +%Y-%m-%d:%H:%M:%S) - $(hostname) >> /azure-managed-hdd/index.html; done"
+        volumeMounts:
+        - mountPath: /azure-managed-hdd
+          name: azure-volume-managed-hdd
+      - name: busybox-web
+        image: busybox
+        command:
+        - sh
+        - -c
+        - "httpd -p 80 -f -v -h /azure-managed-hdd"
+        volumeMounts:
+        - mountPath: /azure-managed-hdd
+          name: azure-volume-managed-hdd
+      volumes:
+      - name: azure-volume-managed-hdd
+        persistentVolumeClaim:
+          claimName: managed-disk-hdd-1g
