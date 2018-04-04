@@ -89,7 +89,7 @@
                 },
                 "storageProfile": {
                     "imageReference": {
-                        "id": "[concat('/subscriptions/', subscription().subscriptionId, '/resourceGroups/aks-labs-jumpbox-resources/providers/Microsoft.Compute/images/h2aksvm-image')]"
+                        "id": "[concat('/subscriptions/', subscription().subscriptionId, '/resourceGroups/aec-mgmt-rg/providers/Microsoft.Compute/images/aks-jump-v2-', parameters('location'))]"
                     },
                     "osDisk": {
                         "createOption": "fromImage",
