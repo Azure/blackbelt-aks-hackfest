@@ -68,7 +68,7 @@ Grafana is a dashboard visualization tool that can use all kinds of data sources
     * We are also setting the service type to **LoadBalancer** to expose the service outside of the cluster and make it accessible via the Internet
 
     ```
-    helm install --name gbbhackgrafana stable/grafana --version 0.5.1 --set server.service.type=LoadBalancer,server.adminUser=admin,server.adminPassword=admin,server.image=grafana/grafana:4.6.3,server.persistentVolume.enabled=false
+    helm install --name gbbhackgrafana stable/grafana --version 0.5.1 --set server.service.type=LoadBalancer,server.adminUser=admin,server.adminPassword=admin,server.image=grafana/grafana:latest,server.persistentVolume.enabled=false
     ```
 
 2. Validate that Grafana was Installed
