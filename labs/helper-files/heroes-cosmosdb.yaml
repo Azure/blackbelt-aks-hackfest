@@ -138,7 +138,7 @@ metadata:
   name: heroes-cosmosdb-instance
   namespace: default
 spec:
-  clusterServiceClassExternalName: azure-cosmos-mongo-db
+  clusterServiceClassExternalName: azure-cosmosdb-mongo-account
   parameters:
     location: eastus
     resourceGroup: heroes-cosmosdb
