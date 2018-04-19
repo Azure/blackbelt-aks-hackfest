@@ -1,0 +1,5 @@
+ACR_SERVER=ejvlab.azurecr.io
+ACR_USER=ejvlab
+ACR_PWD=+=4p+G5rmLMm8/544V6/nO2uPgtbzcmF
+
+kubectl create secret docker-registry acr-secret --docker-server=$ACR_SERVER --docker-username=$ACR_USER --docker-password=$ACR_PWD --docker-email=superman@heroes.com
