@@ -65,4 +65,4 @@ typings/
 .next
 
 # .azcli scratch files
-.azcli
+*.azcli
