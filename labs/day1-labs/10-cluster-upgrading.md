@@ -6,6 +6,8 @@ Azure Container Service (AKS) makes it easy to perform common management tasks i
 
 Before upgrading a cluster, use the `az aks get-upgrades` command to check which Kubernetes releases are available for upgrade.
 
+*NOTE:  This operation could take ~1 hour*
+
 ```azurecli-interactive
 az aks get-upgrades --name $CLUSTER_NAME --resource-group $NAME --output table
 ```
