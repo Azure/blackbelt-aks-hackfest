@@ -49,7 +49,8 @@ helm install azure/open-service-broker-azure --name osba --namespace osba \
   --set azure.subscriptionId=$AZURE_SUBSCRIPTION_ID \
   --set azure.tenantId=$AZURE_TENANT_ID \
   --set azure.clientId=$AZURE_CLIENT_ID \
-  --set azure.clientSecret=$AZURE_CLIENT_SECRET
+  --set azure.clientSecret=$AZURE_CLIENT_SECRET \
+  --set modules.minStability=EXPERIMENTAL
 ```
 
 > **This may take a few minutes to start running. We must wait for redis to start. Go get some coffee.**

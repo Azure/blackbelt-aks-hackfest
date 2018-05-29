@@ -1,0 +1,44 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: heroes-west
+  labels:
+    name:  heroes-west
+  annotations:
+    virtualkubelet.io/dnsnamelabel: "heroes"
+spec:
+  imagePullSecrets:
+    - name: acr-secret
+  containers:
+  - image: <login_server>.azurecr.io/azureworkshop/rating-web:v1
+    imagePullPolicy: Always
+    name: ratings-web
+    resources:
+      requests:
+        memory: 1G
+        cpu: 1
+    env:
+    - name:  API
+      value:  http://localhost:3000/
+    - name: KUBE_NODE_NAME
+      value: "West US"
+    ports:
+    - containerPort: 8080
+      name: http-web
+      protocol: TCP
+  - image: <login_server>.azurecr.io/azureworkshop/rating-api:v1
+    imagePullPolicy: Always
+    name: ratings-api
+    resources:
+      requests:
+        memory: 1G
+        cpu: 1
+    env:
+    - name:  MONGODB_URI
+      value:  <value from lab#8>
+    ports:
+    - containerPort: 3000
+      name: http-api
+      protocol: TCP
+  dnsPolicy: ClusterFirst
+  nodeName: virtual-kubelet-west

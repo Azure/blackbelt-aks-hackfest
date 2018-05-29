@@ -1,6 +1,6 @@
 # CI/CD with Brigade
 
-In this lab, we will use Brigade to automate build and delivery of the web application into our AKS cluster. 
+In this lab, we will use Brigade >=0.11.0 to automate build and delivery of the web application into our AKS cluster. 
 
 Learn more about Brigade here: http://brigade.sh 
 
@@ -75,6 +75,7 @@ This lab has pre-requisites. Some have been completed in prior labs.
           acrServer: REPLACE
           acrUsername: REPLACE
           acrPassword: "REPLACE"
+        vcsSidecar: "deis/git-sidecar:v0.11.0"
         ```
 
     * Edit the values from above to match your Github account (example below)
@@ -111,6 +112,7 @@ This lab has pre-requisites. Some have been completed in prior labs.
           acrServer: youracr.azurecr.io
           acrUsername: youracr
           acrPassword: "lGsP/UA1Gnbogus9Ps5fAL6CeWsGfPCg"
+        vcsSidecar: "deis/git-sidecar:v0.11.0"
         ```
 
 2. Create your brigade project
