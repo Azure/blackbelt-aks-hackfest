@@ -10,7 +10,7 @@ For the first container, we will be creating a Dockerfile from scratch. For the 
 
     * Access the jumpbox
     * In the `~/blackbelt-aks-hackfest/app/web` directory, add a file called "Dockerfile"
-        * If you in in a SSH session, use vi as the editor
+        * If you are in an SSH session, use vi as the editor
         * In RDP, you can use Visual Studio Code
 
     * Add the following lines and save:
