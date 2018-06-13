@@ -2,32 +2,24 @@
 
 ## Classroom Setting
 
-These labs are designed for delivery in a classroom setting with the **Azure Global Blackbelt Team.** We typically provide an Azure subscription and a Linux VM (jumpbox) for attendees to complete the labs.
+These labs are designed for delivery in a classroom. For these labs we require a Linux-based VM in Azure as a "jumpbox". The first task here is to create this virtual machine and install the required software on it.
 
-### Getting Registered
-
-* Register for the class with the URL provided by the team (eg - http://aka.ms/something).
-
-    ![alt text](img/spektra-register.png "Spektra Registration")
-
-* On the next page, click the `Launch Lab` button.
-* Wait for the lab to be prepared. You will receive **TWO** emails. Wait for the second email and the lab details to appear in the browser. _This can take a few minutes._
-* Note the details for your On Demand Lab:
-    * Azure Credentials
-    * Service Principal Details
-    * Environment Details
-
-        ![alt text](img/spektra-ready.png "Spektra ready")
+Our labs are build and verified using CentOS7. Our recommendations is to use CentOS7. 
 
 ### Setup Environment
 
-* The first two labs will require you to RDP into a Linux jumpbox in the Azure subscription created for you.
-    * Ensure you have a proper RDP client on your PC.
-    * On the Mac, use Remote Desktop Client in the App Store.
+* Setup your Jumpbox VM in Azure
+    1. Browse to http://portal.azure.com
+    2. Click on "Create a resource" and search for "CentOS"
+    3. Deploy a CentOS7.4 VM - please recognize your credentials
+    4. Connect to your jumpbox using SSH (PuTTY or MobaXTerm)
+    5. Install the required tools and software
+    6. tbc..
+
 * Setup Azure Cloud Shell: 
 
     1. Browse to http://portal.azure.com
-    2. Login with the Azure credentials that were created in the previous steps (eg - "odl_user_12345@gbbossteamoutlook.onmicrosoft.com")
+    2. Login with the Azure credentials
     3. Click on the cloud shell icon to start your session.
 
         ![alt text](img/cloud-shell-start.png "Spektra ready")
@@ -44,18 +36,3 @@ These labs are designed for delivery in a classroom setting with the **Azure Glo
     7. Click `Create storage`
 
     > Note: You can also use the dedicated Azure Cloud Shell URL: http://shell.azure.com 
-
-
-## Self-guided
-
-It is possible to use your own machine outside of the classroom. You will need the following in order to complete these labs: 
-
-* Azure subscription
-* Linux, Mac, or Windows with Bash
-* Docker
-* Azure CLI
-* Visual Studio Code
-* Helm
-* Kubernetes CLI (kubectl)
-* MongoDB (only lab #1 requires this)
-* GitHub account and git tools
