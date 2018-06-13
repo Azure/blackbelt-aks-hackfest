@@ -33,7 +33,6 @@ The labs are based upon a node.js application that allows for voting on the Just
   10. [Upgrade an Azure Kubernetes Service (AKS) cluster](labs/day1-labs/10-cluster-upgrading.md)
 
 ## Day 4 - Labs - Friday (Optional)
-_These labs can be completed in no particular order._
   11. [CI/CD Automation](labs/day2-labs/cicd-brigade.md)
   12. [Kubernetes Ingress Controllers](labs/day2-labs/ingress-controller.md)
   13. [Kubernetes InitContainers](labs/day2-labs/init-containers.md)
@@ -43,7 +42,7 @@ _These labs can be completed in no particular order._
   
 ## Contributing
 
-This project is a fork of our Azure GBB Hackfest () . We as well as the original project welcomes contributions and suggestions. Most contributions require you to agree to a
+This project is a fork of our [Azure GBB Hackfest](https://github.com/Azure/blackbelt-aks-hackfest) . We as well as the original project welcomes contributions and suggestions. Most contributions require you to agree to a
 Contributor License Agreement (CLA) declaring that you have the right to, and actually do, grant us
 the rights to use your contribution. For details, visit https://cla.microsoft.com.
 
