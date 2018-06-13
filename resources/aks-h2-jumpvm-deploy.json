@@ -108,7 +108,7 @@
         }
       },
       "dependsOn": [
-        "[concat('Microsoft.Network/networkInterfaces/', parameters('networkInterfaceName'))]",
+        "[concat('Microsoft.Network/networkInterfaces/', parameters('networkInterfaceName'))]"
       ]
     },
     {
