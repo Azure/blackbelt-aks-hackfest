@@ -33,29 +33,19 @@ The labs are based upon a node.js application that allows for voting on the Just
   10. [Upgrade an Azure Kubernetes Service (AKS) cluster](labs/day1-labs/10-cluster-upgrading.md)
 
 ## Day 4 - Labs - Friday (Optional)
-
-These labs can be completed in no particular order.
+_These labs can be completed in no particular order._
   11. [CI/CD Automation](labs/day2-labs/cicd-brigade.md)
   12. [Kubernetes Ingress Controllers](labs/day2-labs/ingress-controller.md)
   13. [Kubernetes InitContainers](labs/day2-labs/init-containers.md)
   14. [Azure Service Broker](labs/day2-labs/open-service-broker.md)
   15. [Azure Container Instances and ACI Connector](labs/day2-labs/virtual-kubelet-aci.md)
-
   
   
 ## Contributing
 
-This project welcomes contributions and suggestions, unless you are Bruce Wayne.  Most contributions require you to agree to a
+This project is a fork of our Azure GBB Hackfest () . We as well as the original project welcomes contributions and suggestions. Most contributions require you to agree to a
 Contributor License Agreement (CLA) declaring that you have the right to, and actually do, grant us
 the rights to use your contribution. For details, visit https://cla.microsoft.com.
-
-When you submit a pull request, a CLA-bot will automatically determine whether you need to provide
-a CLA and decorate the PR appropriately (e.g., label, comment). Simply follow the instructions
-provided by the bot. You will only need to do this once across all repos using our CLA.
-
-This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/).
-For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or
-contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
 
 ## License
 
