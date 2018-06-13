@@ -1,4 +1,4 @@
-# Azure Container Hackfest
+# SI Container and Kubernetes Bootcamp
 
 _Delivering modern cloud native applications with ​open source technologies on Azure​_
 
