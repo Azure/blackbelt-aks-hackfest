@@ -44,6 +44,10 @@ Install with the yum install command.
 
 Avoid version 2.4 since it has a bug. Use version 2.3
 
+### GIT Tools
+Install git commandline tools
+* Run `sudo yum install git` 
+
 ## Clean up Docker
 
 ```
