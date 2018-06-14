@@ -4,7 +4,7 @@
 
 There are two environments you will be working in for the exercises today.
 
-1. **Jumpbox:** The apps and containers must be run on a Linux machine. A CentOS linux machine has been created for you in your Azure subscription.
+1. **Jumpbox:** The apps and containers must be run on a Linux machine. Use your newly created [Jumpbox](/labs/day1-labs/00-lab-environment.md) for this exercise.
 
     > Note: If you have bash or ssh available on your machine, it is easiest to access the jump box via SSH. Otherwise, RDP is required.
 
