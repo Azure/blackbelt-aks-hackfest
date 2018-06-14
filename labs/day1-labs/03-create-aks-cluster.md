@@ -2,7 +2,7 @@
 
 ## Create AKS cluster
 
-1. Login to Azure Portal at http://portal.azure.com. Your Azure login ID will look something like `odl_user_9294@gbbossteamoutlook.onmicrosoft.com`
+1. Login to Azure Portal at http://portal.azure.com. 
 2. Open the Azure Cloud Shell
 
     ![Azure Cloud Shell](img/cloudshell.png "Azure Cloud Shell")
