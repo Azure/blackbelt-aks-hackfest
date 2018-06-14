@@ -34,13 +34,13 @@ gpgkey=https://www.mongodb.org/static/pgp/server-3.6.asc
 ## Install and Update tools
 ### Azure CLI
 Import the Microsoft repository key.
-`sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc`
+* Run `sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc`
 
 Create local azure-cli repository information.
-`sudo sh -c 'echo -e "[azure-cli]\nname=Azure CLI\nbaseurl=https://packages.microsoft.com/yumrepos/azure-cli\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/azure-cli.repo'`
+* Run `sudo sh -c 'echo -e "[azure-cli]\nname=Azure CLI\nbaseurl=https://packages.microsoft.com/yumrepos/azure-cli\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/azure-cli.repo'`
 
 Install with the yum install command.
-`sudo yum install azure-cli-2.0.23-1.el7` 
+* Run `sudo yum install azure-cli-2.0.23-1.el7` 
 
 Avoid version 2.4 since it has a bug. Use version 2.3
 
