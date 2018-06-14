@@ -44,13 +44,19 @@ Install git commandline tools
 
 ### Install Docker
 Install Docker
-* Run `sudo yum install docker` 
+```
+sudo yum install docker
+sudo systemctl enable docker
+sudo systemctl start docker
+```
 
 ### Install Node.JS
 
 Install NodeJS and Node Package Manager (NPM)
-* Run: `sudo yum install epel-release`
-* Run: `sudo yum install npm`
+```
+sudo yum install epel-release
+sudo yum install npm
+```
 
 ## Clean up Docker
 
