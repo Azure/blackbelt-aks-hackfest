@@ -11,7 +11,6 @@ For the first container, we will be creating a Dockerfile from scratch. For the 
     * Access the jumpbox
     * In the `~/blackbelt-aks-hackfest/app/web` directory, add a file called "Dockerfile"
         * If you are in an SSH session, use vi as the editor
-        * In RDP, you can use Visual Studio Code
 
     * Add the following lines and save:
 
@@ -158,7 +157,7 @@ Now that we have container images for our application components, we need to sto
 
 ### Create Azure Container Registry instance
 
-1. In the browser, sign in to the Azure portal at https://portal.azure.com. Your Azure login ID will look something like `odl_user_9294@gbbossteamoutlook.onmicrosoft.com`
+1. In the browser, sign in to the Azure portal at https://portal.azure.com. 
 2. Click "Create a resource" and select "Azure Container Registry"
 3. Provide a name for your registry (this must be unique)
 4. Use the existing Resource Group
