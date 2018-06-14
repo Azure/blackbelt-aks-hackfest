@@ -77,7 +77,7 @@
     ```
 
 
-10. Get the Kubernetes config files for your new AKS cluster
+10. Get the Kubernetes config files for your new AKS cluster. This is necessary to use `kubectl` to manage your Kubernetes cluster.
     ```
     az aks get-credentials -n $CLUSTER_NAME -g $NAME
     ```
