@@ -1,6 +1,12 @@
-## Jumpbox updates
+## Setup your Jumpbox
 
-Internal use only
+This page helps you to install all required software packages you'll need for this training.
+
+## Install Node.JS
+
+Install NodeJS and Node Package Manager (NPM)
+* Run: `sudo yum install epel-release`
+* Run: `sudo yum install npm`
 
 ## Install Mongo
 
@@ -25,10 +31,18 @@ gpgkey=https://www.mongodb.org/static/pgp/server-3.6.asc
 
 * Test connection `mongo localhost:27019`
 
-## Update tools (eg AZ CLI)
+## Install and Update tools
+### Azure CLI
+Import the Microsoft repository key.
+`sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc`
+
+Create local azure-cli repository information.
+`sudo sh -c 'echo -e "[azure-cli]\nname=Azure CLI\nbaseurl=https://packages.microsoft.com/yumrepos/azure-cli\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/azure-cli.repo'`
+
+Install with the yum install command.
+`sudo yum install azure-cli-2.0.23-1.el7` 
 
 Avoid version 2.4 since it has a bug. Use version 2.3
-`sudo yum install azure-cli-2.0.23-1.el7` 
 
 ## Clean up Docker
 
