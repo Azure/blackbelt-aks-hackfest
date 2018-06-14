@@ -62,6 +62,13 @@ In this step, the Dockerfile has been created for you.
 
 2. Validate image was created with `docker images`
 
+    ```
+    sudo docker images
+    
+    REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+    rating-api          latest              eb53c9e08676        13 seconds ago      84.8 MB
+    ```
+
 ### MongoDB Container
 
 1. Create a MongoDB image with data files
