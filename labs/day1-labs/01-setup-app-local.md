@@ -34,7 +34,9 @@ The underlying data store for the app is [MongoDB](https://www.mongodb.com/ "Mon
     ```bash
     cd ~/blackbelt-aks-hackfest/app/db
 
-    mongoimport --host localhost:27019 --db webratings --collection heroes --file ./heroes.json --jsonArray && mongoimport --host localhost:27019 --db webratings --collection ratings --file ./ratings.json --jsonArray && mongoimport --host localhost:27019 --db webratings --collection sites --file ./sites.json --jsonArray
+    mongoimport --host localhost:27019 --db webratings --collection heroes --file ./heroes.json --jsonArray 
+    mongoimport --host localhost:27019 --db webratings --collection ratings --file ./ratings.json --jsonArray
+    mongoimport --host localhost:27019 --db webratings --collection sites --file ./sites.json --jsonArray
     ```
 
 ### API Application layer - Node.js
