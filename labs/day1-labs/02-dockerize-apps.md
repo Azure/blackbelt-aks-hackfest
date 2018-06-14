@@ -81,6 +81,12 @@ In this step, the Dockerfile has been created for you.
 
 2. Validate image was created with `docker images`
 
+    ```
+    sudo docker images
+    
+    REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+    rating-db           latest              d099239ef16f        15 seconds ago      366 MB
+    ```
 
 ## Run Containers
 
