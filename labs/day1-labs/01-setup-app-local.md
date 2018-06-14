@@ -73,7 +73,14 @@ The web frontend for the app is written in [Vue.js](https://vuejs.org/Vue "Vue.j
     ```
 3. Test the web front-end
 
-    The jumpbox has an external DNS name and port 8080 is open. You can browse your running app with a link such as: http://jump-vm-csc4f653357f-q72zm5c4ggcza.eastus.cloudapp.azure.com:8080 
+    To test the web front-end via the internet you've to grab your ip address from the Azure Portal and enable access to port 8080.
+    
+    * Goto portal.azure.com
+    * Select your Jumpbox VM
+    * Goto Networking
+    * Select 'Add inbound'
+    * Add a new inbound security rule for Port 8080/TCP
+       
 
     You can also test from a new terminal session in the jumpbox
     ```bash
