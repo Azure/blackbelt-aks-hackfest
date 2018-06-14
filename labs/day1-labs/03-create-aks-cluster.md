@@ -21,6 +21,11 @@
     az account list
     ```
 
+7. Create a new resource group (rg)
+    ```
+    az group create --name myaksrg --location eastus
+    ```
+
 7. Find your RG name
 
     ```
@@ -31,19 +36,14 @@
 
     [
     {
-        "id": "/subscriptions/b23accae-e655-44e6-a08d-85fb5f1bb854/resourceGroups/ODL-aks-v2-gbb-8386",
-        "location": "centralus",
-        "managedBy": null,
-        "name": "ODL-aks-v2-gbb-8386",
-        "properties": {
+      "id": "/subscriptions/c45eeda7-1811-4ab1-8fe2-efdd99c9d489/resourceGroups/myaksrg",
+      "location": "eastus",
+      "managedBy": null,
+      "name": "myaksrg",
+      "properties": {
         "provisioningState": "Succeeded"
-        },
-        "tags": {
-        "AttendeeId": "8391",
-        "LaunchId": "486",
-        "LaunchType": "ODL",
-        "TemplateId": "1153"
-        }
+      },
+      "tags": null
     }
     ]
 
