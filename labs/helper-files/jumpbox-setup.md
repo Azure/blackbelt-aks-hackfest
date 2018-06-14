@@ -2,12 +2,6 @@
 
 This page helps you to install all required software packages you'll need for this training.
 
-## Install Node.JS
-
-Install NodeJS and Node Package Manager (NPM)
-* Run: `sudo yum install epel-release`
-* Run: `sudo yum install npm`
-
 ## Install Mongo
 
 * Terminal: `sudo vi /etc/yum.repos.d/mongodb-org.repo`
@@ -47,6 +41,16 @@ Avoid version 2.4 since it has a bug. Use version 2.3
 ### GIT Tools
 Install git commandline tools
 * Run `sudo yum install git` 
+
+### Install Docker
+Install Docker
+* Run `sudo yum install docker` 
+
+### Install Node.JS
+
+Install NodeJS and Node Package Manager (NPM)
+* Run: `sudo yum install epel-release`
+* Run: `sudo yum install npm`
 
 ## Clean up Docker
 
