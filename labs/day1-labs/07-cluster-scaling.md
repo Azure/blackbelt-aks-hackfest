@@ -4,7 +4,7 @@ Imagine a scenario where your realize that your existing cluster is at capacity 
 
 ## Scale Application
 1. Check to see current number of pods running via Grafana Dashboard.
-* Go to the same Grafana Dashboard from lab 6 and look at the **Pods Running Count** section. You will see the total count of Pods and the various phases they are in.
+* Go to the same Grafana Dashboard from [lab 6](labs/day1-labs/06-monitoring-k8s.md) and look at the **Pods Running Count** section. You will see the total count of Pods and the various phases they are in.
 
 ![](img/9-grafana_podsrunning.png)
 
