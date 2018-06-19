@@ -57,7 +57,7 @@ contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additio
 
 ## License
 
-This software is covered under the MIT license. You can read the license [here][license].
+This software is covered under the MIT license. You can read the license [here](LICENSE).
 
 This software contains code from Heroku Buildpacks, which are also covered by the MIT license.
 
