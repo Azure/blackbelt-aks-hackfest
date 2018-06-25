@@ -54,7 +54,7 @@ Copy the name from the results above and set to a variable:
 export AZURE_RG=<name>
 ```
 
-### Assign Service Principal credentials to Envieonrment Variables
+### Assign Service Principal credentials to Environment Variables
 
 A Service Principal creates an identity for the Virtual Kubelet ACI provider to use when provisioning
 resources on your account on behalf of Kubernetes.
