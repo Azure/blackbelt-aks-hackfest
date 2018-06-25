@@ -54,22 +54,10 @@ Copy the name from the results above and set to a variable:
 export AZURE_RG=<name>
 ```
 
-### Assign Service Principal credentials to Envieonrment Variables
+### Assign Service Principal credentials to Environment Variables
 
 A Service Principal creates an identity for the Virtual Kubelet ACI provider to use when provisioning
 resources on your account on behalf of Kubernetes.
-
-1. Us the service principal that was provided during the course lab enrollment:
-   
-2. Save the values from Service Principal details in environment variables:
-
-    ```console
-    export AZURE_TENANT_ID=<Tenant>
-    export AZURE_CLIENT_ID=<AppId>
-    export AZURE_CLIENT_SECRET=<Password>
-    ```
-
-> NOTE: If you are running this lab in your own enviornment you must create a Service Principal with Contributor rights on the Subscription or at least the Resource Group that ACI will use. 
 
 a. In the console run
 ```console
