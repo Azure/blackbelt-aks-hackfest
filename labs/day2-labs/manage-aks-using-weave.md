@@ -23,3 +23,5 @@ weave-scope-app-1474687246-gm7q1
 ```
 http://127.0.0.1:4040
 ```
+
+![image1](/img/weave.PNG)
