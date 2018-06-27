@@ -1,5 +1,9 @@
+# Manage AKS using Weave
+
+## Overview
 You can use [Weave](https://www.weave.works/) to display information about Pods, Deployments, Nodes, etc. 
 
+## How it works
 1) Execute the following command in Azure Cloud Shell (Bash required) to deploy Weave
 ```azurecli-interactive
 kubectl apply -f "https://cloud.weave.works/k8s/scope.yaml?k8s-version=$(kubectl version | base64 | tr -d '\n')"
