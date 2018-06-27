@@ -2,6 +2,10 @@
 
 Virtual Kubelet is an open source Kubernetes kubelet implementation that masquerades as a kubelet for the purposes of connecting Kubernetes to other APIs. This allows the nodes to be backed by other services like ACI, Hyper.sh, AWS, etc. This connector features a pluggable architecture and direct use of Kubernetes primitives, making it much easier to build on.
 
+## Prerequisites
+ * This Lab requires [Lab 8](/labs/day1-labs/08-migrate-mongo-to-cosmos.md
+) "Migrate Data from MongoDB to Azure Cosmos DB" to be completed first.
+
 ## How It Works
 
 The diagram below illustrates how Virtual-Kubelet works.
