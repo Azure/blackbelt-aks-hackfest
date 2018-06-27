@@ -169,6 +169,13 @@ In this section we will use the ```mongodump``` and ```mongorestore``` commands 
 ## Test the Application
 
 * Browse to your heroes web app and validate the leaderboard
+
+	```
+	kubectl get service
+	NAME    TYPE           CLUSTER-IP     EXTERNAL-IP          PORT(S)          AGE
+	web     LoadBalancer   10.0.115.59    <your external ip>   8080:30112/TCP   12d
+	```
+	
 * Submit some new ratings and validate in the CosmosDB Data Explorer. You should see the number of ratings documents increase
 * Delete the MongoDB pod
 
