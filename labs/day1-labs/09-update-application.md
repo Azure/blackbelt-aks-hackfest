@@ -55,7 +55,7 @@ There are two ways to update the application with the new version. Both are desc
 1. Edit the YAML file and re-apply
 2. Update the deployment and re-set the image tag
 
-### Edit YAML and apply
+### Option 1: Edit YAML and apply
 
 1. As we did in a prior lab, open the  `helper-files` directory and review the file `heroes-web-api.yaml`
 2. Update the yaml file and replace the tag from `v1` to `new-version`
@@ -73,7 +73,7 @@ There are two ways to update the application with the new version. Both are desc
     kubectl apply -f heroes-web-api.yaml
     ```
 
-### Update the deployment
+### Option 2: Update the deployment
 
 1. Set the new image tag on the deployment object
     ```
