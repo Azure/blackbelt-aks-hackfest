@@ -146,6 +146,7 @@ spec:
       maxUnavailable: 1
     type: RollingUpdate
   template:
+
 ```
 
 4. Deploy heroes-web-api-ingress.yaml
@@ -203,7 +204,8 @@ ingress-nginx-ingress-default-backend   ClusterIP      10.0.171.59    <none>    
 
 Refresh the page multiple times and notice the change in the name of the pod and the Ip address as shown in example snippets below:
 
-Image1:
 
-Image2:
+![Screenshot1](img/web-heroes1.png "Web-Heroes1")
+
+![Screenshot2](img/web-heroes2.png "Web-Heroes2")
 
