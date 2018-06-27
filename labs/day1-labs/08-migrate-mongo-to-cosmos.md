@@ -135,6 +135,12 @@ In this section we will use the ```mongodump``` and ```mongorestore``` commands 
 
 * Edit the `heroes-web-api.yaml` file in `helper-files`
 	The snippet below is the section that must be udpated. We are replacing the `MONGODB_URI` value with the new connect string created in the prior section
+	
+	```
+	cd ~/blackbelt-aks-hackfest/labs/helper-files
+	vi heroes-web-api.yaml
+	```
+	
 	```
 	env:
 	- name:  MONGODB_URI
