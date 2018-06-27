@@ -40,7 +40,7 @@ The Nginx Ingress Controller is an Ingress controller that uses a ConfigMap to s
     ``` bash
     # The following command will install the Nginx ingress controller into the K8s cluster.
 
-    helm install --name ingress stable/nginx-ingress --namespace kube-system
+    helm install --name ingress stable/nginx-ingress --namespace kube-system --set rbac.create=false --set rbac.createRole=false --set rbac.createClusterRole=false
     ```
 
 2. Validate that Nginx was installed
@@ -98,7 +98,7 @@ We will now deploy the application with a configured Ingress resource.
                 name:  heroes-web-cntnr
             ```
 
-3. Depoy heroes-db.yaml and import the data
+3. Deploy heroes-db.yaml and import the data
 
     ``` bash
     kubectl apply -f heroes-db.yaml
@@ -128,6 +128,26 @@ We will now deploy the application with a configured Ingress resource.
     # be sure to exit pod as shown above
     ```
 
+4. Create an additional web pod instance for load balancing
+* Update the heroes-web-api-ingress.yaml file and change the number of replicas for heroes-web-deploy to 2.
+
+```yaml
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name:  heroes-web-deploy
+  labels:
+    name:  heroes-web
+spec:
+  replicas: 2
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+```
+
 4. Deploy heroes-web-api-ingress.yaml
 
     ``` bash
@@ -156,8 +176,18 @@ We will now deploy the application with a configured Ingress resource.
                 servicePort: 8080
                 path: /
     ```
+5. Validate the pods
+* There will be 2 pods runnning for web-deploy and one each for db-deploy and api-deploy
+``` bash
+kubectl get pods
 
-5. Browse to the web app via the Ingress
+NAME                                 READY     STATUS    RESTARTS   AGE
+heroes-api-deploy-74fcf46688-ndrzl   1/1       Running   0          50s
+heroes-db-deploy-7d6bf97b54-d5n9z    1/1       Running   0          1m
+heroes-web-deploy-8695d44cdb-7wrgq   1/1       Running   0          50s
+heroes-web-deploy-8695d44cdb-mkzzx   1/1       Running   0          50s
+```
+5. Browse to the web app via the Ingress Controller
 
 ```
 # get ingress external IP
@@ -167,6 +197,13 @@ ingress-nginx-ingress-controller        LoadBalancer   10.0.155.205   52.186.29.
 ingress-nginx-ingress-default-backend   ClusterIP      10.0.171.59    <none>          80/TCP                       2h
 ```
 
-* Using the external IP of the controller, go to http://52.186.29.245 
+* Using the external IP of the controller from the above output, go to http://52.186.29.245 
 
 > Note: you will likely see a privacy SSL warning
+
+Refresh the page multiple times and notice the change in the name of the pod and the Ip address as shown in example snippets below:
+
+Image1:
+
+Image2:
+
