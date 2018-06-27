@@ -5,7 +5,9 @@ Virtual Kubelet is an open source Kubernetes kubelet implementation that masquer
 ## Prerequisites
  * This Lab requires [Lab 8](/labs/day1-labs/08-migrate-mongo-to-cosmos.md
 ) "Migrate Data from MongoDB to Azure Cosmos DB" to be completed first.
-
+ * Upgrade your AKS Kubernetes Cluster to 1.8.2. See [Lab 10 - Upgrade an AKS cluster](/labs/day1-labs/10-cluster-upgrading.md
+) for more.
+ 
 ## How It Works
 
 The diagram below illustrates how Virtual-Kubelet works.
