@@ -92,7 +92,7 @@ Run these commands to deploy the virtual kubelet which connects your Kubernetes 
 If your cluster is an AKS cluster:
 
 ```console
-export VK_IMAGE_TAG=0.2-beta-9
+export VK_IMAGE_TAG=latest
 
 cd ~
 git clone https://github.com/virtual-kubelet/virtual-kubelet.git
