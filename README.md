@@ -33,7 +33,7 @@ The labs are based upon a node.js application that allows for voting on the Just
   10. [Upgrade an Azure Kubernetes Service (AKS) cluster](labs/day1-labs/10-cluster-upgrading.md)
 
 ## Day 4 - Labs - Friday (Optional)
-  11. [CI/CD Automation](labs/day2-labs/cicd-brigade.md)
+  11. Try [CI/CD Automation with Brigade](labs/day2-labs/cicd-brigade.md) or [CI/CD Automation with VSTS](labs/day2-labs/cicd-vsts.md)
   12. [Kubernetes Ingress Controllers](labs/day2-labs/ingress-controller.md)
   13. [Kubernetes InitContainers](labs/day2-labs/init-containers.md)
   14. [Azure Service Broker](labs/day2-labs/open-service-broker.md)
