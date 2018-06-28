@@ -111,33 +111,33 @@ Now that the connections are established, we will manually map the existing Azur
 
 1. Select the **Builds** section under the **Build and Release** hub and **Edit** the build definition **MyHealth.AKS.Build**.
 
-   ![build](images/build.png)
+   ![build](img/build.png)
 
 2. Navigate to **Process** section under the **Tasks** tab. In the Phase1 section select **Run services**. Select the previously created endpoints from the dropdown for **Azure subscription** and **Azure Container Registry** as shown. Repeast the same for **Build services, Push services and Publish Build Artifact**. Click the **Save** option.
 
 
     |Tasks|Usage|
     |-----|-----|
-    |![icon](images/icon.png) **Run services**| prepares the suitable environment by restoring required packages|
-    |![icon](images/icon.png) **Build services**| builds the docker images specified in a **docker-compose.yml** file with registry-qualified names and additional tags such as **$(Build.BuildId)**|
-    |![icon](images/icon.png) **Push services**| pushes the docker images specified in a **docker-compose.yml** file, to the container registry|
-    |![publish-build-artifacts](images/publish-build-artifacts.png) **Publish Build Artifacts**| publishes the **myhealth.dacpac** file to VSTS|
+    |![icon](img/icon.png) **Run services**| prepares the suitable environment by restoring required packages|
+    |![icon](img/icon.png) **Build services**| builds the docker images specified in a **docker-compose.yml** file with registry-qualified names and additional tags such as **$(Build.BuildId)**|
+    |![icon](img/icon.png) **Push services**| pushes the docker images specified in a **docker-compose.yml** file, to the container registry|
+    |![publish-build-artifacts](img/publish-build-artifacts.png) **Publish Build Artifacts**| publishes the **myhealth.dacpac** file to VSTS|
 
 3. Navigate to the **Releases** section under the **Build & Release** menu, **Edit** the release definition **MyHealth.AKS.Release** and select **Tasks**.
 
-   ![release](images/release.png)
+   ![release](img/release.png)
 
-   ![releasetasks](images/releasetasks.png)
+   ![releasetasks](img/releasetasks.png)
 
 4. In the **Dev** environment, under the **DB deployment** phase, update the **Azure Subscription** value from the dropdown for **Execute Azure SQL: DacpacTask** task.
 
-    ![update_CD3](images/update_CD3.png)
+    ![update_CD3](img/update_CD3.png)
 
 5. In the **AKS deployment** phase, Under the **Create Deployments & Services in AKS** task, update the **Kubernetes Service Connection** value from the dropdown. Expand the **Container Registry Details** section and update the parameters - **Azure subscription** and  **Azure Container Registry** with the endpoint components from the dropdown.
 
 6. Repeat similar steps for **Update image in AKS** task.
 
-    ![update_rd1](images/update_rd1.png)
+    ![update_rd1](img/update_rd1.png)
 
     * **Create Deployments & Services in AKS** will create the deployments and services in AKS as per the configuration specified in **mhc-aks.yaml** file. The Pod, for the first time will pull the latest docker image.
 
@@ -146,7 +146,7 @@ Now that the connections are established, we will manually map the existing Azur
 7. Click on the **Variables** section under the release definition, update **ACR** and **SQL server** values for **Process Variables** with the details noted earlier while configuring the environment. Click on the **Save** button.
  Also update the **Database Name** and the **Server Admin Login** based on the values you provided while creating the Azure SQL Database.
 
-   ![releasevariables](images/releasevariables.png)
+   ![releasevariables](img/releasevariables.png)
 
 ## Exercise 3: Update Connection String & ACR URL in the manifest file
 
@@ -158,14 +158,14 @@ We will update the database connection string for the .NET Core application and 
 
 "\"DefaultConnection\": \"Server=YOUR_SQLSERVER_NAME.database.windows.net,1433;Database=mhcdb;Persist Security Info=False;User ID=sqladmin;Password=P2ssw0rd1234\""
 
-   ![pasteconnectionstring](images/pasteconnectionstring.png)
+   ![pasteconnectionstring](img/pasteconnectionstring.png)
 
 2. Navigate to the `AKS` path to **edit** the file `mhc-aks.yaml`. This YAML manifest file contains configuration details of **deployments**,**services** and **pods** which will be deployed in Kubernetes.
 
    Scroll to the line number **93**. modify the value **YOUR_ACR** with your **ACR Login server** which was noted earlier while setting up the environment. Also **add the ImagePullSecrets under spec section to mysecretkey** as seen below 
 Click on the **Commit** button.
 
-   ![editmhcaks](images/editmhcaks.png)
+   ![editmhcaks](img/editmhcaks.png)
 
 ## Exercise 4: Trigger a Build and deploy application
 
@@ -173,29 +173,29 @@ In this exercise, let us trigger a build manually and upon completion, an automa
 
 1. Click on the **Builds** section under the **Build and Release** tab, click on the build definition **MyHealth.AKS.Build** and then click on the **Queue new build...** button.
 
-    ![manualbuild](images/manualbuild.png)
+    ![manualbuild](img/manualbuild.png)
 
 2. Once the build process starts, navigate to the **Builds** tab. Click on the build number to see the build in progress.
 
-    ![clickbuild](images/clickbuild.png)
+    ![clickbuild](img/clickbuild.png)
 
-    ![buildinprog1](images/buildinprog1.png)
+    ![buildinprog1](img/buildinprog1.png)
 
 3. The build will generate and push the docker image to ACR. After the build completes, you will see the build summary. To view the generated images in the Azure Portal, click on the **Azure Container Registry** and navigate to the **Repositories**.
 
-    ![imagesinrepo](images/imagesinrepo.png)
+    ![imagesinrepo](img/imagesinrepo.png)
 
 4. Switch back to the VSTS portal. Click on the **Releases** section on the **Build & Releases** tab, and double-click on the latest release. Click on the **Logs** section to see the release summary.
 
-    ![releaseinprog](images/releaseinprog.png)
+    ![releaseinprog](img/releaseinprog.png)
 
-    ![release_summary1](images/release_summary1.png)
+    ![release_summary1](img/release_summary1.png)
 
 5. Once the release is complete, launch the command prompt and run the below command to see the pods running in AKS:
 
     `**kubectl get pods`
 
-    ![getpods](images/getpods.png)
+    ![getpods](img/getpods.png)
 
     The deployed web application is running in the displayed pods.
 
@@ -203,24 +203,27 @@ In this exercise, let us trigger a build manually and upon completion, an automa
 
     `**kubectl get service mhc-front --watch`
 
-    ![watchfront](images/watchfront.png)
+    ![watchfront](img/watchfront.png)
 
 7. Copy the **External-IP** and paste it in the browser and hit the Enter button to launch the application.
 
-    ![finalresult](images/finalresult.png)
+    ![finalresult](img/finalresult.png)
 
     **Access AKS through the browser**
     Type the below command in a command prompt from your base machine to access the AKS through the browser.
 
     `az aks browse --resource-group <yourResourceGroup> --name <yourAKSname>`
 
-    ![AKS through browser](images/aksbrowse.png)
+    ![AKS through browser](img/aksbrowse.png)
 
     **AKS Dashboard:**
     Once the AKS dashboard is launched, the following details will be displayed.
 
-    ![AKS Dashboard](images/aksdashboard.png)
+    ![AKS Dashboard](img/aksdashboard.png)
 
 ## Summary
 
 AKS reduces the complexity and operational overhead of managing a Kubernetes cluster by offloading much of that responsibility to Azure. With the **Visual Studio Team Services** and **Azure Container Services (AKS)**, we can build DevOps for dockerized applications by leveraging docker capabilities enabled on VSTS Hosted Agents.
+
+## Attribution:
+Content originally created by Srivatsa, Sachin Raj and sriramdasbalaji et al. from [this](https://github.com/Microsoft/almvm/blob/master/labs/vstsextend/kubernetes) ALM Doc. Modified it to work with exisiting K8S cluster
