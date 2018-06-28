@@ -9,9 +9,9 @@ In this lab, the following tasks will be performed:
 
 * Create an Azure SQL server
 
-* Provision the VSTS Team Project with a .NET Core application using the [VSTS Demo Generator](https://vstsdemogenerator.azurewebsites.net/?Name=aks&templateId=77372){:target="_blank"} tool
+* Provision the VSTS Team Project with a .NET Core application using the [VSTS Demo Generator](https://vstsdemogenerator.azurewebsites.net/?Name=aks&templateId=77372) tool
 
-* Configure endpoints (properties) in VSTS to access Azure and AKS
+* Configure endpoints (properties) in VSTS to access Azure and exisiting AKS cluster
 
 * Configure application and database deployment using Continuous Deployment (CD) in VSTS
 
@@ -19,7 +19,7 @@ In this lab, the following tasks will be performed:
 
 * Initiate the build to automatically deploy the application
 
-# Lab Flow
+# Lab flow
 
 * Firstly, the source code changes are committed to the VSTS git repository
 
@@ -35,15 +35,13 @@ In this lab, the following tasks will be performed:
 
 # Prerequisites for the lab
 
-1. You will need a **Visual Studio Team Services Account**. If you do not have one, you can sign up for free [here](https://www.visualstudio.com/products/visual-studio-team-services-vs)
-
-2. You will need a **Personal Access Token** to set up your project using the VSTS Demo Generator. Please see this [article](https://docs.microsoft.com/en-us/vsts/accounts/use-personal-access-tokens-to-authenticate) for instructions to create your token.
+1. You will need a **Personal Access Token** to set up your project using the VSTS Demo Generator. Please see this [article](https://docs.microsoft.com/en-us/vsts/accounts/use-personal-access-tokens-to-authenticate) for instructions to create your token.
 
     {"You should treat Personal Access Tokens like passwords. It is recommended that you save them somewhere safe so that you can re-use them for future requests." %}
 
-3. **Kubernetes extension** from [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=tsuyoshiushio.k8s-endpoint) installed to the VSTS account
+2. **Kubernetes extension** from [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=tsuyoshiushio.k8s-endpoint) installed to the VSTS account
 
-4. You will need a **Azure SQL Database**. Provision a new **Azure SQL Server and SQL Database** in **East US** region before proceeding with the below steps.
+3. You will need a **Azure SQL Database**. Provision a new **Azure SQL Server and SQL Database** in **East US** region before proceeding with the below steps. Make note of the SQL Server name, database name, username and password. These will be used later in the exercise. 
 
 
 ## Setting up the VSTS team project
@@ -101,7 +99,7 @@ Since the connections are not established during project provisioning,the two en
                token: 711e57a22410bb8d06ea956d2d5bc310}}]}
         ```
 
-     * Copy the contents of the **config** file and paste it in the Kubernetes Connection window. Click the  **OK** button.
+     * Copy the contents of the **config** file and paste it in the Kubernetes Connection window. Check **Accept Untrusted Certificates. Click the  **Verify connection** button. Once connection succeeds click **Ok**.
 
        ![Kubernetes Service Endpoint](img/aksendpoint.png)
 
@@ -113,9 +111,11 @@ Now that the connections are established, we will manually map the existing Azur
 
    ![build](img/build.png)
 
-2. Navigate to **Process** section under the **Tasks** tab. In the Phase1 section select **Run services**. Select the previously created endpoints from the dropdown for **Azure subscription** and **Azure Container Registry** as shown. Repeast the same for **Build services, Push services and Publish Build Artifact**. Click the **Save** option.
+2. Navigate to **Process** section under the **Tasks** tab. In the Phase1 section select **Run services**. Select the previously created endpoints from the dropdown for **Azure subscription**. Choose the **Azure Container Registry** which we had created in the previous exercises from the drop down for Azure Container Registry. Repeat the same for **Build services, Push services, and Lock Services Publish**. Click the **Save** option.
 
-
+    ![Azure Subscription & ACR](img/updateprocess.png)
+    
+    
     |Tasks|Usage|
     |-----|-----|
     |![icon](img/icon.png) **Run services**| prepares the suitable environment by restoring required packages|
@@ -123,7 +123,7 @@ Now that the connections are established, we will manually map the existing Azur
     |![icon](img/icon.png) **Push services**| pushes the docker images specified in a **docker-compose.yml** file, to the container registry|
     |![publish-build-artifacts](img/publish-build-artifacts.png) **Publish Build Artifacts**| publishes the **myhealth.dacpac** file to VSTS|
 
-3. Navigate to the **Releases** section under the **Build & Release** menu, **Edit** the release definition **MyHealth.AKS.Release** and select **Tasks**.
+3. Navigate to the **Releases** section under the **Build & Release** menu, click on **MyHealth.AKS** release definition. **Edit** the release definition **MyHealth.AKS.Release** and select **Tasks**.
 
    ![release](img/release.png)
 
@@ -133,9 +133,9 @@ Now that the connections are established, we will manually map the existing Azur
 
     ![update_CD3](img/update_CD3.png)
 
-5. In the **AKS deployment** phase, Under the **Create Deployments & Services in AKS** task, update the **Kubernetes Service Connection** value from the dropdown. Expand the **Container Registry Details** section and update the parameters - **Azure subscription** and  **Azure Container Registry** with the endpoint components from the dropdown.
+5. In the **AKS deployment** phase, Under the **Create Deployments & Services in AKS** task, update the **Kubernetes Service Connection** value from the dropdown. Expand the **Secrets** section and update the parameters - **Azure subscription** and  **Azure Container Registry** with the endpoint components from the dropdown.
 
-6. Repeat similar steps for **Update image in AKS** task.
+6. Repeat similar steps for **Update image in AKS** task. Click **Save** to save the release definition
 
     ![update_rd1](img/update_rd1.png)
 
@@ -144,7 +144,7 @@ Now that the connections are established, we will manually map the existing Azur
     * **Update image in AKS** will pull the appropriate image corresponding to the BuildID from the repository specified, and deploys the docker image to the **mhc-front pod** running in AKS.
 
 7. Click on the **Variables** section under the release definition, update **ACR** and **SQL server** values for **Process Variables** with the details noted earlier while configuring the environment. Click on the **Save** button.
- Also update the **Database Name** and the **Server Admin Login** based on the values you provided while creating the Azure SQL Database.
+ Also update the **DatabaseName** and the **SQLAdmin Login** and **Password** based on the values you provided while creating the Azure SQL Database.
 
    ![releasevariables](img/releasevariables.png)
 
@@ -154,15 +154,15 @@ We will update the database connection string for the .NET Core application and 
 
 1. Click on the **Code** tab, and navigate to the below path `AKS/src/MyHealth.Web` to **edit** the file `appsettings.json`
 
-   Scroll down to the line number **9** and provide the database server name as given in the step 6 of the previous exercise and manually update the **User ID** and **Password** based on the credentials you provided while creating the Azure SQL DB. Click on the **Commit** button.
+   Scroll down to the line number **9** and provide the database server name as given in the step 7 of the previous exercise and manually update the **User ID** and **Password** based on the credentials you provided while creating the Azure SQL DB. Initial Catalog will be the database name. Click on the **Commit** button.
 
-"\"DefaultConnection\": \"Server=YOUR_SQLSERVER_NAME.database.windows.net,1433;Database=mhcdb;Persist Security Info=False;User ID=sqladmin;Password=P2ssw0rd1234\""
+"\"DefaultConnection\": \"Server=YOUR_SQLSERVER_NAME.database.windows.net,1433;Initial Catalog=<Name>;Persist Security Info=False;User ID=<User ID>;Password=<Password>\""
 
    ![pasteconnectionstring](img/pasteconnectionstring.png)
 
 2. Navigate to the `AKS` path to **edit** the file `mhc-aks.yaml`. This YAML manifest file contains configuration details of **deployments**,**services** and **pods** which will be deployed in Kubernetes.
 
-   Scroll to the line number **93**. modify the value **YOUR_ACR** with your **ACR Login server** which was noted earlier while setting up the environment. Also **add the ImagePullSecrets under spec section to mysecretkey** as seen below 
+   Scroll to the line number **93**. modify the value **YOUR_ACR** with your **ACR Login server** which was noted earlier while setting up the environment. Also **add the ImagePullSecrets under spec section. Provide the secret key as mysecretkey** as seen below 
 Click on the **Commit** button.
 
    ![editmhcaks](img/editmhcaks.png)
@@ -175,7 +175,9 @@ In this exercise, let us trigger a build manually and upon completion, an automa
 
     ![manualbuild](img/manualbuild.png)
 
-2. Once the build process starts, navigate to the **Builds** tab. Click on the build number to see the build in progress.
+2. On the Queue Build for MyHealth.AKS.Build select **Queue**
+
+3. Once the build process starts, navigate to the **Builds** tab. Click on the build number to see the build in progress.
 
     ![clickbuild](img/clickbuild.png)
 
@@ -185,13 +187,13 @@ In this exercise, let us trigger a build manually and upon completion, an automa
 
     ![imagesinrepo](img/imagesinrepo.png)
 
-4. Switch back to the VSTS portal. Click on the **Releases** section on the **Build & Releases** tab, and double-click on the latest release. Click on the **Logs** section to see the release summary.
+4. Switch back to the VSTS portal. Click on the **Releases** section on the **Build & Releases** tab, and click on the latest release. Click on the **Logs** section to see the release summary.
 
     ![releaseinprog](img/releaseinprog.png)
 
     ![release_summary1](img/release_summary1.png)
 
-5. Once the release is complete, launch the command prompt and run the below command to see the pods running in AKS:
+5. Once the release is complete, open the putty session to the Cent OS VM and run the below command to see the pods running in AKS:
 
     `**kubectl get pods`
 
