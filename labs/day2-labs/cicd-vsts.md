@@ -50,15 +50,15 @@ In this lab, the following tasks will be performed:
 
    > **VSTS Demo Generator** helps you create the team projects on your VSTS account with sample content that include source code, work items, iterations, service endpoints, build and release definitions based on the template you choose during the configuration.
 
-    ![VSTS Demo Generator](images/vstsdg.png)
+    ![VSTS Demo Generator](img/vstsdg.png)
 
 2. Provide the Project Name, and click on the **Create Project** button.
 
-   ![VSTS Demo Generator](images/vstsdemogen2.png)
+   ![VSTS Demo Generator](img/vstsdemogen2.png)
 
 3. Once the project is provisioned, click on the link displayed under the **URL** field to navigate to the team project.
 
-   ![VSTS Demo Generator](images/vstsdemogen3.png)
+   ![VSTS Demo Generator](img/vstsdemogen3.png)
    
 
 ## Exercise 1: Service Endpoint creation
@@ -69,7 +69,7 @@ Since the connections are not established during project provisioning,the two en
 
 1. **Azure Resource Manager Service Endpoint**: Defines and secures a connection to a Microsoft Azure subscription using Service Principal Authentication (SPA).
 
-   * In the VSTS, navigate to the **Services** by clicking on the gear icon ![Settings](images/gear.png), and click on the **+ New Service Endpoint** button. Select the **Azure Resource Manager** and specify the **Connection name**, select the **Subscription** from the dropdown. Leave Resource Group name blank and click on the **OK** button. This endpoint will be used to connect the **VSTS** and the **Azure**.
+   * In the VSTS, navigate to the **Services** by clicking on the gear icon ![Settings](img/gear.png), and click on the **+ New Service Endpoint** button. Select the **Azure Resource Manager** and specify the **Connection name**, select the **Subscription** from the dropdown. Leave Resource Group name blank and click on the **OK** button. This endpoint will be used to connect the **VSTS** and the **Azure**.
 
      You will be prompted to authorize this connection with Azure credentials. Disable pop-up blocker in your browser if you see a blank screen after clicking the OK button, and retry the step.
 
@@ -101,4 +101,4 @@ Since the connections are not established during project provisioning,the two en
 
      * Copy the contents of the **config** file and paste it in the Kubernetes Connection window. Click the  **OK** button.
 
-       ![Kubernetes Service Endpoint](images/aksendpoint.png)
+       ![Kubernetes Service Endpoint](img/aksendpoint.png)
