@@ -3,7 +3,7 @@ This lab will show how to use Kubernetes Init Containers to run scripts and load
 
 I'm not going to lie, things are going to get a little weird.
 
-We are going to pull data from a remote source, and then populate the database from that source file. All before the primary container is initialized.
+We are going to pull data from a remote source(Refer to initContainers section in init-web-api-sample.yaml):, and then populate the database(mongodb) from that source file. All before the primary container(web container) is initialized.
 
 I told you it was going to be weird.
 
@@ -83,3 +83,21 @@ Take note of the two files in this directory, [init-db-sample.yaml](init-db-samp
     ```bash
     $ kubectl create -f init-web-api-sample.yaml
     ```
+    
+6. See the init containers getting creating one after the other by executing the below command
+    ```bash
+    $ kubectl get pods --watch
+    ```    
+    ```bash
+    NAME                                READY     STATUS     RESTARTS   AGE
+    heroes-api-deploy-cd5858bbc-k2qkh   0/1       Init:4/6   3          18s
+    heroes-db-deploy-c8b656bf9-p7jb4    1/1       Running    0          2m
+    heroes-web-deploy-d684ff8f6-ptrhd   1/1       Running    0          18s
+    heroes-api-deploy-cd5858bbc-k2qkh   0/1       Init:5/6   3         18s
+    heroes-api-deploy-cd5858bbc-k2qkh   0/1       Init:5/6   3         19s
+    heroes-api-deploy-cd5858bbc-k2qkh   0/1       PodInitializing   0         20s
+    heroes-api-deploy-cd5858bbc-k2qkh   1/1       Running   0         22s
+    ```  
+    Use Ctrl+C to exit 
+    
+    
