@@ -38,7 +38,7 @@ az ad sp create-for-rbac --name osba-sp -o table
 
 ```bash
 # set the below to values for your sub
-export AZURE_SUBSCRIPTION_ID= Get ID using command "az account list | | grep id"
+export AZURE_SUBSCRIPTION_ID= Get ID using command "az account list | grep id"
 export AZURE_TENANT_ID=<Tenant>
 export AZURE_CLIENT_ID=<AppID>
 export AZURE_CLIENT_SECRET=<Password>
@@ -56,7 +56,7 @@ helm install azure/open-service-broker-azure --name osba --namespace osba --set 
 
 > **This may take a few minutes to start running. We must wait for redis to start. Go get some coffee.**
 
-5. Check Components
+6. Check Components
 
 In this step we will check to see that the Service Catalog and OSBA components are up and running.
 
@@ -81,11 +81,11 @@ osba-redis-3506537388-f6k17                       1/1       Running   0         
 2. Review the `heroes-cosmosdb.yaml` file in the `helper-files` directory
 
 * Along with the web and api configs, you will see a `ServiceInstance` object and a `ServiceBinding` object. 
-* You will also see a secret defined in the API deployment that sets the Mongo DB environment variables for connecting to the Cosmos DB Mongo DB API. OSBA creates the COSMOS DB account in a resource group named **heroes-cosmosdb** and sets the connection parameters as Kubernetes secret(**heroes-cosmosdb-secret**)
+* You will also see a secret defined in the API deployment that sets the Mongo DB environment variables for connecting to the Cosmos DB Mongo DB API. While deployment a new Cosmos DB account gets created in a resource group called **heroes-cosmosdb** and sets the DB connection parameters as Kubernetes secret(**heroes-cosmosdb-secret**)
 
 3. Deploy the Application using OSBA
 
-* This step will provision the entire application with the Cosmos Mongo DB back-end done via OSBA.
+* This step will provision the entire application with the Cosmos Mongo DB back-end in Azure via OSBA.
 
 ```bash
 cd ~/blackbelt-aks-hackfest/labs/helper-files
@@ -99,9 +99,11 @@ kubectl apply -f heroes-cosmosdb.yaml
 * By looking at the following Kubernetes resources you will see all the different resources that make up the OSBA deployment.
 
 ```bash
-kubectl get pod,secret,serviceinstance,servicebinding
+kubectl get pod,serviceinstance,servicebinding
+
+kubectl get secret
 ```
-> **This may take a few minutes to start running. Wait till the Kubernetes secret gets created. Go get some coffee.**
+> **This may take a few minutes to start running. Wait till the Kubernetes secret(**heroes-cosmosdb-secret**) gets created. Go get some coffee.**
 
 > **Note - If the heroes-api pod gets stuck at "CreateContainerConfigError" status, re-run "kubectl apply -f heroes-cosmosdb.yaml" and make sure the status changes to "Running" before proceeding with the next step.
 
@@ -117,7 +119,7 @@ kubectl get pod,secret,serviceinstance,servicebinding
 az --version
 ```
 
-* If the az cli is < 2.0.27 then update the cli. To update you can run "yum update azure-cli"
+* If the az cli is < 2.0.27 then update the cli. To update you can run "yum update azure-cli -y"
 
 ```bash
 # Do this in Cloud Shell and ensure az --version is 2.0.27 or greater
