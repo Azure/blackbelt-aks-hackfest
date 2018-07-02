@@ -91,25 +91,28 @@ Use the EXTERNAL-IP value from the previous step and put that into your browser:
     ![](img/8-grafana_default.png)
 
 ## Setting up Grafana
-1. Log into Grafana Dashboard using **admin** for the username and password
+1. Log into Grafana Dashboard using **admin** for both the username and password
     * You should see something like the following:
 
     ![](img/8-grafana_loggedin.png)
+    
+     * You will be prompted to provide a new password.
 
 2. Add Prometheus as a Data Source
-    * If you recall from above, we exposed a number of K8s services, one of those services was the Prometheus Server. We are going to use that Service endpoint in our Data Service configuration. The Add Data Source screen should look something like the below screen shot.
+    * If you recall from above, we exposed a number of K8s services, one of those services was the Prometheus Server. We are going to use that Service endpoint in our Data Service configuration. 
+    Click on the 'Add Data Source' button and the screen should look something like the below screen shot.
 
     > Use `http://gbbhackprometheus-prometheus-server:9090` for the URL in the HTTP settings.
 
-    ![](img/8-grafana_datasource.png)
+    ![](img/8-grafanadatasource.JPG)
 
 3. Validate Prometheus Data Source
     * Once you have filled in the values similar to the screenshot above, click the **Add** button and ensure no errors come back.
 
 4. Add K8s Monitoring Dashboard to Grafana
-    * After the datasource has been added, it is now time to add a dashboard. Grafana dashboards can be shared on Grafana.com. Go to import dashboards via the menu in the top left.
+    * After the datasource has been added, it is now time to add a dashboard. Grafana dashboards can be shared on Grafana.com. Go to manage dashboards via the menu in the top left and click on Import.
 
-    ![](img/8-grafana_dashboardimport.png)
+    ![](img/8-grafanan-importdb.jpg)
 
     * Click on the **Upload File** button and browse to the `grafana-dashboard.json` in the `helper-files` directory. You can also paste the contents of the json into the text box.
 
@@ -117,7 +120,7 @@ Use the EXTERNAL-IP value from the previous step and put that into your browser:
 
     * Set the datasource dropdown to the "AKSPrometheus" that was created in the previous step. 
 
-    ![](img/8-grafana_dashboardsave.png)
+    ![](img/8-grafana-import-json.jpg)
 
     * Click the **Import** button.
 
