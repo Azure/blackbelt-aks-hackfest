@@ -58,7 +58,7 @@ This lab has pre-requisites. Some have been completed in prior labs.
 
 ## Setup Brigade Project
 
-1. Create a brigade project YAML file
+1. Create a brigade project YAML file in the CentOS VM or Azure Cloud Shell
 
     * Create a file called ```brig-proj-heroes.yaml```
     * Add the contents below to start your file
@@ -75,7 +75,7 @@ This lab has pre-requisites. Some have been completed in prior labs.
           acrServer: REPLACE
           acrUsername: REPLACE
           acrPassword: "REPLACE"
-        vcsSidecar: "deis/git-sidecar:v0.11.0"
+        vcsSidecar: "deis/git-sidecar:v0.15.0"
         ```
 
     * Edit the values from above to match your Github account (example below)
@@ -103,7 +103,7 @@ This lab has pre-requisites. Some have been completed in prior labs.
         ```yaml
         project: "thedude-lebowski/blackbelt-aks-hackfest"
         repository: "github.com/thedude-lebowski/blackbelt-aks-hackfest"
-        cloneURL: "https://github.com/thedude-lebowski/blackbelt-aks-hackfest"
+        cloneURL: "https://github.com/thedude-lebowski/blackbelt-aks-hackfest.git"
         sharedSecret: "create-something-super-secret"
         # MAKE SURE YOU CHANGE THIS. It's basically a password
         github:
@@ -112,7 +112,7 @@ This lab has pre-requisites. Some have been completed in prior labs.
           acrServer: youracr.azurecr.io
           acrUsername: youracr
           acrPassword: "lGsP/UA1Gnbogus9Ps5fAL6CeWsGfPCg"
-        vcsSidecar: "deis/git-sidecar:v0.11.0"
+        vcsSidecar: "deis/git-sidecar:v0.15.0"
         ```
 
 2. Create your brigade project
@@ -186,6 +186,9 @@ In our earlier labs, we had to create a Dockerfile for the web app. Since you fo
     Use the IP address above to note a URL such as: http://13.67.129.228:7744/events/github You will use this in the next step
 
 2. In your forked Github repo, click on Settings
+
+   ![Github webhook](img/github-settings.png "Github webhook")
+
 3. Click Webhooks
 4. Click `Add webhook`
 5. Set the `Payload URL` to the URL created in step 1
@@ -200,7 +203,7 @@ In our earlier labs, we had to create a Dockerfile for the web app. Since you fo
 ## Test the CI/CD Pipeline
 
 1. Update the web application. Directly in your forked Github repo, edit the `Footer.vue` file. Stored in: `blackbelt-aks-hackfest/app/web/src/components/`
-2. Find the snippet below *(line 13)* and change the text _"Azure Global Blackbelt Team"_ to your name or whatever you would like to display.
+2. Find the snippet below *(line 17)* and change the text _"Azure Global Blackbelt Team"_ to your name or whatever you would like to display.
 
     ```
     <div class="row at-row flex-center flex-middle">
