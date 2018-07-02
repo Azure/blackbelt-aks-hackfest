@@ -58,8 +58,12 @@ There are two ways to update the application with the new version. Both are desc
 ### Option 1: Edit YAML and apply
 
 1. As we did in a prior lab, open the  `helper-files` directory and review the file `heroes-web-api.yaml`
-2. Update the yaml file and replace the tag from `v1` to `new-version`
+2. Update the yaml file and replace the tag from `v1` to `new-version` for heroes-web
     ```
+     template:
+    metadata:
+      labels:
+        name:  heroes-web
     spec:
     containers:
     - image: mycontainerregistry.azurecr.io/azureworkshop/rating-web:new-version
