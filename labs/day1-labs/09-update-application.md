@@ -109,3 +109,5 @@ There are two ways to update the application with the new version. Both are desc
     ```
 
 ## Browse to your newly deployed web application
+
+Browse to the web application and validate that the change you made to the 'Footer.vue' file is reflecting in the portal.
