@@ -175,7 +175,7 @@ In this exercise, let us trigger a build manually and upon completion, an automa
 
     ![manualbuild](img/manualbuild.png)
 
-2. On the Queue Build for MyHealth.AKS.Build select **Queue**
+2. On the Queue Build for MyHealth.AKS.Build windows, click on **Queue**
 
 3. Once the build process starts, navigate to the **Builds** tab. Click on the build number to see the build in progress.
 
