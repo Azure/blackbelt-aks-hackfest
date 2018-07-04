@@ -73,11 +73,12 @@ sudo yum install npm
 
 Install Kubectl command line utility to interact with AKS. There are two ways to install as below:
 
+First method:
 ```
 az aks install-cli
 ```
 
-
+Second method:
 ```
 cat <<EOF > /etc/yum.repos.d/kubernetes.repo
 [kubernetes]
