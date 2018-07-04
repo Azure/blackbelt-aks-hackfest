@@ -8,7 +8,14 @@ You can use [Weave](https://www.weave.works/) to display information about Pods,
 ```azurecli-interactive
 kubectl apply -f "https://cloud.weave.works/k8s/scope.yaml?k8s-version=$(kubectl version | base64 | tr -d '\n')"
 ```
-
+The above commands will provision the weave pods in the AKS cluster. You can validate them by executing the following command:
+```
+[root@centos01 ~]# kubectl get pods -n weave
+NAME                              READY     STATUS    RESTARTS   AGE
+weave-scope-agent-gdctk           1/1       Running   0          1m
+weave-scope-agent-j44bx           1/1       Running   0          1m
+weave-scope-app-dbd44d984-5gstd   1/1       Running   0          1m
+```
 2) Execute the following command on your local machine (Bash required) to forward Port 4040
 ```azurecli-interactive
 kubectl port-forward -n weave "$(kubectl get -n weave pod --selector=weave-scope-component=app -o jsonpath='{.items..metadata.name}')" 4040
