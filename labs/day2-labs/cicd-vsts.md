@@ -35,13 +35,9 @@ In this lab, the following tasks will be performed:
 
 # Prerequisites for the lab
 
-1. You will need a **Personal Access Token** to set up your project using the VSTS Demo Generator. Please see this [article](https://docs.microsoft.com/en-us/vsts/accounts/use-personal-access-tokens-to-authenticate) for instructions to create your token.
+1. **Kubernetes extension** from [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=tsuyoshiushio.k8s-endpoint) installed to the VSTS account
 
-    {"You should treat Personal Access Tokens like passwords. It is recommended that you save them somewhere safe so that you can re-use them for future requests." %}
-
-2. **Kubernetes extension** from [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=tsuyoshiushio.k8s-endpoint) installed to the VSTS account
-
-3. You will need a **Azure SQL Database**. Provision a new **Azure SQL Server and SQL Database** in **East US** region before proceeding with the below steps. Make note of the SQL Server name, database name, username and password. These will be used later in the exercise. 
+2. You will need a **Azure SQL Database**. Provision a new **Azure SQL Server and SQL Database** in **East US** region before proceeding with the below steps. Make note of the SQL Server name, database name, username and password. These will be used later in the exercise. 
 
 
 ## Setting up the VSTS team project
@@ -50,15 +46,17 @@ In this lab, the following tasks will be performed:
 
    > **VSTS Demo Generator** helps you create the team projects on your VSTS account with sample content that include source code, work items, iterations, service endpoints, build and release definitions based on the template you choose during the configuration.
 
-    ![VSTS Demo Generator](img/vstsdg.png)
+   Click on 'Sign In' and accpet the Authorizations. 
+   
+   ![VSTS Demo Generator](img/vsts_signin.png)
 
 2. Provide the Project Name, and click on the **Create Project** button.
 
-   ![VSTS Demo Generator](img/vstsdemogen2.png)
+   ![VSTS Demo Generator](img/vsts_createproject1.PNG)
 
 3. Once the project is provisioned, click on the link displayed under the **URL** field to navigate to the team project.
 
-   ![VSTS Demo Generator](img/vstsdemogen3.png)
+   ![VSTS Demo Generator](img/vsts_createproject2.PNG)
    
 
 ## Exercise 1: Service Endpoint creation
