@@ -108,15 +108,15 @@ Use the EXTERNAL-IP value from the previous step and put that into your browser:
     * Once you have filled in the values similar to the screenshot above, click the **Save & Test** button and ensure no errors come back.
 
 4. Add K8s Monitoring Dashboard to Grafana
-    * After the datasource has been added, it is now time to add a dashboard. Grafana dashboards can be shared on Grafana.com. Go to manage dashboards via the menu in the top left and click on Import.
+    * After the datasource has been added, it is now time to add a dashboard. Grafana dashboards can be shared on Grafana.com. Go to **manage** dashboards via the menu in the top left and click on **Import** option.
 
     ![](img/8-grafanan-importdb.jpg)
 
-    * Click on the **Upload File** button and browse to the `grafana-dashboard.json` in the `helper-files` directory. You can also paste the contents of the 'grafana-dashboard.json' file from the '/lab/helper-files' directory of this github repository into the text box.
+    * You can click on the Upload File button and browse to the `grafana-dashboard.json` in the `helper-files` directory. Since we don't have the helper-files downloaded locally you can paste the contents of the **'grafana-dashboard.json'** file from the '/lab/helper-files' directory of this github repository into the text box. Click on **Load**
 
     ![](img/8-grafana_dashboardid.png)
 
-    * Set the datasource dropdown to the "AKSPrometheus" that was created in the previous step. 
+    * Set the datasource dropdown to the **AKSPrometheus** that was created in the previous step. 
 
     ![](img/8-grafana-import-json.jpg)
 
