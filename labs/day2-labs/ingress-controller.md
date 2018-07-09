@@ -25,8 +25,8 @@ We will use Helm to install Nginx. We had configured Helm in prior labs.
     helm version
 
     # You should see something like the following as output:
-    Client: &version.Version{SemVer:"v2.7.2", GitCommit:"8478fb4fc723885b155c924d1c8c410b7a9444e6", GitTreeState:"clean"}
-    Server: &version.Version{SemVer:"v2.7.2", GitCommit:"8478fb4fc723885b155c924d1c8c410b7a9444e6", GitTreeState:"clean"}
+    Client: &version.Version{SemVer:"v2.9.1", GitCommit:"8478fb4fc723885b155c924d1c8c410b7a9444e6", GitTreeState:"clean"}
+    Server: &version.Version{SemVer:"v2.9.1", GitCommit:"8478fb4fc723885b155c924d1c8c410b7a9444e6", GitTreeState:"clean"}
     ```
 
     > Note: If helm was not configured, you must run `helm init`
@@ -188,7 +188,7 @@ heroes-db-deploy-7d6bf97b54-d5n9z    1/1       Running   0          1m
 heroes-web-deploy-8695d44cdb-7wrgq   1/1       Running   0          50s
 heroes-web-deploy-8695d44cdb-mkzzx   1/1       Running   0          50s
 ```
-5. Browse to the web app via the Ingress Controller
+6. Browse to the web app via the Ingress Controller
 
 ```
 # get ingress external IP
@@ -201,6 +201,8 @@ ingress-nginx-ingress-default-backend   ClusterIP      10.0.171.59    <none>    
 * Using the external IP of the controller from the above output, go to http://52.186.29.245 
 
 > Note: you will likely see a privacy SSL warning
+
+## Test the Load Balancing
 
 Refresh the page multiple times and notice the change in the name of the pod and the Ip address as shown in example snippets below:
 
