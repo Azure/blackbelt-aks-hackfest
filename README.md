@@ -34,9 +34,10 @@ The labs are based upon a node.js application that allows for voting on the Just
   11. Try [CI/CD Automation with Brigade](labs/day2-labs/cicd-brigade.md) or [CI/CD Automation with VSTS](labs/day2-labs/cicd-vsts.md)
   12. [Kubernetes Ingress Controllers](labs/day2-labs/ingress-controller.md)
   13. [Kubernetes InitContainers](labs/day2-labs/init-containers.md)
-  14. [Azure Service Broker](labs/day2-labs/open-service-broker.md)
-  15. [Azure Container Instances and ACI Connector](labs/day2-labs/virtual-kubelet-aci.md)
-  16. [Manage AKS with Weave](labs/day2-labs/manage-aks-using-weave.md)
+  14. [Kubernetes Persistent Volumes](labs/day2-labs/persistent-volumes.md )
+  15. [Azure Service Broker](labs/day2-labs/open-service-broker.md)
+  16. [Azure Container Instances and ACI Connector](labs/day2-labs/virtual-kubelet-aci.md)
+  17. [Manage AKS with Weave](labs/day2-labs/manage-aks-using-weave.md)
   
   
 ## Contributing
