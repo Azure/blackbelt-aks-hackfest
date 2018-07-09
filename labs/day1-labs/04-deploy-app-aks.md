@@ -52,7 +52,13 @@ ACR_PWD=
 
 kubectl create secret docker-registry acr-secret --docker-server=$ACR_SERVER --docker-username=$ACR_USER --docker-password=$ACR_PWD --docker-email=superman@heroes.com
 ```
-
+You can verify the secret by running the following command:
+```
+[root@CentoS01 helper-files]# kubectl get secret
+NAME                  TYPE                                  DATA      AGE
+acr-secret            kubernetes.io/dockerconfigjson        1         8s
+default-token-xd8wk   kubernetes.io/service-account-token   3         53m
+```
 > Note: You can review the `heroes-db.yaml` and `heroes-web-api.yaml` to see where the `imagePullSecrets` are configured.
 
 ## Deploy database container to AKS
