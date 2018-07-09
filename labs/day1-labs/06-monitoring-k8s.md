@@ -105,7 +105,7 @@ Use the EXTERNAL-IP value from the previous step and put that into your browser:
     ![](img/8-grafanadatasource.JPG)
 
 3. Validate Prometheus Data Source
-    * Once you have filled in the values similar to the screenshot above, click the **Add** button and ensure no errors come back.
+    * Once you have filled in the values similar to the screenshot above, click the **Save & Test** button and ensure no errors come back.
 
 4. Add K8s Monitoring Dashboard to Grafana
     * After the datasource has been added, it is now time to add a dashboard. Grafana dashboards can be shared on Grafana.com. Go to manage dashboards via the menu in the top left and click on Import.
