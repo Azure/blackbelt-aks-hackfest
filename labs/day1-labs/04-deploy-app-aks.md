@@ -3,7 +3,7 @@
 ## Review/Edit the YAML Config Files
 
 1. In Azure Cloud Shell edit `heroes-db.yaml` using `vi`
-    ```
+    ```bash
     cd ~/blackbelt-aks-hackfest/labs/helper-files
 
     vi heroes-db.yaml
@@ -13,7 +13,7 @@
     * You will need to replace the `<login server>` with the ACR login server created in lab 2
     * Example: 
 
-        ```
+        ```yaml
         spec:
         containers:
         - image: mycontainerregistry.azurecr.io/azureworkshop/rating-db:v1
@@ -21,7 +21,7 @@
         ```
 
 2. In Azure Cloud Shell edit `heroes-web-api.yaml` using `vi`
-    ```
+    ```bash
     cd ~/blackbelt-aks-hackfest/labs/helper-files
 
     vi heroes-web-api.yaml
@@ -33,7 +33,7 @@
 
     * Example: 
 
-        ```
+        ```yaml
         spec:
         containers:
         - image: mycontainerregistry.azurecr.io/azureworkshop/rating-web:v1
@@ -44,7 +44,7 @@
 
 There are a few ways that AKS clusters can access your private Azure Container Registry. Generally the service account that kubernetes utilizes will have rights based on its Azure credentials. In our lab config, we must create a secret to allow this access. 
 
-```
+```bash
 # set these values to yours
 ACR_SERVER=
 ACR_USER=
@@ -58,16 +58,17 @@ kubectl create secret docker-registry acr-secret --docker-server=$ACR_SERVER --d
 ## Deploy database container to AKS
 
 * Use the kubectl CLI to deploy each app
-    ```
+    ```bash
     cd ~/blackbelt-aks-hackfest/labs/helper-files
 
     kubectl apply -f heroes-db.yaml
     ```
 
 * Get mongodb pod name
-    ```
+    ```bash
     kubectl get pods
-
+    ```
+    ```
     NAME                                 READY     STATUS    RESTARTS   AGE
     heroes-db-deploy-2357291595-k7wjk    1/1       Running   0          3m
 
@@ -75,7 +76,7 @@ kubectl create secret docker-registry acr-secret --docker-server=$ACR_SERVER --d
     ```
 
 * Import data into MongoDB using script
-    ```
+    ```bash
     # ensure the pod name variable is set to your pod name
     # once you exec into pod, run the `import.sh` script
 
@@ -97,7 +98,7 @@ kubectl create secret docker-registry acr-secret --docker-server=$ACR_SERVER --d
 
 * Use the kubectl CLI to deploy each app
 
-    ```
+    ```bash
     cd ~/blackbelt-aks-hackfest/labs/helper-files
 
     kubectl apply -f heroes-web-api.yaml
@@ -106,9 +107,10 @@ kubectl create secret docker-registry acr-secret --docker-server=$ACR_SERVER --d
 ## Validate
 
 * Check to see if pods are running in your cluster
-    ```
+    ```bash
     kubectl get pods
-
+    ```
+    ```
     NAME                                 READY     STATUS    RESTARTS   AGE
     heroes-api-deploy-1140957751-2z16s   1/1       Running   0          2m
     heroes-db-deploy-2357291595-k7wjk    1/1       Running   0          3m
@@ -116,7 +118,7 @@ kubectl create secret docker-registry acr-secret --docker-server=$ACR_SERVER --d
     ```
 
 * Check to see if services are deployed.
-    ```
+    ```bash
     kubectl get service
 
     NAME         TYPE           CLUSTER-IP    EXTERNAL-IP      PORT(S)          AGE
