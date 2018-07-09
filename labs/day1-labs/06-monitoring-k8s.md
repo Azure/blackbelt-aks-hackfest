@@ -112,7 +112,7 @@ Use the EXTERNAL-IP value from the previous step and put that into your browser:
 
     ![](img/8-grafanan-importdb.jpg)
 
-    * Click on the **Upload File** button and browse to the `grafana-dashboard.json` in the `helper-files` directory. You can also paste the contents of the grafana-dashboard.json from the /lab/helper-files directory of this github repository into the text box.
+    * Click on the **Upload File** button and browse to the `grafana-dashboard.json` in the `helper-files` directory. You can also paste the contents of the 'grafana-dashboard.json' file from the '/lab/helper-files' directory of this github repository into the text box.
 
     ![](img/8-grafana_dashboardid.png)
 
@@ -125,3 +125,5 @@ Use the EXTERNAL-IP value from the previous step and put that into your browser:
     ![](img/8-grafana_k8sdashboard.png)
 
     You should now have Prometheus and Grafana running in your Azure Kubernetes Service cluster and be able to see the Grafana Dashboard.
+
+Explore the Grafana dashboard to see different performance and usage metrics of your AKS cluster.
