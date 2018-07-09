@@ -52,7 +52,7 @@ NAME                       STATUS    ROLES     AGE       VERSION
 aks-nodepool1-42552728-0   Ready     agent     4h        v1.9.6
 aks-nodepool1-42552728-1   Ready     agent     4h        v1.9.6
 ```
-2. Scale out AKS cluster to accomodate the demand
+2. Scale out AKS cluster to accommodate the demand
 ```bash
 # set these value for Resource Group Name (the cluster and the RG are the same name)
 
