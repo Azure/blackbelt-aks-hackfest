@@ -42,14 +42,18 @@
 
 ## Setup AKS with access to Azure Container Registry
 
-There are a few ways that AKS clusters can access your private Azure Container Registry. Generally the service account that kubernetes utilizes will have rights based on its Azure credentials. In our lab config, we must create a secret to allow this access. 
+There are a few ways that AKS clusters can access your private Azure Container Registry. Generally the service account that kubernetes utilizes will have rights based on its Azure credentials. In our lab config, we must create a secret to allow this access.
+
+In the Azure portal, navigate to the 'Access Keys' section of the Container Registry you have created to get the below values and update them in the shell:
 
 ```bash
 # set these values to yours
 ACR_SERVER=
 ACR_USER=
 ACR_PWD=
-
+```
+Run the following command to create a secret key in the AKS cluster to access your ACR. 
+```
 kubectl create secret docker-registry acr-secret --docker-server=$ACR_SERVER --docker-username=$ACR_USER --docker-password=$ACR_PWD --docker-email=superman@heroes.com
 ```
 You can verify the secret by running the following command:
