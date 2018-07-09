@@ -87,7 +87,7 @@ Grafana is a dashboard visualization tool that can use all kinds of data sources
 Use the EXTERNAL-IP value from the previous step and put that into your browser:
     * eg. http://52.226.75.38, EXTERNAL-IP column from above. You should see something like the following come up, be patient it will take a moment or two:
 
-    ![](img/8-grafana_default.png)
+    ![](img/8-grafana_default_new.png)
 
 ## Setting up Grafana
 1. Log into Grafana Dashboard using **admin** for both the username and password
