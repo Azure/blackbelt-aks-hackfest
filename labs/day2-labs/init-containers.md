@@ -20,6 +20,7 @@ Take note of the two files in this directory, [init-db-sample.yaml](init-db-samp
     ```bash
     $ kubectl delete -f heroes-db.yaml
     $ kubectl delete -f heroes-web-api.yaml
+    $ kubectl delete -f heroes-web-api-ingress.yaml
     ```
 
 2. Modify init-db-sample.yaml in the `helper-files` directory to add your imagePullSecrets as well as reference your container registry and db image
