@@ -25,10 +25,9 @@ We are going to be installing Prometheus and Grafana into our K8s cluster using 
     ```
     helm version
     # You should see something like the following as output:
-    Client: &version.Version{SemVer:"v2.7.2", GitCommit:"8478fb4fc723885b155c924d1c8c410b7a9444e6", GitTreeState:"clean"}
-    Server: &version.Version{SemVer:"v2.7.2", GitCommit:"8478fb4fc723885b155c924d1c8c410b7a9444e6", GitTreeState:"clean"}
+    Client: &version.Version{SemVer:"v2.9.1", GitCommit:"8478fb4fc723885b155c924d1c8c410b7a9444e6", GitTreeState:"clean"}
+    Server: &version.Version{SemVer:"v2.9.1", GitCommit:"8478fb4fc723885b155c924d1c8c410b7a9444e6", GitTreeState:"clean"}
     ```
-
 ## Install Prometheus using Helm
 Prometheus is a Cloud Native Computing Foundation (CNCF) project used to collect and process metrics. It collects metrics from configured targets, in our case it is a Kubernetes Cluster.
 
@@ -92,12 +91,11 @@ Use the EXTERNAL-IP value from the previous step and put that into your browser:
 
 ## Setting up Grafana
 1. Log into Grafana Dashboard using **admin** for both the username and password
-    * You should see something like the following:
+    * You will be prompted to provide a new password.
+    * You should see something like the following in the Home Page:
 
     ![](img/8-grafana_loggedin.png)
     
-     * You will be prompted to provide a new password.
-
 2. Add Prometheus as a Data Source
     * If you recall from above, we exposed a number of K8s services, one of those services was the Prometheus Server. We are going to use that Service endpoint in our Data Service configuration. 
     Click on the 'Add Data Source' button and the screen should look something like the below screen shot.
@@ -114,7 +112,7 @@ Use the EXTERNAL-IP value from the previous step and put that into your browser:
 
     ![](img/8-grafanan-importdb.jpg)
 
-    * Click on the **Upload File** button and browse to the `grafana-dashboard.json` in the `helper-files` directory. You can also paste the contents of the json into the text box.
+    * Click on the **Upload File** button and browse to the `grafana-dashboard.json` in the `helper-files` directory. You can also paste the contents of the grafana-dashboard.json from the /lab/helper-files directory of this github repository into the text box.
 
     ![](img/8-grafana_dashboardid.png)
 
