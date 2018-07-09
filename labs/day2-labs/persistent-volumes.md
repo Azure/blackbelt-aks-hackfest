@@ -1,8 +1,8 @@
 
-# Use Persistent Azure Disks for mongodb database
+# Use Persistent Volumes for mongodb database
 A persistent volume in an AKS Cluster represents the storage that has been provisioned for use with the AKS pods. Even if the pods are destroyed/recreated, the data stored in the persistent volumes will stay independent of the pod lifecycle. 
 
-In this example we will explore how to use already existing Azure disks as volumes in an AKS Cluster, and use it to store the monogdb files.  
+In this example we will explore how to use already existing Azure disks as persistent volumes in an AKS Cluster, and use it to store the monogdb files.  
 We will create 2 Managed Disks and place the mongodb data and config files on the mounted Azure disks. Finally we will delete the pod and recreate it and attach the same Azure disks which hold mongodb data files and see that the data is persistent.
 
 NOTE: All the commands given below can be executed either on the Azure Shell or the CentOS jumpbox.
