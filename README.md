@@ -23,15 +23,13 @@ The labs are based upon a node.js application that allows for voting on the Just
   4. [Deploy application to Azure Kubernetes Service](labs/day1-labs/04-deploy-app-aks.md)
   5. [Kubernetes UI Overview](labs/day1-labs/05-kubernetes-ui.md)
   6. [Operational Monitoring and Log Management](labs/day1-labs/06-monitoring-k8s.md)
-
-### Day 3 - Labs - Thursday
   7. [Application and Infrastructure Scaling](labs/day1-labs/07-cluster-scaling.md)
   8. [Moving your data services to Azure PaaS (CosmosDB)](labs/day1-labs/08-migrate-mongo-to-cosmos.md)
   9. [Update and Deploy New Version of Application](labs/day1-labs/09-update-application.md)
   10. [Upgrade an Azure Kubernetes Service (AKS) cluster](labs/day1-labs/10-cluster-upgrading.md)
-  11. Try [CI/CD Automation with Brigade](labs/day2-labs/cicd-brigade.md) or [CI/CD Automation with VSTS](labs/day2-labs/cicd-vsts.md)
-  
+
 ### Day 3/ 4 - Labs (Optional)
+  11. Try [CI/CD Automation with Brigade](labs/day2-labs/cicd-brigade.md) or [CI/CD Automation with VSTS](labs/day2-labs/cicd-vsts.md)
   12. [Kubernetes Ingress Controllers](labs/day2-labs/ingress-controller.md)
   13. [Kubernetes InitContainers](labs/day2-labs/init-containers.md)
   14. [Kubernetes Persistent Volumes](labs/day2-labs/persistent-volumes.md )
