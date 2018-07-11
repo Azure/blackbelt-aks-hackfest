@@ -179,7 +179,7 @@ In this section we will use the ```mongodump``` and ```mongorestore``` commands 
 * Submit some new ratings and validate the same in the CosmosDB Data Explorer. You should see the number of ratings documents increase
 * Delete the MongoDB pod
 
-	Just for the fun of it, delete your MongoDB pod and ensure your app is now fully migrated to a PaaS-based data layer. 
+	Just for the fun of it, delete your MongoDB pod and ensure your app is now connected to a PaaS-based data layer. 
 
 	```
 	kubectl get deploy
