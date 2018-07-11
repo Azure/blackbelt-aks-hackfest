@@ -4,7 +4,7 @@ In this lab, we will make a change to the web application and then re-deploy the
 
 ## Update web application code
 
-1. Use the editor of your choice and browse to `~/blackbelt-aks-hackfest/app/web/src/components/`
+1. Navigate to `~/blackbelt-aks-hackfest/app/web/src/components/`
 2. Edit code for the `Footer.vue`
 3. Find the snippet below *(line 13)* and change the text _"Azure Global Blackbelt Team"_ to your name or whatever you would like to display.
 
@@ -47,7 +47,7 @@ In this lab, we will make a change to the web application and then re-deploy the
     docker push $ACR_SERVER/azureworkshop/rating-web:new-version
     ```
 
-5. Verify image was pushed to ACR by checking your registry in the Azure Portal
+5. Verify that the new version of the image was pushed to ACR by checking your registry in the Azure Portal
 
 ## Update kubernetes deployment
 
@@ -110,4 +110,4 @@ There are two ways to update the application with the new version. Both are desc
 
 ## Browse to your newly deployed web application
 
-Browse to the web application and validate that the change you made to the 'Footer.vue' file is reflecting in the portal.
+Browse to the web application on the Public IP and validate that the change you made to the 'Footer.vue' file is reflecting in the portal.
