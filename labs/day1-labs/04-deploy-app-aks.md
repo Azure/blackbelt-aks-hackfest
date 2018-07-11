@@ -13,8 +13,7 @@
     * You will need to replace the `<login server>` with the ACR login server created in lab 2
     * Example: 
 
-        ```yaml
-        spec:
+       ```yaml
         containers:
         - image: mycontainerregistry.azurecr.io/azureworkshop/rating-db:v1
             name:  heroes-db-cntnr
@@ -32,9 +31,12 @@
         > Note: You will update the image name TWICE updating the web and api container images.
 
     * Example: 
-
         ```yaml
-        spec:
+         containers:
+      - image: mycontainerregistry.azurecr.io/azureworkshop/rating-api:v1
+        name:  heroes-api-cntnr
+        ```
+        ```yaml
         containers:
         - image: mycontainerregistry.azurecr.io/azureworkshop/rating-web:v1
             name:  heroes-web-cntnr
