@@ -44,7 +44,8 @@
 
 ## Setup AKS with access to Azure Container Registry
 
-There are a few ways that AKS clusters can access your private Azure Container Registry. Generally the service account that kubernetes utilizes will have rights based on its Azure credentials. In our lab config, we must create a secret to allow this access.
+There are a few ways that AKS clusters can access your private Azure Container Registry. Generally the service account that kubernetes utilizes will have rights based on its Azure credentials. 
+In our lab config, we must create a [secret](https://kubernetes.io/docs/concepts/configuration/secret/) to allow this access.
 
 In the Azure portal, navigate to the 'Access Keys' section of the Container Registry you have created to get the below values and update them in the shell:
 
@@ -102,10 +103,8 @@ default-token-xd8wk   kubernetes.io/service-account-token   3         53m
     2018-01-16T21:38:45.040+0000	connected to: localhost
     2018-01-16T21:38:45.152+0000	imported 2 documents
     root@heroes-db-deploy-2357291595-xb4xm:/# exit
-
-    # be sure to exit pod as shown above
     ```
-
+##### Be sure to exit pod as shown above
 ## Deploy the web and api containers to AKS
 
 * Use the kubectl CLI to deploy each app
