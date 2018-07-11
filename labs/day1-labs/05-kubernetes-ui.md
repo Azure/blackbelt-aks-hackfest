@@ -10,7 +10,7 @@ There are multiple ways of accessing Kubernetes dashboard. You can access throug
 
 1. Command-Line Proxy
 
-    * From your local computer, open a local command prompt or powershell ([azure cli required](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-windows?view=azure-cli-latest)) with elevated privileges
+    * From your local computer, open a local command prompt or powershell ([azure cli](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-windows?view=azure-cli-latest) requires to be installed) with elevated privileges
     * Run ```az login``` to authenticate with Azure
     * Run ```az group list -o table``` to lookup the resource group containing your cluster
     * Run ```az aks list -o table``` to lookup the name of your AKS cluster
