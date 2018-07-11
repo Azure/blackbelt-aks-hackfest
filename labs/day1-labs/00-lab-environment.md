@@ -11,7 +11,7 @@ Our labs are build and verified using CentOS7. Our recommendations is to use Cen
 * Setup your Jumpbox VM in Azure
     1. Browse to http://portal.azure.com
     2. Click on "Create a resource" and search for "CentOS"
-    3. Deploy a CentOS7.4 VM (B1ms should be enough) - please recognize your credentials
+    3. Deploy a CentOS-based 7.4 VM (B1ms should be enough, Publisher of CentOS - Rogue Wave Software) - please recognize your credentials
     4. Connect to your jumpbox using SSH (PuTTY or MobaXTerm)
     5. Connect to your newly created jumpbox
     6. Goto [Jumpbox Setup](/labs/helper-files/jumpbox-setup.md) to install the required software
