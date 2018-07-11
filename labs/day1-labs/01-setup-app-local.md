@@ -92,4 +92,4 @@ The web frontend for the app is written in [Vue.js](https://vuejs.org/Vue "Vue.j
 
 ## Clean-up
 
-Close the web and api apps in the terminal windows by hitting `ctrl-c` in each of the corresponding terminal windows
+> **Important!** Close the web and api apps in the terminal windows by hitting `ctrl-c` in each of the corresponding terminal windows
