@@ -10,7 +10,7 @@ There are multiple ways of accessing Kubernetes dashboard. You can access throug
 
 1. Command-Line Proxy
 
-    * Open a local command prompt or powershell (azure cli required) with elevated privileges
+    * From your local computer, open a local command prompt or powershell ([azure cli required](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-windows?view=azure-cli-latest)) with elevated privileges
     * Run ```az login``` to authenticate with Azure
     * Run ```az group list -o table``` to lookup the resource group containing your cluster
     * Run ```az aks list -o table``` to lookup the name of your AKS cluster
@@ -26,6 +26,6 @@ There are multiple ways of accessing Kubernetes dashboard. You can access throug
 ![](img/ui_nodes.png)
 2. Explore the different node properties available through the dashboard
 3. Explore the different pod properties available through the dashboard ![](img/ui_pods.png)
-4. In this lab feel free to take a look around other resources Kubernetes provides through the dashboard
+4. In this lab, feel free to take a look around other resources Kubernetes provides through the dashboard.
 
 > To learn more about Kubernetes objects and resources, browse the documentation: <https://kubernetes.io/docs/user-journeys/users/application-developer/foundational/#section-3>
