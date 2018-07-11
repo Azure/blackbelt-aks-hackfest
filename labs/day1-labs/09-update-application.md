@@ -6,7 +6,7 @@ In this lab, we will make a change to the web application and then re-deploy the
 
 1. Navigate to `~/blackbelt-aks-hackfest/app/web/src/components/`
 2. Edit code for the `Footer.vue`
-3. Find the snippet below *(line 13)* and change the text _"Azure Global Blackbelt Team"_ to your name or whatever you would like to display.
+3. Find the snippet below *(line 17)* and change the text _"Azure Global Blackbelt Team"_ to your name or whatever you would like to display.
 
     ```
     <div class="row at-row flex-center flex-middle">
