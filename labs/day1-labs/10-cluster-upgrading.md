@@ -7,22 +7,24 @@ Azure Container Service (AKS) makes it easy to perform common management tasks i
 Before upgrading a cluster, use the `az aks get-versions` command to check which Kubernetes releases are available for upgrade.
 
 ```azurecli-interactive
-az aks get-upgrades --name <CLUSTER_NAME> --resource-group <RESOURCE GROUP NAME> --output table
+az aks get-versions --name <CLUSTER_NAME> --resource-group <RESOURCE GROUP NAME> --output table
 ```
 
 Output:
 
 ```console
-Name     ResourceGroup    MasterVersion    MasterUpgrades    NodePoolVersion    NodePoolUpgrades
--------  ---------------  ---------------  ----------------  -----------------  ------------------
-default  myaksrgtest      1.9.6            1.10.3            1.9.6              1.10.3
-
+Name     ResourceGroup    MasterVersion    MasterUpgrades         NodePoolVersion    NodePoolUpgrades
+-------  ---------------  ---------------  ---------------------  -----------------  ---------------------
+default  myaksrg          1.9.6            1.9.9, 1.10.3, 1.10.5  1.9.6              1.9.9, 1.10.3, 1.10.5
 ```
 
-We have one version available for upgrade: 1.10.3. We can use the `az aks upgrade` command to upgrade to the latest available version.  During the upgrade process, nodes are carefully [cordoned and drained][kubernetes-drain] to minimize disruption to running applications.  Before initiating a cluster upgrade, ensure that you have enough additional compute capacity to handle your workload as cluster nodes are added and removed.
+We have 3 versions available for upgrade: 1.9.9, 1.10.3, 1.10.5. We can use the `az aks upgrade` command to upgrade to the latest available version.  During the upgrade process, nodes are carefully [cordoned and drained][kubernetes-drain] to minimize disruption to running applications.  Before initiating a cluster upgrade, ensure that you have enough additional compute capacity to handle your workload as cluster nodes are added and removed.
 
-Note:
-Kubernetes may be unavailable during cluster upgrades. The upgrade may take 10 to 15 minutes.
+Note: 
+##### Kubernetes may be unavailable during cluster upgrades. The upgrade may take 10 to 15 minutes.
+##### As of today, the remaining lab exercises are tested with version 1.10.3 only and we recommend you to upgrade the cluster to version 1.10.3.
+
+Upgrade the cluster: 
 
 ```azurecli-interactive
 az aks upgrade --name <CLUSTER_NAME> --resource-group <RESOURCE GROUP NAME> --kubernetes-version 1.10.3
