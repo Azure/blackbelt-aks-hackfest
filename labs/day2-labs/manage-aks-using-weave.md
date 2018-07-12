@@ -22,7 +22,7 @@ weave-scope-app-dbd44d984-5gstd   1/1       Running   0          1m
 ```
 2) Execute the following command on your **local machine** to forward Port 4040
 ```azurecli-interactive
-kubectl port-forward -n weave <yourweavepodname> 4040
+kubectl port-forward -n weave <your-weavescopeapp-podname> 4040
 ```
 
 3) Open browser using the following URL
