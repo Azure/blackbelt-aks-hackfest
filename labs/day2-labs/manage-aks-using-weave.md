@@ -20,6 +20,8 @@ weave-scope-agent-gdctk           1/1       Running   0          1m
 weave-scope-agent-j44bx           1/1       Running   0          1m
 weave-scope-app-dbd44d984-5gstd   1/1       Running   0          1m
 ```
+Copy the name of the weave-scope-app pod from the above result and use it in the next step. 
+
 2) Execute the following command on your **local machine** to forward Port 4040
 ```azurecli-interactive
 kubectl port-forward -n weave <your-weavescopeapp-podname> 4040
