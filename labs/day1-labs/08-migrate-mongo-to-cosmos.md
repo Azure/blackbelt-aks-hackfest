@@ -39,7 +39,7 @@ In this section we will use the ```mongodump``` and ```mongorestore``` commands 
 ](https://docs.microsoft.com/en-us/azure/cosmos-db/mongodb-migrate#guide-for-a-successful-migration) in the Azure Docs for CosmosDB.
 
 1. Exec into mongoDB pod and export data
-	```
+	```bash
 	# list pods in the cluster and set the variable to your pod name
 	kubectl get pod
 	NAME                                                              READY     STATUS    RESTARTS   AGE
@@ -73,7 +73,7 @@ In this section we will use the ```mongodump``` and ```mongorestore``` commands 
 	
 	From the same prompt inside the pod, set the variables below and run the command
 
-	```
+	```bash
 	# set the below environment variables inside the mongoDB pod
 	HOST=
 	USER_NAME=
@@ -114,9 +114,9 @@ In this section we will use the ```mongodump``` and ```mongorestore``` commands 
 
 * Set the following as environment variables. You can obtain these in the Azure Portal for your CosmosDB instance in the ```Connection String``` tab. 
 
-	> Note that we must set these again because in the earlier step, they were set inside the mongoDB pod. You should be at a shell prompt in the Azure Cloud Shell for this step.
+	> Note that we must set these again because in the earlier step, they were set inside the mongoDB pod. You should be at a shell prompt in the **Azure Cloud Shell** for this step.
 
-	```
+	```bash
 	# update the lines below with your config details
 	HOST=
 	USER_NAME=
@@ -136,12 +136,12 @@ In this section we will use the ```mongodump``` and ```mongorestore``` commands 
 * Edit the `heroes-web-api.yaml` file in `helper-files`
 	The snippet below is the section that must be udpated. We are replacing the `MONGODB_URI` value with the new connect string created in the prior section
 	
-	```
+	```bash
 	cd ~/blackbelt-aks-hackfest/labs/helper-files
 	vi heroes-web-api.yaml
 	```
 	
-	```
+	```yaml
 	env:
 	- name:  MONGODB_URI
 		value: mongodb://username:biglongpassword@host.documents.azure.com:10255/heroratings?ssl=true
@@ -153,7 +153,7 @@ In this section we will use the ```mongodump``` and ```mongorestore``` commands 
 	```
 
 * Apply the new config in AKS
-	```
+	```bash
 	kubectl apply -f heroes-web-api.yaml
 
 	# if you look at the pods right away, you will see a new api pod being created
@@ -170,7 +170,7 @@ In this section we will use the ```mongodump``` and ```mongorestore``` commands 
 
 * Browse to your heroes web app using the public IP from the below command and validate the leaderboard
 
-	```
+	```bash
 	kubectl get service
 	NAME    TYPE           CLUSTER-IP     EXTERNAL-IP          PORT(S)          AGE
 	web     LoadBalancer   10.0.115.59    <your external ip>   8080:30112/TCP   12d
@@ -181,7 +181,7 @@ In this section we will use the ```mongodump``` and ```mongorestore``` commands 
 
 	Just for the fun of it, delete your MongoDB pod and ensure your app is now connected to a PaaS-based data layer. 
 
-	```
+	```bash
 	kubectl get deploy
 
 	NAME                DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
