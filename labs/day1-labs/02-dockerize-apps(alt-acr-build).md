@@ -106,7 +106,7 @@ For the first container, we will be creating a Dockerfile from scratch. For the 
     
     # Set environment variable for ACR Name
     ACR_NAME=<registry-name>
-    az acr build --registry $ACR_NAME --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` --build-arg VCS_REF=`git rev-parse --short HEAD` --build-arg IMAGE_TAG_REF=v1 --image rating-web:v1 .
+    az acr build --registry $ACR_NAME --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` --build-arg VCS_REF=`git rev-parse --short HEAD` --build-arg IMAGE_TAG_REF=v1 --image azureworkshop/rating-web:v1 .
     
     ```
     1. Return to the Azure Portal in your browser and validate that the image appears in your Container Registry under the "Repositories" area.
@@ -121,7 +121,7 @@ In this step, the Dockerfile has been created for you.
     ```
     cd ~/blackbelt-aks-hackfest/app/api
 
-   az acr build --registry $ACR_NAME --image rating-api:v1 .
+   az acr build --registry $ACR_NAME --image azureworkshop/rating-api:v1 .
     
     ```
     1. Return to the Azure Portal in your browser and validate that the image appears in your Container Registry under the "Repositories" area.
@@ -135,7 +135,7 @@ In this step, the Dockerfile has been created for you.
     ```
     cd ~/blackbelt-aks-hackfest/app/db
 
-    az acr build --registry $ACR_NAME --image rating-api:v1 .
+    az acr build --registry $ACR_NAME --image azureworkshop/rating-api:v1 .
     
     ```
     1. Return to the Azure Portal in your browser and validate that the image appears in your Container Registry under the "Repositories" area.
