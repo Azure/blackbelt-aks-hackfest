@@ -15,6 +15,53 @@ We will use Azure COntainer Registry to build our containers from Dockerfiles an
 
     > The Standard registry offers the same capabilities as Basic, but with increased storage limits and image throughput. Standard registries should satisfy the needs of most production scenarios.
 
+1. Open the Azure Cloud Shell
+
+    ![Azure Cloud Shell](img/cloudshell.png "Azure Cloud Shell")
+
+2. The first time Cloud Shell is started will require you to create a storage account. In our lab, you must click `Advanced` and enter an account name and share.
+
+3. Once your cloud shell is started, clone the workshop repo into the cloud shell environment
+    ```
+    git clone https://github.com/Azure/blackbelt-aks-hackfest.git
+    ```
+
+4. In the cloud shell, you are automatically logged into your Azure subscription. ```az login``` is not required.
+    
+5. Verify your subscription is correctly selected as the default
+    ```
+    az account list
+    ```
+
+6. Find your RG name
+
+    ```
+    az group list 
+    ```
+    
+    ```
+
+    [
+    {
+        "id": "/subscriptions/b23accae-e655-44e6-a08d-85fb5f1bb854/resourceGroups/ODL-aks-v2-gbb-8386",
+        "location": "centralus",
+        "managedBy": null,
+        "name": "ODL-aks-v2-gbb-8386",
+        "properties": {
+        "provisioningState": "Succeeded"
+        },
+        "tags": {
+        "AttendeeId": "8391",
+        "LaunchId": "486",
+        "LaunchType": "ODL",
+        "TemplateId": "1153"
+        }
+    }
+    ]
+
+    # copy the name from the results above and set to a variable 
+    
+    RG_NAME=
 
 For the first container, we will be creating a Dockerfile from scratch. For the other containers, the Dockerfiles are provided.
 
