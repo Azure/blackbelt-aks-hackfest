@@ -106,7 +106,7 @@ For the first container, we will be creating a Dockerfile from scratch. For the 
     
     # Set environment variable for ACR Name
     ACR_NAME=<registry-name>
-    az acr build --registry $ACR_NAME --image rating-web:v1 .
+    az acr build --registry $ACR_NAME --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` --build-arg VCS_REF=`git rev-parse --short HEAD` --build-arg IMAGE_TAG_REF=v1 --image rating-web:v1 .
     
     ```
     1. Return to the Azure Portal in your browser and validate that the image appears in your Container Registry under the "Repositories" area.
