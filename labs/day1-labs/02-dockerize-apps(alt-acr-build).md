@@ -135,7 +135,7 @@ In this step, the Dockerfile has been created for you.
     ```
     cd ~/blackbelt-aks-hackfest/app/db
 
-    az acr build --registry $ACR_NAME --image azureworkshop/rating-api:v1 .
+    az acr build --registry $ACR_NAME --image azureworkshop/rating-db:v1 .
     
     ```
     1. Return to the Azure Portal in your browser and validate that the image appears in your Container Registry under the "Repositories" area.
