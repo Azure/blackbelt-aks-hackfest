@@ -64,7 +64,7 @@
     # set the location to one of the provided AKS locations (eg - centralus, eastus)
     LOCATION=
 
-    az aks create -n $CLUSTER_NAME -g $NAME -c 2 -k 1.7.7 --generate-ssh-keys -l $LOCATION
+    az aks create -n $CLUSTER_NAME -g $NAME -c 2 -k 1.7.7 --generate-ssh-keys -l $LOCATION --disable-rbac
     ```
 
 9. Verify your cluster status. The `ProvisioningState` should be `Succeeded`
