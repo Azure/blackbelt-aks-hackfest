@@ -2,6 +2,8 @@
 
 In this lab, we will deploy the Open Service Broker for Azure and the Kubernetes Service Catalog to automate the delivery of CosmosDB and configuration of our application.
 
+Note: the Kubernetes version of your cluster should be > 1.9.0, [otherwise you will get an error while trying to install OSBA](https://github.com/Azure/open-service-broker-azure/blob/fae43258eb8ff4c2e25f7b4da9879aae355eca73/docs/faq.md#osba-is-forbidden-not-yet-ready-to-handle-request).
+
 ## Install the Azure Service Broker on AKS
 
 1. Ensure Helm 2.7+ is Installed and Working
