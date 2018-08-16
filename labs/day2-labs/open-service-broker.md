@@ -12,20 +12,20 @@ Note: the Kubernetes version of your cluster should be > 1.9.0, [otherwise you w
 
 ```bash
 odl_user@Azure:~$ helm version
-Client: &version.Version{SemVer:"v2.8.0", GitCommit:"14af25f1de6832228539259b821949d20069a222", GitTreeState:"clean"}
-Server: &version.Version{SemVer:"v2.8.0", GitCommit:"14af25f1de6832228539259b821949d20069a222", GitTreeState:"clean"}
+Client: &version.Version{SemVer:"v2.9.1", GitCommit:"20adb27c7c5868466912eebdf6664e7390ebe710", GitTreeState:"clean"}
+Server: &version.Version{SemVer:"v2.9.1", GitCommit:"20adb27c7c5868466912eebdf6664e7390ebe710", GitTreeState:"clean"}
 ```
 
 * If a newer version of Helm is required, click [here](https://docs.helm.sh/using_helm/#installing-helm) for instructions on installing and updating Helm.
 
 2. Install Service Catalog on AKS
 
-* This step will install the Kubernetes Service Catalog which is a pre-requisite for OSBA.
+* This step will [install the Kubernetes Service Catalog which is a pre-requisite for OSBA](https://docs.microsoft.com/en-us/azure/aks/integrate-azure).
 
 ``` bash
 helm repo add svc-cat https://svc-catalog-charts.storage.googleapis.com
 
-helm install svc-cat/catalog --name catalog --namespace catalog --set rbacEnable=false
+helm install svc-cat/catalog --name catalog --namespace catalog --set controllerManager.healthcheck.enabled=false
 ```
 
 3. Gather Config Details
