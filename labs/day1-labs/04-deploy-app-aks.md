@@ -2,11 +2,11 @@
 
 ## Review/Edit the YAML Config Files
 
-1. In Azure Cloud Shell edit `heroes-db.yaml` using `vi`
+1. In Azure Cloud Shell edit `heroes-db.yaml` using Visual Studio Code:
     ```
     cd ~/blackbelt-aks-hackfest/labs/helper-files
 
-    vi heroes-db.yaml
+    code heroes-db.yaml
     ```
     * Review the yaml file and learn about some of the settings
     * Update the yaml file for the proper container image name
