@@ -30,7 +30,7 @@ helm install svc-cat/catalog --name catalog --namespace catalog --set controller
 
 3. Gather Config Details
 
-* Gather the following Subscription and Service Principal details. If you are using the Workshop Classroom experience, these values will be on the Launch Lab screen and you should have also received an e-mail copy.
+* Gather the following Subscription and Service Principal details. If you are using the Workshop Classroom experience, these values will be on the Launch Lab screen and you should have also received an e-mail copy. Otherwise, you could for example run this command `az ad sp create-for-rbac`.
 
 ```bash
 # set the below to values for your sub
