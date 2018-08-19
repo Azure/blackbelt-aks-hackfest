@@ -8,19 +8,6 @@ The diagram below illustrates how Virtual-Kubelet works.
 
 ![diagram](img/VK-ACI.png)
 
-## Cluster Setup
-
-1. List your Azure subscriptions:
-    ```console
-    az account list -o table
-    ```
-2. Copy your subscription ID and save it in an environment variable:
-
-    **Bash**
-    ```console
-    export AZURE_SUBSCRIPTION_ID="<SubscriptionId>"
-    ```
-
 ### Create a Resource Group for ACI
 
 To use Azure Container Instances, you must provide a resource group. We will use the existing Resource Group you were assigned.
@@ -54,97 +41,48 @@ Copy the name from the results above and set to a variable:
 export AZURE_RG=<name>
 ```
 
-### Assign Service Principal credentials to Environment Variables
-
-A Service Principal creates an identity for the Virtual Kubelet ACI provider to use when provisioning
-resources on your account on behalf of Kubernetes.
-
-1. Us the service principal that was provided during the course lab enrollment:
-   
-2. Save the values from Service Principal details in environment variables:
-
-    ```console
-    export AZURE_TENANT_ID=<Tenant>
-    export AZURE_CLIENT_ID=<AppId>
-    export AZURE_CLIENT_SECRET=<Password>
-    ```
-
-> NOTE: If you are running this lab in your own enviornment you must create a Service Principal with Contributor rights on the Subscription or at least the Resource Group that ACI will use. 
-
-a. In the console run
-```console
-az ad sp create-for-rbac --name virtual-kubelet-<randomized letters> -o table
-```
-
-b. The output should come as a tabular output similar to the following:
-```output
-    AppId                                 DisplayName          Name                        Password                                 Tenant
-    ------------------------------------  -------------------  --------------------------  ------------------------------------  ------------------------------------
-    e086ee4e-35cc-4fdd-9249-766756a1687c  virtual-kubelet-ejv  http://virtual-kubelet-ejv  133b6218-8bbe-4f0d-a824-660c17e87d2e  72f988bf-86f1-41af-91ab-2d7cd011db47
-```
-
-c. Assign the AppId, Tenant and Password to the Environment variables:
-```console
-export AZURE_TENANT_ID=<Tenant>
-export AZURE_CLIENT_ID=<AppId>
-export AZURE_CLIENT_SECRET=<Password>
-```
-
 ## Deployment of the ACI provider in your cluster
 
-Run these commands to deploy the virtual kubelet which connects your Kubernetes cluster to Azure Container Instances.
-
-If your cluster is an AKS cluster:
-
-```console
-export VK_IMAGE_TAG=0.2-beta-9
-
-cd ~
-git clone https://github.com/virtual-kubelet/virtual-kubelet.git
-cd virtual-kubelet
-
-curl https://raw.githubusercontent.com/virtual-kubelet/virtual-kubelet/master/scripts/createCertAndKey.sh > createCertAndKey.sh
-chmod +x createCertAndKey.sh
-. ./createCertAndKey.sh
-
-export ACI_REGION=eastus
-export RELEASE_NAME=virtual-kubelet-east
-export NODE_NAME=virtual-kubelet-east
+Grab the name of your AKS cluster and assign it to the variable below:
 ```
-Verify that the last three variables have been recorded correctly:
-```console
-echo $ACI_REGION,$RELEASE_NAME,$NODE_NAME
+export AKS_CLUSTER_NAME=<name>
 ```
-Output:
-```output
-eastus,virtual-kubelet-east,virtual-kubelet-east
+
+Install the Virtual-Kubelet connector in your AKS cluster to EastUS:
+
 ```
-Now intsall the Helm package for Virtual Kubelet:
-```console
-helm install ~/virtual-kubelet/charts/virtual-kubelet-for-aks/  --name "$RELEASE_NAME" \
-    --set env.azureClientId="$AZURE_CLIENT_ID",env.azureClientKey="$AZURE_CLIENT_SECRET",env.azureTenantId="$AZURE_TENANT_ID",env.azureSubscriptionId="$AZURE_SUBSCRIPTION_ID",env.aciResourceGroup="$AZURE_RG",env.nodeName="$NODE_NAME",env.nodeOsType=Linux,env.apiserverCert=$cert,env.apiserverKey=$key,image.tag="$VK_IMAGE_TAG"
+az aks install-connector --resource-group $AZURE_RG --name $AKS_CLUSTER_NAME --connector-name virtual-kubelet --os-type Linux --location eastus
 ```
 
 Output:
 
 ```console
-NAME:   virtual-kubelet
-LAST DEPLOYED: Thu Feb 15 13:17:01 2018
+Deploying the ACI connector for 'Linux' using Helm
+NAME:   virtual-kubelet-linux-eastus
+LAST DEPLOYED: Sun Aug 19 01:04:36 2018
 NAMESPACE: default
 STATUS: DEPLOYED
 
 RESOURCES:
-==> v1/Secret
-NAME                             TYPE    DATA  AGE
-virtual-kubelet-virtual-kubelet  Opaque  3     1s
+==> v1/ServiceAccount
+NAME                                                  SECRETS  AGE
+virtual-kubelet-linux-eastus-virtual-kubelet-for-aks  1        27s
+
+==> v1beta1/ClusterRoleBinding
+NAME                                                  AGE
+virtual-kubelet-linux-eastus-virtual-kubelet-for-aks  24s
 
 ==> v1beta1/Deployment
-NAME                             DESIRED  CURRENT  UP-TO-DATE  AVAILABLE  AGE
-virtual-kubelet-virtual-kubelet  1        1        1           0          1s
+NAME                                                  DESIRED  CURRENT  UP-TO-DATE  AVAILABLE  AGE
+virtual-kubelet-linux-eastus-virtual-kubelet-for-aks  1        1        1           1          21s
 
 ==> v1/Pod(related)
-NAME                                              READY  STATUS             RESTARTS  AGE
-virtual-kubelet-virtual-kubelet-7bcf5dc749-6mvgp  0/1    ContainerCreating  0         1s
+NAME                                                             READY  STATUS   RESTARTS  AGE
+virtual-kubelet-linux-eastus-virtual-kubelet-for-aks-84fb8ltzbv  1/1    Running  0         20s
+
+==> v1/Secret
+NAME                                                  TYPE    DATA  AGE
+virtual-kubelet-linux-eastus-virtual-kubelet-for-aks  Opaque  3     30s
 
 
 NOTES:
@@ -152,49 +90,46 @@ The virtual kubelet is getting deployed on your cluster.
 
 To verify that virtual kubelet has started, run:
 
-  kubectl --namespace=default get pods -l "app=virtual-kubelet-virtual-kubelet"
+  kubectl --namespace=default get pods -l "app=virtual-kubelet-linux-eastus-virtual-kubelet-for-aks"
+
+Note:
+TLS key pair not provided for VK HTTP listener. A key pair was generated for you. This generated key pair is not suitable for production use.
 ```
 
-Deploy another virtual kubelet to West US
-```console
-export ACI_REGION=westus
-export RELEASE_NAME=virtual-kubelet-west
-export NODE_NAME=virtual-kubelet-west
+Deploy another Virtual-Kubelet Connector in your AKS cluster to WestUS:
 ```
-Verify that the last three variables have been recorded correctly:
-```console
-echo $ACI_REGION,$RELEASE_NAME,$NODE_NAME
-```
-Output:
-```output
-westus,virtual-kubelet-west,virtual-kubelet-west
-```
-Now intsall the Helm package for Virtual Kubelet:
-```console
-helm install ~/virtual-kubelet/charts/virtual-kubelet-for-aks/  --name "$RELEASE_NAME" \
-    --set env.azureClientId="$AZURE_CLIENT_ID",env.azureClientKey="$AZURE_CLIENT_SECRET",env.azureTenantId="$AZURE_TENANT_ID",env.azureSubscriptionId="$AZURE_SUBSCRIPTION_ID",env.aciResourceGroup="$AZURE_RG",env.nodeName="$NODE_NAME",env.nodeOsType=Linux,env.apiserverCert=$cert,env.apiserverKey=$key,image.tag="$VK_IMAGE_TAG"
+az aks install-connector --resource-group $AZURE_RG --name $AKS_CLUSTER_NAME --connector-name virtual-kubelet --os-type Linux --location westus
 ```
 
 Output:
 
 ```console
-NAME:   virtual-kubelet
-LAST DEPLOYED: Thu Feb 15 13:17:01 2018
+Deploying the ACI connector for 'Linux' using Helm
+NAME:   virtual-kubelet-linux-westus
+LAST DEPLOYED: Sun Aug 19 01:44:23 2018
 NAMESPACE: default
 STATUS: DEPLOYED
 
 RESOURCES:
 ==> v1/Secret
-NAME                             TYPE    DATA  AGE
-virtual-kubelet-virtual-kubelet  Opaque  3     1s
+NAME                                                  TYPE    DATA  AGE
+virtual-kubelet-linux-westus-virtual-kubelet-for-aks  Opaque  3     30s
+
+==> v1/ServiceAccount
+NAME                                                  SECRETS  AGE
+virtual-kubelet-linux-westus-virtual-kubelet-for-aks  1        27s
+
+==> v1beta1/ClusterRoleBinding
+NAME                                                  AGE
+virtual-kubelet-linux-westus-virtual-kubelet-for-aks  24s
 
 ==> v1beta1/Deployment
-NAME                             DESIRED  CURRENT  UP-TO-DATE  AVAILABLE  AGE
-virtual-kubelet-virtual-kubelet  1        1        1           0          1s
+NAME                                                  DESIRED  CURRENT  UP-TO-DATE  AVAILABLE  AGE
+virtual-kubelet-linux-westus-virtual-kubelet-for-aks  1        1        1           1          21s
 
 ==> v1/Pod(related)
-NAME                                              READY  STATUS             RESTARTS  AGE
-virtual-kubelet-virtual-kubelet-7bcf5dc749-6mvgp  0/1    ContainerCreating  0         1s
+NAME                                                             READY  STATUS   RESTARTS  AGE
+virtual-kubelet-linux-westus-virtual-kubelet-for-aks-798c5bgxdq  1/1    Running  0         21s
 
 
 NOTES:
@@ -202,7 +137,10 @@ The virtual kubelet is getting deployed on your cluster.
 
 To verify that virtual kubelet has started, run:
 
-  kubectl --namespace=default get pods -l "app=virtual-kubelet-virtual-kubelet"
+  kubectl --namespace=default get pods -l "app=virtual-kubelet-linux-westus-virtual-kubelet-for-aks"
+
+Note:
+TLS key pair not provided for VK HTTP listener. A key pair was generated for you. This generated key pair is not suitable for production use.
 ```
 
 ## Validate the Virtual Kubelet ACI provider
@@ -216,17 +154,16 @@ kubectl get nodes
 Output:
 
 ```console
-NAME                                        STATUS    ROLES     AGE       VERSION
-virtual-kubelet-east                        Ready     <none>    2m        v1.8.3
-virtual-kubelet-west                        Ready     <none>    2m        v1.8.3
-aks-nodepool1-39289454-0                    Ready     agent     22h       v1.7.7
-aks-nodepool1-39289454-1                    Ready     agent     22h       v1.7.7
-aks-nodepool1-39289454-2                    Ready     agent     22h       v1.7.7
+NAME                                           STATUS    ROLES     AGE       VERSION
+aks-nodepool1-24399631-0                       Ready     agent     3d        v1.10.6
+aks-nodepool1-24399631-1                       Ready     agent     3d        v1.10.6
+virtual-kubelet-virtual-kubelet-linux-eastus   Ready     agent     20m       v1.8.3
+virtual-kubelet-virtual-kubelet-linux-westus   Ready     agent     3m        v1.8.3
 ```
 
 ## Schedule a pod in ACI
 
-We will use a nodeName constraint to force the scheduler to schedule the pod to the new virtual-kubelet-east node. The yaml file is included in `~/blackbelt-aks-hackfest/labs/helper-files/east-aci-heroes.yaml`. Edit the file to point to your Azure Container Registry, edit the dnsnamelabel to add your lab number and have your CosmosDB MongoDb connection String:
+We will use a nodeName constraint to force the scheduler to schedule the pod to the new `virtual-kubelet-virtual-kubelet-linux-eastus` node. The yaml file is included in `~/blackbelt-aks-hackfest/labs/helper-files/east-aci-heroes.yaml`. Edit the file to point to your Azure Container Registry, edit the dnsnamelabel to add your lab number and have your CosmosDB MongoDb connection String:
 
 ```yaml
 apiVersion: v1
@@ -272,7 +209,7 @@ spec:
       name: http-api
       protocol: TCP
   dnsPolicy: ClusterFirst
-  nodeName: virtual-kubelet-east
+  nodeName: virtual-kubelet-virtual-kubelet-linux-eastus
   ```
 
   ```console
@@ -281,7 +218,7 @@ spec:
   kubectl apply -f east-aci-heroes.yaml 
   ```
 
-  Then deploy another pod to the new virtual-kubelet-west node. The yaml file is included in `~/blackbelt-aks-hackfest/labs/helper-files/west-aci-heroes.yaml`. Edit the file to point to your Azure Container Registry, edit the dnsnamelabel to add your lab number and have your CosmosDB MongoDb connection String:
+Then deploy another pod to the new `virtual-kubelet-virtual-kubelet-linux-westus` node. The yaml file is included in `~/blackbelt-aks-hackfest/labs/helper-files/west-aci-heroes.yaml`. Edit the file to point to your Azure Container Registry, edit the dnsnamelabel to add your lab number and have your CosmosDB MongoDb connection String:
 
   ```yaml
 apiVersion: v1
@@ -327,7 +264,7 @@ spec:
       name: http-api
       protocol: TCP
   dnsPolicy: ClusterFirst
-  nodeName: virtual-kubelet-west
+  nodeName: virtual-kubelet-virtual-kubelet-linux-westus
 ```
 
 ```console
