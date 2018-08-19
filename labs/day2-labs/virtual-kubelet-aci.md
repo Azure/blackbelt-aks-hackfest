@@ -213,8 +213,7 @@ spec:
   ```
 
   ```console
-  cd ~
-  cd blackbelt-aks-hackfest/labs/helper-files
+  cd ~/blackbelt-aks-hackfest/labs/helper-files
   kubectl apply -f east-aci-heroes.yaml 
   ```
 
@@ -270,6 +269,18 @@ spec:
 ```console
 kubectl apply -f west-aci-heroes.yaml
 ```
+You could get the details about your Pods just deployed by running the command below (status of the Pods, on which node they are running, etc.):
+```
+kubectl get pods -o wide
+```
+
+```output
+NAME                                                              READY     STATUS    RESTARTS   AGE       IP             NODE
+heroes-east                                                       2/2       Running   0          1h        40.76.213.23   virtual-kubelet-virtual-kubelet-linux-eastus
+virtual-kubelet-linux-eastus-virtual-kubelet-for-aks-84fb8ltzbv   1/1       Running   0          14h       10.244.1.41    aks-nodepool1-24399631-1
+virtual-kubelet-linux-westus-virtual-kubelet-for-aks-798c5bgxdq   1/1       Running   0          13h       10.244.1.42    aks-nodepool1-24399631-1
+```
+
 # Set up Azure Traffic Manager Policies to Load Balance between ACI Instances
 
 ## Determine the FQDN of the ACI Instances
