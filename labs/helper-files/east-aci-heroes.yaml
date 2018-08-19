@@ -1,49 +1,48 @@
-apiVersion: apps/v1beta1
-kind: Deployment
+apiVersion: v1
+kind: Pod
 metadata:
-  name:  heroes-east
+  name: heroes-east
   labels:
     name:  heroes-east
+  annotations:
+    virtualkubelet.io/dnsnamelabel: "heroes-xxx"
 spec:
-  replicas: 1
-  template:
-    metadata:
-      labels:
-        name:  heroes-east
-    spec:
-      imagePullSecrets:
-        - name: acr-secret
-      containers:
-      - image: <login_server>.azurecr.io/azureworkshop/rating-api:v1
-        name:  ratings-api
-        resources:
-          requests:
-            memory: 1G
-            cpu: 1
-        env:
-        - name:  MONGODB_URI
-          value:  <value from lab#8 - CosmosDB's connection string>
-        ports:
-        - containerPort:  3000
-          name:  heroes-api
-        imagePullPolicy: Always
-      - image: <login_server>.azurecr.io/azureworkshop/rating-web:v1
-        name:  ratings-web
-        resources:
-          requests:
-            memory: 1G
-            cpu: 1
-        env:
-        - name:  API
-          value:  http://localhost:3000/
-        - name: KUBE_NODE_NAME
-          value: "East US"
-        ports:
-        - containerPort:  8080
-          name:  heroes-web
-        imagePullPolicy: Always
-      nodeSelector:
-        kubernetes.io/hostname: virtual-kubelet-virtual-kubelet-linux-eastus
-      tolerations:
-      - key: azure.com/aci
-        effect: NoSchedule
+  imagePullSecrets:
+    - name: acr-secret
+  containers:
+  - image: <login_server>.azurecr.io/azureworkshop/rating-web:v1
+    imagePullPolicy: Always
+    name: ratings-web
+    resources:
+      requests:
+        memory: 1G
+        cpu: 1
+    env:
+    - name:  API
+      value:  http://localhost:3000/
+    - name: KUBE_NODE_NAME
+      value: "East US"
+    ports:
+    - containerPort: 8080
+      name: http-web
+      protocol: TCP
+  - image: <login_server>.azurecr.io/azureworkshop/rating-api:v1
+    imagePullPolicy: Always
+    name: ratings-api
+    resources:
+      requests:
+        memory: 1G
+        cpu: 1
+    env:
+    - name:  MONGODB_URI
+      value:  <value from lab#8>
+    ports:
+    - containerPort: 3000
+      name: http-api
+      protocol: TCP
+  dnsPolicy: ClusterFirst
+  nodeName: virtual-kubelet-virtual-kubelet-linux-eastus
+  tolerations:
+  - key: virtual-kubelet.io/provider
+    value: azure
+    effect: NoSchedule
