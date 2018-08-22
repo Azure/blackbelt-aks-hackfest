@@ -17,7 +17,7 @@ Output:
 ```console
 Name     ResourceGroup    MasterVersion    NodePoolVersion       Upgrades
 -------  ---------------  ---------------  -------------------  -------------------
-default  myResourceGroup  1.10.6           1.10.6               1.11.1
+default  myResourceGroup  1.10.6           1.10.6               1.11.1, 1.11.2
 ```
 
 In this case, we have one version available for upgrade: 1.11.1. We can use the `az aks upgrade` command to upgrade to the latest available version.  During the upgrade process, nodes are carefully [cordoned and drained][kubernetes-drain] to minimize disruption to running applications.  Before initiating a cluster upgrade, ensure that you have enough additional compute capacity to handle your workload as cluster nodes are added and removed.
