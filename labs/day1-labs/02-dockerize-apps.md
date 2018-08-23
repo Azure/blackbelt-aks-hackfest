@@ -83,7 +83,7 @@ In this step, the Dockerfile has been created for you.
 Create a docker bridge network to allow the containers to communicate internally. 
 
 ```
-docker network create --subnet=172.18.0.0/16 my-network
+docker network create my-network
 ```
 
 ### MongoDB Container
@@ -91,7 +91,7 @@ docker network create --subnet=172.18.0.0/16 my-network
 1. Run mongo container
 
     ```
-    docker run -d --name db --net my-network --ip 172.18.0.10 -p 27017:27017 rating-db
+    docker run -d --name db --net my-network -p 27017:27017 rating-db
     ```
 
 2. Validate by running `docker ps -a`
@@ -121,7 +121,7 @@ docker network create --subnet=172.18.0.0/16 my-network
 1. Run api app container
 
     ```
-    docker run -d --name api -e "MONGODB_URI=mongodb://172.18.0.10:27017/webratings" --net my-network --ip 172.18.0.11 -p 3000:3000 rating-api
+    docker run -d --name api -e "MONGODB_URI=mongodb://db:27017/webratings" --net my-network -p 3000:3000 rating-api
     ```
 
     > Note that environment variables are used here to direct the api app to mongo.
@@ -138,7 +138,7 @@ docker network create --subnet=172.18.0.0/16 my-network
 1. Run web app container
 
     ```
-    docker run -d --name web -e "API=http://172.18.0.11:3000/" --net my-network --ip 172.18.0.12 -p 8080:8080 rating-web
+    docker run -d --name web -e "API=http://api:3000/" --net my-network -p 8080:8080 rating-web
     ```
 
 2. Validate by running `docker ps -a`
