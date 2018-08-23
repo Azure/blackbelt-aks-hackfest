@@ -6,18 +6,15 @@ The Kubernetes dashboard is a web ui that lets you view, monitor, and troublesho
 
 ### Accessing The Dashboard UI
 
-There are multiple ways of accessing Kubernetes dashboard. You can access through kubectl command-line interface or through the master server API. We'll be using kubectl, as it provides a secure connection, that doesn't expose the UI to the internet.
+There are multiple ways of accessing Kubernetes dashboard. You can access it through the `kubectl` or `az` command-line interface or directly through the master server API. We'll be using ```az aks browse``` as it simplifies the process of creating a secure local proxied connection to the API Server and doesn't expose the UI to the internet.
 
-1. Command-Line Proxy
+1. Command-Line using the Azure CLI
 
     * Open an RDP session to the jumpbox IP with username and password
     * Run ```az login``` to authenticate with Azure in order to use Azure CLI in the Jumpbox instead of Cloud Shell
     * Run ```NAME=$(az group list -o table | grep ODL | awk '{print $1}')``` in order to retrieve the name of the resource group for your Azure account and put it in the NAME variable.
     * Run ```CLUSTER_NAME="${NAME//_}"``` in order to retrieve the cluster name (to remove the underscore)
-    * Run ```az aks get-credentials -n $CLUSTER_NAME -g $NAME``` in order to get the credentials to access our managed Kubernetes cluster in Azure
-    * Run ```kubectl proxy```
-    * This creates a local proxy to 127.0.0.1:8001
-    * Open a web browser (Firefox is pre-installed on the Jumpbox) and point to: <http://127.0.0.1:8001/api/v1/proxy/namespaces/kube-system/services/kubernetes-dashboard/#!/cluster?namespace=default>
+    * Run ```az aks browse -n $CLUSTER_NAME -g $NAME``` to open the Kubernetes Dashboard UI in a web browser (Firefox is pre-installed on the Jumpbox)
 
 ### Explore Kubernetes Dashboard
 
