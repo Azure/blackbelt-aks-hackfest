@@ -10,7 +10,7 @@ There are two environments you will be working in for the exercises today.
 
 2. **Azure Cloud Shell:** The Azure Cloud Shell will be accessed by logging into the Azure Portal (http://portal.azure.com).
 
-Labs 1 and 2 require the Jumpbox. The subsequent labs all use the Azure Cloud Shell.
+![#f03c15](https://placehold.it/15/f03c15/000000?text=+) **Labs 1 and 2 require the Jumpbox. The subsequent labs all can use the Azure Cloud Shell.**
 
 ## Clone Lab Github Repo
 
