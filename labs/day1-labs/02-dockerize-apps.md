@@ -1,5 +1,7 @@
 # Dockerizing Applications
 
+![#f03c15](https://placehold.it/15/f03c15/000000?text=+) **Activities in this lab needs to be performed in the Linxu Jumpbox Machine**
+
 ## Build Container Images
 
 For the first container, we will be creating a Dockerfile from scratch. For the other containers, the Dockerfiles are provided.
