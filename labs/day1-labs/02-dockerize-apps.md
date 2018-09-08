@@ -1,6 +1,6 @@
 # Dockerizing Applications
 
-![#f03c15](https://placehold.it/15/f03c15/000000?text=+) **Activities in this lab needs to be performed in the Linxu Jumpbox Machine**
+![#f03c15](https://placehold.it/15/f03c15/000000?text=+) **Activities in this lab needs to be performed in the Linux Jumpbox Machine**
 
 ## Build Container Images
 
