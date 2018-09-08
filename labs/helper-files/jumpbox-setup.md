@@ -5,13 +5,19 @@ This page helps you to install all required software packages you'll need for th
 ## Reset Password for root user
 Login to CentOS VM via a Putty session using the credentials supplied while creating the CentOS VM
 
-* Terminal: `sudo su -`
+* Run the following command in the Terminal to switch to root user:
+
+  `sudo su -`
 
 * Provide the password for the logged in user
 
-* Terminal : `passwd`
+* Run the following command in the Terminal to reset the password of root user:
 
-* Provide a strong password for the root user. Going forward you may login directly as root user to the VM to execute all of the remaining commands
+  `passwd root`
+
+![#f03c15](https://placehold.it/15/f03c15/000000?text=+) Provide a strong password for the root user as the Jumpbox is accessible publicly. 
+
+Going forward you may login directly as root user to the VM to execute all of the remaining commands
 
 ## Install Mongo
 
