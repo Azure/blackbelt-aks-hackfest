@@ -45,8 +45,13 @@ For the first container, we will be creating a Dockerfile from scratch. For the 
     
     docker build --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` --build-arg VCS_REF=`git rev-parse --short HEAD` --build-arg IMAGE_TAG_REF=v1 -t rating-web .
     ```
+    You can ignore the NPM warnings generated while the image is being built. 
 
-3. Validate image was created with `docker images`
+3. Once the above command is completed, validate that the image was created with command: `docker images`
+   ```
+   docker images
+   rating-web                                       latest              259aa85bc386        31 minutes ago      212MB
+   ```
 
 ### API Container
 
