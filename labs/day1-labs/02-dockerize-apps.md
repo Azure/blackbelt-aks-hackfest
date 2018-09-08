@@ -50,7 +50,9 @@ For the first container, we will be creating a Dockerfile from scratch. For the 
 3. Once the above command is completed, validate that the image was created with command: `docker images`
    ```
    docker images
-   rating-web                                       latest              259aa85bc386        31 minutes ago      212MB
+   
+   REPOSITORY               TAG                 IMAGE ID            CREATED             SIZE
+   rating-web               latest              259aa85bc386        31 minutes ago      212MB
    ```
 
 ### API Container
@@ -70,8 +72,8 @@ In this step, the Dockerfile has been created for you.
     ```
     sudo docker images
     
-    REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
-    rating-api          latest              eb53c9e08676        13 seconds ago      84.8 MB
+    REPOSITORY          TAG               IMAGE ID            CREATED             SIZE
+    rating-api          latest            eb53c9e08676        13 seconds ago      84.8 MB
     ```
 
 ### MongoDB Container
@@ -241,6 +243,7 @@ v1: digest: sha256:f84eba148dfe244f8f8ad0d4ea57ebf82b6ff41f27a903cbb7e3fbe377bb2
 ### Validate images in Azure
 
 1. Return to the Azure Portal in your browser and validate that the images appear in your Container Registry under the "Repositories" area.
-2. Under tags, you will see "v1" listed.
 
 ![img](img/02_acr_repositories.png)
+
+2. Click on the Repository name and under 'tags' section, you will see "v1" listed.
