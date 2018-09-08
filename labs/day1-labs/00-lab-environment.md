@@ -10,11 +10,11 @@ Our labs are build and verified using CentOS7. Our recommendations is to use Cen
 
 * Setup your Jumpbox VM in Azure
     1. Browse to http://portal.azure.com
-    2. Click on "Create a resource" and search for "CentOS"
-    3. Deploy a CentOS-based 7.4 VM (B1ms should be enough, Publisher of CentOS - Rogue Wave Software) - please recognize your credentials
-    4. Connect to your jumpbox using SSH (PuTTY or MobaXTerm)
+    2. Click on "Create a resource" and search for "CentOS-based 7.5"
+    3. Deploy a CentOS-based 7.5 VM (B1ms should be enough, Publisher of CentOS - Rogue Wave Software) - please remember your credentials
+    4. After the CentOS jumbbox is provisioned in Azure, connect to it using SSH (PuTTY or MobaXTerm)
     5. Connect to your newly created jumpbox
-    6. Goto [Jumpbox Setup](/labs/helper-files/jumpbox-setup.md) to install the required software
+    6. Goto [**Jumpbox Setup**](/labs/helper-files/jumpbox-setup.md) to install the required software
 
 * Setup Azure Cloud Shell: 
 
@@ -25,7 +25,7 @@ Our labs are build and verified using CentOS7. Our recommendations is to use Cen
         ![alt text](img/cloud-shell-start.png "Spektra ready")
 
     4. Select `Bash (Linux)`
-    5. You will be prompted to setup storage for your cloud shell. Click `Show advanced settings`
+    5. If you are using CloudShell for the first time, you will be prompted to setup storage for your cloud shell. Click `Show advanced settings`
 
         ![alt text](img/cloud-show-advanced.png "Spektra ready")
 
