@@ -109,6 +109,7 @@ chmod 700 get_helm.sh
 
 ## Clean up Docker
 
+Optionally, you can run the following commands to remove any docker conatainers and images if the Jumpbox is not a new one and had run docker previously.
 ```
 docker rm -f $(docker ps -a -q)
 docker rmi -f $(docker images)
