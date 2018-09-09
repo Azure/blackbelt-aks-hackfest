@@ -3,7 +3,7 @@
 _Delivering modern cloud native applications with ​open source technologies on Azure​_
 
 ## Overview
-Welcome to our Container Bootcamp, this workshop will guide you through migrating an application from "on-premise" to containers running in Azure Kubernetes Service.
+Welcome to our Container Bootcamp, this workshop will guide you through migrating an application from "on-premise" server to containers running in Azure Kubernetes Service.
 
 The labs are based upon a node.js application that allows for voting on the Justice League Superheroes (with more options coming soon). Data is stored in MongoDB.
 
@@ -40,7 +40,7 @@ The labs are based upon a node.js application that allows for voting on the Just
   
 ## Contributing
 
-This project is a fork of our [Azure GBB Hackfest](https://github.com/Azure/blackbelt-aks-hackfest) workshop. We as well as the original project welcomes contributions and suggestions. Most contributions require you to agree to a Contributor License Agreement (CLA) declaring that you have the right to, and actually do, grant us the rights to use your contribution. For details, visit https://cla.microsoft.com.
+This project is a fork of our [Azure GBB Hackfest](https://github.com/Azure/blackbelt-aks-hackfest) workshop with necessary modifications and additions to suit the BootCamp. We as well as the original project welcomes contributions and suggestions. Most contributions require you to agree to a Contributor License Agreement (CLA) declaring that you have the right to, and actually do, grant us the rights to use your contribution. For details, visit https://cla.microsoft.com.
 
 ## License
 
