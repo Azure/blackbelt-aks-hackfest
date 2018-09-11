@@ -70,7 +70,7 @@ Perform these steps in the Jumpbox
 
     Name      Location    ResourceGroup    KubernetesVersion    ProvisioningState    Fqdn
     --------  ----------  ---------------  -------------------  -------------------  ---------------------------------------------------    ---
-    myaksrg   eastus      myaksrg          1.9.6                Succeeded            myaksrg-myaksrg-9a4f9a-7a0ba239.hcp.eastus.azmk8s.io
+    myaksrg   eastus      myaksrg          1.10.6                Succeeded            myaksrg-myaksrg-9a4f9a-7a0ba239.hcp.eastus.azmk8s.io
 
     ```
 
@@ -82,7 +82,7 @@ Perform these steps in the Jumpbox
 
 11. Verify you have API access to your new AKS cluster
 
-    > Note: It can take 5 minutes for your nodes to appear and be in READY state. You can run `watch kubectl get nodes` to monitor status. 
+    > Note: It can take 5 minutes for your nodes to appear and be in READY state. You can run `kubectl get nodes --watch` to monitor status. 
     
     ```
     kubectl get nodes
