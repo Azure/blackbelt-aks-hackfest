@@ -23,7 +23,7 @@ Login to CentOS VM via a Putty session using the credentials supplied while crea
 
 * Terminal: `sudo vi /etc/yum.repos.d/mongodb-org.repo`
 
-* Add the following:
+* Add the following in the repo file and save the file
 
 ```
 [mongodb-org-3.6]
@@ -34,13 +34,16 @@ enabled=1
 gpgkey=https://www.mongodb.org/static/pgp/server-3.6.asc
 ```
 
-* Run `sudo yum install mongodb-org`
+* Run `sudo yum install mongodb-org` 
 
 * Change port to 27019 in mongo config. `sudo vi /etc/mongod.conf`
 
 * Run `sudo systemctl start mongod`
 
-* Test connection `mongo localhost:27019`
+* Test connection `mongo localhost:27019` You should see a Welcome to MongoDB shell message
+
+* Exit out of the MongoDB shell `> exit`
+
 
 ## Install and Update tools
 ### Azure CLI
@@ -79,12 +82,12 @@ sudo yum install npm
 
 Install Kubectl command line utility to interact with AKS. There are two ways to install as below:
 
-First method:
+**First method:**
 ```
 az aks install-cli
 ```
 
-Second method:
+**Second method:**
 ```
 cat <<EOF > /etc/yum.repos.d/kubernetes.repo
 [kubernetes]
