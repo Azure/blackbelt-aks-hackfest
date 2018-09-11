@@ -1,32 +1,27 @@
 # Azure Kubernetes Service (AKS) Deployment
-
 ## Create AKS cluster
 
-1. Login to Azure Portal at http://portal.azure.com. (You can also go to https://shell.azure.com/)
-2. Open the Azure Cloud Shell
+Perform these steps in the Jumpbox
 
-    ![Azure Cloud Shell](img/cloudshell.png "Azure Cloud Shell")
-
-3. The first time, Cloud Shell is started it will require you to create a storage account. In our lab, you must click `Advanced` and enter an account name and share.
-
-4. Once your cloud shell is started, clone the workshop repo into the cloud shell environment
+1. In the ssh session login to the Azure subscription
     ```
-    git clone https://github.com/Azure/blackbelt-aks-hackfest.git
+    az login
     ```
-
-5. In the cloud shell, you are automatically logged into your Azure subscription. ```az login``` is not required.
-    
-6. Verify your subscription is correctly selected as the default
+2. Select the subscription where you want to create the AKS cluster
+   ```
+   az account set --subscription xxxx-925a-440b-84b1-xxxxxxx
+   ```
+3. Verify your subscription is correctly selected as the default
     ```
     az account list
     ```
 
-7. Create a new resource group (eg: myaksrg)
+4. Create a new resource group (eg: myaksrg)
     ```
     az group create --name myaksrg --location eastus
     ```
 
-7. Find your RG name
+5. Find your RG name
 
     ```
     az group list 
@@ -59,7 +54,7 @@
     
     ```
 
-8. Create your AKS cluster in the resource group created above with 2 nodes, targeting Kubernetes version 1.10.6
+6. Create your AKS cluster in the resource group created above with 2 nodes, targeting Kubernetes version 1.10.6
     ```
     # set the location to one of the provided AKS locations (eg - centralus, eastus)
     
