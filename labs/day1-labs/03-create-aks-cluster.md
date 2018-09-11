@@ -46,7 +46,9 @@
       "tags": null
     }
     ]
-
+    ```
+    
+    ```
     # copy the name from the results above and set to a variable 
     
     NAME=
@@ -57,13 +59,13 @@
     
     ```
 
-8. Create your AKS cluster in the resource group created above with 2 nodes, targeting Kubernetes version 1.9.6
+8. Create your AKS cluster in the resource group created above with 2 nodes, targeting Kubernetes version 1.10.6
     ```
     # set the location to one of the provided AKS locations (eg - centralus, eastus)
     
     LOCATION=eastus
 
-    az aks create -n $CLUSTER_NAME -g $NAME -c 2 -k 1.9.6 --generate-ssh-keys -l $LOCATION
+    az aks create -n $CLUSTER_NAME -g $NAME -c 2 -k 1.10.6 --generate-ssh-keys -l $LOCATION
     ```
  This command can take 5-25 minutes to run as it is creating the AKS cluster. Please be PATIENT...
 
