@@ -183,7 +183,7 @@ Now that we have container images for our application components, we need to sto
 2. Click "Create a resource" and select "Container Registry"
 3. Provide a name for your registry (this must be unique)
 4. Use the existing Resource Group
-5. Enable the Admin user
+5. Enable the **Admin user**
 6. Use the 'Standard' SKU (default)
 
     > The Standard registry offers the same capabilities as Basic, but with increased storage limits and image throughput. Standard registries should satisfy the needs of most production scenarios.
