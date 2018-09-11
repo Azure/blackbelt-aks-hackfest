@@ -52,7 +52,7 @@ The API for the app is written in javascript, running on [Node.js](https://nodej
     ```
     
    The terminal will show the message saying ``` CONNECTED TO mongodb://localhost:27019/webratings ``` 
-   Leave the terminal as such and proceed to next step
+   .**Leave the terminal as such and proceed to next step**
 
 2. Open a new terminal session on the jumpbox and test the API
 
