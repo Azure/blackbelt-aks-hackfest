@@ -10,7 +10,7 @@ There are two environments you will be working in for the exercises today.
 
 2. **Azure Cloud Shell:** The Azure Cloud Shell will be accessed by logging into the Azure Portal (http://portal.azure.com).
 
-![#f03c15](https://placehold.it/15/f03c15/000000?text=+) **Labs 1 and 2 require the Jumpbox. The subsequent labs all can use the Azure Cloud Shell.**
+![#f03c15](https://placehold.it/15/f03c15/000000?text=+) **Labs 1 and 2 require the Jumpbox. The subsequent labs can either be done in the Azure Cloud Shell or Jumpbox. Stick to either Jumpbox or Cloud Shell. Do not use both of them.**
 
 ## Clone Lab Github Repo
 
@@ -27,7 +27,7 @@ Once you have accessed the jumpbox, you must clone the workshop repo to the mach
 
 ### Database layer - MongoDB
 
-The underlying data store for the app is [MongoDB](https://www.mongodb.com/ "MongoDB Homepage"). It is already running. We need to import the data for our application.
+The underlying data store for the app is [MongoDB](https://www.mongodb.com/ "MongoDB Homepage"). It is already running(we installed MongoDB during Jumpbox setup). We need to import the data for our application.
 
 1. Import the data using a terminal session on the jumpbox
 
