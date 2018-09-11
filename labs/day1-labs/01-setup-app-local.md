@@ -1,4 +1,4 @@
-# Initial Setup and Running App on Local Machine
+# Initial Setup and Running App on Local Machine(Jumpbox)
 
 ## Work Environment
 
@@ -85,7 +85,7 @@ The web frontend for the app is written in [Vue.js](https://vuejs.org/Vue "Vue.j
     * Add a new inbound security rule for Port 8080/TCP
        
 
-    You can also test from a new terminal session in the jumpbox
+    You can test the web app from a new terminal session in the jumpbox
     ```bash
     curl http://localhost:8080
     ```
