@@ -2,7 +2,7 @@
 
 ## Review/Edit the YAML Config Files
 
-1. In Azure Cloud Shell edit `heroes-db.yaml` using `vi`
+1. In the Jumpbox edit `heroes-db.yaml` using `vi`
     ```bash
     cd ~/blackbelt-aks-hackfest/labs/helper-files
 
@@ -19,7 +19,7 @@
             name:  heroes-db-cntnr
         ```
 
-2. In Azure Cloud Shell edit `heroes-web-api.yaml` using `vi`
+2. In the Jumpbox edit `heroes-web-api.yaml` using `vi`
     ```bash
     cd ~/blackbelt-aks-hackfest/labs/helper-files
 
@@ -84,7 +84,9 @@ default-token-xd8wk   kubernetes.io/service-account-token   3         53m
     ```
     NAME                                 READY     STATUS    RESTARTS   AGE
     heroes-db-deploy-2357291595-k7wjk    1/1       Running   0          3m
-
+    ```
+  Assign pod name to variable MONGO_POD
+    ```
     MONGO_POD=heroes-db-deploy-2357291595-k7wjk
     ```
 
