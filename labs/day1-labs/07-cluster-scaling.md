@@ -2,13 +2,15 @@
 
 Imagine a scenario where your realize that your existing cluster is at capacity and you need to scale it out to add more nodes in order to increase capacity and be able to deploy more PODS.
 
+![#f03c15](https://placehold.it/15/f03c15/000000?text=+) **Perform below steps in the Jumpbox**
+
 ## Scale Application
 1. Check to see current number of pods running via Grafana Dashboard.
 Go to the same Grafana Dashboard from [lab 6](/labs/day1-labs/06-monitoring-k8s.md) and look at the **Pods Running Count** section. You will see the total count of Pods and the various phases they are in.
 
 ![](img/9-grafana_podsrunning.png)
 
-2. Use Azure Cloud Shell to check the current number of heroes pods running:
+2. Check the current number of heroes pods running:
 ```bash
 kubectl get pods | grep heroes
 ```
@@ -23,7 +25,7 @@ heroes-web-1677855039-8t57k                    1/1       Running   0          2d
 To simulate a real-world scenario we are going to scale the web app to handle increased load.
 ```bash
 # This command will create multiple replicas of the heroes-web pod to simulate additional load on the cluster.
-kubectl scale deploy/heroes-web-deploy --replicas=4
+kubectl scale deploy/heroes-web-deploy --replicas=8
 ```
 4. Check to see number of pods now running via Grafana Dashboard
 
@@ -57,8 +59,8 @@ kubectl get nodes
 You should see something like the following as output (there is one node in the cluster):
 ```bash
 NAME                       STATUS    ROLES     AGE       VERSION
-aks-nodepool1-42552728-0   Ready     agent     4h        v1.9.6
-aks-nodepool1-42552728-1   Ready     agent     4h        v1.9.6
+aks-nodepool1-42552728-0   Ready     agent     4h        v1.10.6
+aks-nodepool1-42552728-1   Ready     agent     4h        v1.10.6
 ```
 2. Scale out AKS cluster to accommodate the demand
 ```bash
