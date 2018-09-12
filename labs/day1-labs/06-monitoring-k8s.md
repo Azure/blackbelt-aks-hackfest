@@ -35,7 +35,7 @@ Prometheus is a Cloud Native Computing Foundation (CNCF) project used to collect
 
 1. Install Prometheus using Helm CLI
 
-    Switch to the `helper-files` directory and view the `prometheus-configforhelm.yaml` file. This configures Helm to install Prometheus with our desired settings.
+    Switch to the `helper-files` directory and view the `prometheus-configforhelm.yaml` file. This configures Helm to install Prometheus with our desired settings. **Set RBAC create to true in the yaml file**
     ```
     cd ~/blackbelt-aks-hackfest/labs/helper-files
     # The following command will install Prometheus into the K8s cluster using custom settings
