@@ -38,6 +38,8 @@ In this section we will use the ```mongodump``` and ```mongorestore``` commands 
 > The method used in this section is simple by design and may not be the right method for your production migrations.  We would recommend working with a MongoDB DBA and Architect who is experienced with MongoDB data migration in a production environment to minimize downtime.  Please refer to: [Guide for a successful migration
 ](https://docs.microsoft.com/en-us/azure/cosmos-db/mongodb-migrate#guide-for-a-successful-migration) in the Azure Docs for CosmosDB.
 
+![#f03c15](https://placehold.it/15/f03c15/000000?text=+) **Perform below steps in the Jumpbox**
+
 1. Exec into mongoDB pod and export data
 	```bash
 	# list pods in the cluster and set the variable to your pod name
@@ -98,7 +100,7 @@ In this section we will use the ```mongodump``` and ```mongorestore``` commands 
 	2018-02-10T12:08:25.700+0000	finished restoring heroratings.ratings (76 documents)
 	2018-02-10T12:08:25.700+0000	done
 	```
-4. Exit from pod by typing `exit`
+4. **Exit** from pod by typing `exit`
 
 5. View data the Azure Portal
 
@@ -168,7 +170,7 @@ In this section we will use the ```mongodump``` and ```mongorestore``` commands 
 
 ## Test the Application
 
-* Browse to your heroes web app using the public IP from the below command and validate the leaderboard
+* Browse to your heroes web app using the public IP(http://<public ip>:8080) from the below command and validate the leaderboard
 
 	```bash
 	kubectl get service
