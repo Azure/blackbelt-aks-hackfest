@@ -26,7 +26,7 @@ We have 3 versions available for upgrade: 1.10.7, 1.11.1, 1.11.2. We can use the
 #### Kubernetes may be unavailable during cluster upgrades. The upgrade may take 10 to 15 minutes.
 #### As of today, the remaining lab exercises are tested with version 1.10.7 only and we recommend you to upgrade the cluster to version 1.10.7.
 
-**Upgrade the cluster: **
+### Upgrade the cluster
 
 ```azurecli-interactive
 az aks upgrade --name <CLUSTER_NAME> --resource-group <RESOURCE GROUP NAME> --kubernetes-version 1.10.3
