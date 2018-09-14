@@ -4,7 +4,7 @@ In this lab, we will make a change to the web application and then re-deploy the
 
 ## Update web application code
 
-1. Start with a terminal on the CentOS jumpbox
+1. Start with a terminal on the **CentOS jumpbox**
 2. Navigate to `~/blackbelt-aks-hackfest/app/web/src/components/`
 3. Edit code for the `Footer.vue`
 4. Find the snippet below *(line 17)* and change the text _"Azure Global Blackbelt Team"_ to your name or whatever you would like to display.
