@@ -12,7 +12,7 @@ Before upgrading a cluster, use the `az aks get-versions` command to check which
 az aks get-versions --name <CLUSTER_NAME> --resource-group <RESOURCE GROUP NAME> --output table
 ```
 
-Output:
+**Output:**
 
 ```console
 Name     ResourceGroup    MasterVersion    MasterUpgrades         NodePoolVersion    NodePoolUpgrades
@@ -23,16 +23,16 @@ default  myakshyd          1.10.6            1.10.7, 1.11.1, 1.11.2  1.10.6     
 We have 3 versions available for upgrade: 1.10.7, 1.11.1, 1.11.2. We can use the `az aks upgrade` command to upgrade to the latest available version.  During the upgrade process, nodes are carefully [cordoned and drained](https://kubernetes.io/docs/tasks/administer-cluster/safely-drain-node/) to minimize disruption to running applications.  Before initiating a cluster upgrade, ensure that you have enough additional compute capacity to handle your workload as cluster nodes are added and removed.
 
 **Note:** 
-##### Kubernetes may be unavailable during cluster upgrades. The upgrade may take 10 to 15 minutes.
-##### As of today, the remaining lab exercises are tested with version 1.10.7 only and we recommend you to upgrade the cluster to version 1.10.7.
+#### Kubernetes may be unavailable during cluster upgrades. The upgrade may take 10 to 15 minutes.
+#### As of today, the remaining lab exercises are tested with version 1.10.7 only and we recommend you to upgrade the cluster to version 1.10.7.
 
-Upgrade the cluster: 
+**Upgrade the cluster: **
 
 ```azurecli-interactive
 az aks upgrade --name <CLUSTER_NAME> --resource-group <RESOURCE GROUP NAME> --kubernetes-version 1.10.3
 ```
 
-Output:
+**Output:**
 
 ```json
 {
