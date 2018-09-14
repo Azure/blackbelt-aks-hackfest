@@ -2,6 +2,8 @@
 
 Azure Container Service (AKS) makes it easy to perform common management tasks including upgrading Kubernetes clusters.
 
+![#f03c15](https://placehold.it/15/f03c15/000000?text=+) **Perform below steps in the Jumpbox**
+
 ## Upgrade an AKS cluster
 
 Before upgrading a cluster, use the `az aks get-versions` command to check which Kubernetes releases are available for upgrade.
@@ -15,14 +17,14 @@ Output:
 ```console
 Name     ResourceGroup    MasterVersion    MasterUpgrades         NodePoolVersion    NodePoolUpgrades
 -------  ---------------  ---------------  ---------------------  -----------------  ---------------------
-default  myaksrg          1.9.6            1.9.9, 1.10.3, 1.10.5  1.9.6              1.9.9, 1.10.3, 1.10.5
+default  myakshyd          1.10.6            1.10.7, 1.11.1, 1.11.2  1.10.6              1.10.7, 1.11.1, 1.11.2
 ```
 
-We have 3 versions available for upgrade: 1.9.9, 1.10.3, 1.10.5. We can use the `az aks upgrade` command to upgrade to the latest available version.  During the upgrade process, nodes are carefully [cordoned and drained][kubernetes-drain] to minimize disruption to running applications.  Before initiating a cluster upgrade, ensure that you have enough additional compute capacity to handle your workload as cluster nodes are added and removed.
+We have 3 versions available for upgrade: 1.10.7, 1.11.1, 1.11.2. We can use the `az aks upgrade` command to upgrade to the latest available version.  During the upgrade process, nodes are carefully [cordoned and drained](https://kubernetes.io/docs/tasks/administer-cluster/safely-drain-node/) to minimize disruption to running applications.  Before initiating a cluster upgrade, ensure that you have enough additional compute capacity to handle your workload as cluster nodes are added and removed.
 
-Note: 
+**Note:** 
 ##### Kubernetes may be unavailable during cluster upgrades. The upgrade may take 10 to 15 minutes.
-##### As of today, the remaining lab exercises are tested with version 1.10.3 only and we recommend you to upgrade the cluster to version 1.10.3.
+##### As of today, the remaining lab exercises are tested with version 1.10.7 only and we recommend you to upgrade the cluster to version 1.10.7.
 
 Upgrade the cluster: 
 
@@ -44,30 +46,30 @@ Output:
       "osType": "Linux",
       "ports": null,
       "storageProfile": "ManagedDisks",
-      "vmSize": "Standard_D1_v2",
+      "vmSize": "Standard_DS2_v2",
       "vnetSubnetId": null
     }
   ],
-  "dnsPrefix": "myaksrgtes-myaksrgtest-9a4f9a",
-  "fqdn": "myaksrgtes-myaksrgtest-9a4f9a-88c59529.hcp.eastus.azmk8s.io",
-  "id": "/subscriptions/<SubscriptionID>/resourcegroups/myak                                                                                                             srgtest/providers/Microsoft.ContainerService/managedClusters/myaksrgtest",
-  "kubernetesVersion": "1.10.3",
+  "dnsPrefix": "myakshyd-myakshyd-xxxx",
+  "fqdn": "myakshyd-myakshyd-xxxxxa.hcp.westus.azmk8s.io",
+  "id": "/subscriptions/xxxxxxxxxxx/resourcegroups/myakshyd/providers/Microsoft.ContainerService/ma                                                                 nagedClusters/myakshyd",
+  "kubernetesVersion": "1.10.7",
   "linuxProfile": {
     "adminUsername": "azureuser",
     "ssh": {
       "publicKeys": [
         {
-          "keyData": ".."
+          "keyData": "ssh-rsa xxxxxxxxx"
         }
       ]
     }
   },
-  "location": "eastus",
-  "name": "myaksrgtest",
+  "location": "westus",
+  "name": "myakshyd",
   "provisioningState": "Succeeded",
-  "resourceGroup": "myaksrgtest",
+  "resourceGroup": "myakshyd",
   "servicePrincipalProfile": {
-    "clientId": "9f5aeb08-2e46-41ba-8b49-c13a51d5992e",
+    "clientId": "xxxxxxx",
     "keyVaultSecretRef": null,
     "secret": null
   },
@@ -88,7 +90,7 @@ Output:
 ```json
 Name         Location    ResourceGroup    KubernetesVersion    ProvisioningState    Fqdn
 -----------  ----------  ---------------  -------------------  -------------------  -----------------------------------------------------------
-myaksrgtest  eastus      myaksrgtest      1.10.3               Succeeded            myaksrgtes-myaksrgtest-9a4f9a-88c59529.hcp.eastus.azmk8s.io
+myakshyd     westus      myakshyd         1.10.7               Succeeded            myakshyd-myakshyd-xxxxx.hcp.eastus.azmk8s.io
 
 ```
 
