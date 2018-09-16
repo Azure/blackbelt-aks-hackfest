@@ -86,11 +86,11 @@ This lab has pre-requisites. Some have been completed in prior labs.
         * cloneURL: https://github.com/thedude-lebowski/blackbelt-aks-hackfest.git
 
     * Create a Github token and update the ```brig-proj-heroes.yaml```
-        * In your Github, click on `Settings` and `Developer settings`
+        * In your Github, click on `Settings` option under your Profile Menu and click on `Developer settings`
         * Select `Personal sccess tokens`
         * Select `Generate new token`
             ![Github token](img/github-token.png "Github token")
-        * Provide a description and give access to the `repo`
+        * Provide a description and give access to the `repo` and then select Generate Token. Make a note of the token
             ![Github token access](img/github-token-access.png "Github token access")
 
         > Note: More details on Brigade and Github integration are here: https://github.com/Azure/brigade/blob/master/docs/topics/github.md 
@@ -100,7 +100,7 @@ This lab has pre-requisites. Some have been completed in prior labs.
         * acrUsername
         * acrPassword
 
-    * After the above steps, your file will look like the below (values are not valid for realz)
+    * After the above steps, your file will look like the below. **sharedSecret** can be any super secret value (values are not valid for real). Once you are done with all the changes save the file.
 
         ```yaml
         project: "thedude-lebowski/blackbelt-aks-hackfest"
@@ -179,7 +179,7 @@ In our earlier labs, we had to create a Dockerfile for the web app. Since you fo
 1. Get a URL for your Brigade Gateway
 
     ```
-    kubectl get service brigade-brigade-gw
+    kubectl get service brigade-brigade-github-gw
 
     NAME                 TYPE           CLUSTER-IP    EXTERNAL-IP     PORT(S)          AGE
     brigade-brigade-gw   LoadBalancer   10.0.45.233   13.67.129.228   7744:30176/TCP   4h
@@ -196,7 +196,7 @@ In our earlier labs, we had to create a Dockerfile for the web app. Since you fo
 5. Set the `Payload URL` to the URL created in step 1
 6. Set the `Content type` to `application/json`
 7. Set the `Secret` to the value from your `brig-proj-heroes.yaml` called "sharedSecret"
-8. Set the `Which events...` to `Let me select individual events` and check `Push` and `Pull request`
+8. Set the `Which events...` to `Let me select individual events` and check `Pushes` and `Pull requests`
 
     ![Github webhook](img/github-webhook.png "Github webhook")
 
