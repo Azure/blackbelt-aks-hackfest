@@ -26,6 +26,8 @@ This lab has pre-requisites. Some have been completed in prior labs.
 
 ## Install Brigade
 
+![#f03c15](https://placehold.it/15/f03c15/000000?text=+) **Perform below steps in the Jumpbox**
+
 1. Update helm repo
 
     ```
@@ -58,7 +60,7 @@ This lab has pre-requisites. Some have been completed in prior labs.
 
 ## Setup Brigade Project
 
-1. Create a brigade project YAML file in the CentOS VM or Azure Cloud Shell
+1. Create a brigade project YAML file in the CentOS VM 
 
     * Create a file called ```brig-proj-heroes.yaml```
     * Add the contents below to start your file
