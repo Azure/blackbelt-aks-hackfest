@@ -74,20 +74,20 @@ Take note of the two files in this directory, [init-db-sample.yaml](init-db-samp
           containers:
             - image:  <login server>/azureworkshop/rating-web:v1
     ```
-5. Look at the **initContainers** section in the init-web-api-sample.yaml file. In here we can see commands to download the data(heroes.json, sites.json, ratings.json) which are to be imported into mongo db
+5. Look at the **initContainers** section in the **init-web-api-sample.yaml** file. In here we can see commands to download the data(heroes.json, sites.json, ratings.json) from the github repo to the data-dir folder.
 
    ![Download json](img/initcontainerwget.JPG "Init Container download DB data")
    
-   In the same section we can see commands which connect to the mongo db container already running on the port 27017 and import the json data into the web ratings database
+   In the same section we can see shell command which connect to the mongo db pod which we created in previous step. Once connected we import the data(heroes.json, sites.json, ratings.json) into the webratings database
    
    ![Download json](img/initcontainerimport.JPG "Import Data into the database")
 
-5. Deploy the web and api app to your cluster with the modified yaml
+6. Deploy the web and api app to your cluster with the modified yaml
     ```bash
     $ kubectl create -f init-web-api-sample.yaml
     ```
     
-6. See the init containers getting creating one after the other by executing the below command
+7. See the init containers getting creating one after the other by executing the below command
     ```bash
     $ kubectl get pods --watch
     ```    
@@ -103,4 +103,4 @@ Take note of the two files in this directory, [init-db-sample.yaml](init-db-samp
     ```  
     Use Ctrl+C to exit 
     
-    
+ 8. Access the web app and see if it works as expected 
