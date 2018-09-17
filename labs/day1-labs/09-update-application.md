@@ -2,6 +2,8 @@
 
 In this lab, we will make a change to the web application and then re-deploy the new container image into AKS. 
 
+![#f03c15](https://placehold.it/15/f03c15/000000?text=+) **Perform these steps in the Jumpbox**
+
 ## Update web application code
 
 1. Start with a terminal on the **CentOS jumpbox**
