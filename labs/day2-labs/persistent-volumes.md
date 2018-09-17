@@ -305,4 +305,4 @@ local       0.000GB
 webratings  0.000GB
 >
 ```
-Browse the heroes web application and check the ratings. You will see the same ratings which you noted earlier. 
+Browse the heroes web application and check the ratings. You will see the same ratings which you saw earlier. 
