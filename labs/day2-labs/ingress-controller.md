@@ -1,6 +1,6 @@
 # Ingress Controllers
 
-This lab will show how to use Kubernetes ingress controllers to route traffic to our Heroes web application.
+This lab will show how to use [Kubernetes ingress controllers](https://kubernetes.io/docs/concepts/services-networking/ingress/#ingress-controllers) to route traffic to our Heroes web application.
 
 ## Add Ingress Controller to an Azure Kubernetes Service Cluster
 
@@ -17,7 +17,9 @@ For the purposes of this lab we will be using Nginx as our ingress controller.
 
 We will use Helm to install Nginx. We had configured Helm in prior labs. 
 
-1. Open the Azure Cloud Shell
+![#f03c15](https://placehold.it/15/f03c15/000000?text=+) **Perform below steps in the Jumpbox**
+
+1. Connect to the jumpbox and open shell
 
 2. Validate your Helm install by running the below commands.
 
@@ -40,7 +42,7 @@ The Nginx Ingress Controller is an Ingress controller that uses a ConfigMap to s
     ``` bash
     # The following command will install the Nginx ingress controller into the K8s cluster.
 
-    helm install --name ingress stable/nginx-ingress --namespace kube-system --set rbac.create=false --set rbac.createRole=false --set rbac.createClusterRole=false
+    helm install --name ingress stable/nginx-ingress --namespace kube-system --set rbac.create=true --set rbac.createRole=true --set rbac.createClusterRole=true
     ```
 
 2. Validate that Nginx was installed
@@ -69,21 +71,16 @@ The Nginx Ingress Controller is an Ingress controller that uses a ConfigMap to s
 
 We will now deploy the application with a configured Ingress resource.
 
-1. Clear anything out of your cluster by deleting your deployments
+1. Switch to `helper-files` directory. Clear anything out of your cluster by deleting your deployments
 
     ```bash
     $ kubectl delete -f heroes-db.yaml
     $ kubectl delete -f heroes-web-api.yaml
     ```
 
-2. Switch to the `helper-files` directory and view the
-   `heroes-web-api-ingress.yaml` file.
+2. View the `heroes-web-api-ingress.yaml` file.
 
-    ``` bash
-    cd ~/blackbelt-aks-hackfest/labs/helper-files
-    ```
-
-2. Change all image field in the YAML files to match your docker registry url.
+2. Change all image field in the YAML files to match your Azure Container registry url.
 
     * Update the yaml files for the proper container image names.
     * You will need to replace the `<login server>` with the ACR login server created in earlier labs.
@@ -204,7 +201,7 @@ ingress-nginx-ingress-default-backend   ClusterIP      10.0.171.59    <none>    
 
 ## Test the Load Balancing
 
-Refresh the page multiple times and notice the change in the name of the pod and the Ip address as shown in example snippets below:
+Refresh the page multiple times and notice the change in the name of the pod and the IP address as shown in example snippets below:
 
 
 ![Screenshot1](img/web-heroes1.png "Web-Heroes1")
