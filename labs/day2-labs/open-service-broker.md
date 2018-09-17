@@ -1,6 +1,8 @@
 # Open Service Broker for Azure (OSBA)
 
-In this lab, we will deploy the Open Service Broker for Azure and the Kubernetes Service Catalog to automate the delivery of CosmosDB and configuration of our application. The heroes application requires a back-end Cosmos DB. In the earlier exercise, without OSBA, we had created a Cosmos DB account in the Azure portal, and then manually configured the connection information in the YAML file. Now with OSBA, our Kubernetes manifests can provision an Azure Cosmos DB account on our behalf, save the connection information in Kubernetes secrets, and then bind them to our API instance.
+In this lab, we will deploy the Open Service Broker for Azure and the Kubernetes Service Catalog to automate the delivery of CosmosDB and configuration of our application. The heroes application requires a back-end Cosmos DB. 
+
+In the earlier exercise, without OSBA, we had created a Cosmos DB account in the Azure portal, and then manually configured the connection information in the YAML file. Now with OSBA, our Kubernetes manifests can provision an Azure Cosmos DB account in Azure on our behalf, save the connection information in Kubernetes secrets, and then bind them to our API instance.
 
 ## Install the Azure Service Broker on AKS
 
