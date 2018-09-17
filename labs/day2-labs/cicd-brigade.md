@@ -223,6 +223,7 @@ In our earlier labs, we had to create a Dockerfile for the web app. Since you fo
     
 4. List the pods in the cluster (`kubectl get pods`). You should see **Brigade worker pods (brigade-worker-xxxxxx)** and  **jobs pods (job-runner-docker-xxxxxx and job-runner-k8s-xxxxxxxxx)** running.
    The brigade-worker pod loads the brigade.js file performs the tasks listed in the js file. It creates the job-runner-docker pod and job-runner-k8s pod based on defintions available in the brigade.js file. 
+   
    The **job-runner-docker** pod builds the new rating-web image and pushes it to ACR. 
    You should see a new image created in ACR in the rating-web repository with tag **master-xxxxx** as seen below
 
@@ -230,7 +231,7 @@ In our earlier labs, we had to create a Dockerfile for the web app. Since you fo
    
    Since a new version of the image is available in ACR the kubernetes deployment for **heroes-web** needs to be updated.
    
-   The **job-runner-k8s** pod updates the image tag for the deployment **heroes-web-deploy**. The deployment will recreate the heroes-web pod with the new image
+   The **job-runner-k8s** pod updates the image tag for the deployment **heroes-web-deploy**. The deployment will recreate the **heroes-web pod** with the new image
 
     
 6. If this completes successfully, you will see your updated web app.
