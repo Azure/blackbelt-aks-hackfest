@@ -1,5 +1,8 @@
 # Deploy the Superhero Ratings App to AKS
 
+
+![#f03c15](https://placehold.it/15/f03c15/000000?text=+) **Perform these steps in the Jumpbox**
+
 ## Review/Edit the YAML Config Files
 
 1. In the Jumpbox edit `heroes-db.yaml` using `vi`
