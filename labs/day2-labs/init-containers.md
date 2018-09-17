@@ -15,6 +15,8 @@ For reference, take a look at the Kubernetes.io docs on Init Containers [ by cli
 
 Take note of the two files in this directory, [init-db-sample.yaml](init-db-sample.yaml) and [init-web-api-sample.yaml](init-web-api-sample.yaml). We'll use these as our reference points for deployment.
 
+![#f03c15](https://placehold.it/15/f03c15/000000?text=+) **Perform below steps in the Jumpbox**
+
 1. Clear anything out of your cluster by deleting your deployments
 
     ```bash
@@ -23,22 +25,15 @@ Take note of the two files in this directory, [init-db-sample.yaml](init-db-samp
     $ kubectl delete -f heroes-web-api-ingress.yaml
     ```
 
-2. Modify init-db-sample.yaml in the `helper-files` directory to add your imagePullSecrets as well as reference your container registry and db image
-    ```yaml
-    spec:
-    imagePullSecrets:
-        - name: acr-secret
-    containers:
-    - image:  <login server>/azureworkshop/rating-db:v1
-    ```
+2. View the init-db-sample.yaml in the `helper-files` directory. We have the definitions to deploy the publically available the mongo db image
 
-3. Deploy the db to your cluster with the modified db yaml
+3. Deploy the db to your cluster with the db yaml
     ```bash
     cd ~/blackbelt-aks-hackfest/labs/helper-files
 
     $ kubectl create -f init-db-sample.yaml
     ```
-4. Modify the init-web-api-sample.yaml to add your imagePullSecrets as well as reference your container registry and db image, 
+4. Modify the init-web-api-sample.yaml to add your imagePullSecrets as well as reference your container registry and image, 
 
     > note that you only need to add your login info to the top level container(s) - the init containers pull from docker hubs public repo
 
@@ -79,8 +74,15 @@ Take note of the two files in this directory, [init-db-sample.yaml](init-db-samp
           containers:
             - image:  <login server>/azureworkshop/rating-web:v1
     ```
+5. Look at the **initContainers** section in the init-web-api-sample.yaml file. In here we can see commands to download the data(heroes.json, sites.json, ratings.json) which are to be imported into mongo db
 
-5. Deploy the db to your cluster with the modified db yaml
+   ![Download json](img/initcontainerwget.jpg "Init Container download DB data")
+   
+   In the same section we can see commands which connect to the mongo db container already running on the port 27017 and import the json data into the web ratings database
+   
+   ![Download json](img/initcontainerimport.jpg "Import Data into the database")
+
+5. Deploy the web and api app to your cluster with the modified yaml
     ```bash
     $ kubectl create -f init-web-api-sample.yaml
     ```
