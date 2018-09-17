@@ -5,7 +5,7 @@ A persistent volume in an AKS Cluster represents the storage that has been provi
 In this example we will explore how to use already existing Azure disks as persistent volumes in an AKS Cluster, and use it to store the monogdb files.  
 We will create 2 Managed Disks and place the mongodb data and config files on the mounted Azure disks. Finally we will delete the pod and recreate it and attach the same Azure disks which hold mongodb data files and see that the data is persistent.
 
-NOTE: All the commands given below can be executed either on the Azure Shell or the CentOS jumpbox.
+![#f03c15](https://placehold.it/15/f03c15/000000?text=+) **Perform below steps in the Jumpbox**
 
 ## Delete existing deployments
 We will start with deleting all the existing deployments of our demo application and making sure that the old instances of DB, WEB and API pods are not running.
@@ -77,7 +77,7 @@ az disk create \
 --sku Standard_LRS \
   --query id --output tsv
 ```
-Once the disk has been created, *copy the disk ID to a notepad*, which is used when mounting the configdisk.
+Once the disk has been created, **copy the disk ID to a notepad file**, which is used when mounting the configdisk.
 ```
 /subscriptions/<SUBSCRIPTION_ID>/resourceGroups/MC_HackFest05_Kubecluster05_eastus/providers/Microsoft.Compute/disks/mongodb-configdisk
 ```
@@ -85,9 +85,9 @@ Once the disk has been created, *copy the disk ID to a notepad*, which is used w
 ## Mount the disks as Persistent Volumes
 Mount the Azure disks into your pod by configuring the volume in the deployment specification.
 
-Create a new file named _heroes-db-azdisk.yaml_ under _~/blackbelt-aks-hackfest/labs/helper-files/_ with the following contents in your CentOS jumpbox/Azure Shell. 
+Create a new file named **heroes-db-azdisk.yaml** under **~/blackbelt-aks-hackfest/labs/helper-files/** with the following contents in your CentOS jumpbox. 
 
-NOTE: Update the ACR server name and the diskURI for both datadisk and configdisk with the disk IDs obtained while creating the respective disks. Also, take note of the mountPath, which is the path where the Azure disk is mounted inside the heroes-db pod.
+**NOTE:** Update the **ACR server name** and the **diskURI** for both datadisk and configdisk with the disk IDs obtained while creating the respective disks. Also, take note of the mountPath, which is the path where the Azure disk is mounted inside the heroes-db pod.
 
 ```yaml
 apiVersion: v1
@@ -184,8 +184,9 @@ heroes-web-deploy-5dffc9c976-cdll5   1/1       Running   0          8m
 ```
 
 ## Verify the mountpoints and the databases
-Verify the mount points  of azure disks inside the DB pod with the below commands:
-NOTE: You should see 2 disks of 2GB each mounted to the /data/db and /data/configdb paths. 
+
+Verify the mount points  of azure disks inside the DB pod with the below commands.
+**NOTE:** You should see 2 disks of 2GB each mounted to the /data/db and /data/configdb paths. 
 
 ```bash
 kubectl exec -it <DB pod name> bash
@@ -218,7 +219,7 @@ local       0.000GB
 >
 ```
 
-At this point there will be only 3 default databases namely admin, local and config.  Type exit to exit the mongo shell
+At this point there will be only 3 default databases namely admin, local and config.  Type `exit` to exit the mongo shell
 
 ### Import the webrating database
 
@@ -250,9 +251,9 @@ webratings  0.000GB
 ```
 This time, you will see the webratings database also listed in the output. 
 
-NOTE: The imported webratings database information will be stored in the mounted Azure disks.
+**NOTE:** The imported webratings database information will be stored in the mounted Azure disks.
 
-Type 'exit' 2 times to exit from the mongo shell and the db pod. 
+Type `exit` **2 times** to exit from the mongo shell and the db pod. 
 
 Browse the heroes web application and add some ratings. Make a note of the current ratings.
 
@@ -264,14 +265,14 @@ kubectl delete deployment heroes-db-deploy
 Browse the heroes web application and refresh the ratings. You will not be able to see the ratings now.
 
 ## Recreate the DB Pod
-Now, again apply the yaml file for the db pod, _heroes-db-azdisk.yaml_ to recreate the DB pod.
+Now, again apply the yaml file for the db pod **heroes-db-azdisk.yaml** to recreate the DB pod.
 
 This will create a fresh heroes-db pod with the same Azure disks mounted. 
 
 ```bash
 kubectl apply -f heroes-db-azdisk.yaml 
 ```
-Wait for the pod to be started and verify the mount points of azure disks inside the newly created DB pod. 
+Wait for the db pod to be in running state and verify the mount points of azure disks inside the newly created DB pod. 
 
 ```bash
 [root@CentoS01 helper-files]# kubectl exec -it <db pod> bash
