@@ -76,11 +76,11 @@ Take note of the two files in this directory, [init-db-sample.yaml](init-db-samp
     ```
 5. Look at the **initContainers** section in the init-web-api-sample.yaml file. In here we can see commands to download the data(heroes.json, sites.json, ratings.json) which are to be imported into mongo db
 
-   ![Download json](img/initcontainerwget.jpg "Init Container download DB data")
+   ![Download json](img/initcontainerwget.JPG "Init Container download DB data")
    
    In the same section we can see commands which connect to the mongo db container already running on the port 27017 and import the json data into the web ratings database
    
-   ![Download json](img/initcontainerimport.jpg "Import Data into the database")
+   ![Download json](img/initcontainerimport.JPG "Import Data into the database")
 
 5. Deploy the web and api app to your cluster with the modified yaml
     ```bash
