@@ -220,7 +220,8 @@ In our earlier labs, we had to create a Dockerfile for the web app. Since you fo
     ```
 
 3. Click `Commit changes` in Github. Provide a commit message if you would like.
-4. List the pods in the cluster (`kubectl get pods`). You should see Brigade worker and jobs running. 
+4. List the pods in the cluster (`kubectl get pods`). You should see Brigade worker and jobs pods running.
+5. Also you should see a new image created in ACR in the rating-web repository with tag **master-xxxxx** 
 5. If this completes successfully, you will see your updated web app.
 
 
