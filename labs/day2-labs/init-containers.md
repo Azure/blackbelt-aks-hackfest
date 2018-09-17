@@ -3,7 +3,7 @@ This lab will show how to use Kubernetes Init Containers to run scripts and load
 
 I'm not going to lie, things are going to get a little weird.
 
-We are going to pull data from a remote source(Refer to initContainers section in init-web-api-sample.yaml):, and then populate the database(mongodb) from that source file. All before the primary container(web container) is initialized.
+We are going to pull data from a remote source(Refer to initContainers section in init-web-api-sample.yaml):, and then populate the database(mongodb) from that source file. All before the primary container(api container) is initialized.
 
 I told you it was going to be weird.
 
@@ -74,11 +74,11 @@ Take note of the two files in this directory, [init-db-sample.yaml](init-db-samp
           containers:
             - image:  <login server>/azureworkshop/rating-web:v1
     ```
-5. Look at the **initContainers** section in the **init-web-api-sample.yaml** file. In here we can see commands to download the data(heroes.json, sites.json, ratings.json) from the github repo to the data-dir folder.
+5. Look at the **initContainers** section in the **init-web-api-sample.yaml** file. In here we can see commands to download the data(heroes.json, sites.json, ratings.json) from the github repo to the **data-dir** folder.
 
    ![Download json](img/initcontainerwget.JPG "Init Container download DB data")
    
-   In the same section we can see shell command which connect to the mongo db pod which we created in previous step. Once connected we import the data(heroes.json, sites.json, ratings.json) into the webratings database
+   In the same section we can see shell commands to import data (heroes.json, sites.json, ratings.json) into the webratings database of mongodb. Unlike previous lab exercises where we ran **import.sh** inside the mongo db pod, here the data is imported by a init container. This ensures data is present in database well before the init container is initialized.
    
    ![Download json](img/initcontainerimport.JPG "Import Data into the database")
 
