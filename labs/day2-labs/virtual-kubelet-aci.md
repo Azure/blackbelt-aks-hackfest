@@ -7,7 +7,11 @@ Virtual Kubelet is an open source Kubernetes kubelet implementation that masquer
 ) "Migrate Data from MongoDB to Azure Cosmos DB" to be completed first.
  * Upgrade your AKS Kubernetes Cluster to 1.8.6 (or newer). See [Lab 10 - Upgrade an AKS cluster](/labs/day1-labs/10-cluster-upgrading.md
 ) for more.
-* Make sure the **Microsoft.ContainerInstance** Provider is registered in your Azure Subscription.
+* Make sure the **Microsoft.ContainerInstance** Provider is registered in your Azure Subscription by using below command
+
+```console
+az provider list --query "[].{Provider:namespace, Status:registrationState}" --out table
+```
  
 ## How It Works
 
@@ -30,7 +34,7 @@ The diagram below illustrates how Virtual-Kubelet works.
 
 ### Create a Resource Group for ACI
 
-To use Azure Container Instances, you must provide a resource group. We will use the existing Resource Group you were assigned.
+To create Azure Container Instances, you must provide a resource group. Use any of the existing Resource Group.
 
 ```console
 az group list
@@ -66,7 +70,7 @@ export AZURE_RG=<name>
 A Service Principal creates an identity for the Virtual Kubelet ACI provider to use when provisioning
 resources on your account on behalf of Kubernetes.
 
-a. In the console run
+a. In the console run. Provide some random letters below for the kubelet name
 ```console
 az ad sp create-for-rbac --name virtual-kubelet-<randomized letters> -o table
 ```
@@ -114,10 +118,10 @@ Output:
 ```output
 eastus,virtual-kubelet-east,virtual-kubelet-east
 ```
-Now intsall the Helm package for Virtual Kubelet:
+Now install the Helm package for Virtual Kubelet:
 ```console
 helm install ~/virtual-kubelet/charts/virtual-kubelet-for-aks/  --name "$RELEASE_NAME" \
-    --set env.azureClientId="$AZURE_CLIENT_ID",env.azureClientKey="$AZURE_CLIENT_SECRET",env.azureTenantId="$AZURE_TENANT_ID",env.azureSubscriptionId="$AZURE_SUBSCRIPTION_ID",env.aciResourceGroup="$AZURE_RG",env.nodeName="$NODE_NAME",env.nodeOsType=Linux,env.apiserverCert=$cert,env.apiserverKey=$key,image.tag="$VK_IMAGE_TAG"
+    --set env.azureClientId="$AZURE_CLIENT_ID",env.azureClientKey="$AZURE_CLIENT_SECRET",env.azureTenantId="$AZURE_TENANT_ID",env.azureSubscriptionId="$AZURE_SUBSCRIPTION_ID",env.aciResourceGroup="$AZURE_RG",env.nodeName="$NODE_NAME",env.nodeOsType=Linux,env.apiserverCert=$cert,env.apiserverKey=$key,image.tag="$VK_IMAGE_TAG" --set rbac.Enabled=true
 ```
 
 Output:
@@ -164,10 +168,10 @@ Output:
 ```output
 westus,virtual-kubelet-west,virtual-kubelet-west
 ```
-Now intsall the Helm package for Virtual Kubelet:
+Now install the Helm package for Virtual Kubelet:
 ```console
 helm install ~/virtual-kubelet/charts/virtual-kubelet-for-aks/  --name "$RELEASE_NAME" \
-    --set env.azureClientId="$AZURE_CLIENT_ID",env.azureClientKey="$AZURE_CLIENT_SECRET",env.azureTenantId="$AZURE_TENANT_ID",env.azureSubscriptionId="$AZURE_SUBSCRIPTION_ID",env.aciResourceGroup="$AZURE_RG",env.nodeName="$NODE_NAME",env.nodeOsType=Linux,env.apiserverCert=$cert,env.apiserverKey=$key,image.tag="$VK_IMAGE_TAG"
+    --set env.azureClientId="$AZURE_CLIENT_ID",env.azureClientKey="$AZURE_CLIENT_SECRET",env.azureTenantId="$AZURE_TENANT_ID",env.azureSubscriptionId="$AZURE_SUBSCRIPTION_ID",env.aciResourceGroup="$AZURE_RG",env.nodeName="$NODE_NAME",env.nodeOsType=Linux,env.apiserverCert=$cert,env.apiserverKey=$key,image.tag="$VK_IMAGE_TAG" --set rbac.Enabled=true
 ```
 
 Output:
@@ -221,7 +225,7 @@ aks-nodepool1-39289454-2                    Ready     agent     22h       v1.7.7
 
 ## Schedule a pod in ACI
 
-We will use a nodeName constraint to force the scheduler to schedule the pod to the new virtual-kubelet-east node. The yaml file is included in `~/blackbelt-aks-hackfest/labs/helper-files/east-aci-heroes.yaml`. Edit the file to point to your Azure Container Registry, edit the dnsnamelabel to add your lab number and have your CosmosDB MongoDb connection String:
+We will use a nodeName constraint to force the scheduler to schedule the pod to the new virtual-kubelet-east node. The yaml file is included in `~/blackbelt-aks-hackfest/labs/helper-files/east-aci-heroes.yaml`. Edit the file to point to your Azure Container Registry, edit the dnsnamelabel to add some random number and have your CosmosDB MongoDb connection String:
 
 ```yaml
 apiVersion: v1
@@ -276,7 +280,7 @@ spec:
   kubectl apply -f east-aci-heroes.yaml 
   ```
 
-  Then deploy another pod to the new virtual-kubelet-west node. The yaml file is included in `~/blackbelt-aks-hackfest/labs/helper-files/west-aci-heroes.yaml`. Edit the file to point to your Azure Container Registry, edit the dnsnamelabel to add your lab number and have your CosmosDB MongoDb connection String:
+  Then deploy another pod to the new virtual-kubelet-west node. The yaml file is included in `~/blackbelt-aks-hackfest/labs/helper-files/west-aci-heroes.yaml`. Edit the file to point to your Azure Container Registry, edit the dnsnamelabel to add some random number and have your CosmosDB MongoDb connection String:
 
   ```yaml
 apiVersion: v1
@@ -332,7 +336,7 @@ kubectl apply -f west-aci-heroes.yaml
 
 ## Determine the FQDN of the ACI Instances
 
-By placing the annotation for a DNSlabel ACI will receive an Azure assigned FQDN. The pattern that ACi uses is the Kubernetes dnsLabelName.azureregion.azurecontainer.io To determine the FQDN of your ACi instance run the following commands:
+By placing the annotation for a DNSlabel ACI will receive an Azure assigned FQDN. The pattern that ACI uses is the Kubernetes dnsLabelName.azureregion.azurecontainer.io To determine the FQDN of your ACI instance run the following commands:
 
 ```console
 az container show -g $AZURE_RG -n default-heroes-east --query ipAddress.fqdn
