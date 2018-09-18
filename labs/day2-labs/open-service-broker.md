@@ -4,6 +4,8 @@ In this lab, we will deploy the Open Service Broker for Azure and the Kubernetes
 
 In the earlier exercise, without OSBA, we had created a Cosmos DB account in the Azure portal, and then manually configured the connection information in the YAML file. Now with OSBA, our Kubernetes manifests can provision an Azure Cosmos DB account in Azure on our behalf, save the connection information in Kubernetes secrets, and then bind them to our API instance.
 
+![#f03c15](https://placehold.it/15/f03c15/000000?text=+) **Perform below steps in the Jumpbox**
+
 ## Install the Azure Service Broker on AKS
 
 1. Ensure Helm 2.7+ is Installed and Working
@@ -36,7 +38,7 @@ az ad sp create-for-rbac --name osba-sp -o table
 
 4. Gather Config Details
 
-* Gather the following Subscription and Service Principal details from the output of the previous command
+* Gather the following Subscription and Service Principal details from the output of the previous command 
 
 ```bash
 # set the below to values for your sub
@@ -114,17 +116,17 @@ kubectl get secret
 5. Enable Aggregation Pipelines in Cosmos DB
 
 * A preview feature of Cosmos DB is being leveraged so it needs to be enabled. In the future this will be able to be done via OSBA.
-* The first step is to log into the **az cli** via the Cloud Shell and using your Azure Service Principal.
+* The first step is to log into the **az cli** via the Jumpbox and using your Azure Service Principal.
 * Check to see that az cli version is 2.0.27 or greater.
 
 ```bash
 az --version
 ```
 
-* If the az cli is < 2.0.27 then update the cli. To update you can run "yum update azure-cli -y"
+* If the az cli is < 2.0.27 then update the cli. To update you can run `yum update azure-cli -y`
 
 ```bash
-# Do this in Cloud Shell and ensure az --version is 2.0.27 or greater
+# Do this in Jumpbox and ensure az --version is 2.0.27 or greater
 az login --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET --tenant $AZURE_TENANT_ID
 ```
 
