@@ -27,7 +27,7 @@ Server: &version.Version{SemVer:"v2.8.0", GitCommit:"14af25f1de6832228539259b821
 ``` bash
 helm repo add svc-cat https://svc-catalog-charts.storage.googleapis.com
 
-helm install svc-cat/catalog --name catalog --namespace catalog --set rbacEnable=false
+helm install svc-cat/catalog --name catalog --namespace catalog --set rbac.Enabled=true
 ```
 
 3. Create a new service principal 
@@ -55,7 +55,7 @@ export AZURE_CLIENT_SECRET=<Password>
 ```bash
 helm repo add azure https://kubernetescharts.blob.core.windows.net/azure
 
-helm install azure/open-service-broker-azure --name osba --namespace osba --set azure.subscriptionId=$AZURE_SUBSCRIPTION_ID --set azure.tenantId=$AZURE_TENANT_ID --set azure.clientId=$AZURE_CLIENT_ID --set azure.clientSecret=$AZURE_CLIENT_SECRET --version 0.11.0 --set modules.minStability=EXPERIMENTAL
+helm install azure/open-service-broker-azure --name osba --namespace osba --set azure.subscriptionId=$AZURE_SUBSCRIPTION_ID --set azure.tenantId=$AZURE_TENANT_ID --set azure.clientId=$AZURE_CLIENT_ID --set azure.clientSecret=$AZURE_CLIENT_SECRET --version 0.11.0 --set modules.minStability=EXPERIMENTAL --set rbac.Enabled=true
 ```
 
 > **This may take a few minutes to start running. We must wait for redis to start. Go get some coffee.**
