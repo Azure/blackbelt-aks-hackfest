@@ -21,6 +21,8 @@ The diagram below illustrates how Virtual-Kubelet works.
 
 ## Cluster Setup
 
+![#f03c15](https://placehold.it/15/f03c15/000000?text=+) **Perform below steps in the Jumpbox**
+
 1. List your Azure subscriptions:
     ```console
     az account list -o table
