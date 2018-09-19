@@ -148,7 +148,7 @@ default-token-xd8wk   kubernetes.io/service-account-token   3         53m
 
          Refer the respective yaml files to understand how services got created as LoadBalancer and ClusterIP.
 
-* Browse to the External IP for your web application (on port 8080) and try the app
+* Browse to the External IP for your web application on port 8080 (eg: http://52.165.235.114:8080 in this example) and try the app
 
 > The public IP can take a few minutes to create with a new cluster. Sit back and relax. Maybe check Facebook. 
 
