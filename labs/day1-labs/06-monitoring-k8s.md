@@ -31,7 +31,7 @@ We are going to be installing Prometheus and Grafana into our K8s cluster using 
     ```
     **Note:** If you are receiving an error saying "Error: could not find a ready tiller pod", run the command  "helm init --force-upgrade" to forcefully initiate HELM and check the HELM version again. 
     
- 4. If the cluster is RBAC enabled, tiller Pod would not have enough permission in the default namespace. To fix this we need to create a ClusterRole, ClusterRoleBinding and a Service Account. With this we can give necessry permission to Tiller
+ 4. If the cluster is RBAC enabled, tiller Pod would not have enough permission in the default namespace. To fix this we need to create a ClusterRole, ClusterRoleBinding and a Service Account. With this we can give necessary permission to Tiller
  
     ```
     kubectl create serviceaccount --namespace kube-system tiller
