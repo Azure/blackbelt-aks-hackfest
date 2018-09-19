@@ -146,6 +146,10 @@ default-token-xd8wk   kubernetes.io/service-account-token   3         53m
     web          LoadBalancer   10.0.54.206   52.165.235.114   8080:32404/TCP   5m
     ```
 
+         Refer the respective yaml files to understand how services got created as LoadBalancer and ClusterIP.
+
 * Browse to the External IP for your web application (on port 8080) and try the app
 
 > The public IP can take a few minutes to create with a new cluster. Sit back and relax. Maybe check Facebook. 
+
+Now you have the SuperHero Rating App, which can be accessed via Internet from your AKS cluster. 
