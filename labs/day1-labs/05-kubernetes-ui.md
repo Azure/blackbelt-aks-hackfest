@@ -20,6 +20,7 @@ There are multiple ways of accessing Kubernetes dashboard. You can access throug
     * Run ```az aks browse -n CLUSTER_NAME -g RGNAME```
     * This creates a local proxy to 127.0.0.1:8001
     * Open a web browser (e.g. Firefox) and point to: <http://127.0.0.1:8001/>
+    * If your AKS cluster uses RBAC, a ClusterRoleBinding must be created before you can correctly access the dashboard. By default, the Kubernetes dashboard is deployed with minimal read access and displays RBAC access errors. The Kubernetes dashboard does not currently support user-provided credentials to determine the level of access, rather it uses the roles granted to the service account. A cluster administrator can choose to grant additional access to the kubernetes-dashboard service account, however this can be a vector for privilege escalation. You can also integrate Azure Active Directory authentication to provide a more granular level of access. More information can be found at [RBAC Dashboard issue](https://docs.microsoft.com/en-us/azure/aks/kubernetes-dashboard#for-rbac-enabled-clusters). To fix the issue run ```kubectl create clusterrolebinding kubernetes-dashboard --clusterrole=cluster-admin --serviceaccount=kube-system:kubernetes-dashboard```
 
 ### Explore Kubernetes Dashboard
 
