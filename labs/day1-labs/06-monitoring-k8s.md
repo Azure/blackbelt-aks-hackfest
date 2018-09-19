@@ -116,7 +116,7 @@ Use the EXTERNAL-IP value from the previous step and put that into your browser:
 
     ![](img/8-grafanan-importdb.jpg)
 
-    * You can click on the Upload File button and browse to the `grafana-dashboard.json` in the `helper-files` directory. Since we don't have the helper-files downloaded locally you can paste the contents of the **'grafana-dashboard.json'** file from the '/lab/helper-files' directory of this github repository into the text box. Click on **Load**
+    * You can click on the Upload File button and browse to the `grafana-dashboard.json` in the `helper-files` directory. Since we don't have the helper-files downloaded locally you can paste the contents of the **'grafana-dashboard.json'**  (https://raw.githubusercontent.com/heoelri/container-bootcamp/master/labs/helper-files/grafana-dashboard.json) file from the '/lab/helper-files' directory of this github repository into the JSON text box. Click on **Load**
 
     ![](img/8-grafana_dashboardid.png)
 
