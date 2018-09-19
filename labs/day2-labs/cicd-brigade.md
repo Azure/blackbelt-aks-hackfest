@@ -37,9 +37,10 @@ This lab has pre-requisites. Some have been completed in prior labs.
 2. Install brigade chart
 
     ```
-    helm install -n brigade brigade/brigade
+    helm install -n brigade brigade/brigade --set rbac.Enabled=true
 
     # Note that if you are using kubernetes pre-1.8, you will need to run:
+    
     helm install -n brigade brigade/brigade --set vacuum.enabled=false
 
     # you should see 3 new pods
@@ -122,10 +123,17 @@ This lab has pre-requisites. Some have been completed in prior labs.
     ```
     # from the directory where your file from step #1 was created
 
-    helm install --name brig-proj-heroes brigade/brigade-project -f brig-proj-heroes.yaml
+    helm install --name brig-proj-heroes brigade/brigade-project -f brig-proj-heroes.yaml --set rbac.enabled=true
     ``` 
 
     > Note: There is a ```brig``` CLI client that allows you to view your brigade projects. More details here: <https://github.com/Azure/brigade/tree/master/brig>
+    
+ 3. Create Cluster role binding for brigade worker service account to provide it with enough permissions in the default namespace
+ 
+    ```
+    kubectl create clusterrolebinding brigade-worker --clusterrole=cluster-admin --serviceaccount=default:brigade-worker
+    
+    ```
 
 ## Setup Brigade Pipeline
 
