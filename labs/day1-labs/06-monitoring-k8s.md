@@ -30,6 +30,8 @@ We are going to be installing Prometheus and Grafana into our K8s cluster using 
     Client: &version.Version{SemVer:"v2.9.1", GitCommit:"8478fb4fc723885b155c924d1c8c410b7a9444e6", GitTreeState:"clean"}
     Server: &version.Version{SemVer:"v2.9.1", GitCommit:"8478fb4fc723885b155c924d1c8c410b7a9444e6", GitTreeState:"clean"}
     ```
+    **Note:** If you are recieving an error saying "Error: could not find a ready tiller pod", run the command  "helm init --force-upgrade" to forcefully initiate HELM and check the HELM version again. 
+    
 ## Install Prometheus using Helm
 Prometheus is a Cloud Native Computing Foundation (CNCF) project used to collect and process metrics. It collects metrics from configured targets, in our case it is a Kubernetes Cluster.
 
