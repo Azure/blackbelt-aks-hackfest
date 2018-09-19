@@ -21,8 +21,7 @@ We are going to be installing Prometheus and Grafana into our K8s cluster using 
 2. Initialize Helm
     ```
     helm init
-    ```
-
+    ``` 
 3. Validate Helm and Tiller were installed successfully
     ```
     helm version
@@ -30,7 +29,17 @@ We are going to be installing Prometheus and Grafana into our K8s cluster using 
     Client: &version.Version{SemVer:"v2.9.1", GitCommit:"8478fb4fc723885b155c924d1c8c410b7a9444e6", GitTreeState:"clean"}
     Server: &version.Version{SemVer:"v2.9.1", GitCommit:"8478fb4fc723885b155c924d1c8c410b7a9444e6", GitTreeState:"clean"}
     ```
-    **Note:** If you are recieving an error saying "Error: could not find a ready tiller pod", run the command  "helm init --force-upgrade" to forcefully initiate HELM and check the HELM version again. 
+    **Note:** If you are receiving an error saying "Error: could not find a ready tiller pod", run the command  "helm init --force-upgrade" to forcefully initiate HELM and check the HELM version again. 
+    
+ 4. If the cluster is RBAC enabled, tiller Pod would not have enough permission in the default namespace. To fix this we need to create a ClusterRole, ClusterRoleBinding and a Service Account. With this we can give necessry permission to Tiller
+ 
+    ```
+    kubectl create serviceaccount --namespace kube-system tiller
+
+    kubectl create clusterrolebinding tiller-cluster-rule --clusterrole=cluster-admin --serviceaccount=kube-system:tiller
+
+    kubectl patch deploy --namespace kube-system tiller-deploy -p '{"spec":{"template":{"spec":{"serviceAccount":"tiller"}}}}'
+    ```
     
 ## Install Prometheus using Helm
 Prometheus is a Cloud Native Computing Foundation (CNCF) project used to collect and process metrics. It collects metrics from configured targets, in our case it is a Kubernetes Cluster.
