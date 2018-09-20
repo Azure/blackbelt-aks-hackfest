@@ -25,8 +25,8 @@ We will use Helm to install Nginx. We had configured Helm in prior labs.
     helm version
 
     # You should see something like the following as output:
-    Client: &version.Version{SemVer:"v2.7.2", GitCommit:"8478fb4fc723885b155c924d1c8c410b7a9444e6", GitTreeState:"clean"}
-    Server: &version.Version{SemVer:"v2.7.2", GitCommit:"8478fb4fc723885b155c924d1c8c410b7a9444e6", GitTreeState:"clean"}
+    Client: &version.Version{SemVer:"v2.10.0", GitCommit:"9ad53aac42165a5fadc6c87be0dea6b115f93090", GitTreeState:"clean"}
+    Server: &version.Version{SemVer:"v2.10.0", GitCommit:"9ad53aac42165a5fadc6c87be0dea6b115f93090", GitTreeState:"clean"}
     ```
 
     > Note: If helm was not configured, you must run `helm init`
@@ -69,25 +69,18 @@ The Nginx Ingress Controller is an Ingress controller that uses a ConfigMap to s
 
 We will now deploy the application with a configured Ingress resource.
 
-1. Clear anything out of your cluster by deleting your deployments
+1. Clear the previous web/api deployment of your cluster:
 
     ```bash
-    $ kubectl delete -f heroes-db.yaml
-    $ kubectl delete -f heroes-web-api.yaml
-    ```
-
-2. Switch to the `helper-files` directory and view the
-   `heroes-web-api-ingress.yaml` file.
-
-    ``` bash
     cd ~/blackbelt-aks-hackfest/labs/helper-files
+    
+    kubectl delete -f heroes-web-api.yaml
     ```
 
-2. Change all image field in the YAML files to match your docker registry url.
+2. In the `helper-files` directory and open and edit the `heroes-web-api-ingress.yaml` file. Change all image field in the YAML files to match your docker registry url.
 
-    * Update the yaml files for the proper container image names.
     * You will need to replace the `<login server>` with the ACR login server created in earlier labs.
-        > Note: You will update the image name TWICE updating the web and api container images and ONCE in the database container image.
+        > Note: You will update the image name TWICE updating the web and api container images.
 
         * Example: 
 
@@ -98,37 +91,7 @@ We will now deploy the application with a configured Ingress resource.
                 name:  heroes-web-cntnr
             ```
 
-3. Depoy heroes-db.yaml and import the data
-
-    ``` bash
-    kubectl apply -f heroes-db.yaml
-    ```
-
-    ```
-    # exec into pod and import data
-    kubectl get pods
-
-    NAME                                 READY     STATUS    RESTARTS   AGE
-    heroes-db-deploy-2357291595-k7wjk    1/1       Running   0          3m
-
-    MONGO_POD=heroes-db-deploy-2357291595-k7wjk
-
-    kubectl exec -it $MONGO_POD bash
-
-    root@heroes-db-deploy-2357291595-xb4xm:/# ./import.sh
-
-    2018-01-16T21:38:44.819+0000	connected to: localhost
-    2018-01-16T21:38:44.918+0000	imported 4 documents
-    2018-01-16T21:38:44.927+0000	connected to: localhost
-    2018-01-16T21:38:45.031+0000	imported 72 documents
-    2018-01-16T21:38:45.040+0000	connected to: localhost
-    2018-01-16T21:38:45.152+0000	imported 2 documents
-    root@heroes-db-deploy-2357291595-xb4xm:/# exit
-
-    # be sure to exit pod as shown above
-    ```
-
-4. Deploy heroes-web-api-ingress.yaml
+3. Deploy heroes-web-api-ingress.yaml
 
     ``` bash
     kubectl apply -f heroes-web-api-ingress.yaml
@@ -157,7 +120,7 @@ We will now deploy the application with a configured Ingress resource.
                 path: /
     ```
 
-5. Browse to the web app via the Ingress
+4. Browse to the web app via the Ingress
 
 ```
 # get ingress external IP

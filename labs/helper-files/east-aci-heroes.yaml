@@ -5,7 +5,7 @@ metadata:
   labels:
     name:  heroes-east
   annotations:
-    virtualkubelet.io/dnsnamelabel: "heroes"
+    virtualkubelet.io/dnsnamelabel: "heroes-xxx"
 spec:
   imagePullSecrets:
     - name: acr-secret
@@ -41,4 +41,8 @@ spec:
       name: http-api
       protocol: TCP
   dnsPolicy: ClusterFirst
-  nodeName: virtual-kubelet-east
+  nodeName: virtual-kubelet-virtual-kubelet-linux-eastus
+  tolerations:
+  - key: virtual-kubelet.io/provider
+    value: azure
+    effect: NoSchedule

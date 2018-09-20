@@ -2,6 +2,8 @@
 
 In this lab, we will deploy the Open Service Broker for Azure and the Kubernetes Service Catalog to automate the delivery of CosmosDB and configuration of our application.
 
+Note: the Kubernetes version of your cluster should be > 1.9.0, [otherwise you will get an error while trying to install OSBA](https://github.com/Azure/open-service-broker-azure/blob/fae43258eb8ff4c2e25f7b4da9879aae355eca73/docs/faq.md#osba-is-forbidden-not-yet-ready-to-handle-request).
+
 ## Install the Azure Service Broker on AKS
 
 1. Ensure Helm 2.7+ is Installed and Working
@@ -10,25 +12,25 @@ In this lab, we will deploy the Open Service Broker for Azure and the Kubernetes
 
 ```bash
 odl_user@Azure:~$ helm version
-Client: &version.Version{SemVer:"v2.8.0", GitCommit:"14af25f1de6832228539259b821949d20069a222", GitTreeState:"clean"}
-Server: &version.Version{SemVer:"v2.8.0", GitCommit:"14af25f1de6832228539259b821949d20069a222", GitTreeState:"clean"}
+Client: &version.Version{SemVer:"v2.10.0", GitCommit:"9ad53aac42165a5fadc6c87be0dea6b115f93090", GitTreeState:"clean"}
+Server: &version.Version{SemVer:"v2.10.0", GitCommit:"9ad53aac42165a5fadc6c87be0dea6b115f93090", GitTreeState:"clean"}
 ```
 
 * If a newer version of Helm is required, click [here](https://docs.helm.sh/using_helm/#installing-helm) for instructions on installing and updating Helm.
 
 2. Install Service Catalog on AKS
 
-* This step will install the Kubernetes Service Catalog which is a pre-requisite for OSBA.
+* This step will [install the Kubernetes Service Catalog which is a pre-requisite for OSBA](https://docs.microsoft.com/en-us/azure/aks/integrate-azure).
 
 ``` bash
 helm repo add svc-cat https://svc-catalog-charts.storage.googleapis.com
 
-helm install svc-cat/catalog --name catalog --namespace catalog --set rbacEnable=false
+helm install svc-cat/catalog --name catalog --namespace catalog --set controllerManager.healthcheck.enabled=false
 ```
 
 3. Gather Config Details
 
-* Gather the following Subscription and Service Principal details. If you are using the Workshop Classroom experience, these values will be on the Launch Lab screen and you should have also received an e-mail copy.
+* Gather the following Subscription and Service Principal details. If you are using the Workshop Classroom experience, these values will be on the Launch Lab screen and you should have also received an e-mail copy. Otherwise, you could for example run this command `az ad sp create-for-rbac`.
 
 ```bash
 # set the below to values for your sub
@@ -50,7 +52,8 @@ helm install azure/open-service-broker-azure --name osba --namespace osba \
   --set azure.tenantId=$AZURE_TENANT_ID \
   --set azure.clientId=$AZURE_CLIENT_ID \
   --set azure.clientSecret=$AZURE_CLIENT_SECRET \
-  --set modules.minStability=EXPERIMENTAL
+  --set modules.minStability=EXPERIMENTAL \
+  --version 0.11.0
 ```
 
 > **This may take a few minutes to start running. We must wait for redis to start. Go get some coffee.**

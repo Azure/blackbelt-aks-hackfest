@@ -16,17 +16,24 @@ We are going to be installing Prometheus and Grafana into our K8s cluster using 
 
 1. In the Azure Cloud Shell, the Helm CLI is already installed
 
-2. Initialize Helm
+2. If your AKS cluster has RBAC enabled (which is the case by default with Kuberentes version 1.10+), you need first to [create a Service Account for Tiller](https://docs.microsoft.com/en-us/azure/aks/kubernetes-helm#create-a-service-account) by running:
     ```
-    helm init
+    cd ~/blackbelt-aks-hackfest/labs/helper-files
+
+    kubectl create -f helm-rbac.yaml
     ```
 
-3. Validate Helm and Tiller were installed successfully
+3. Initialize Helm
+    ```
+    helm init --service-account tiller
+    ```
+
+4. Validate Helm and Tiller were installed successfully
     ```
     helm version
     # You should see something like the following as output:
-    Client: &version.Version{SemVer:"v2.7.2", GitCommit:"8478fb4fc723885b155c924d1c8c410b7a9444e6", GitTreeState:"clean"}
-    Server: &version.Version{SemVer:"v2.7.2", GitCommit:"8478fb4fc723885b155c924d1c8c410b7a9444e6", GitTreeState:"clean"}
+    Client: &version.Version{SemVer:"v2.10.0", GitCommit:"9ad53aac42165a5fadc6c87be0dea6b115f93090", GitTreeState:"clean"}
+    Server: &version.Version{SemVer:"v2.10.0", GitCommit:"9ad53aac42165a5fadc6c87be0dea6b115f93090", GitTreeState:"clean"}
     ```
 
 ## Install Prometheus using Helm

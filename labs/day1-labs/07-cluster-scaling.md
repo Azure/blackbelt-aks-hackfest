@@ -49,8 +49,8 @@ heroes-web-3683626428-zxp2s                                       1/1       Runn
 kubectl get nodes
 # You should see something like the following as output (there is one node in the cluster):
 NAME                       STATUS    ROLES     AGE       VERSION
-aks-nodepool1-42552728-0   Ready     agent     4h        v1.7.7
-aks-nodepool1-42552728-1   Ready     agent     4h        v1.7.7
+aks-nodepool1-42552728-0   Ready     agent     4h        v1.11.1
+aks-nodepool1-42552728-1   Ready     agent     4h        v1.11.1
 ```
 2. Scale out AKS cluster to accomodate the demand
 ```bash
@@ -68,10 +68,10 @@ az aks scale -g $RESOURCE_GROUP_NAME -n $AKS_CLUSTER_NAME --node-count 4
 kubectl get nodes
 # You should see something like the following as output (there are now 4 nodes in the cluster):
 NAME                       STATUS    ROLES     AGE       VERSION
-aks-nodepool1-42552728-0   Ready     agent     5h        v1.7.7
-aks-nodepool1-42552728-1   Ready     agent     5h        v1.7.7
-aks-nodepool1-42552728-2   Ready     agent     7m        v1.7.7
-aks-nodepool1-42552728-3   Ready     agent     7m        v1.7.7
+aks-nodepool1-42552728-0   Ready     agent     5h        v1.11.1
+aks-nodepool1-42552728-1   Ready     agent     5h        v1.11.1
+aks-nodepool1-42552728-2   Ready     agent     7m        v1.11.1
+aks-nodepool1-42552728-3   Ready     agent     7m        v1.11.1
 ```
 
 4. Re-visit Grafana Dasboard to validate cluster scale is working.

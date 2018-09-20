@@ -2,11 +2,11 @@
 
 ## Review/Edit the YAML Config Files
 
-1. In Azure Cloud Shell edit `heroes-db.yaml` using `vi`
+1. In Azure Cloud Shell edit `heroes-db.yaml` using Visual Studio Code:
     ```
     cd ~/blackbelt-aks-hackfest/labs/helper-files
 
-    vi heroes-db.yaml
+    code heroes-db.yaml
     ```
     * Review the yaml file and learn about some of the settings
     * Update the yaml file for the proper container image name
@@ -20,11 +20,11 @@
             name:  heroes-db-cntnr
         ```
 
-2. In Azure Cloud Shell edit `heroes-web-api.yaml` using `vi`
+2. In Azure Cloud Shell edit `heroes-web-api.yaml` using Visual Studio Code:
     ```
     cd ~/blackbelt-aks-hackfest/labs/helper-files
 
-    vi heroes-web-api.yaml
+    code heroes-web-api.yaml
     ```
     * Review the yaml file and learn about some of the settings. Note the environment variables that allow the services to connect
     * Update the yaml file for the proper container image names.
