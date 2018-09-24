@@ -1,4 +1,4 @@
-# CI/CD with VSTS
+## CI/CD with Azure DevOps
 
 
 This lab outlines the process to compile a Docker-based ASP.NET Core web application and deploy it to a **Kubernetes** cluster running on **Azure Container Service (AKS)** using the **Visual Studio Team Services (VSTS)**.
@@ -67,18 +67,18 @@ Since the connections are not established during project provisioning,the two en
 
 1. **Azure Resource Manager Service Endpoint**: Defines and secures a connection to a Microsoft Azure subscription using Service Principal Authentication (SPA).
 
-   * In the VSTS, navigate to the **Services** by clicking on the gear icon, and click on the **+ New Service Endpoint** button. Select the **Azure Resource Manager** and specify the **Connection name**, select the **Subscription** from the dropdown. Leave Resource Group name blank and click on the **OK** button. This endpoint will be used to connect the **VSTS** and the **Azure**.
+   * In the VSTS, navigate to the **Services** by clicking on the gear icon, and click on the **+ New Service Connection** button. Select the **Azure Resource Manager** and specify the **Connection name**, select the **Subscription** from the dropdown. Leave Resource Group name blank and click on the **OK** button. This endpoint will be used to connect the **VSTS** and the **Azure**.
 
      You will be prompted to authorize this connection with Azure credentials. Disable pop-up blocker in your browser if you see a blank screen after clicking the OK button, and retry the step.
 
 
 2. **Kubernetes Service Endpoint**
 
-   * Click the **+ New Service Endpoint** button, and select **Kubernetes** from the list. We can use this endpoint to connect the **VSTS** and the **Azure Container Service (AKS)**.
+   * Click the **+ New Service Connection** button, and select **Kubernetes** from the list. We can use this endpoint to connect the **VSTS** and the **Azure Kubernetes Service (AKS)**.
 
      * **Connection Name**: Provide the connection name.
 
-     * **Server URL**: Provide the container service address in the format `http://{API server address}`
+     * **Server URL**: Provide the container service address in the format `https://{API server address}`. API Server address can be found in the Overview blade of AKS in Azure Portal.
 
      * **Kubeconfig**: To get the Kubeconfig value, run the following Azure commands in a Putty session opened for the CentOS VM
 
