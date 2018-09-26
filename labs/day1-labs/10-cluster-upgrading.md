@@ -29,7 +29,7 @@ We have 3 versions available for upgrade: 1.10.7, 1.11.1, 1.11.2. We can use the
 ### Upgrade the cluster
 
 ```azurecli-interactive
-az aks upgrade --name <CLUSTER_NAME> --resource-group <RESOURCE GROUP NAME> --kubernetes-version 1.10.3
+az aks upgrade --name <CLUSTER_NAME> --resource-group <RESOURCE GROUP NAME> --kubernetes-version 1.10.7
 ```
 
 **Output:**
