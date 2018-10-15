@@ -56,14 +56,14 @@
     
     ```
 
-8. Create your AKS cluster in the resource group created above with 2 nodes, targeting Kubernetes version 1.11.1
+8. Create your AKS cluster in the resource group created above with 2 nodes, targeting Kubernetes version 1.11.2
     ```
     # This command can take 5-25 minutes to run as it is creating the AKS cluster. Please be PATIENT...
     
     # set the location to one of the provided AKS locations (eg - centralus, eastus)
     LOCATION=
 
-    az aks create -n $CLUSTER_NAME -g $NAME -c 2 -k 1.11.1 --generate-ssh-keys -l $LOCATION
+    az aks create -n $CLUSTER_NAME -g $NAME -c 2 -k 1.11.2 --generate-ssh-keys -l $LOCATION
     ```
 
 9. Verify your cluster status. The `ProvisioningState` should be `Succeeded`
@@ -72,7 +72,7 @@
 
     Name                 Location    ResourceGroup         KubernetesVersion    ProvisioningState    Fqdn
     -------------------  ----------  --------------------  -------------------  -------------------  -------------------------------------------------------------------
-    ODLaks-v2-gbb-16502  centralus   ODL_aks-v2-gbb-16502  1.11.1                Succeeded             odlaks-v2--odlaks-v2-gbb-16-b23acc-17863579.hcp.centralus.azmk8s.io
+    ODLaks-v2-gbb-16502  centralus   ODL_aks-v2-gbb-16502  1.11.2                Succeeded             odlaks-v2--odlaks-v2-gbb-16-b23acc-17863579.hcp.centralus.azmk8s.io
     ```
 
 
@@ -89,8 +89,8 @@
     kubectl get nodes
     
     NAME                       STATUS    ROLES     AGE       VERSION
-    aks-nodepool1-20004257-0   Ready     agent     4m        v1.11.1
-    aks-nodepool1-20004257-1   Ready     agent     4m        v1.11.1
+    aks-nodepool1-20004257-0   Ready     agent     4m        v1.11.2
+    aks-nodepool1-20004257-1   Ready     agent     4m        v1.11.2
     ```
     
     To see more details about your cluster: 
