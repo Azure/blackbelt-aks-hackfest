@@ -161,10 +161,10 @@ Output:
 
 ```console
 NAME                                           STATUS    ROLES     AGE       VERSION
-aks-nodepool1-24399631-0                       Ready     agent     3d        v1.11.1
-aks-nodepool1-24399631-1                       Ready     agent     3d        v1.11.1
-virtual-kubelet-virtual-kubelet-linux-eastus   Ready     agent     20m       v1.8.3
-virtual-kubelet-virtual-kubelet-linux-westus   Ready     agent     3m        v1.8.3
+aks-nodepool1-24399631-0                       Ready     agent     3d        v1.11.2
+aks-nodepool1-24399631-1                       Ready     agent     3d        v1.11.2
+virtual-kubelet-virtual-kubelet-linux-eastus   Ready     agent     20m       v1.11.2
+virtual-kubelet-virtual-kubelet-linux-westus   Ready     agent     3m        v1.11.2
 ```
 
 ## Schedule a pod in ACI
