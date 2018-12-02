@@ -54,7 +54,7 @@
     
     ```
 
-6. Create your AKS cluster in the resource group created above with 2 nodes, targeting Kubernetes version 1.10.6
+6. Create your AKS cluster in the resource group created above with 2 nodes, targeting Kubernetes version 1.10.8
     ```
     # set the location to one of the provided AKS locations (eg - centralus, eastus)
     
