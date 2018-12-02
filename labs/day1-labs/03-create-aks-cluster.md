@@ -60,7 +60,7 @@
     
     LOCATION=eastus
 
-    az aks create -n $CLUSTER_NAME -g $NAME -c 2 -k 1.10.6 --generate-ssh-keys -l $LOCATION
+    az aks create -n $CLUSTER_NAME -g $NAME -c 2 -k 1.10.8 --generate-ssh-keys -l $LOCATION
     ```
  This command can take 5-25 minutes to run as it is creating the AKS cluster. Please be PATIENT...
 
@@ -70,7 +70,7 @@
 
     Name      Location    ResourceGroup    KubernetesVersion    ProvisioningState    Fqdn
     --------  ----------  ---------------  -------------------  -------------------  ---------------------------------------------------    ---
-    myaksrg   eastus      myaksrg          1.10.6                Succeeded            myaksrg-myaksrg-9a4f9a-7a0ba239.hcp.eastus.azmk8s.io
+    myaksrg   eastus      myaksrg          1.10.8                Succeeded            myaksrg-myaksrg-9a4f9a-7a0ba239.hcp.eastus.azmk8s.io
 
     ```
 
