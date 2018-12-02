@@ -88,8 +88,8 @@
     kubectl get nodes
     
     NAME                       STATUS    ROLES     AGE       VERSION
-    aks-nodepool1-26044360-0   Ready     agent     4m        v1.9.6
-    aks-nodepool1-26044360-1   Ready     agent     4m        v1.9.6
+    aks-nodepool1-26044360-0   Ready     agent     4m        v1.10.8
+    aks-nodepool1-26044360-1   Ready     agent     4m        v1.10.8
 
     ```
     
