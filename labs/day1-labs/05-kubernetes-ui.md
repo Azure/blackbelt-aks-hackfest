@@ -8,7 +8,9 @@ The Kubernetes dashboard is a web ui that lets you view, monitor, and troublesho
 
 There are multiple ways of accessing Kubernetes dashboard. You can access through kubectl command-line interface or through the master server API. We'll be using 'az aks browse' command, as it provides a secure connection, that doesn't expose the UI to the internet.
 
-#### ![#f03c15](https://placehold.it/15/f03c15/000000?text=+) Commands in this lab exercise needs to be run from a PowerShell session in your Local Computer ([azure cli](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-windows?view=azure-cli-latest) requires to be installed in the Local Computer). ####
+#### ![#f03c15](https://placehold.it/15/f03c15/000000?text=+) Commands in this lab exercise needs to be run from a PowerShell session in your Local Computer ([azure cli](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-windows?view=azure-cli-latest) requires to be installed in the Local Computer).
+* Kubectl requires to be installed as-well: Copy and Paste the following command to install this package using PowerShellGet:
+   ```Install-Script -Name install-kubectl ```
 
 1. Command-Line Proxy
 
