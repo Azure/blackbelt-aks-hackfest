@@ -65,9 +65,12 @@
  This command can take 5-25 minutes to run as it is creating the AKS cluster. Please be PATIENT...
 
 9. Verify your cluster status. The `ProvisioningState` should be `Succeeded`. 
-    ```
-    az aks list --output table
 
+    ```bash
+    az aks list --output table
+    ```
+    
+    ```console
     Name      Location    ResourceGroup    KubernetesVersion    ProvisioningState    Fqdn
     --------  ----------  ---------------  -------------------  -------------------  ---------------------------------------------------    ---
     myaksrg   eastus      myaksrg          1.10.8                Succeeded            myaksrg-myaksrg-9a4f9a-7a0ba239.hcp.eastus.azmk8s.io
@@ -77,7 +80,8 @@
 The `output` parameter is used display the output as a table to increase readability.
 
 10. Get the Kubernetes config files for your new AKS cluster. This is necessary to use `kubectl` to manage your Kubernetes cluster.
-    ```
+
+    ```bash
     az aks get-credentials --name $CLUSTER_NAME --resource-group $NAME
     ```
 
@@ -85,9 +89,11 @@ The `output` parameter is used display the output as a table to increase readabi
 
     > Note: It can take 5 minutes for your nodes to appear and be in READY state. You can run `kubectl get nodes --watch` to monitor status. 
     
-    ```
+    ```bash
     kubectl get nodes
+    ```
     
+    ```console
     NAME                       STATUS    ROLES     AGE       VERSION
     aks-nodepool1-26044360-0   Ready     agent     4m        v1.10.8
     aks-nodepool1-26044360-1   Ready     agent     4m        v1.10.8
@@ -101,9 +107,11 @@ The `output` parameter is used display the output as a table to increase readabi
     
     To see more details about your cluster: 
     
-    ```
+    ```bash
     kubectl cluster-info
+    ```
     
+    ```console    
     Kubernetes master is running at https://myaksrg-myaksrg-9a4f9a-133097cc.hcp.eastus.azmk8s.io:443
     Heapster is running at https://myaksrg-myaksrg-9a4f9a-133097cc.hcp.eastus.azmk8s.io:443/api/v1/namespaces/kube-system/services/heapster/proxy
     KubeDNS is running at https://myaksrg-myaksrg-9a4f9a-133097cc.hcp.eastus.azmk8s.io:443/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy
