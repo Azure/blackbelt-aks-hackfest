@@ -14,6 +14,8 @@ There are multiple ways of accessing Kubernetes dashboard. You can access throug
 
     * From your local computer, open a local command prompt or Powershell with elevated privileges
     * Run ```az login``` to authenticate with Azure
+    * Run ```az aks install-cli``` to download the AKS kubectl client tools
+    * Run ```$env:path += ";$home\.azure-kubectl"``` to add the kubectl to your path
     * Run ```az group list -o table``` to lookup the resource group containing your cluster
     * Run ```az aks list -o table``` to lookup the name of your AKS cluster
     * Run ```az aks get-credentials -n CLUSTER_NAME -g RGNAME``` in order to get the credentials to access our managed Kubernetes cluster in Azure. Replace CLUSTER_NAME with your AKS Cluster name and RGNAME with the name of your resource group.

@@ -19,7 +19,7 @@ Once you have accessed the jumpbox, you must clone the workshop repo to the mach
 1. Start with a terminal on the jumpbox
 2. Clone the Github repo via the command line
 
-    ```
+    ```bash
     git clone https://github.com/Azure/blackbelt-aks-hackfest.git
     ```
 
@@ -50,7 +50,7 @@ The API for the app is written in javascript, running on [Node.js](https://nodej
 
     npm install && npm run localmachine
     ```
-    
+
    The terminal will show the message saying ``` CONNECTED TO mongodb://localhost:27019/webratings ``` 
    .**Leave the terminal as such and proceed to next step**
 
@@ -77,13 +77,12 @@ The web frontend for the app is written in [Vue.js](https://vuejs.org/Vue "Vue.j
 3. Test the web front-end
 
     To test the web front-end via the internet you've to grab your ip address from the Azure Portal and enable access to port 8080.
-    
+
     * Goto portal.azure.com
     * Select your Jumpbox VM
     * Goto Networking
     * Select 'Add inbound'
     * Add a new inbound security rule for Port 8080/TCP
-       
 
     You can test the web app from a new terminal session in the jumpbox
     ```bash
