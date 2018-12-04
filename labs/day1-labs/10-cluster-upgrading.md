@@ -60,7 +60,7 @@ az aks upgrade --name <CLUSTER_NAME> --resource-group <RESOURCE GROUP NAME> --ku
   "dnsPrefix": "myakshyd-myakshyd-xxxx",
   "fqdn": "myakshyd-myakshyd-xxxxxa.hcp.westus.azmk8s.io",
   "id": "/subscriptions/xxxxxxxxxxx/resourcegroups/myakshyd/providers/Microsoft.ContainerService/ma                                                                 nagedClusters/myakshyd",
-  "kubernetesVersion": "1.10.7",
+  "kubernetesVersion": "1.10.9",
   "linuxProfile": {
     "adminUsername": "azureuser",
     "ssh": {
