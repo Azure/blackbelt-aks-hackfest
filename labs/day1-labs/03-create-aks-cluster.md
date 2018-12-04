@@ -60,7 +60,7 @@
     
     LOCATION=eastus
 
-    az aks create -n $CLUSTER_NAME -g $NAME -c 2 -k 1.10.8 --generate-ssh-keys -l $LOCATION
+    az aks create --name $CLUSTER_NAME --resource-group $NAME --node-count 2 --kubernetes-version 1.10.8 --generate-ssh-keys --location $LOCATION
     ```
  This command can take 5-25 minutes to run as it is creating the AKS cluster. Please be PATIENT...
 
@@ -77,7 +77,7 @@
 
 10. Get the Kubernetes config files for your new AKS cluster. This is necessary to use `kubectl` to manage your Kubernetes cluster.
     ```
-    az aks get-credentials -n $CLUSTER_NAME -g $NAME
+    az aks get-credentials --name $CLUSTER_NAME --resource-group $NAME
     ```
 
 11. Verify you have API access to your new AKS cluster
