@@ -65,8 +65,9 @@ Run the following command to create a secret key in the AKS cluster to access yo
 kubectl create secret docker-registry acr-secret --docker-server=$ACR_SERVER --docker-username=$ACR_USER --docker-password=$ACR_PWD --docker-email=superman@heroes.com
 ```
 You can verify the secret by running the following command:
-```
+```bash
 kubectl get secret
+
 NAME                  TYPE                                  DATA      AGE
 acr-secret            kubernetes.io/dockerconfigjson        1         8s
 default-token-xd8wk   kubernetes.io/service-account-token   3         53m
