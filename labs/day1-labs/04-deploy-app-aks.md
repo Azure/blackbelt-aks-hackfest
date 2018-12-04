@@ -66,7 +66,7 @@ kubectl create secret docker-registry acr-secret --docker-server=$ACR_SERVER --d
 ```
 You can verify the secret by running the following command:
 ```
-[root@CentoS01 helper-files]# kubectl get secret
+kubectl get secret
 NAME                  TYPE                                  DATA      AGE
 acr-secret            kubernetes.io/dockerconfigjson        1         8s
 default-token-xd8wk   kubernetes.io/service-account-token   3         53m
