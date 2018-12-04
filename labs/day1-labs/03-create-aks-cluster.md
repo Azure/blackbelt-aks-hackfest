@@ -64,9 +64,9 @@
     ```
  This command can take 5-25 minutes to run as it is creating the AKS cluster. Please be PATIENT...
 
-9. Verify your cluster status. The `ProvisioningState` should be `Succeeded`
+9. Verify your cluster status. The `ProvisioningState` should be `Succeeded`. 
     ```
-    az aks list -o table
+    az aks list --output table
 
     Name      Location    ResourceGroup    KubernetesVersion    ProvisioningState    Fqdn
     --------  ----------  ---------------  -------------------  -------------------  ---------------------------------------------------    ---
@@ -74,6 +74,7 @@
 
     ```
 
+The `output` parameter is used display the output as a table to increase readability.
 
 10. Get the Kubernetes config files for your new AKS cluster. This is necessary to use `kubectl` to manage your Kubernetes cluster.
     ```
