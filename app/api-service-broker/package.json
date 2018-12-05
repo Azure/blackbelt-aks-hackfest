@@ -18,7 +18,7 @@
     "fs": "0.0.1-security",
     "hbs": "~4.0.1",
     "mongoose": "^4.13.8",
-    "morgan": "~1.9.0",
+    "morgan": "~1.9.1",
     "serve-favicon": "~2.4.5"
   }
 }
