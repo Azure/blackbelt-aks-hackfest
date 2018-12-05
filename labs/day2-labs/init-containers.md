@@ -105,12 +105,12 @@ Take note of the two files in this directory, [init-db-sample.yaml](init-db-samp
     
  8. Lookup the available service "web" 
     ```bash
-    kubectl get services | grep web
+    $ kubectl get services | grep web
     ```
     
     ```bash
-    NAME      TYPE            CLUSTER-IP    EXTERNAL-IP      PORT(S)           AGE
-    web       LoadBalancer    10.0.125.16   13.68.178.31     8080:31707/TCP    25m
+    NAME       TYPE             CLUSTER-IP     EXTERNAL-IP       PORT(S)            AGE
+    web        LoadBalancer     10.0.125.16    13.68.178.31      8080:31707/TCP     25m
     ```
  
- 9. Access the web app using it's EXTERNAL-IP and see if it works as expected 
+ 9. Access the web app using it's EXTERNAL-IP on Port 8080 and see if it works as expected 
