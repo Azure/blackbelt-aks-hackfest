@@ -60,7 +60,9 @@
     
     LOCATION=eastus
 
-    az aks create --name $CLUSTER_NAME --resource-group $NAME --node-count 2 --kubernetes-version 1.10.8 --generate-ssh-keys --location $LOCATION
+    az aks create --name $CLUSTER_NAME --resource-group $NAME --node-count 2 `
+                  --kubernetes-version 1.10.8 --generate-ssh-keys --location $LOCATION `
+                  --enable-rbac
     ```
  This command can take 5-25 minutes to run as it is creating the AKS cluster. Please be PATIENT...
 
