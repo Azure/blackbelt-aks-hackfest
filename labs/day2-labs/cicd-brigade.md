@@ -128,11 +128,12 @@ This lab has pre-requisites. Some have been completed in prior labs.
 
     > Note: There is a ```brig``` CLI client that allows you to view your brigade projects. More details here: <https://github.com/Azure/brigade/tree/master/brig>
     
- 3. Create Cluster role binding for brigade worker service account to provide it with enough permissions in the default namespace
+ 3. Create Cluster role binding for brigade worker, api and github-gw service accounts to provide it with enough permissions in the default namespace
  
-    ```
+    ```bash
     kubectl create clusterrolebinding brigade-worker --clusterrole=cluster-admin --serviceaccount=default:brigade-worker
-    
+    kubectl create clusterrolebinding brigade-api --clusterrole=cluster-admin --serviceaccount=default:brigade-api
+    kubectl create clusterrolebinding brigade-github-gw --clusterrole=cluster-admin --serviceaccount=default:brigade-github-gw
     ```
 
 ## Setup Brigade Pipeline
