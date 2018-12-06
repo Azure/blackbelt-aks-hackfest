@@ -1,9 +1,9 @@
-## CI/CD with Azure DevOps
+# CI/CD with Azure DevOps
 
 
 This lab outlines the process to compile a Docker-based ASP.NET Core web application and deploy it to a **Kubernetes** cluster running on **Azure Container Service (AKS)** using the **Visual Studio Team Services (VSTS)**.
 
-# What's covered in this lab
+## What's covered in this lab
 
 In this lab, the following tasks will be performed:
 
@@ -19,7 +19,7 @@ In this lab, the following tasks will be performed:
 
 * Initiate the build to automatically deploy the application
 
-# Lab flow
+## Lab flow
 
 * Firstly, the source code changes are committed to the VSTS git repository
 
@@ -33,14 +33,14 @@ In this lab, the following tasks will be performed:
 
 * The myhealth.web application will be accessible through a browser, once the deployment is successfully completed
 
-# Prerequisites for the lab
+## Prerequisites for the lab
 
 1. **Kubernetes extension** from [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=tsuyoshiushio.k8s-endpoint) installed to the VSTS account
 
 2. You will need a **Azure SQL Database**. Provision a new **Azure SQL Server and SQL Database** in **East US** region before proceeding with the below steps. Make note of the SQL Server name, database name, username and password. These will be used later in the exercise. 
 
 
-## Setting up the VSTS team project
+### Setting up the VSTS team project
 
 1. Use the [VSTS Demo Generator](https://vstsdemogenerator.azurewebsites.net/?Name=aks&templateId=77372) to provision the project on your VSTS account.
 
@@ -59,7 +59,7 @@ In this lab, the following tasks will be performed:
    ![VSTS Demo Generator](img/vsts_createproject2.PNG)
    
 
-## Exercise 1: Service Endpoint creation
+#### Exercise 1: Service Endpoint creation
 
 Service endpoints are a bundle of properties securely stored by the VSTS and is a way for VSTS to connect to the external systems or services.
 
@@ -101,7 +101,7 @@ Since the connections are not established during project provisioning,the two en
 
        ![Kubernetes Service Endpoint](img/aksendpoint.png)
 
-## Exercise 2: Configure Build and Release definitions
+#### Exercise 2: Configure Build and Release definitions
 
 Now that the connections are established, we will manually map the existing Azure endpoint, AKS and Azure Container Registry to the build and release definitions.
 
@@ -146,7 +146,7 @@ Now that the connections are established, we will manually map the existing Azur
 
    ![releasevariables](img/releasevariables.png)
 
-## Exercise 3: Update Connection String & ACR URL in the manifest file
+#### Exercise 3: Update Connection String & ACR URL in the manifest file
 
 We will update the database connection string for the .NET Core application and ACR URL in the manifest YAML file.
 
@@ -160,12 +160,19 @@ We will update the database connection string for the .NET Core application and 
 
 2. Navigate to the `AKS` path to **edit** the file `mhc-aks.yaml`. This YAML manifest file contains configuration details of **deployments**,**services** and **pods** which will be deployed in Kubernetes.
 
-   Scroll to the line number **93**. modify the value **YOUR_ACR** with your **ACR Login server** which was noted earlier while setting up the environment. Also **add the ImagePullSecrets under spec section. Provide the secret key as mysecretkey** as seen below 
+   Scroll to the line number **93**. modify the value ```__ACR__``` with your **\<ACR Login server>.azurecr.io** which was noted earlier while setting up the environment. Also **add the ImagePullSecrets under spec section. Provide the secret key as mysecretkey** as seen below
+
+```yaml
+      imagePullSecrets:
+        - name: mysecretkey
+```
+
+
 Click on the **Commit** button.
 
-   ![editmhcaks](img/editmhcaks.png)
+   ![editmhcaks2](img/editmhcaks2.png)
 
-## Exercise 4: Trigger a Build and deploy application
+#### Exercise 4: Trigger a Build and deploy application
 
 In this exercise, let us trigger a build manually and upon completion, an automatic deployment of the application will be triggered. Our application is designed to be deployed in the pod with the **load balancer** in the front-end and **Redis cache** in the back-end.
 

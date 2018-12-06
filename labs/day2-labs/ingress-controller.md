@@ -40,9 +40,15 @@ The Nginx Ingress Controller is an Ingress controller that uses a ConfigMap to s
 1. Install Nginx using Helm CLI
 
     ``` bash
-    # The following command will install the Nginx ingress controller into the K8s cluster.
+    # The following command will install the Nginx ingress controller into the K8s cluster with RBAC enabled.
 
     helm install --name ingress stable/nginx-ingress --namespace kube-system --set rbac.create=true --set rbac.createRole=true --set rbac.createClusterRole=true
+    ```
+
+    ``` bash
+    # The following command will install the Nginx ingress controller into the K8s cluster with RBAC disabled.
+
+    helm install --name ingress stable/nginx-ingress --namespace kube-system --set rbac.create=false --set rbac.createRole=true --set rbac.createClusterRole=true
     ```
 
 2. Validate that Nginx was installed
@@ -74,8 +80,10 @@ We will now deploy the application with a configured Ingress resource.
 1. Switch to `helper-files` directory. Clear anything out of your cluster by deleting your deployments
 
     ```bash
-    $ kubectl delete -f heroes-db.yaml
-    $ kubectl delete -f heroes-web-api.yaml
+    cd ~/blackbelt-aks-hackfest/labs/helper-files/
+
+    # kubectl delete -f heroes-db.yaml
+    kubectl delete -f heroes-web-api.yaml
     ```
 
 2. View the `heroes-web-api-ingress.yaml` file.
@@ -86,9 +94,9 @@ We will now deploy the application with a configured Ingress resource.
     * You will need to replace the `<login server>` with the ACR login server created in earlier labs.
         > Note: You will update the image name TWICE updating the web and api container images and ONCE in the database container image.
 
-        * Example: 
+        * Example:
 
-            ```
+            ```yaml
             spec:
             containers:
             - image: mycontainerregistry.azurecr.io/azureworkshop/rating-web:v1
@@ -101,7 +109,7 @@ We will now deploy the application with a configured Ingress resource.
     kubectl apply -f heroes-db.yaml
     ```
 
-    ```
+    ```bash
     # exec into pod and import data
     kubectl get pods
 

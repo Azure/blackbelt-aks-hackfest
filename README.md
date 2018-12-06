@@ -3,6 +3,7 @@
 _Delivering modern cloud native applications with ​open source technologies on Azure​_
 
 ## Overview
+
 Welcome to our Container Bootcamp, this workshop will guide you through migrating an application from "on-premise" server to containers running in Azure Kubernetes Service.
 
 The labs are based upon a node.js application that allows for voting on the Justice League Superheroes (with more options coming soon). Data is stored in MongoDB.
@@ -14,11 +15,13 @@ The labs are based upon a node.js application that allows for voting on the Just
 ## Labs
 
 ### Day 1 - Introduction and Presentations
+
   0. [Setup Lab environment](labs/day1-labs/00-lab-environment.md)
   1. [Run app locally to test components](labs/day1-labs/01-setup-app-local.md)
   2. [Create Docker images for apps and push to Azure Container Registry](labs/day1-labs/02-dockerize-apps.md)
 
 ### Day 2 - Labs
+
   3. [Create an Azure Kubernetes Service (AKS) cluster](labs/day1-labs/03-create-aks-cluster.md)
   4. [Deploy application to Azure Kubernetes Service](labs/day1-labs/04-deploy-app-aks.md)
   5. [Kubernetes UI Overview](labs/day1-labs/05-kubernetes-ui.md)
@@ -29,6 +32,7 @@ The labs are based upon a node.js application that allows for voting on the Just
   10. [Upgrade an Azure Kubernetes Service (AKS) cluster](labs/day1-labs/10-cluster-upgrading.md)
 
 ### Day 3/ 4 - Labs
+
   11. Try [CI/CD Automation with Brigade](labs/day2-labs/cicd-brigade.md) or [CI/CD Automation with VSTS](labs/day2-labs/cicd-vsts.md)
   12. [Kubernetes Ingress Controllers](labs/day2-labs/ingress-controller.md)
   13. [Kubernetes InitContainers](labs/day2-labs/init-containers.md)
