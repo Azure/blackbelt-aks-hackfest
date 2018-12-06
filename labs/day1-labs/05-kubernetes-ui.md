@@ -12,7 +12,7 @@ There are multiple ways of accessing Kubernetes dashboard. You can access throug
 
 1. Command-Line Proxy
 
-    * From your local computer, open a local command prompt or Powershell with elevated privileges
+    * From your local computer, open a local Powershell with elevated privileges
     * Run ```az login``` to authenticate with Azure
     * Run ```az aks install-cli``` to download the AKS kubectl client tools
     * Run ```$env:path += ";$home\.azure-kubectl"``` to add the kubectl to your path
