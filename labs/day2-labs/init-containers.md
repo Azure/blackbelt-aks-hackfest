@@ -1,4 +1,5 @@
 # Init Containers
+
 This lab will show how to use Kubernetes Init Containers to run scripts and load data prior to the initialization of the primary container.
 
 I'm not going to lie, things are going to get a little weird.
@@ -20,9 +21,9 @@ Take note of the two files in this directory, [init-db-sample.yaml](init-db-samp
 1. Clear anything out of your cluster by deleting your deployments
 
     ```bash
-    $ kubectl delete -f heroes-db.yaml
-    $ kubectl delete -f heroes-web-api.yaml
-    $ kubectl delete -f heroes-web-api-ingress.yaml
+    kubectl delete -f heroes-db.yaml
+    kubectl delete -f heroes-web-api.yaml
+    kubectl delete -f heroes-web-api-ingress.yaml
     ```
 
 2. View the init-db-sample.yaml in the `helper-files` directory. We have the definitions to deploy the publically available the mongo db image
