@@ -89,9 +89,10 @@ Take note of the two files in this directory, [init-db-sample.yaml](init-db-samp
     ```
     
 7. See the init containers getting creating one after the other by executing the below command
+
     ```bash
-    $ kubectl get pods --watch
-    ```    
+    kubectl get pods --watch
+    ```
     ```bash
     NAME                                READY     STATUS     RESTARTS   AGE
     heroes-api-deploy-cd5858bbc-k2qkh   0/1       Init:4/6   3          18s
@@ -104,12 +105,13 @@ Take note of the two files in this directory, [init-db-sample.yaml](init-db-samp
     ```  
     Use Ctrl+C to exit 
     
- 8. Lookup the available service "web" 
+ 8. Lookup the available service "web"
+
     ```bash
-    $ kubectl get services | grep web
+    kubectl get services | grep web
     ```
-    
-    ```bash
+
+    ```output
     NAME       TYPE             CLUSTER-IP     EXTERNAL-IP       PORT(S)            AGE
     web        LoadBalancer     10.0.125.16    13.68.178.31      8080:31707/TCP     25m
     ```
