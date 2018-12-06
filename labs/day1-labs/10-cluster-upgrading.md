@@ -9,27 +9,34 @@ Azure Container Service (AKS) makes it easy to perform common management tasks i
 Before upgrading a cluster, use the `az aks get-versions` command to check which Kubernetes releases are available for upgrade.
 
 ```azurecli-interactive
-az aks get-versions --name <CLUSTER_NAME> --resource-group <RESOURCE GROUP NAME> --output table
+az aks get-versions --location <yourlocation> --output table
 ```
 
 **Output:**
 
 ```console
-Name     ResourceGroup    MasterVersion    MasterUpgrades         NodePoolVersion    NodePoolUpgrades
--------  ---------------  ---------------  ---------------------  -----------------  ---------------------
-default  myakshyd          1.10.6            1.10.7, 1.11.1, 1.11.2  1.10.6              1.10.7, 1.11.1, 1.11.2
+KubernetesVersion    Upgrades
+-------------------  ----------------------
+1.11.5               None available
+1.11.4               1.11.5
+1.10.9               1.11.4, 1.11.5
+1.10.8               1.10.9, 1.11.4, 1.11.5
+1.9.11               1.10.8, 1.10.9
+1.9.10               1.9.11, 1.10.8, 1.10.9
+1.8.15               1.9.10, 1.9.11
+1.8.14               1.8.15, 1.9.10, 1.9.11
 ```
 
-We have 3 versions available for upgrade: 1.10.7, 1.11.1, 1.11.2. We can use the `az aks upgrade` command to upgrade to the latest available version.  During the upgrade process, nodes are carefully [cordoned and drained](https://kubernetes.io/docs/tasks/administer-cluster/safely-drain-node/) to minimize disruption to running applications.  Before initiating a cluster upgrade, ensure that you have enough additional compute capacity to handle your workload as cluster nodes are added and removed.
+For example for Kubernetes Version 1.10.8 we have three upgrades available: 1.10.9, 1.11.4, 1.11.5. We can use the `az aks upgrade` command to upgrade to the latest available version.  During the upgrade process, nodes are carefully [cordoned and drained](https://kubernetes.io/docs/tasks/administer-cluster/safely-drain-node/) to minimize disruption to running applications.  Before initiating a cluster upgrade, ensure that you have enough additional compute capacity to handle your workload as cluster nodes are added and removed.
 
 **Note:** 
 #### Kubernetes may be unavailable during cluster upgrades. The upgrade may take 10 to 15 minutes.
-#### As of today, the remaining lab exercises are tested with version 1.10.7 only and we recommend you to upgrade the cluster to version 1.10.7.
+#### As of today, the remaining lab exercises are tested with version 1.10.* only and we recommend you to upgrade the cluster to version 1.10.9.
 
 ### Upgrade the cluster
 
 ```azurecli-interactive
-az aks upgrade --name <CLUSTER_NAME> --resource-group <RESOURCE GROUP NAME> --kubernetes-version 1.10.7
+az aks upgrade --name <CLUSTER_NAME> --resource-group <RESOURCE GROUP NAME> --kubernetes-version 1.10.9
 ```
 
 **Output:**
@@ -53,7 +60,7 @@ az aks upgrade --name <CLUSTER_NAME> --resource-group <RESOURCE GROUP NAME> --ku
   "dnsPrefix": "myakshyd-myakshyd-xxxx",
   "fqdn": "myakshyd-myakshyd-xxxxxa.hcp.westus.azmk8s.io",
   "id": "/subscriptions/xxxxxxxxxxx/resourcegroups/myakshyd/providers/Microsoft.ContainerService/ma                                                                 nagedClusters/myakshyd",
-  "kubernetesVersion": "1.10.7",
+  "kubernetesVersion": "1.10.9",
   "linuxProfile": {
     "adminUsername": "azureuser",
     "ssh": {
@@ -90,7 +97,7 @@ Output:
 ```json
 Name         Location    ResourceGroup    KubernetesVersion    ProvisioningState    Fqdn
 -----------  ----------  ---------------  -------------------  -------------------  -----------------------------------------------------------
-myakshyd     westus      myakshyd         1.10.7               Succeeded            myakshyd-myakshyd-xxxxx.hcp.eastus.azmk8s.io
+myakshyd     westus      myakshyd         1.10.9               Succeeded            myakshyd-myakshyd-xxxxx.hcp.eastus.azmk8s.io
 
 ```
 

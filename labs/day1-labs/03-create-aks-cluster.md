@@ -54,42 +54,51 @@
     
     ```
 
-6. Create your AKS cluster in the resource group created above with 2 nodes, targeting Kubernetes version 1.10.6
+6. Create your AKS cluster in the resource group created above with 2 nodes, targeting Kubernetes version 1.10.8
     ```
     # set the location to one of the provided AKS locations (eg - centralus, eastus)
     
     LOCATION=eastus
 
-    az aks create -n $CLUSTER_NAME -g $NAME -c 2 -k 1.10.6 --generate-ssh-keys -l $LOCATION
+    az aks create --name $CLUSTER_NAME --resource-group $NAME --node-count 2 `
+                  --kubernetes-version 1.10.8 --generate-ssh-keys --location $LOCATION `
+                  --enable-rbac
     ```
  This command can take 5-25 minutes to run as it is creating the AKS cluster. Please be PATIENT...
 
-9. Verify your cluster status. The `ProvisioningState` should be `Succeeded`
-    ```
-    az aks list -o table
+9. Verify your cluster status. The `ProvisioningState` should be `Succeeded`. 
 
+    ```bash
+    az aks list --output table
+    ```
+    
+    ```console
     Name      Location    ResourceGroup    KubernetesVersion    ProvisioningState    Fqdn
     --------  ----------  ---------------  -------------------  -------------------  ---------------------------------------------------    ---
-    myaksrg   eastus      myaksrg          1.10.6                Succeeded            myaksrg-myaksrg-9a4f9a-7a0ba239.hcp.eastus.azmk8s.io
+    myaksrg   eastus      myaksrg          1.10.8                Succeeded            myaksrg-myaksrg-9a4f9a-7a0ba239.hcp.eastus.azmk8s.io
 
     ```
 
+The `output` parameter is used display the output as a table to increase readability.
 
 10. Get the Kubernetes config files for your new AKS cluster. This is necessary to use `kubectl` to manage your Kubernetes cluster.
-    ```
-    az aks get-credentials -n $CLUSTER_NAME -g $NAME
+
+    ```bash
+    az aks get-credentials --name $CLUSTER_NAME --resource-group $NAME
     ```
 
 11. Verify you have API access to your new AKS cluster
 
     > Note: It can take 5 minutes for your nodes to appear and be in READY state. You can run `kubectl get nodes --watch` to monitor status. 
     
-    ```
+    ```bash
     kubectl get nodes
+    ```
     
+    ```console
     NAME                       STATUS    ROLES     AGE       VERSION
-    aks-nodepool1-26044360-0   Ready     agent     4m        v1.9.6
-    aks-nodepool1-26044360-1   Ready     agent     4m        v1.9.6
+    aks-nodepool1-26044360-0   Ready     agent     4m        v1.10.8
+    aks-nodepool1-26044360-1   Ready     agent     4m        v1.10.8
 
     ```
     
@@ -100,9 +109,11 @@
     
     To see more details about your cluster: 
     
-    ```
+    ```bash
     kubectl cluster-info
+    ```
     
+    ```console    
     Kubernetes master is running at https://myaksrg-myaksrg-9a4f9a-133097cc.hcp.eastus.azmk8s.io:443
     Heapster is running at https://myaksrg-myaksrg-9a4f9a-133097cc.hcp.eastus.azmk8s.io:443/api/v1/namespaces/kube-system/services/heapster/proxy
     KubeDNS is running at https://myaksrg-myaksrg-9a4f9a-133097cc.hcp.eastus.azmk8s.io:443/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy

@@ -128,11 +128,12 @@ This lab has pre-requisites. Some have been completed in prior labs.
 
     > Note: There is a ```brig``` CLI client that allows you to view your brigade projects. More details here: <https://github.com/Azure/brigade/tree/master/brig>
     
- 3. Create Cluster role binding for brigade worker service account to provide it with enough permissions in the default namespace
+ 3. Create Cluster role binding for brigade worker, api and github-gw service accounts to provide it with enough permissions in the default namespace
  
-    ```
+    ```bash
     kubectl create clusterrolebinding brigade-worker --clusterrole=cluster-admin --serviceaccount=default:brigade-worker
-    
+    kubectl create clusterrolebinding brigade-brigade-api --clusterrole=cluster-admin --serviceaccount=default:brigade-brigade-api
+    kubectl create clusterrolebinding brigade-brigade-github-gw --clusterrole=cluster-admin --serviceaccount=default:brigade-brigade-github-gw
     ```
 
 ## Setup Brigade Pipeline
@@ -160,7 +161,7 @@ In our earlier labs, we had to create a Dockerfile for the web app. Since you fo
 * In the `~/blackbelt-aks-hackfest/app/web` directory, in Github, add a file called "Dockerfile"
 * Add the following lines and save (this will be used by Brigade later)
 
-    ```
+    ```docker
     FROM node:9.4.0-alpine
 
     ARG VCS_REF
