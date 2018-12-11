@@ -94,7 +94,7 @@ Grafana is a dashboard visualization tool that can use all kinds of data sources
     ```
     kubectl get svc -n logging
     # You should see something like the following as output, take note of the **EXTERNAL-IP column**:
-    gbbhackgrafana-grafana                            LoadBalancer   10.0.163.226   "52.226.75.38"     80:31476/TCP   2h
+    gbbhackgrafana-grafana                    LoadBalancer   10.0.163.226   "52.226.75.38"     80:31476/TCP   2h
     ```
 
 3. Test Grafana UI Comes Up
