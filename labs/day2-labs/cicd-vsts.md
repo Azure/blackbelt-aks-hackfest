@@ -69,37 +69,38 @@ Service endpoints are a bundle of properties securely stored by the Azure DevOps
 
 1. **Azure Resource Manager Service Endpoint**: Defines and secures a connection to a Microsoft Azure subscription using Service Principal Authentication (SPA).
 
-   * In the Azure DevOps, navigate to the **Services** by clicking on the gear icon, and click on the **+ New Service Connection** button. Select the **Azure Resource Manager** and specify the **Connection name**, select the **Subscription** from the dropdown. Leave Resource Group name blank and click on the **OK** button. This endpoint will be used to connect the **VSTS** and the **Azure**.
+   * In the Azure DevOps, navigate to **Project settings** (gear icon), **Pipelines**, **Service connections** and click on the **+ New Service Connection** button. 
+   * Select the **Azure Resource Manager**, specify the **Connection name** and select the **Subscription** from the dropdown. 
+   * Leave **Resource Group name** blank and click on the **OK** button. 
+   
+   This endpoint will be used to connect **Azure DevOps** with you **Azure subscription**.
 
      You will be prompted to authorize this connection with Azure credentials. Disable pop-up blocker in your browser if you see a blank screen after clicking the OK button, and retry the step.
 
-
 2. **Kubernetes Service Endpoint**
 
-   * Click the **+ New Service Connection** button, and select **Kubernetes** from the list. We can use this endpoint to connect the **VSTS** and the **Azure Kubernetes Service (AKS)**.
+   * Click the **+ New Service Connection** button, and select **Kubernetes** from the list. We use this endpoint to connect **Azure DevOps** with **Azure Kubernetes Service (AKS)**.
 
-     * **Connection Name**: Provide the connection name.
+     * **Connection Name**: Provide a custom connection name.
 
-     * **Server URL**: Provide the container service address in the format `https://{API server address}`. API Server address can be found in the Overview blade of AKS in Azure Portal.
-
-     * **Kubeconfig**: To get the Kubeconfig value, run the following Azure commands in a Putty session opened for the CentOS VM
+     * **Kubeconfig**: To get the KubeConfig value, run the following Azure commands in a Putty session opened for the CentOS VM
 
       1. Type **az login** in the command prompt and hit Enter. Authorize your login by accessing the url given in the prompt and enter the provided unique code to complete the authentication.
 
       2. Type **az aks get-credentials --resource-group yourResourceGroup --name yourAKSname** in the command prompt to get the access credentials for the Kubernetes cluster.
-
-     * Navigate to the **.kube** folder under your home directory (eg: cd .kube/)
      
      * Execute below command to get Kube Config value
      
         ```
-        [root@centosjumpbox .kube]# cat config
+        [root@centosjumpbox]# cat .kube/config
         {apiVersion: v1, clusters: [{cluster: {certificate-authority-data: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0t.....
         ............................................................................................................
                token: 711e57a22410bb8d06ea956d2d5bc310}}]}
         ```
 
-     * Copy the contents of the **config** file and paste it in the Kubernetes Connection window. Check **Accept Untrusted Certificates. Click the  **Verify connection** button. Once connection succeeds click **Ok**.
+     * Copy the contents of the **config** file and paste it in the **Add a Kubernetes service connection** window. 
+     * Check **Accept Untrusted Certificates** and wait until the connection was successfully verified. 
+     * Once succeeded, click **Ok**.
 
        ![Kubernetes Service Endpoint](img/aksendpoint.png)
 
