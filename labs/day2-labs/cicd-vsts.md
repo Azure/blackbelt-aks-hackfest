@@ -40,28 +40,32 @@ In this lab, the following tasks will be performed:
 2. You will need a **Azure SQL Database**. Provision a new **Azure SQL Server and SQL Database** in **East US** region before proceeding with the below steps. Make note of the SQL Server name, database name, username and password. These will be used later in the exercise. 
 
 
-### Setting up the VSTS team project
+### Setting up the Azure DevOps project
 
 1. Use the [Azure DevOps Demo Generator](https://azuredevopsdemogenerator.azurewebsites.net/?Name=aks&templateId=77372) to provision the project on your Azure DevOps account.
 
-   > **Azure DevOps Demo Generator** helps you create the team projects on your Azure DevOps account with sample content that include source code, work items, iterations, service endpoints, build and release definitions based on the template you choose during the configuration.
+   > **Azure DevOps Demo Generator** helps you create projects on your Azure DevOps account with sample content that include source code, work items, iterations, service endpoints, build and release definitions based on the template you choose during the configuration.
 
    Click on 'Sign In' and accpet the Authorizations. 
    
-   ![VSTS Demo Generator](img/vsts_signin.png)
+   ![AzDevOps Demo Generator](img/vsts_signin.png)
 
-2. Provide the Project Name, and click on the **Create Project** button.
+2. Select your organization, provide the Project Name and make sure that "aks" is the selected Template:
 
-   ![VSTS Demo Generator](img/vsts_createproject1.PNG)
+   ![AzDevOps Demo Generator](img/vsts_createproject1.PNG)
+
+3. After verifying that the requiredextensions are installed and enabled, click on the **Create Project** button.
+
+   ![AzDevOps Demo Generator](img/vsts_createproject2.PNG)
 
 3. Once the project is provisioned, click on the link displayed under the **URL** field to navigate to the team project.
 
-   ![VSTS Demo Generator](img/vsts_createproject2.PNG)
+   ![AzDevOps Demo Generator](img/vsts_createproject2.PNG)
    
 
 #### Exercise 1: Service Endpoint creation
 
-Service endpoints are a bundle of properties securely stored by the VSTS and is a way for VSTS to connect to the external systems or services.
+Service endpoints are a bundle of properties securely stored by the Azure DevOps and is a way for Azure DevOps to connect to the external systems or services.
 
 Since the connections are not established during project provisioning,the two endpoints - **Azure Resource Manager** and **Kubernetes** need to be created manually.
 
