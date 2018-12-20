@@ -54,13 +54,13 @@ In this lab, the following tasks will be performed:
 
    ![AzDevOps Demo Generator](img/vsts_createproject1.PNG)
 
-3. After verifying that the requiredextensions are installed and enabled, click on the **Create Project** button.
+3. After verifying that the required extensions are installed and enabled, click on the **Create Project** button.
 
    ![AzDevOps Demo Generator](img/vsts_createproject2.PNG)
 
-3. Once the project is provisioned, click on the link displayed under the **URL** field to navigate to the team project.
+3. Once the project is successfully provisioned, click on the button **Navigate to project**.
 
-   ![AzDevOps Demo Generator](img/vsts_createproject2.PNG)
+   ![AzDevOps Demo Generator](img/vsts_createproject3.PNG)
    
 
 #### Exercise 1: Service Endpoint creation
@@ -196,7 +196,7 @@ In this exercise, let us trigger a build manually and upon completion, an automa
 
     ![imagesinrepo](img/imagesinrepo.png)
 
-4. Switch back to the VSTS portal. Click on the **Releases** section on the **Build & Releases** tab, and click on the latest release. Click on the **Logs** section to see the release summary.
+4. Switch back to the Azure DevOps portal. Click on the **Releases** section on the **Build & Releases** tab, and click on the latest release. Click on the **Logs** section to see the release summary.
 
     ![releaseinprog](img/releaseinprog.png)
 
@@ -234,7 +234,7 @@ In this exercise, let us trigger a build manually and upon completion, an automa
 
 ## Summary
 
-AKS reduces the complexity and operational overhead of managing a Kubernetes cluster by offloading much of that responsibility to Azure. With the **Visual Studio Team Services** and **Azure Container Services (AKS)**, we can build DevOps for dockerized applications by leveraging docker capabilities enabled on VSTS Hosted Agents.
+AKS reduces the complexity and operational overhead of managing a Kubernetes cluster by offloading much of that responsibility to Azure. With the **Visual Studio Team Services** and **Azure Container Services (AKS)**, we can build DevOps for dockerized applications by leveraging docker capabilities enabled on Azure DevOps Hosted Agents.
 
 ## Attribution:
 Content originally created by Srivatsa, Sachin Raj and sriramdasbalaji et al. from [this](https://github.com/Microsoft/almvm/blob/master/labs/vstsextend/kubernetes) ALM Doc. Modified it to work with exisiting K8S cluster
