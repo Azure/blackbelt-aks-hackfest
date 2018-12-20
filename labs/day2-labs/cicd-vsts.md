@@ -65,13 +65,11 @@ In this lab, the following tasks will be performed:
 
 #### Exercise 1: Service Endpoint creation
 
-Service endpoints are a bundle of properties securely stored by the Azure DevOps and is a way for Azure DevOps to connect to the external systems or services.
-
-Since the connections are not established during project provisioning,the two endpoints - **Azure Resource Manager** and **Kubernetes** need to be created manually.
+Service endpoints are a bundle of properties securely stored by the Azure DevOps and is a way for Azure DevOps to connect to the external systems or services. Since the connections are not established during project provisioning, the two endpoints - **Azure Resource Manager** and **Kubernetes** need to be created manually.
 
 1. **Azure Resource Manager Service Endpoint**: Defines and secures a connection to a Microsoft Azure subscription using Service Principal Authentication (SPA).
 
-   * In the VSTS, navigate to the **Services** by clicking on the gear icon, and click on the **+ New Service Connection** button. Select the **Azure Resource Manager** and specify the **Connection name**, select the **Subscription** from the dropdown. Leave Resource Group name blank and click on the **OK** button. This endpoint will be used to connect the **VSTS** and the **Azure**.
+   * In the Azure DevOps, navigate to the **Services** by clicking on the gear icon, and click on the **+ New Service Connection** button. Select the **Azure Resource Manager** and specify the **Connection name**, select the **Subscription** from the dropdown. Leave Resource Group name blank and click on the **OK** button. This endpoint will be used to connect the **VSTS** and the **Azure**.
 
      You will be prompted to authorize this connection with Azure credentials. Disable pop-up blocker in your browser if you see a blank screen after clicking the OK button, and retry the step.
 
