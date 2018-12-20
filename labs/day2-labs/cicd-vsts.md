@@ -1,7 +1,7 @@
 # CI/CD with Azure DevOps
 
 
-This lab outlines the process to compile a Docker-based ASP.NET Core web application and deploy it to a **Kubernetes** cluster running on **Azure Container Service (AKS)** using the **Visual Studio Team Services (VSTS)**.
+This lab outlines the process to compile a Docker-based ASP.NET Core web application and deploy it to a **Kubernetes** cluster running on **Azure Container Service (AKS)** using the **Azure DevOps**.
 
 ## What's covered in this lab
 
@@ -9,11 +9,11 @@ In this lab, the following tasks will be performed:
 
 * Create an Azure SQL server
 
-* Provision the VSTS Team Project with a .NET Core application using the [VSTS Demo Generator](https://vstsdemogenerator.azurewebsites.net/?Name=aks&templateId=77372) tool
+* Provision the Azure DevOps Project with a .NET Core application using the [Azure DevOps Demo Generator](https://azuredevopsdemogenerator.azurewebsites.net/?Name=aks&templateId=77372) tool
 
-* Configure endpoints (properties) in VSTS to access Azure and exisiting AKS cluster
+* Configure endpoints (properties) in Azure DevOps to access Azure and exisiting AKS cluster
 
-* Configure application and database deployment using Continuous Deployment (CD) in VSTS
+* Configure application and database deployment using Continuous Deployment (CD) in Azure DevOps
 
 * Modify database connection string & ACR configuration in the source code
 
@@ -21,30 +21,30 @@ In this lab, the following tasks will be performed:
 
 ## Lab flow
 
-* Firstly, the source code changes are committed to the VSTS git repository
+* Firstly, the source code changes are committed to the Azure DevOps git repository
 
-* VSTS will create the custom Docker image **myhealth.web** and push the image tagged with the build ID to the ACR. Subsequently it will publish the [Kubernetes deployment YAML file](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/) as a build artifact.
+* Azure DevOps will create the custom Docker image **myhealth.web** and push the image tagged with the build ID to the ACR. Subsequently it will publish the [Kubernetes deployment YAML file](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/) as a build artifact.
 
-* VSTS will deploy **mhc-front** and **mhc-back** services into the Kubernetes cluster using the YAML file.
+* Azure DevOps will deploy **mhc-front** and **mhc-back** services into the Kubernetes cluster using the YAML file.
 
   **mhc-front** is the application hosted on a load balancer whereas **mhc-back** is the [Redis](https://redis.io/) Cache
 
-* The Kubernetes cluster will then pull the **myhealth.web** image from the ACR into the [Pods](https://kubernetes.io/docs/concepts/workloads/pods/pod/) and complete the deployment file instructions
+* The Kubernetes cluster will then pull the **myhealth.web** image from the Azure Container Registry (ACR) into the [Pods](https://kubernetes.io/docs/concepts/workloads/pods/pod/) and complete the deployment file instructions
 
 * The myhealth.web application will be accessible through a browser, once the deployment is successfully completed
 
 ## Prerequisites for the lab
 
-1. **Kubernetes extension** from [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=tsuyoshiushio.k8s-endpoint) installed to the VSTS account
+1. **Kubernetes extension** from [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=tsuyoshiushio.k8s-endpoint) installed to the Azure DevOps account
 
 2. You will need a **Azure SQL Database**. Provision a new **Azure SQL Server and SQL Database** in **East US** region before proceeding with the below steps. Make note of the SQL Server name, database name, username and password. These will be used later in the exercise. 
 
 
 ### Setting up the VSTS team project
 
-1. Use the [VSTS Demo Generator](https://vstsdemogenerator.azurewebsites.net/?Name=aks&templateId=77372) to provision the project on your VSTS account.
+1. Use the [Azure DevOps Demo Generator](https://azuredevopsdemogenerator.azurewebsites.net/?Name=aks&templateId=77372) to provision the project on your Azure DevOps account.
 
-   > **VSTS Demo Generator** helps you create the team projects on your VSTS account with sample content that include source code, work items, iterations, service endpoints, build and release definitions based on the template you choose during the configuration.
+   > **Azure DevOps Demo Generator** helps you create the team projects on your Azure DevOps account with sample content that include source code, work items, iterations, service endpoints, build and release definitions based on the template you choose during the configuration.
 
    Click on 'Sign In' and accpet the Authorizations. 
    
