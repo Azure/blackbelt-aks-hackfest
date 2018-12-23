@@ -108,7 +108,7 @@ Service endpoints are a bundle of properties securely stored by the Azure DevOps
 
 Now that the connections are established, we will manually map the existing Azure endpoint, AKS and Azure Container Registry to the build and release definitions.
 
-1. Select the **Builds** section under the **Pipelines** and **Edit** the build definition **MyHealth.AKS.Build**.
+1. Select the **Builds** section under the **Pipelines** tab and **Edit** the build definition **MyHealth.AKS.Build**.
 
    ![build](img/build.png)
 
@@ -126,9 +126,10 @@ Now that the connections are established, we will manually map the existing Azur
     |![icon](img/icon.png) **Run services**| prepares the suitable environment by restoring required packages|
     |![icon](img/icon.png) **Build services**| builds the docker images specified in a **docker-compose.yml** file with registry-qualified names and additional tags such as **$(Build.BuildId)**|
     |![icon](img/icon.png) **Push services**| pushes the docker images specified in a **docker-compose.yml** file, to the container registry|
-    |![publish-build-artifacts](img/publish-build-artifacts.png) **Publish Build Artifacts**| publishes the **myhealth.dacpac** file to VSTS|
+    |![publish-build-artifacts](img/publish-build-artifacts.png) **Publish Build Artifacts**| publishes the **myhealth.dacpac** file to Azure DevOps|
 
-3. Navigate to the **Releases** section under the **Pipelines** menu, click on **MyHealth.AKS.Release** release definition. **Edit** the release definition **MyHealth.AKS.Release** and select **Tasks**.
+3. Navigate to the **Releases** section under the **Pipelines** tab, click on **MyHealth.AKS.Release** release definition. 
+   **Edit** the release definition **MyHealth.AKS.Release** and select **Tasks**.
 
    ![release](img/release.png)
 
@@ -162,7 +163,7 @@ Now that the connections are established, we will manually map the existing Azur
 
 We will update the database connection string for the .NET Core application and ACR URL in the manifest YAML file.
 
-1. Click on the **Code** tab, and navigate to the below path `AKS/src/MyHealth.Web` to **edit** the file `appsettings.json`
+1. Click on the **Files** tab in the **Repos** section and navigate to the below path `AKS/src/MyHealth.Web` to **edit** the file `appsettings.json`
 
    Scroll down to the line number **9** and provide the database server name as given in the step 7 of the previous exercise and manually update the **User ID** and **Password** based on the credentials you provided while creating the Azure SQL DB. Initial Catalog will be the database name. Click on the **Commit** button.
 
@@ -172,7 +173,9 @@ We will update the database connection string for the .NET Core application and 
 
 2. Navigate to the `AKS` path to **edit** the file `mhc-aks.yaml`. This YAML manifest file contains configuration details of **deployments**,**services** and **pods** which will be deployed in Kubernetes.
 
-   Scroll to the line number **93**. modify the value ```__ACR__``` with your **\<ACR Login server>.azurecr.io** which was noted earlier while setting up the environment. Also **add the ImagePullSecrets under spec section. Provide the secret key as mysecretkey** as seen below
+   Scroll to the line number **93**. modify the value ```__ACR__``` with your **\<ACR Login server>.azurecr.io** which was noted earlier while setting up the environment. 
+   
+   Also add the **ImagePullSecrets** under spec section. Provide the secret key as **mysecretkey** (secret name) as seen below
 
 ```yaml
       imagePullSecrets:
@@ -188,7 +191,7 @@ Click on the **Commit** button.
 
 In this exercise, let us trigger a build manually and upon completion, an automatic deployment of the application will be triggered. Our application is designed to be deployed in the pod with the **load balancer** in the front-end and **Redis cache** in the back-end.
 
-1. Click on the **Builds** section under the **Build and Release** tab, click on the build definition **MyHealth.AKS.Build** and then click on the **Queue new build...** button.
+1. Click on the **Builds** section under the **Pipelines** tab, click on the build definition **MyHealth.AKS.Build** and then click on the **Queue new build...** button.
 
     ![manualbuild](img/manualbuild.png)
 
@@ -204,7 +207,7 @@ In this exercise, let us trigger a build manually and upon completion, an automa
 
     ![imagesinrepo](img/imagesinrepo.png)
 
-4. Switch back to the Azure DevOps portal. Click on the **Releases** section on the **Build & Releases** tab, and click on the latest release. Click on the **Logs** section to see the release summary.
+4. Switch back to the Azure DevOps portal. Click on the **Releases** section on the **Pipelines** tab, and click on the latest release. Click on the **Logs** section to see the release summary.
 
     ![releaseinprog](img/releaseinprog.png)
 
@@ -242,7 +245,7 @@ In this exercise, let us trigger a build manually and upon completion, an automa
 
 ## Summary
 
-AKS reduces the complexity and operational overhead of managing a Kubernetes cluster by offloading much of that responsibility to Azure. With the **Visual Studio Team Services** and **Azure Container Services (AKS)**, we can build DevOps for dockerized applications by leveraging docker capabilities enabled on Azure DevOps Hosted Agents.
+AKS reduces the complexity and operational overhead of managing a Kubernetes cluster by offloading much of that responsibility to Azure. With the **Azure DevOps** and **Azure Container Services (AKS)**, we can build DevOps for dockerized applications by leveraging docker capabilities enabled on Azure DevOps Hosted Agents.
 
 ## Attribution:
 Content originally created by Srivatsa, Sachin Raj and sriramdasbalaji et al. from [this](https://github.com/Microsoft/almvm/blob/master/labs/vstsextend/kubernetes) ALM Doc. Modified it to work with exisiting K8S cluster
