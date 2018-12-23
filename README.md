@@ -1,4 +1,4 @@
-# SI Container and Kubernetes Bootcamp
+# Container and Kubernetes Bootcamp
 
 _Delivering modern cloud native applications with ​open source technologies on Azure​_
 
@@ -33,7 +33,7 @@ The labs are based upon a node.js application that allows for voting on the Just
 
 ### Day 3/ 4 - Labs
 
-  11. Try [CI/CD Automation with Brigade](labs/day2-labs/cicd-brigade.md) or [CI/CD Automation with VSTS](labs/day2-labs/cicd-vsts.md)
+  11. Try [CI/CD Automation with Brigade](labs/day2-labs/cicd-brigade.md) or [CI/CD Automation with Azure DevOps](labs/day2-labs/cicd-vsts.md)
   12. [Kubernetes Ingress Controllers](labs/day2-labs/ingress-controller.md)
   13. [Kubernetes InitContainers](labs/day2-labs/init-containers.md)
   14. [Kubernetes Persistent Volumes with Azure Disks](labs/day2-labs/persistent-volumes.md )
