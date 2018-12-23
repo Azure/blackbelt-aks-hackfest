@@ -108,11 +108,15 @@ Service endpoints are a bundle of properties securely stored by the Azure DevOps
 
 Now that the connections are established, we will manually map the existing Azure endpoint, AKS and Azure Container Registry to the build and release definitions.
 
-1. Select the **Builds** section under the **Build and Release** hub and **Edit** the build definition **MyHealth.AKS.Build**.
+1. Select the **Builds** section under the **Pipelines** and **Edit** the build definition **MyHealth.AKS.Build**.
 
    ![build](img/build.png)
 
-2. Navigate to **Process** section under the **Tasks** tab. In the Phase1 section select **Run services**. Select the previously created endpoints from the dropdown for **Azure subscription**. Choose the **Azure Container Registry** which we had created in the previous exercises from the drop down for Azure Container Registry. Repeat the same for **Build services, Push services, and Lock Services Publish**. Click the **Save** option.
+2. Navigate to **Process** section under the **Tasks** tab. In the "Agent job 1" section select **Run services**. 
+
+   * Select the previously created endpoints from the dropdown for **Azure subscription**. 
+   * Choose the **Azure Container Registry** which we had created in the previous exercises from the drop down for Azure Container Registry. 
+   * Repeat the same for **Build services, Push services, and Lock Services Publish**. Click the **Save** option.
 
     ![Azure Subscription & ACR](img/updateprocess.png)
     
@@ -124,7 +128,7 @@ Now that the connections are established, we will manually map the existing Azur
     |![icon](img/icon.png) **Push services**| pushes the docker images specified in a **docker-compose.yml** file, to the container registry|
     |![publish-build-artifacts](img/publish-build-artifacts.png) **Publish Build Artifacts**| publishes the **myhealth.dacpac** file to VSTS|
 
-3. Navigate to the **Releases** section under the **Build & Release** menu, click on **MyHealth.AKS** release definition. **Edit** the release definition **MyHealth.AKS.Release** and select **Tasks**.
+3. Navigate to the **Releases** section under the **Pipelines** menu, click on **MyHealth.AKS.Release** release definition. **Edit** the release definition **MyHealth.AKS.Release** and select **Tasks**.
 
    ![release](img/release.png)
 
@@ -134,7 +138,11 @@ Now that the connections are established, we will manually map the existing Azur
 
     ![update_CD3](img/update_CD3.png)
 
-5. In the **AKS deployment** phase, Under the **Create Deployments & Services in AKS** task, update the **Kubernetes Service Connection** value from the dropdown. Expand the **Secrets** section and update the parameters - **Azure subscription** and  **Azure Container Registry** with the endpoint components from the dropdown.
+5. In the **AKS deployment** phase, under the **Create Deployments & Services in AKS** task, update the **Kubernetes Service Connection** value from the dropdown. 
+   * Expand the **Secrets** section and update the parameters 
+     - **Azure subscription** and  
+     - **Azure Container Registry** 
+     with the endpoint components from the dropdown.
 
 6. Repeat similar steps for **Update image in AKS** task. Click **Save** to save the release definition
 
@@ -144,8 +152,9 @@ Now that the connections are established, we will manually map the existing Azur
 
     * **Update image in AKS** will pull the appropriate image corresponding to the BuildID from the repository specified, and deploys the docker image to the **mhc-front pod** running in AKS.
 
-7. Click on the **Variables** section under the release definition, update **ACR** and **SQL server** values for **Process Variables** with the details noted earlier while configuring the environment. Click on the **Save** button.
- Also update the **DatabaseName** and the **SQLAdmin Login** and **Password** based on the values you provided while creating the Azure SQL Database.
+7. Click on the **Variables** section under the release definition, update **ACR** and **SQL server** values for **Process Variables** with the details noted earlier while configuring the environment. 
+   * Click on the **Save** button.
+   * Also update the **DatabaseName** and the **SQLAdmin Login** and **Password** based on the values you provided while creating the Azure SQL Database.
 
    ![releasevariables](img/releasevariables.png)
 
