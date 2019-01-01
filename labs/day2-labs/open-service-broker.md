@@ -13,7 +13,9 @@ In the earlier exercise, without OSBA, we had created a Cosmos DB account in the
 * In prior labs, we used helm to install charts. Check to see if it is working and the version is 2.7 or above.
 
 ```bash
-odl_user@Azure:~$ helm version
+helm version
+```
+```output
 Client: &version.Version{SemVer:"v2.8.0", GitCommit:"14af25f1de6832228539259b821949d20069a222", GitTreeState:"clean"}
 Server: &version.Version{SemVer:"v2.8.0", GitCommit:"14af25f1de6832228539259b821949d20069a222", GitTreeState:"clean"}
 ```
@@ -27,7 +29,7 @@ Server: &version.Version{SemVer:"v2.8.0", GitCommit:"14af25f1de6832228539259b821
 ``` bash
 helm repo add svc-cat https://svc-catalog-charts.storage.googleapis.com
 
-helm install svc-cat/catalog --name catalog --namespace catalog --set rbac.Enabled=true
+helm install svc-cat/catalog --name catalog --namespace catalog --set rbac.Enabled=true  --set apiserver.healthcheck.enabled=false    --set controllerManager.healthcheck.enabled=false
 ```
 
 3. Create a new service principal 
@@ -65,12 +67,17 @@ helm install azure/open-service-broker-azure --name osba --namespace osba --set 
 In this step we will check to see that the Service Catalog and OSBA components are up and running.
 
 ```bash
-odl_user@Azure:~$ kubectl get pod -n catalog
+kubectl get pod -n catalog
+```
+```output
 NAME                                                  READY     STATUS    RESTARTS   AGE
 catalog-catalog-apiserver-1988923711-qg940            2/2       Running   0          1h
 catalog-catalog-controller-manager-1758219338-hgw48   1/1       Running   0          1h
-
-odl_user@Azure:~$ kubectl get pod -n osba
+```
+```bash
+kubectl get pod -n osba
+```
+```output
 NAME                                              READY     STATUS    RESTARTS   AGE
 osba-open-service-broker-azure-1684006674-kflp2   1/1       Running   4          5m
 osba-redis-3506537388-f6k17                       1/1       Running   0          5m
