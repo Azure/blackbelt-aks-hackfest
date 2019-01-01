@@ -19,12 +19,14 @@ We are going to be installing Prometheus and Grafana into our K8s cluster using 
 1. In the Azure Cloud Shell and in the Jumpbox, the Helm CLI is already installed. 
 
 2. Initialize Helm
-    ```
+    ```bash
     helm init
     ``` 
 3. Validate Helm and Tiller were installed successfully
-    ```
+    ```bash
     helm version
+    ```
+    ```output
     # You should see something like the following as output:
     Client: &version.Version{SemVer:"v2.9.1", GitCommit:"8478fb4fc723885b155c924d1c8c410b7a9444e6", GitTreeState:"clean"}
     Server: &version.Version{SemVer:"v2.9.1", GitCommit:"8478fb4fc723885b155c924d1c8c410b7a9444e6", GitTreeState:"clean"}
@@ -33,7 +35,7 @@ We are going to be installing Prometheus and Grafana into our K8s cluster using 
     
  4. If the cluster is RBAC enabled, tiller Pod would not have enough permission in the default namespace. To fix this we need to create a ClusterRole, ClusterRoleBinding and a Service Account. With this we can give necessary permission to Tiller
  
-    ```
+    ```bash
     kubectl create serviceaccount --namespace kube-system tiller
 
     kubectl create clusterrolebinding tiller-cluster-rule --clusterrole=cluster-admin --serviceaccount=kube-system:tiller
@@ -48,7 +50,7 @@ Prometheus is a Cloud Native Computing Foundation (CNCF) project used to collect
 
     Switch to the `helper-files` directory and view the `prometheus-configforhelm.yaml` file. This configures Helm to install Prometheus with our desired settings. **Set RBAC create to true in the yaml file** for rbac enabled clusters. This will ensure related service accounts and cluster/role bindings are created for Prometheus.
     
-    ```
+    ```bash
     cd ~/blackbelt-aks-hackfest/labs/helper-files
     # The following command will install Prometheus into the K8s cluster using custom settings
 
@@ -56,16 +58,20 @@ Prometheus is a Cloud Native Computing Foundation (CNCF) project used to collect
     ```
 
 2. Validate that Prometheus was Installed
-    ``` 
+    ```bash 
     kubectl get pods | grep prometheus
+    ```
+    ```output
     # You should see something like the following as output:
     gbbhackprometheus-prometheus-kube-state-metrics-5b9f4d9d9-vctrx   1/1       Running   0          3m
     gbbhackprometheus-prometheus-node-exporter-v6frn                  1/1       Running   0          3m
     gbbhackprometheus-prometheus-server-54f5bcb797-sbzsp              2/2       Running   0          3m
     ```
 
-    ```
+    ```bash
     kubectl get svc | grep prometheus
+    ```
+    ```output
     # You should see something like the following as output:
     gbbhackprometheus-prometheus-kube-state-metrics   ClusterIP      None           <none>          80/TCP           3m
     gbbhackprometheus-prometheus-node-exporter        ClusterIP      None           <none>          9100/TCP         3m
