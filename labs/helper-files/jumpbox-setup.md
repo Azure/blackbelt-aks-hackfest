@@ -110,6 +110,25 @@ chmod 700 get_helm.sh
 ./get_helm.sh 
 ```
 
+**OPTIONAL** In some cases it's nessecary to add the directory manually to your $PATH variable.
+
+```output
+helm not found. Is /usr/local/bin in your $PATH?
+Failed to install helm
+```
+
+To fix this issue you have to add /usr/local/bin to your $PATH variable
+
+```bash
+PATH=$PATH:/usr/local/bin
+```
+
+To make this permanently and not only for the current session you can add it to your .bash_profile which is executed everytime a bash is started.
+
+```bash
+echo 'export PATH=/usr/local/bin:$PATH' >>~/.bash_profile
+```
+
 ## Clean up Docker
 
 Optionally, you can run the following commands to remove any docker containers and images if the Jumpbox is not a new one and had run docker previously. The below commands need not be run if this is the firs time you are installing Docker on this VM
