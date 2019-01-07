@@ -40,7 +40,7 @@ gpgkey=https://www.mongodb.org/static/pgp/server-3.6.asc
 
 * Run `sudo systemctl start mongod`
 
-* Test connection `mongo localhost:27019` You should see a Welcome to MongoDB shell message
+* Test connection `mongo localhost:27019` You should see a Welcome to MongoDB shell message (and perhaps some WARNING messages - in most cases you can ignore these). 
 
 * Exit out of the MongoDB shell `> exit`
 
