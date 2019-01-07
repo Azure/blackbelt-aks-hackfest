@@ -110,7 +110,7 @@ chmod 700 get_helm.sh
 ./get_helm.sh 
 ```
 
-**OPTIONAL** In some cases it's nessecary to add the directory manually to your $PATH variable.
+**WARNING** In some cases it's necessary to add the directory manually to your $PATH variable.
 
 ```output
 helm not found. Is /usr/local/bin in your $PATH?
