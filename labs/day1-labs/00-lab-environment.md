@@ -21,6 +21,7 @@ Our labs are build and verified using CentOS7. Our recommendations is to use Cen
     
     
     4. After the CentOS jumbbox is provisioned in Azure, you can connect to it using SSH (PuTTY or MobaXTerm)
+    **Verify that Auto-Shutdown has been disabled for this VM** 
     5. Connect to your newly created jumpbox
     6. Goto [**Jumpbox Setup**](/labs/helper-files/jumpbox-setup.md) to install the required software
 
