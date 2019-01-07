@@ -6,8 +6,8 @@ There are two environments you will be working in for the exercises today.
 
 1. **Jumpbox:** The apps and containers must be run on a Linux machine. Use your newly created [Jumpbox](/labs/day1-labs/00-lab-environment.md) for this exercise.
 
-    > Note: If you have bash or ssh available on your machine, it is easiest to access the jump box via SSH. Otherwise, RDP is required.
-
+    > Note: If you have bash or ssh available on your machine, it is easiest to access the jump box via SSH. 
+    
 2. **Azure Cloud Shell:** The Azure Cloud Shell will be accessed by logging into the Azure Portal (http://portal.azure.com).
 
 ![#f03c15](https://placehold.it/15/f03c15/000000?text=+) **Labs 1 and 2 require the Jumpbox. The subsequent labs can either be done in the Azure Cloud Shell or Jumpbox. Stick to either Jumpbox or Cloud Shell. Do not use both of them.**
@@ -52,7 +52,8 @@ The API for the app is written in javascript, running on [Node.js](https://nodej
     ```
     
    The terminal will show the message saying ``` CONNECTED TO mongodb://localhost:27019/webratings ``` 
-   .**Leave the terminal as such and proceed to next step**
+   
+   **Leave the terminal as such and proceed to next step**
 
 2. Open a new terminal session on the jumpbox and test the API
 
@@ -60,8 +61,7 @@ The API for the app is written in javascript, running on [Node.js](https://nodej
     ```bash
     curl http://localhost:3000/api/heroes
     ```
-    If you are in an RDP session, you can browse to <http://localhost:3000/api/heroes>
-
+    
 ### Web Application layer - Vue.js, Node.js
 
 The web frontend for the app is written in [Vue.js](https://vuejs.org/Vue "Vue.js Homepage"), running on [Node.js](https://nodejs.org/en/ "Node.js Homepage") with [Webpack](https://webpack.js.org/ "Webpack Homepage")
