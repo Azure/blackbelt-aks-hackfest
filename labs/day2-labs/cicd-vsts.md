@@ -215,7 +215,7 @@ In this exercise, let us trigger a build manually and upon completion, an automa
 
 5. Once the release is complete, open the putty session to the Cent OS VM and run the below command to see the pods running in AKS:
 
-    `**kubectl get pods`
+    `kubectl get pods`
 
     ![getpods](img/getpods.png)
 
@@ -223,7 +223,7 @@ In this exercise, let us trigger a build manually and upon completion, an automa
 
 6. To access the application, run the below command. If you see that **External-IP** is pending, wait for sometime until an IP is assigned.
 
-    `**kubectl get service mhc-front --watch`
+    `kubectl get service mhc-front --watch`
 
     ![watchfront](img/watchfront.png)
 
