@@ -186,7 +186,7 @@ We will update the database connection string for the .NET Core application and 
 
 Click on the **Commit** button.
 
-   ![editmhcaks2](img/editmhcaks2.PNG)
+   ![editmhcaks2](img/editmhcaks2.png)
 
 #### Exercise 4: Trigger a Build and deploy application
 
