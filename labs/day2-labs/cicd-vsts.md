@@ -179,7 +179,8 @@ We will update the database connection string for the .NET Core application and 
 
 ```yaml
       imagePullSecrets:
-        - name: mysecretkey
+      
+      - name: mysecretkey
 ```
 
 
