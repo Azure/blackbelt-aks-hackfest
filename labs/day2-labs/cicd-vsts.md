@@ -175,7 +175,7 @@ We will update the database connection string for the .NET Core application and 
 
    Scroll to the line number **93**. modify the value ```__ACR__``` with your **\<ACR Login server>.azurecr.io** which was noted earlier while setting up the environment. 
    
-   Also add the **ImagePullSecrets** under spec section. Provide the secret key as **mysecretkey** (secret name) as seen below
+   Also add the **ImagePullSecrets** under spec section. Provide the secret key as **mysecretkey** <yourACRAccessKeyPassword> as seen below
 
 ```yaml
       imagePullSecrets:
@@ -185,7 +185,7 @@ We will update the database connection string for the .NET Core application and 
 
 Click on the **Commit** button.
 
-   ![editmhcaks2](img/editmhcaks2.png)
+   ![editmhcaks2](img/editmhcaks2.PNG)
 
 #### Exercise 4: Trigger a Build and deploy application
 
