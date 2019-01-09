@@ -2,6 +2,9 @@
 
 _Delivering modern cloud native applications with ​open source technologies on Azure​_
 
+
+**NOTE: We have moved this content over to a new and updated repository https://github.com/Azure/kubernetes-hackfest**
+
 ## Overview
 
 This workshop will guide you through migrating an application from "on-premise" to containers running in Azure Kubernetes Service.
