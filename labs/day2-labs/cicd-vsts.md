@@ -175,7 +175,7 @@ We will update the database connection string for the .NET Core application and 
 
    Scroll to the line number **93**. modify the value ```__ACR__``` with your **\<ACR Login server>.azurecr.io** which was noted earlier while setting up the environment. 
    
-   Also add the **ImagePullSecrets** under spec section. Provide the secret key as **mysecretkey** (secret name) as seen below
+   Also add the **ImagePullSecrets** under spec section. Provide the secret key as **mysecretkey** (this is the secret name - don't change it!) as seen below
 
 ```yaml
       imagePullSecrets:
@@ -215,7 +215,7 @@ In this exercise, let us trigger a build manually and upon completion, an automa
 
 5. Once the release is complete, open the putty session to the Cent OS VM and run the below command to see the pods running in AKS:
 
-    `**kubectl get pods`
+    `kubectl get pods`
 
     ![getpods](img/getpods.png)
 
@@ -223,7 +223,7 @@ In this exercise, let us trigger a build manually and upon completion, an automa
 
 6. To access the application, run the below command. If you see that **External-IP** is pending, wait for sometime until an IP is assigned.
 
-    `**kubectl get service mhc-front --watch`
+    `kubectl get service mhc-front --watch`
 
     ![watchfront](img/watchfront.png)
 
