@@ -32,7 +32,7 @@ Take note of the two files in this directory, [init-db-sample.yaml](init-db-samp
     ```bash
     cd ~/blackbelt-aks-hackfest/labs/helper-files
 
-    $ kubectl create -f init-db-sample.yaml
+    kubectl create -f init-db-sample.yaml
     ```
 4. Modify the init-web-api-sample.yaml to add your imagePullSecrets as well as reference your container registry and image, 
 
