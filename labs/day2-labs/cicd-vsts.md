@@ -177,15 +177,21 @@ We will update the database connection string for the .NET Core application and 
    
    Also add the **ImagePullSecrets** under spec section. Provide the secret key as **mysecretkey** (this is the secret name - don't change it!) as seen below
 
+
 ```yaml
-      imagePullSecrets:
-        - name: mysecretkey
+spec:
+
+  imagePullSecrets:
+
+  - name: mysecretkey
+
+  containers:
+
+  - name: mhc-front
 ```
 
 
 Click on the **Commit** button.
-
-   ![editmhcaks2](img/editmhcaks2.PNG)
 
 #### Exercise 4: Trigger a Build and deploy application
 
