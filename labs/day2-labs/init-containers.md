@@ -85,7 +85,7 @@ Take note of the two files in this directory, [init-db-sample.yaml](init-db-samp
 
 6. Deploy the web and api app to your cluster with the modified yaml
     ```bash
-    $ kubectl create -f init-web-api-sample.yaml
+    kubectl create -f init-web-api-sample.yaml
     ```
     
 7. See the init containers getting creating one after the other by executing the below command
