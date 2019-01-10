@@ -181,13 +181,13 @@ We will update the database connection string for the .NET Core application and 
 ```yaml
 spec:
 
- imagePullSecrets:
- 
- - name: mysecretkey
- 
- containers:
- 
- - name: mhc-front
+  imagePullSecrets:
+
+  - name: mysecretkey
+
+  containers:
+
+  - name: mhc-front
 ```
 
 
