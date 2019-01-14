@@ -1,7 +1,7 @@
 # Azure Kubernetes Service (AKS) Deployment
 ## Create AKS cluster
 
-![#f03c15](https://placehold.it/15/f03c15/000000?text=+) **Perform these steps in the Jumpbox**
+![#f03c15](https://placehold.it/15/f03c15/000000?text=+) **Perform these steps in the CLOUD SHELL**
 
 1. In the ssh session login to the Azure subscription
     ```
