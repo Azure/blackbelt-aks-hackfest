@@ -45,7 +45,7 @@ az ad sp create-for-rbac --name osba-sp -o table
 ```bash
 # set the below to values for your sub
 # !Get ID using command "az account list | grep id"
-export AZURE_SUBSCRIPTION_ID= 
+export AZURE_SUBSCRIPTION_ID=<SubscriptionID>
 export AZURE_TENANT_ID=<Tenant>
 export AZURE_CLIENT_ID=<AppID>
 export AZURE_CLIENT_SECRET=<Password>
