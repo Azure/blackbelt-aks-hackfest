@@ -49,6 +49,8 @@ For the first container, we will be creating a Dockerfile from scratch. For the 
     ```
     **You can ignore the NPM warnings generated while the image is being built.**
 
+   **If you have an error regarding "Unable to evaluate symlinks, No such file or directory". Ensure the file name is correct including case-sensitivity**
+
 3. Once the above command is completed, validate that the image was created with command: `docker images`
    ```
    docker images
