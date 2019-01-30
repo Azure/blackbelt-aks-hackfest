@@ -2,22 +2,24 @@
 
 This page helps you to install all required software packages you'll need for this training.
 
-## Reset Password for root user
-Login to CentOS VM via a Putty session using the credentials supplied while creating the CentOS VM
+## Logon to your Jumpbox
+Login to CentOS VM via a Putty, Mobaxterm or SSH (in PowerShell) using the credentials supplied while creating the CentOS VM
 
-* Run the following command in the Terminal to switch to root user:
+* You're now logged in with a regular user account. It's **NOT** recommended to login directly using root. 
 
-  `sudo su -`
+* Run the following command in the Terminal to get root user permissions:
 
-* Provide the password for the logged in user
+  ```bash
+  sudo -i
+  ```
 
-* Run the following command in the Terminal to reset the password of root user:
+* Or use `sudo` to run commands with elevated permissions:
 
-  `passwd root`
+  ```bash
+  sudo <command>
+  ```
 
-![#f03c15](https://placehold.it/15/f03c15/000000?text=+) Provide a strong password for the root user as the Jumpbox is accessible publicly. 
-
-![#f03c15](https://placehold.it/15/f03c15/000000?text=+) Going forward you may **login directly as root user** to the VM to execute all of the remaining commands
+![#f03c15](https://placehold.it/15/f03c15/000000?text=+) Provide a strong password or use public-key authentication for your Jumpbox because it's accessible publicly. And SSH is usually under heavy fire. 
 
 ## Install Mongo
 
