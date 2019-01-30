@@ -53,7 +53,7 @@ The API for the app is written in javascript, running on [Node.js](https://nodej
     
    The terminal will show the message saying ``` CONNECTED TO mongodb://localhost:27019/webratings ``` 
    
-   **Leave the terminal as such and proceed to next step**
+   **Leave the terminal session open as such and proceed to next step. A new session will be opened in parrallel in the next step**
 
 2. Open a new terminal session on the jumpbox and test the API
 
@@ -67,6 +67,11 @@ The API for the app is written in javascript, running on [Node.js](https://nodej
 The web frontend for the app is written in [Vue.js](https://vuejs.org/Vue "Vue.js Homepage"), running on [Node.js](https://nodejs.org/en/ "Node.js Homepage") with [Webpack](https://webpack.js.org/ "Webpack Homepage")
 
 1. Open a new terminal session on the jumpbox
+**This will most likely be a third terminal session that will be opened**
+
+2. Elevate your session using the command
+  `sudo su -`
+  
 2. Update dependencies and run app via node
 
     ```bash
