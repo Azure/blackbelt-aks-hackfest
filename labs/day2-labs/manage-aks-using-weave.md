@@ -1,5 +1,7 @@
 # Manage AKS using Weave
 
+![#f03c15](https://placehold.it/15/f03c15/000000?text=+) **Perform these steps in the AZURE CLOUD SHELL**
+
 ## Overview
 You can use [Weave](https://www.weave.works/) to display information about Pods, Deployments, Nodes, etc. 
 
