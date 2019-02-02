@@ -52,14 +52,14 @@
     
     ```
 
-6. Create your AKS cluster in the resource group created above with 2 nodes, targeting Kubernetes version 1.10.8
+6. Create your AKS cluster in the resource group created above with 2 nodes, targeting Kubernetes version 1.11.5
     ```
     # set the location to one of the provided AKS locations (eg - centralus, eastus)
     
     LOCATION=eastus
 
     az aks create --name $CLUSTER_NAME --resource-group $NAME --node-count 2 \
-                  --kubernetes-version 1.10.8 --generate-ssh-keys --location $LOCATION 
+                  --kubernetes-version 1.11.5 --generate-ssh-keys --location $LOCATION 
     ```
  This command can take 5-25 minutes to run as it is creating the AKS cluster. Please be PATIENT...
 
@@ -72,7 +72,7 @@
     ```console
     Name      Location    ResourceGroup    KubernetesVersion    ProvisioningState    Fqdn
     --------  ----------  ---------------  -------------------  -------------------  ---------------------------------------------------    ---
-    myaksrg   eastus      myaksrg          1.10.8                Succeeded            myaksrg-myaksrg-9a4f9a-7a0ba239.hcp.eastus.azmk8s.io
+    myaksrg   eastus      myaksrg          1.11.5                Succeeded            myaksrg-myaksrg-9a4f9a-7a0ba239.hcp.eastus.azmk8s.io
 
     ```
 
@@ -94,8 +94,8 @@ The `output` parameter is used display the output as a table to increase readabi
     
     ```console
     NAME                       STATUS    ROLES     AGE       VERSION
-    aks-nodepool1-26044360-0   Ready     agent     4m        v1.10.8
-    aks-nodepool1-26044360-1   Ready     agent     4m        v1.10.8
+    aks-nodepool1-26044360-0   Ready     agent     4m        v1.11.5
+    aks-nodepool1-26044360-1   Ready     agent     4m        v1.11.5
 
     ```
     
