@@ -251,3 +251,7 @@ v1: digest: sha256:f84eba148dfe244f8f8ad0d4ea57ebf82b6ff41f27a903cbb7e3fbe377bb2
 ![img](img/02_acr_repositories.png)
 
 2. Click on the Repository name and under 'tags' section, you will see "v1" listed.
+
+
+
+### [Return back to BootCamp Table of Contents (Main Page)](https://github.com/heoelri/container-bootcamp)
