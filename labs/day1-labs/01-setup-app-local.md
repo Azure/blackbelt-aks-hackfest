@@ -98,3 +98,7 @@ The web frontend for the app is written in [Vue.js](https://vuejs.org/Vue "Vue.j
 ## Clean-up
 
 ![#f03c15](https://placehold.it/15/f03c15/000000?text=+) > **Important!** Close the web and api apps in the terminal windows by hitting `ctrl-c` in each of the corresponding terminal windows
+
+
+
+### [Return back to BootCamp Table of Contents (Main Page)](https://github.com/heoelri/container-bootcamp)
