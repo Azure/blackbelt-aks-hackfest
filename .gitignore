@@ -66,3 +66,5 @@ typings/
 
 # .azcli scratch files
 *.azcli
+/.vs/container-bootcamp/v15/.suo
+/.vs
