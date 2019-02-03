@@ -84,7 +84,7 @@ Install Kubectl command line utility to interact with AKS. There are two ways to
 
 **First method:**
 ```
-az aks install-cli
+sudo az aks install-cli
 ```
 
 **Second method:**
