@@ -125,3 +125,6 @@ There are two ways to update the application with the new version. Both are desc
 ## Browse to your newly deployed web application
 
 Browse to the web application on the Public IP and validate that the change you made to the 'Footer.vue' file is reflecting in the portal.
+
+
+   ##### [Return back to BootCamp Table of Contents (Main Page)](/README.md)

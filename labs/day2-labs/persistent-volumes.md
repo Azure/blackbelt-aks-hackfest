@@ -306,3 +306,7 @@ webratings  0.000GB
 >
 ```
 Browse the heroes web application and check the ratings. You will see the same ratings which you saw earlier. 
+
+
+
+   ##### [Return back to BootCamp Table of Contents (Main Page)](/README.md)

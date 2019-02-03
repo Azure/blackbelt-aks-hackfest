@@ -33,3 +33,6 @@ There are multiple ways of accessing Kubernetes dashboard. You can access throug
 4. In this lab, feel free to take a look around other resources Kubernetes provides through the dashboard.
 
 > To learn more about Kubernetes objects and resources, browse the documentation: <https://kubernetes.io/docs/user-journeys/users/application-developer/foundational/#section-3>
+
+
+   ##### [Return back to BootCamp Table of Contents (Main Page)](/README.md)

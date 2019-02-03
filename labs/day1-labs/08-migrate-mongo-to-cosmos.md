@@ -193,3 +193,6 @@ In this section we will use the ```mongodump``` and ```mongorestore``` commands 
 
 	kubectl delete -f heroes-db.yaml
 	```
+
+
+   ##### [Return back to BootCamp Table of Contents (Main Page)](/README.md)

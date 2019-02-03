@@ -255,3 +255,6 @@ AKS reduces the complexity and operational overhead of managing a Kubernetes clu
 
 ## Attribution:
 Content originally created by Srivatsa, Sachin Raj and sriramdasbalaji et al. from [this](https://github.com/Microsoft/almvm/blob/master/labs/vstsextend/kubernetes) ALM Doc. Modified it to work with exisiting K8S cluster
+
+
+   ##### [Return back to BootCamp Table of Contents (Main Page)](/README.md)

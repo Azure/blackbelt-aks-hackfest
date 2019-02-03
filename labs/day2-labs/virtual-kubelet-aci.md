@@ -389,3 +389,7 @@ East US             Online                   Enabled           heroes-east      
 ```
 
 4. Now test in your browser using the url http://heroes-xxxxxx.trafficmanager.net:8080 and the Super Heroes voting page should load. In the footer of the page it will either say East US or West US based upon performance routing using Traffic Manager.
+
+
+
+   ##### [Return back to BootCamp Table of Contents (Main Page)](/README.md)

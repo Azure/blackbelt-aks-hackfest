@@ -126,4 +126,4 @@ In the Azure portal, you will see the AKS cluster present under the Resourcegrou
 You will also see an additional Resource Group with a naming convention `MC_<ResourceGroup>_<ClusterName>_<Location>` in the Azure portal. This is a new Resource Group that gets created automatically which contains all the infrastructure components of your AKS cluster. 
 
 
-### [Return back to BootCamp Table of Contents (Main Page)](https://github.com/heoelri/container-bootcamp)
+   ##### [Return back to BootCamp Table of Contents (Main Page)](/README.md)

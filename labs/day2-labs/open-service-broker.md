@@ -158,3 +158,6 @@ az cosmosdb update -n $COSMOS_DB_ACCOUNT_NAME -g heroes-cosmosdb --capabilities 
 ```bash
 kubectl get svc
 ```
+
+
+   ##### [Return back to BootCamp Table of Contents (Main Page)](/README.md)

@@ -146,3 +146,6 @@ Use the EXTERNAL-IP value from the previous step and put that into your browser:
     You should now have Prometheus and Grafana running in your Azure Kubernetes Service cluster and be able to see the Grafana Dashboard.
 
 Explore the Grafana dashboard to see different performance and usage metrics of your AKS cluster.
+
+
+   ##### [Return back to BootCamp Table of Contents (Main Page)](/README.md)
