@@ -8,7 +8,7 @@ Our labs are build and verified using CentOS7. Our recommendations is to use Cen
 
 ### Setup Environment
 
-* Setup your Jumpbox VM in Azure
+* **Setup your Jumpbox VM in Azure**
     1. Browse to http://portal.azure.com
     2. Click on "Create a resource" and search for "CentOS-based 7.5"
     3. Deploy the CentOS-based 7.5 VM  
@@ -29,7 +29,7 @@ Our labs are build and verified using CentOS7. Our recommendations is to use Cen
     5. Connect to your newly created jumpbox on the Public IP
     6. Goto [**Jumpbox Setup**](/labs/helper-files/jumpbox-setup.md) to install the required software that you'll need for this training.
 
-* Setup Azure Cloud Shell: 
+* **Setup Azure Cloud Shell:** 
 
     1. Browse to http://portal.azure.com
     2. Login with the Azure credentials
