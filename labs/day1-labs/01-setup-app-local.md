@@ -57,7 +57,7 @@ The API for the app is written in javascript, running on [Node.js](https://nodej
     
    The terminal will show the message saying ``` CONNECTED TO mongodb://localhost:27019/webratings ``` 
    
-   **Leave the terminal session open as such and proceed to next step. A new session will be opened in parrallel in the next step**
+   **Leave the terminal session open as such and proceed to next step. A new session to the Jumpbox needs to be opened in parallel in the next step**
 
 2. Open a new terminal session on the jumpbox and test the API
 
@@ -101,7 +101,7 @@ The web frontend for the app is written in [Vue.js](https://vuejs.org/Vue "Vue.j
 
 ## Clean-up
 
-![#f03c15](https://placehold.it/15/f03c15/000000?text=+) > **Important!** Close the web and api apps in the terminal windows by hitting `ctrl-c` in each of the corresponding terminal windows
+![#f03c15](https://placehold.it/15/f03c15/000000?text=+) > **Important!** Make sure to close the web and api apps in the terminal windows by hitting `ctrl-c` in each of the corresponding terminal windows to avoid port conflict issues in the next excercise. 
 
 
 
