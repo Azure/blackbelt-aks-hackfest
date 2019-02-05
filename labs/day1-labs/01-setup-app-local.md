@@ -72,17 +72,15 @@ The web frontend for the app is written in [Vue.js](https://vuejs.org/Vue "Vue.j
 
 1. Open a new terminal session on the jumpbox
 **This will most likely be a third terminal session that will be opened**
-
-2. Elevate your session using the command
-  `sudo su -`
   
 2. Update dependencies and run app via node
 
     ```bash
     cd ~/blackbelt-aks-hackfest/app/web
 
-    npm install && npm run localmachine
+    sudo npm install && npm run localmachine
     ```
+    
 3. Test the web front-end
 
     To test the web front-end via the internet you've to grab your ip address from the Azure Portal and enable access to port 8080.
@@ -95,6 +93,7 @@ The web frontend for the app is written in [Vue.js](https://vuejs.org/Vue "Vue.j
        
 
     You can test the web app from a new terminal session in the jumpbox
+    
     ```bash
     curl http://localhost:8080
     ```
