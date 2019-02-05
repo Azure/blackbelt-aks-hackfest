@@ -17,12 +17,16 @@ Our labs are build and verified using CentOS7. Our recommendations is to use Cen
     
          Publisher: Rogue Wave Software
     
-         NSG Rule: Allow inbound on SSH port 
+         NSG Rule: Allow inbound on SSH port (22) 
+                  
+         Public IP: Yes
+         
+         Authentication: Provide a strong password or use public-key authentication(recommended) for your Jumpbox because it's accessible publicly.
     
     
     4. After the CentOS jumbbox is provisioned in Azure, you can connect to it using SSH (PuTTY or MobaXTerm - or nativly using the "ssh" command in PowerShell)
     **Verify that Auto-Shutdown has been disabled for this VM** 
-    5. Connect to your newly created jumpbox
+    5. Connect to your newly created jumpbox on the Public IP
     6. Goto [**Jumpbox Setup**](/labs/helper-files/jumpbox-setup.md) to install the required software
 
 * Setup Azure Cloud Shell: 
