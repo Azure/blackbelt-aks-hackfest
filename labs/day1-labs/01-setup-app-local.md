@@ -17,7 +17,11 @@ There are two environments you will be working in for the exercises today.
 Once you have accessed the jumpbox, you must clone the workshop repo to the machine.
 
 1. Start with a terminal on the jumpbox
-2. Clone the Github repo via the command line
+
+2. Elevate your session using the command
+  `sudo su -`
+  
+3. Clone the Github repo via the command line
 
     ```
     git clone https://github.com/Azure/blackbelt-aks-hackfest.git
@@ -101,4 +105,4 @@ The web frontend for the app is written in [Vue.js](https://vuejs.org/Vue "Vue.j
 
 
 
-   ##### [Return back to BootCamp Table of Contents (Main Page)](/README.md)
+   ##### [Return to BootCamp Table of Contents (Main Page)](/README.md)
