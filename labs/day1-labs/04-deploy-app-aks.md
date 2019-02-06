@@ -5,6 +5,34 @@ In this exercise, we will create a "kubernetes secret" to access the private Azu
 
 ![#f03c15](https://placehold.it/15/f03c15/000000?text=+) **Perform these steps in the Jumpbox**
 
+## Connect to our previously created AKS Cluster
+
+1. Login to Azure 
+
+    ```azurecli-interactive
+    az login
+    ```
+
+2. Retrieve the list of AKS cluster
+
+    ```bash
+    az aks list --output table
+    ```
+
+    ```bash
+    Name         Location    ResourceGroup    KubernetesVersion    ProvisioningState    Fqdn
+    -----------  ----------  ---------------  -------------------  -------------------  ---------------------------------------------
+    akscluster1  westeurope  aks              1.11.5               Succeeded            akscluster1-75273d58.hcp.westeurope.azmk8s.io
+    ```
+
+3. Retrieve AKS credentials
+
+    ```bash
+    az aks get-credentials --name <name> --resource-group <resource group>
+    ```
+
+The prevoiusly used command (`az aks get-credential`) downloads the connection details for our AKS cluster and stores them in `.kube/config` which kubectl is using to interact with our cluster.
+    
 ## Review/Edit the YAML Config Files
 
 1. In the Jumpbox edit `heroes-db.yaml` using `vi`
@@ -61,7 +89,7 @@ ACR_USER=
 ACR_PWD=
 ```
 Run the following command to create a secret key in the AKS cluster to access your ACR. 
-```
+```bash
 kubectl create secret docker-registry acr-secret --docker-server=$ACR_SERVER --docker-username=$ACR_USER --docker-password=$ACR_PWD --docker-email=superman@heroes.com
 ```
 You can verify the secret by running the following command:
@@ -92,7 +120,7 @@ default-token-xd8wk   kubernetes.io/service-account-token   3         53m
     heroes-db-deploy-2357291595-k7wjk    1/1       Running   0          3m
     ```
   Assign pod name to variable MONGO_POD
-    ```
+    ```bash
     MONGO_POD=heroes-db-deploy-2357291595-k7wjk
     ```
 
