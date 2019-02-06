@@ -10,18 +10,15 @@ There are two environments you will be working in for the exercises today.
     
 2. **Azure Cloud Shell:** The Azure Cloud Shell will be accessed by logging into the Azure Portal (http://portal.azure.com).
 
-![#f03c15](https://placehold.it/15/f03c15/000000?text=+) **Labs 1 and 2 require the Jumpbox. The subsequent labs can either be done in the Azure Cloud Shell or Jumpbox. Stick to either Jumpbox or Cloud Shell. Do not use both of them.**
+![#f03c15](https://placehold.it/15/f03c15/000000?text=+) **Labs 1 and 2 require the Jumpbox.**
 
 ## Clone Lab Github Repo
 
 Once you have accessed the jumpbox, you must clone the workshop repo to the machine.
 
 1. Start with a terminal on the jumpbox
-
-2. Elevate your session using the command
-  `sudo su -`
   
-3. Clone the Github repo via the command line
+2. Clone the Github repo via the command line
 
     ```
     git clone https://github.com/Azure/blackbelt-aks-hackfest.git
@@ -52,7 +49,7 @@ The API for the app is written in javascript, running on [Node.js](https://nodej
     ```bash
     cd ~/blackbelt-aks-hackfest/app/api
 
-    npm install && npm run localmachine
+    sudo npm install && npm run localmachine
     ```
     
    The terminal will show the message saying ``` CONNECTED TO mongodb://localhost:27019/webratings ``` 
