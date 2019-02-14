@@ -133,7 +133,6 @@ echo 'export PATH=/usr/local/bin:$PATH' >>~/.bash_profile
 
 Optionally, you can run the following commands to remove any docker containers and images if the Jumpbox is not a new one and had run docker previously. The below commands need not be run if this is the firs time you are installing Docker on this VM
 ```
-docker rm -f $(docker ps -a -q)
-docker rmi -f $(docker images)
+docker system prune
 ```
  ##### [Return to Lab Environment Setup Page](/labs/day1-labs/00-lab-environment.md)
