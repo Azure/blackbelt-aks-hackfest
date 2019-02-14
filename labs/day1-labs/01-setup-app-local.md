@@ -75,7 +75,7 @@ The web frontend for the app is written in [Vue.js](https://vuejs.org/Vue "Vue.j
     ```bash
     cd ~/blackbelt-aks-hackfest/app/web
 
-    sudo npm install && npm run localmachine
+    sudo npm install -f && npm run localmachine
     ```
     
 3. Test the web front-end
