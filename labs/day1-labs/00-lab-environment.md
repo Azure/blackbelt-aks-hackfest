@@ -13,7 +13,7 @@ Our labs are build and verified using CentOS7. Our recommendations is to use Cen
     2. Click on "Create a resource" and search for "CentOS-based 7.5"
     3. Deploy the CentOS-based 7.5 VM  
     
-         Size: D2s_v3
+         Size: D2s_v3 (Please don't use B-series VMs)
     
          Publisher: Rogue Wave Software
     
