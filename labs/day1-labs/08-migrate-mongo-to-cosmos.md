@@ -47,14 +47,12 @@ In this section we will use the ```mongodump``` and ```mongorestore``` commands 
 	kubectl get pod
 	```
 	
-	```console
+	```bash
 	NAME                                                              READY     STATUS    RESTARTS   AGE
 	heroes-api-deploy-1140957751-v2pqc                                1/1       Running   0          20h
 	heroes-db-deploy-2357291595-xb4xm                                 1/1       Running   0          20h
 	heroes-web-3683626428-9m8wp                                       1/1       Running   0          20h
-        ```
-	
-	```bash
+
 	MONGO_POD=heroes-db-deploy-2357291595-xb4xm
 
 	kubectl exec -it $MONGO_POD bash
@@ -68,7 +66,6 @@ In this section we will use the ```mongodump``` and ```mongorestore``` commands 
 	drwxr-xr-x 1 root root 4096 Feb 10 12:01 ..
 	drwxr-xr-x 2 root root 4096 Feb 10 12:01 admin
 	drwxr-xr-x 2 root root 4096 Feb 10 12:01 webratings
-
 	```
 
 	_Do not exit the pod. Step 3 will be run from the same location._
