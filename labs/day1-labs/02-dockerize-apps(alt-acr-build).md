@@ -71,7 +71,8 @@ For the first container, we will be creating a Dockerfile from scratch. For the 
 
     * Access the cloud shell
     * In the `~/blackbelt-aks-hackfest/app/web` directory, add a file called "Dockerfile"
-        * you can launch in in-browser code editor in cloud shell by typing `code .` at the bash prompt
+        * you can add an empty file by running `touch Dockerfile` in the cloud shell.
+        * you can launch in in-browser code editor in cloud shell by typing `code .` at the bash prompt (click the refresh button to see the new Dockerfile)
 
     * Add the following lines and save:
 
