@@ -22,6 +22,6 @@ There are multiple ways of accessing Kubernetes dashboard. You can access it thr
 ![](img/ui_nodes.png)
 2. Explore the different node properties available through the dashboard
 3. Explore the different pod properties available through the dashboard ![](img/ui_pods.png)
-4. In this lab feel free to take a look around other at  other resources Kubernetes provides through the dashboard
+4. In this lab feel free to take a look around at other resources Kubernetes provides through the dashboard
 
 > To learn more about Kubernetes objects and resources, browse the documentation: <https://kubernetes.io/docs/user-journeys/users/application-developer/foundational/#section-3>
