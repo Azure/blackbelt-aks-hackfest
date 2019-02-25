@@ -59,8 +59,8 @@ kubectl get nodes
 You should see something like the following as output (there is one node in the cluster):
 ```console
 NAME                       STATUS    ROLES     AGE       VERSION
-aks-nodepool1-42552728-0   Ready     agent     4h        v1.10.6
-aks-nodepool1-42552728-1   Ready     agent     4h        v1.10.6
+aks-nodepool1-42552728-0   Ready     agent     4h        v1.12.4
+aks-nodepool1-42552728-1   Ready     agent     4h        v1.12.4
 ```
 
 2. Scale out AKS cluster to accommodate the demand
@@ -80,10 +80,10 @@ kubectl get nodes
 You should see something like the following as output (there are now 4 nodes in the cluster):
 ```console
 NAME                       STATUS    ROLES     AGE       VERSION
-aks-nodepool1-42552728-0   Ready     agent     5h        v1.9.6
-aks-nodepool1-42552728-1   Ready     agent     5h        v1.9.6
-aks-nodepool1-42552728-2   Ready     agent     7m        v1.9.6
-aks-nodepool1-42552728-3   Ready     agent     7m        v1.9.6
+aks-nodepool1-42552728-0   Ready     agent     5h        v1.12.4
+aks-nodepool1-42552728-1   Ready     agent     5h        v1.12.4
+aks-nodepool1-42552728-2   Ready     agent     7m        v1.12.4
+aks-nodepool1-42552728-3   Ready     agent     7m        v1.12.4
 ```
 
 4. Re-visit Grafana Dasboard to validate cluster scale is working.
@@ -94,12 +94,12 @@ Take a look at the **Pods Pending Count** again and you should see that after a 
 You now have additional node capacity in your Azure Kubernetes Service cluster to be able to provision more pods.
 
 # AKS Autoscaler (optional)
-Since early 2019 Azure Kubernetes Service (AKS) supports autoscaling (in preview). Autoscaling allows your AKS cluster to automatically add or remove nodes based on it's current utilization. It can be enabled during cluster creation or afterwards for an existing cluster.
+Since early 2019 Azure Kubernetes Service (AKS) supports autoscaling (in preview). Autoscaling allows your AKS cluster to automatically add or remove nodes based on its current utilization. It can be enabled during cluster creation or afterwards for an existing cluster.
 
 To enable autoscaling in your existing environment you have to make sure that we have the following things in place:
 
 1. Azure CLI version 2.0.55 or later. Run `az --version` to find the version. #
-2. Kubernetes version 1.12.4 (have a look on [Lab 10 - Upgrade AKS](labs/day1-labs/10-cluster-upgrading.md))
+2. Kubernetes version 1.12.4 (or later) (have a look on [Lab 7 - Upgrade AKS](labs/day1-labs/07-cluster-upgrading.md))
 3. aks-preview Azure CLI extension installed
 
 ```bash
