@@ -26,7 +26,7 @@ The labs are based upon a node.js application that allows for voting on the Just
   4. [Deploy application to Azure Kubernetes Service](labs/day1-labs/04-deploy-app-aks.md)
   5. [Kubernetes UI Overview](labs/day1-labs/05-kubernetes-ui.md)
   6. [Operational Monitoring and Log Management](labs/day1-labs/06-monitoring-k8s.md)
-  7. [Upgrade an Azure Kubernetes Service (AKS) cluster](labs/day1-labs/10-cluster-upgrading.md)
+  7. [Upgrade an Azure Kubernetes Service (AKS) cluster](labs/day1-labs/07-cluster-upgrading.md)
   8. [Application and Infrastructure Scaling](labs/day1-labs/07-cluster-scaling.md)
   9. [Moving your data services to Azure PaaS (CosmosDB)](labs/day1-labs/08-migrate-mongo-to-cosmos.md)
   10. [Update and Deploy New Version of Application](labs/day1-labs/09-update-application.md)
