@@ -59,7 +59,7 @@ The API for the app is written in javascript, running on [Node.js](https://nodej
 
 ### Web Application layer - Vue.js, Node.js
 
-The web frontend for the app is written in [Vue.js](https://vuejs.org/Vue "Vue.js Homepage"), running on [Node.js](https://nodejs.org/en/ "Node.js Homepage") with [Webpack](https://webpack.js.org/ "Webpack Homepage")
+The web frontend for the app is written in [Vue.js](https://vuejs.org/ "Vue.js Homepage"), running on [Node.js](https://nodejs.org/en/ "Node.js Homepage") with [Webpack](https://webpack.js.org/ "Webpack Homepage")
 
 1. Open a new terminal session on the jumpbox
 2. Update dependencies and run app via node
