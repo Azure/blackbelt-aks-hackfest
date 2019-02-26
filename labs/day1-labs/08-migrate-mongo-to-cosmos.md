@@ -41,9 +41,13 @@ In this section we will use the ```mongodump``` and ```mongorestore``` commands 
 ![#f03c15](https://placehold.it/15/f03c15/000000?text=+) **Perform below steps in the Jumpbox**
 
 1. Exec into mongoDB pod and export data
+
 	```bash
 	# list pods in the cluster and set the variable to your pod name
 	kubectl get pod
+	```
+	
+	```bash
 	NAME                                                              READY     STATUS    RESTARTS   AGE
 	heroes-api-deploy-1140957751-v2pqc                                1/1       Running   0          20h
 	heroes-db-deploy-2357291595-xb4xm                                 1/1       Running   0          20h
@@ -62,7 +66,6 @@ In this section we will use the ```mongodump``` and ```mongorestore``` commands 
 	drwxr-xr-x 1 root root 4096 Feb 10 12:01 ..
 	drwxr-xr-x 2 root root 4096 Feb 10 12:01 admin
 	drwxr-xr-x 2 root root 4096 Feb 10 12:01 webratings
-
 	```
 
 	_Do not exit the pod. Step 3 will be run from the same location._
@@ -157,10 +160,15 @@ In this section we will use the ```mongodump``` and ```mongorestore``` commands 
 * Apply the new config in AKS
 	```bash
 	kubectl apply -f heroes-web-api.yaml
-
-	# if you look at the pods right away, you will see a new api pod being created
+	```
 	
+* If you look at the pods right away, you will see a new api pod being created
+	
+	```bash
 	kubectl get pods
+	```
+	
+	```bash
 	NAME                                 READY     STATUS              RESTARTS   AGE
 	heroes-api-deploy-599cdf4977-8g6vc   0/1       Terminating         0          42m
 	heroes-api-deploy-6ccd9997fc-5xlwv   0/1       ContainerCreating   0          3s
@@ -174,6 +182,9 @@ In this section we will use the ```mongodump``` and ```mongorestore``` commands 
 
 	```bash
 	kubectl get service
+	```
+	
+	```bash
 	NAME    TYPE           CLUSTER-IP     EXTERNAL-IP          PORT(S)          AGE
 	web     LoadBalancer   10.0.115.59    <your external ip>   8080:30112/TCP   12d
 	```
@@ -185,12 +196,16 @@ In this section we will use the ```mongodump``` and ```mongorestore``` commands 
 
 	```bash
 	kubectl get deploy
-
+	```
+	
+	```bash
 	NAME                DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
 	heroes-api-deploy   1         1         1            1           10m
 	heroes-db-deploy    1         1         1            1           30m
 	heroes-web          1         1         1            1           10m
-
+	```
+	
+	```bash
 	kubectl delete -f heroes-db.yaml
 	```
 
