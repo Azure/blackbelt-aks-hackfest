@@ -93,31 +93,4 @@ Take a look at the **Pods Pending Count** again and you should see that after a 
 
 You now have additional node capacity in your Azure Kubernetes Service cluster to be able to provision more pods.
 
-# AKS Autoscaler (optional)
-Since early 2019 Azure Kubernetes Service (AKS) supports autoscaling (in preview). Autoscaling allows your AKS cluster to automatically add or remove nodes based on its current utilization. It can be enabled during cluster creation or afterwards for an existing cluster.
-
-To enable autoscaling in your existing environment you have to make sure that we have the following things in place:
-
-1. Azure CLI version 2.0.55 or later. Run `az --version` to find the version. #
-2. Kubernetes version 1.12.4 (or later) (have a look on [Lab 7 - Upgrade AKS](labs/day1-labs/07-cluster-upgrading.md))
-3. aks-preview Azure CLI extension installed
-
-```bash
-az extension add --name aks-preview
-```
-
-When all these prerequisites are in place use the following command to enable autoscaling for your cluster with between 1 and 4 nodes.
-
-```bash
-az aks update \
-  --resource-group <RESOURCE_GROUP_NAME> \
-  --name <AKS_CLUSTER_NAME> \
-  --enable-cluster-autoscaler \
-  --min-count 1 \
-  --max-count 4
-```
-
-For more about Autoscaling in AKS have a look on: [Automatically scale a cluster to meet application demands on Azure Kubernetes Service (AKS)](https://docs.microsoft.com/en-us/azure/aks/cluster-autoscaler)
-
-
    ##### [Return back to BootCamp Table of Contents (Main Page)](/README.md)
