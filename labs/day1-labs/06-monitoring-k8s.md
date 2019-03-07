@@ -1,6 +1,7 @@
 # Add Monitoring to an Azure Kubernetes Service Cluster
 
 There are a number of monitoring solutions available today. Here is a quick, but not exhaustive list for reference purposes:
+
 * Datadog
 * Sysdig
 * Elastic Stack
@@ -16,25 +17,30 @@ We are going to be installing Prometheus and Grafana into our K8s cluster using 
 
 ![#f03c15](https://placehold.it/15/f03c15/000000?text=+) **Proceed with below steps in Jumpbox**
 
-1. In the Azure Cloud Shell and in the Jumpbox, the Helm CLI is already installed. 
+1. In the Azure Cloud Shell and in the Jumpbox, the Helm CLI is already installed.
 
-2. Initialize Helm
+1. Initialize Helm
+
     ```bash
     helm init
-    ``` 
-3. Validate Helm and Tiller were installed successfully
+    ```
+
+1. Validate Helm and Tiller were installed successfully
+
     ```bash
     helm version
     ```
+
     ```output
     # You should see something like the following as output:
     Client: &version.Version{SemVer:"v2.9.1", GitCommit:"8478fb4fc723885b155c924d1c8c410b7a9444e6", GitTreeState:"clean"}
     Server: &version.Version{SemVer:"v2.9.1", GitCommit:"8478fb4fc723885b155c924d1c8c410b7a9444e6", GitTreeState:"clean"}
     ```
-    **Note:** If you are receiving an error saying "Error: could not find a ready tiller pod", run the command  "helm init --force-upgrade" to forcefully initiate HELM and check the HELM version again. 
-    
- 4. If the cluster is RBAC enabled, tiller Pod would not have enough permission in the default namespace. To fix this we need to create a ClusterRole, ClusterRoleBinding and a Service Account. With this we can give necessary permission to Tiller
- 
+
+    **Note:** If you are receiving an error saying "Error: could not find a ready tiller pod", run the command  "helm init --force-upgrade" to forcefully initiate HELM and check the HELM version again.
+
+1. If the cluster is RBAC enabled, tiller Pod would not have enough permission in the default namespace. To fix this we need to create a ClusterRole, ClusterRoleBinding and a Service Account. With this we can give necessary permission to Tiller
+
     ```bash
     kubectl create serviceaccount --namespace kube-system tiller
 
@@ -42,14 +48,15 @@ We are going to be installing Prometheus and Grafana into our K8s cluster using 
 
     kubectl patch deploy --namespace kube-system tiller-deploy -p '{"spec":{"template":{"spec":{"serviceAccount":"tiller"}}}}'
     ```
-    
+
 ## Install Prometheus using Helm
+
 Prometheus is a Cloud Native Computing Foundation (CNCF) project used to collect and process metrics. It collects metrics from configured targets, in our case it is a Kubernetes Cluster.
 
 1. Install Prometheus using Helm CLI
 
     Switch to the `helper-files` directory and view the `prometheus-configforhelm.yaml` file. This configures Helm to install Prometheus with our desired settings. **Set RBAC create to true in the yaml file** for rbac enabled clusters. This will ensure related service accounts and cluster/role bindings are created for Prometheus.
-    
+
     ```bash
     cd ~/blackbelt-aks-hackfest/labs/helper-files
     # The following command will install Prometheus into the K8s cluster using custom settings
@@ -57,9 +64,9 @@ Prometheus is a Cloud Native Computing Foundation (CNCF) project used to collect
     helm install --name gbbhackprometheus stable/prometheus --version 4.6.13 -f prometheus-configforhelm.yaml --namespace logging
     ```
 
-2. Validate that Prometheus was Installed
+1. Validate that Prometheus was Installed
 
-    ``` 
+    ```bash
     kubectl get pods -n logging | grep prometheus
 
     # You should see something like the following as output:
@@ -68,7 +75,7 @@ Prometheus is a Cloud Native Computing Foundation (CNCF) project used to collect
     gbbhackprometheus-prometheus-server-54f5bcb797-sbzsp              2/2       Running   0          3m
     ```
 
-    ```
+    ```bash
     kubectl get svc -n logging | grep prometheus
 
     # You should see something like the following as output:
@@ -78,6 +85,7 @@ Prometheus is a Cloud Native Computing Foundation (CNCF) project used to collect
     ```
 
 ## Install Grafana
+
 Grafana is a dashboard visualization tool that can use all kinds of data sources. In our case, Prometheus will be used as the data source.
 
 1. Install Grafana using Helm CLI
@@ -85,43 +93,46 @@ Grafana is a dashboard visualization tool that can use all kinds of data sources
     * We are setting the default username and password to **admin** to make it easier to remember
     * We are also setting the service type to **LoadBalancer** to expose the service outside of the cluster and make it accessible via the Internet
 
-    ```
+    ```bash
     helm install --name gbbhackgrafana stable/grafana --version 0.5.1 --set server.service.type=LoadBalancer,server.adminUser=admin,server.adminPassword=admin,server.image=grafana/grafana:latest,server.persistentVolume.enabled=false --namespace logging
     ```
 
-2. Validate that Grafana was Installed
-    ```
+1. Validate that Grafana was Installed
+
+    ```bash
     kubectl get pods -n logging | grep grafana
     # You should see something like the following as output:
     gbbhackgrafana-grafana-66f7fd5cb8-qbbqs                           1/1       Running   0          2h
     ```
 
-    ```
+    ```bash
     kubectl get svc -n logging
     # You should see something like the following as output, take note of the **EXTERNAL-IP column**:
     gbbhackgrafana-grafana                    LoadBalancer   10.0.163.226   "52.226.75.38"     80:31476/TCP   2h
     ```
 
-3. Test Grafana UI Comes Up
+1. Test Grafana UI Comes Up
+
 Use the EXTERNAL-IP value from the previous step and put that into your browser:
     * eg. http://52.226.75.38, EXTERNAL-IP column from above. You should see something like the following come up, be patient it will take a moment or two:
 
-    ![](img/8-grafana_default_new.png)
+    ![grafana-default-new](img/8-grafana_default_new.png)
 
 ## Setting up Grafana
+
 1. Log into Grafana Dashboard using **admin** for both the username and password
     * You will be prompted to provide a new password.
     * You should see something like the following in the Home Page:
 
-    ![](img/8-grafana_loggedin.png)
-    
+    ![grafana-logged-in](img/8-grafana_loggedin.png)
+
 2. Add Prometheus as a Data Source
     * If you recall from above, we exposed a number of K8s services, one of those services was the Prometheus Server. We are going to use that Service endpoint in our Data Service configuration. 
     Click on the 'Add Data Source' button and the screen should look something like the below screen shot.
 
     > Use `http://gbbhackprometheus-prometheus-server:9090` for the URL in the HTTP settings.
 
-    ![](img/8-grafanadatasource.JPG)
+    ![grafana-datasource](img/8-grafanadatasource.JPG)
 
 3. Validate Prometheus Data Source
     * Once you have filled in the values similar to the screenshot above, click the **Save & Test** button and ensure no errors come back.
@@ -129,23 +140,24 @@ Use the EXTERNAL-IP value from the previous step and put that into your browser:
 4. Add K8s Monitoring Dashboard to Grafana
     * After the datasource has been added, it is now time to add a dashboard. Grafana dashboards can be shared on Grafana.com. Go to **manage** dashboards via the menu in the top left and click on **Import** option.
 
-    ![](img/8-grafanan-importdb.jpg)
+    ![grafana-importdb](img/8-grafanan-importdb.jpg)
 
-    * You can click on the Upload File button and browse to the `grafana-dashboard.json` in the `helper-files` directory. Since we don't have the helper-files downloaded locally you can paste the contents of the **'grafana-dashboard.json'**  (https://raw.githubusercontent.com/heoelri/container-bootcamp/master/labs/helper-files/grafana-dashboard.json) file from the '/lab/helper-files' directory of this github repository into the JSON text box. Click on **Load**
+    * You can click on the Upload File button and browse to the `grafana-dashboard.json` in the `helper-files` directory. Since we don't have the helper-files downloaded locally you can paste the contents of the **'grafana-dashboard.json'**  (<https://raw.githubusercontent.com/heoelri/container-bootcamp/master/labs/helper-files/grafana-dashboard.json>) file from the '/lab/helper-files' directory of this github repository into the JSON text box. Click on **Load**
 
-    ![](img/8-grafana_dashboardid.png)
+    ![grafana-dashboard-id](img/8-grafana_dashboardid.png)
 
     * Set the datasource dropdown to the **AKSPrometheus** that was created in the previous step. 
 
-    ![](img/8-grafana-import-json.jpg)
+    ![grafana-import-json](img/8-grafana-import-json.jpg)
 
     * Click the **Import** button.
 
-    ![](img/8-grafana_k8sdashboard.png)
+    ![grafana-k8sdashboard](img/8-grafana_k8sdashboard.png)
 
     You should now have Prometheus and Grafana running in your Azure Kubernetes Service cluster and be able to see the Grafana Dashboard.
 
+   **Note:** If your dashboard is not updating you have probably forgot to set RBAC under [Install Prometheus using Helm](#Install-Prometheus-using-Helm).
+
 Explore the Grafana dashboard to see different performance and usage metrics of your AKS cluster.
 
-
-   ##### [Return back to BootCamp Table of Contents (Main Page)](/README.md)
+## [Return back to BootCamp Table of Contents (Main Page)](/README.md)
