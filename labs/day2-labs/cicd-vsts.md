@@ -95,7 +95,7 @@ Service endpoints are a bundle of properties securely stored by the Azure DevOps
         cat .kube/config
         ```
         
-        ```json     
+        ```txt  
         {apiVersion: v1, clusters: [{cluster: {certificate-authority-data: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0t.....
         ............................................................................................................
                token: 711e57a22410bb8d06ea956d2d5bc310}}]}
@@ -166,7 +166,7 @@ Now that the connections are established, we will manually map the existing Azur
 
 We will update the database connection string for the .NET Core application and ACR URL in the manifest YAML file.
 
-> **IMPORTANT** It's usually not necessary to change the ```__ACR__``` variable. Azure DevOps will replace this variable as part of the build process.
+> **IMPORTANT** It's usually not necessary to change the ```__ACR__``` variable. Azure DevOps will replace this variable as part of the build process. 
 
 1. Click on the **Files** tab in the **Repos** section and navigate to the below path `AKS/src/MyHealth.Web` to **edit** the file `appsettings.json`
 
