@@ -91,8 +91,11 @@ Service endpoints are a bundle of properties securely stored by the Azure DevOps
      
      * Execute below command to get Kube Config value
      
+        ```bash
+        cat .kube/config
         ```
-        [root@centosjumpbox]# cat .kube/config
+        
+        ```json     
         {apiVersion: v1, clusters: [{cluster: {certificate-authority-data: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0t.....
         ............................................................................................................
                token: 711e57a22410bb8d06ea956d2d5bc310}}]}
@@ -163,11 +166,15 @@ Now that the connections are established, we will manually map the existing Azur
 
 We will update the database connection string for the .NET Core application and ACR URL in the manifest YAML file.
 
+> **IMPORTANT** It's usually not necessary to change the ```__ACR__``` variable. Azure DevOps will replace this variable as part of the build process.
+
 1. Click on the **Files** tab in the **Repos** section and navigate to the below path `AKS/src/MyHealth.Web` to **edit** the file `appsettings.json`
 
    Scroll down to the line number **9** and provide the database server name as given in the step 7 of the previous exercise and manually update the **User ID** and **Password** based on the credentials you provided while creating the Azure SQL DB. Initial Catalog will be the database name. Click on the **Commit** button.
 
-"\"DefaultConnection\": \"Server=YOUR_SQLSERVER_NAME.database.windows.net,1433;Initial Catalog=<Name>;Persist Security Info=False;User ID=<User ID>;Password=<Password>\""
+```txt
+"DefaultConnection": "Server=<YOUR_SQLSERVER_NAME>.database.windows.net,1433;Initial Catalog=<Name>;Persist Security Info=False;User ID=<User ID>;Password=<Password>"
+```
 
    ![pasteconnectionstring](img/pasteconnectionstring.png)
 
@@ -177,19 +184,13 @@ We will update the database connection string for the .NET Core application and 
    
    Also add the **ImagePullSecrets** under spec section. Provide the secret key as **mysecretkey** (this is the secret name - don't change it!) as seen below
 
-
 ```yaml
 spec:
-
   imagePullSecrets:
-
   - name: mysecretkey
-
   containers:
-
   - name: mhc-front
 ```
-
 
 Click on the **Commit** button.
 
