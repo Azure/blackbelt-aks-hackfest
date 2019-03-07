@@ -37,7 +37,7 @@ The prevoiusly used command (`az aks get-credential`) downloads the connection d
 
 1. In the Jumpbox edit `heroes-db.yaml` using `vi`
     ```bash
-    cd ~/blackbelt-aks-hackfest/labs/helper-files
+    cd ~/container-bootcamp/labs/helper-files
 
     vi heroes-db.yaml
     ```
@@ -54,7 +54,7 @@ The prevoiusly used command (`az aks get-credential`) downloads the connection d
 
 2. In the Jumpbox edit `heroes-web-api.yaml` using `vi`
     ```bash
-    cd ~/blackbelt-aks-hackfest/labs/helper-files
+    cd ~/container-bootcamp/labs/helper-files
 
     vi heroes-web-api.yaml
     ```
@@ -106,7 +106,7 @@ default-token-xd8wk   kubernetes.io/service-account-token   3         53m
 
 * Use the kubectl CLI to deploy each app
     ```bash
-    cd ~/blackbelt-aks-hackfest/labs/helper-files
+    cd ~/container-bootcamp/labs/helper-files
 
     kubectl apply -f heroes-db.yaml
     ```
@@ -146,7 +146,7 @@ default-token-xd8wk   kubernetes.io/service-account-token   3         53m
 * Use the kubectl CLI to deploy each app
 
     ```bash
-    cd ~/blackbelt-aks-hackfest/labs/helper-files
+    cd ~/container-bootcamp/labs/helper-files
 
     kubectl apply -f heroes-web-api.yaml
     ```
@@ -157,7 +157,8 @@ default-token-xd8wk   kubernetes.io/service-account-token   3         53m
     ```bash
     kubectl get pods
     ```
-    ```
+    
+    ```console
     NAME                                 READY     STATUS    RESTARTS   AGE
     heroes-api-deploy-1140957751-2z16s   1/1       Running   0          2m
     heroes-db-deploy-2357291595-k7wjk    1/1       Running   0          3m
@@ -167,7 +168,9 @@ default-token-xd8wk   kubernetes.io/service-account-token   3         53m
 * Check to see if services are deployed.
     ```bash
     kubectl get service
-
+    ```
+    
+    ```console    
     NAME         TYPE           CLUSTER-IP    EXTERNAL-IP      PORT(S)          AGE
     api          LoadBalancer   10.0.20.156   52.176.104.50    3000:31416/TCP   5m
     kubernetes   ClusterIP      10.0.0.1      <none>           443/TCP          12m
