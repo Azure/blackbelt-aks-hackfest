@@ -1,5 +1,5 @@
 # Deploy the Superhero Ratings App to AKS
-All the configuration information required to create the pods/containers for SuperHero application in the AKS cluster are stored in the respective yaml files under "~/blackbelt-aks-hackfest/labs/helper-files" location in your jumpbox. 
+All the configuration information required to create the pods/containers for SuperHero application in the AKS cluster are stored in the respective yaml files under "~/container-bootcamp/labs/helper-files" location in your jumpbox. 
 
 In this exercise, we will create a "kubernetes secret" to access the private Azure Container Registry(ACR) that you have already setup. We will also update the respective yaml files with the ACR and secret information for AKS to download and use the db, web and api  images that you have uploaded to the ACR. 
 
