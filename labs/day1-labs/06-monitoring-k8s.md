@@ -58,7 +58,7 @@ Prometheus is a Cloud Native Computing Foundation (CNCF) project used to collect
     Switch to the `helper-files` directory and view the `prometheus-configforhelm.yaml` file. This configures Helm to install Prometheus with our desired settings. **Set RBAC create to true in the yaml file** for rbac enabled clusters. This will ensure related service accounts and cluster/role bindings are created for Prometheus.
 
     ```bash
-    cd ~/blackbelt-aks-hackfest/labs/helper-files
+    cd ~/container-bootcamp/labs/helper-files
     # The following command will install Prometheus into the K8s cluster using custom settings
 
     helm install --name gbbhackprometheus stable/prometheus --version 4.6.13 -f prometheus-configforhelm.yaml --namespace logging

@@ -227,7 +227,7 @@ aks-nodepool1-39289454-2                    Ready     agent     22h       v1.7.7
 
 ## Schedule a pod in ACI
 
-We will use a nodeName constraint to force the scheduler to schedule the pod to the new virtual-kubelet-east node. The yaml file is included in `~/blackbelt-aks-hackfest/labs/helper-files/east-aci-heroes.yaml`. Edit the file to point to your Azure Container Registry, edit the dnsnamelabel to add some random number and have your CosmosDB MongoDb connection String:
+We will use a nodeName constraint to force the scheduler to schedule the pod to the new virtual-kubelet-east node. The yaml file is included in `~/container-bootcamp/labs/helper-files/east-aci-heroes.yaml`. Edit the file to point to your Azure Container Registry, edit the dnsnamelabel to add some random number and have your CosmosDB MongoDb connection String:
 
 ```yaml
 apiVersion: v1
@@ -278,11 +278,11 @@ spec:
 
   ```console
   cd ~
-  cd blackbelt-aks-hackfest/labs/helper-files
+  cd container-bootcamp/labs/helper-files
   kubectl apply -f east-aci-heroes.yaml 
   ```
 
-  Then deploy another pod to the new virtual-kubelet-west node. The yaml file is included in `~/blackbelt-aks-hackfest/labs/helper-files/west-aci-heroes.yaml`. Edit the file to point to your Azure Container Registry, edit the dnsnamelabel to add some random number and have your CosmosDB MongoDb connection String:
+  Then deploy another pod to the new virtual-kubelet-west node. The yaml file is included in `~/container-bootcamp/labs/helper-files/west-aci-heroes.yaml`. Edit the file to point to your Azure Container Registry, edit the dnsnamelabel to add some random number and have your CosmosDB MongoDb connection String:
 
   ```yaml
 apiVersion: v1

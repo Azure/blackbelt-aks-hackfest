@@ -142,7 +142,7 @@ In this section we will use the ```mongodump``` and ```mongorestore``` commands 
 	The snippet below is the section that must be udpated. We are replacing the `MONGODB_URI` value with the new connect string created in the prior section
 	
 	```bash
-	cd ~/blackbelt-aks-hackfest/labs/helper-files
+	cd ~/container-bootcamp/labs/helper-files
 	vi heroes-web-api.yaml
 	```
 	

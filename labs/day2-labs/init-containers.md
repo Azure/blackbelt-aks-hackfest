@@ -30,7 +30,7 @@ Take note of the two files in this directory, [init-db-sample.yaml](init-db-samp
 
 3. Deploy the db to your cluster with the db yaml
     ```bash
-    cd ~/blackbelt-aks-hackfest/labs/helper-files
+    cd ~/container-bootcamp/labs/helper-files
 
     kubectl create -f init-db-sample.yaml
     ```

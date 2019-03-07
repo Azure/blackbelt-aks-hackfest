@@ -100,7 +100,7 @@ osba-redis-3506537388-f6k17                       1/1       Running   0         
 * This step will provision the entire application with the Cosmos Mongo DB back-end in Azure via OSBA.
 
 ```bash
-cd ~/blackbelt-aks-hackfest/labs/helper-files
+cd ~/container-bootcamp/labs/helper-files
 
 kubectl apply -f heroes-cosmosdb.yaml
 ```

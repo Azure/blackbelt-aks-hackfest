@@ -7,7 +7,7 @@ In this lab, we will make a change to the web application and then re-deploy the
 ## Update web application code
 
 1. Start with a terminal on the **CentOS jumpbox**
-2. Navigate to `~/blackbelt-aks-hackfest/app/web/src/components/`
+2. Navigate to `~/container-bootcamp/app/web/src/components/`
 3. Edit code for the `Footer.vue`
 4. Find the snippet below *(line 17)* and change the text _"Azure Global Blackbelt Team"_ to your name or whatever you would like to display.
 
@@ -27,7 +27,7 @@ In this lab, we will make a change to the web application and then re-deploy the
 
 ## Create new container image and push to ACR
 
-1. Browse to `~/blackbelt-aks-hackfest/app/web`
+1. Browse to `~/container-bootcamp/app/web`
 2. You should still have a Dockerfile created in an earlier lab
 3. Create a new image with an updated image tag
 
@@ -75,7 +75,7 @@ There are two ways to update the application with the new version. Both are desc
 
 3. Apply the new yaml file
     ```bash
-    cd ~/blackbelt-aks-hackfest/labs/helper-files
+    cd ~/container-bootcamp/labs/helper-files
 
     kubectl apply -f heroes-web-api.yaml
     ```

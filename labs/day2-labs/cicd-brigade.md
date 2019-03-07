@@ -158,7 +158,7 @@ This lab has pre-requisites. Some have been completed in prior labs.
 
 In our earlier labs, we had to create a Dockerfile for the web app. Since you forked the repo, we have to do this again.
 
-* In the `~/blackbelt-aks-hackfest/app/web` directory, in Github, add a file called "Dockerfile"
+* In the `~/container-bootcamp/app/web` directory, in Github, add a file called "Dockerfile"
 * Add the following lines and save (this will be used by Brigade later)
 
     ```docker
@@ -213,7 +213,7 @@ In our earlier labs, we had to create a Dockerfile for the web app. Since you fo
 
 ## Test the CI/CD Pipeline
 
-1. Update the web application. Directly in your forked Github repo, edit the `Footer.vue` file. Stored in: `blackbelt-aks-hackfest/app/web/src/components/`
+1. Update the web application. Directly in your forked Github repo, edit the `Footer.vue` file. Stored in: `container-bootcamp/app/web/src/components/`
 2. Find the snippet below *(line 17)* and change the text _"Azure Global Blackbelt Team"_ to your name or whatever you would like to display.
 
     ```
