@@ -1,0 +1,20 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: init-cosmosdb
+spec:
+  template:
+    spec:
+      containers:
+      - name: init-cosmosdb
+        image: jjdelorme/rating-db:init-cosmos
+        imagePullPolicy: Always
+        command: ["sh", "-c", "./import-cosmosdb.sh"]
+        env:
+        - name: MONGODB_URI
+          valueFrom:
+            secretKeyRef:
+              name: heroes-cosmosdb-secret
+              key: cosmosUri        
+      restartPolicy: Never
+  backoffLimit: 4
