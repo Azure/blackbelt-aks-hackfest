@@ -1,3 +1,24 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: init-cosmosdb
+spec:
+  template:
+    spec:
+      containers:
+      - name: init-cosmosdb
+        image: jjdelorme/rating-db:init-cosmos
+        imagePullPolicy: Always
+        command: ["sh", "-c", "./import-cosmosdb.sh"]
+        env:
+        - name: MONGODB_URI
+          valueFrom:
+            secretKeyRef:
+              name: heroes-cosmosdb-secret
+              key: cosmosUri        
+      restartPolicy: Never
+  backoffLimit: 4
+---
 apiVersion: v1
 kind: Service
 metadata:
@@ -5,7 +26,7 @@ metadata:
   labels:
     name: api
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   ports:
   - name: http
     port: 3000
@@ -32,63 +53,23 @@ spec:
         name:  heroes-api
     spec:
       containers:
-      - image: sonofjorel/rating-api:v1
+      - image: jjdelorme/rating-api:v1
         name:  heroes-api-cntnr
         resources:
           requests:
             cpu: "20m"
             memory: "55M"
         env:
-        - name:  MONGODB_URI
-          value:  mongodb://mongodb:27017/webratings
+        - name: MONGODB_URI
+          valueFrom:
+            secretKeyRef:
+              name: heroes-cosmosdb-secret
+              key: cosmosUri
         ports:
         - containerPort: 3000
           name:  heroes-api
-        volumeMounts:
-          - name: datadir
-            mountPath: /usr/tmp
         imagePullPolicy: Always
       restartPolicy: Always
-      initContainers:
-      - name: get-hero-data
-        image: busybox  
-        command: ['sh', '-c', 'for i in {1..100}; do sleep 1; if [ ! -f "./data-dir/heroes.json" ]; then wget -O ./data-dir/heroes.json https://raw.githubusercontent.com/Azure/blackbelt-aks-hackfest/master/app/db/heroes.json; cat ./data-dir/heroes.json; exit 1; fi; done; exit 0']
-        volumeMounts:
-        - name: datadir
-          mountPath: "/data-dir"
-      - name: get-site-data
-        image: busybox  
-        command: ['sh', '-c', 'for i in {1..100}; do sleep 1; if [ ! -f "./data-dir/sites.json" ]; then wget -O ./data-dir/sites.json https://raw.githubusercontent.com/Azure/blackbelt-aks-hackfest/master/app/db/sites.json; cat ./data-dir/sites.json; exit 1; fi; done; exit 0']
-        volumeMounts:
-        - name: datadir
-          mountPath: "/data-dir"
-      - name: get-ratings-data
-        image: busybox  
-        command: ['sh', '-c', 'for i in {1..100}; do sleep 1; if [ ! -f "./data-dir/ratings.json" ]; then wget -O ./data-dir/ratings.json https://raw.githubusercontent.com/Azure/blackbelt-aks-hackfest/master/app/db/ratings.json; cat ./data-dir/ratings.json; exit 1; fi; done; exit 0']
-        volumeMounts:
-        - name: datadir
-          mountPath: "/data-dir"
-      - name: import-hero-data
-        image: mongo:3.6.1-jessie
-        command: ['sh', '-c', 'for i in {1..100}; do sleep 1; if [ -f "./data-dir/heroes.json" ]; then mongoimport --host mongodb:27017 --db webratings --collection heroes --file /data-dir/heroes.json --jsonArray; exit 0; fi; done; exit 1']
-        volumeMounts:
-        - name: datadir
-          mountPath: "/data-dir"
-      - name: import-site-data
-        image: mongo:3.6.1-jessie
-        command: ['sh', '-c', 'for i in {1..100}; do sleep 1; if [ -f "./data-dir/sites.json" ]; then mongoimport --host mongodb:27017 --db webratings --collection sites --file /data-dir/sites.json --jsonArray; exit 0; fi; done; exit 1']
-        volumeMounts:
-        - name: datadir
-          mountPath: "/data-dir"
-      - name: import-ratings-data
-        image: mongo:3.6.1-jessie
-        command: ['sh', '-c', 'for i in {1..100}; do sleep 1; if [ -f "./data-dir/ratings.json" ]; then mongoimport --host mongodb:27017 --db webratings --collection ratings --file /data-dir/ratings.json --jsonArray; exit 0; fi; done; exit 1']
-        volumeMounts:
-        - name: datadir
-          mountPath: "/data-dir"
-      volumes:
-        - name: datadir
-          emptyDir: {}
 ---
 apiVersion: v1
 kind: Service
@@ -124,7 +105,7 @@ spec:
         name:  heroes-web
     spec:
       containers:
-      - image: sonofjorel/rating-web:v1
+      - image: jjdelorme/rating-web:v1
         name:  heroes-web-cntnr
         resources:
           requests:
