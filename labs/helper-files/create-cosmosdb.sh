@@ -38,4 +38,7 @@ cosmosUri="mongodb://$accountName:$cosmosSecret@$accountName.documents.azure.com
 # Create the Kubernetes secret
 kubectl create secret generic heroes-cosmosdb-secret --from-literal=cosmosUri=$cosmosUri
 
+# Deploy db initialization, web, api and service to AKS:
+kubectl apply -f ./init-web-api-sample.yaml
+
 # Steps to run containers locally for testing here: https://github.com/ms-jasondel/blackbelt-aks-hackfest/blob/demo/labs/day1-labs/02-dockerize-apps.md
