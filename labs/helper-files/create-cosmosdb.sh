@@ -4,7 +4,7 @@
 resourceGroupName=${1?You must pass resource group name as argument}
 location='eastus'
 accountName='heroscosmosaccount'
-databaseName='heroratings'
+databaseName='webratings'
 
 # Create a resource group
 az group create \
@@ -32,8 +32,8 @@ az cosmosdb update -n $accountName -g $resourceGroupName --capabilities EnableAg
 # Get the cosmos secret
 cosmosSecret=$(az cosmosdb list-keys -n $accountName -g $resourceGroupName --query "primaryMasterKey" -o tsv)
 
-# Create Mongo URI for CosmosDB webratings db
-cosmosUri="mongodb://$accountName:$cosmosSecret@$accountName.documents.azure.com:10255/webratings?ssl=true"
+# Create Mongo URI for CosmosDB 
+cosmosUri="mongodb://$accountName:$cosmosSecret@$accountName.documents.azure.com:10255/$databaseName?ssl=true"
 
 # Create the Kubernetes secret
 kubectl create secret generic heroes-cosmosdb-secret --from-literal=cosmosUri=$cosmosUri
