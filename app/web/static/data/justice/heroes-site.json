@@ -16,7 +16,7 @@
         "Leaderboard":{
             "title":"Superhero Rating :: Current Leaderboard",
             "headerImage":"/static/img/justice/justice.png",
-            "subtitle": "Current Leaderboard - Brian is super cool"
+            "subtitle": "Current Leaderboard"
         }
     }
 }
