@@ -58,10 +58,7 @@ We will use Azure COntainer Registry to build our containers from Dockerfiles an
         }
     }
     ]
-
-    # copy the name from the results above and set to a variable 
-    
-    RG_NAME=
+    ```
 
 For the first container, we will be creating a Dockerfile from scratch. For the other containers, the Dockerfiles are provided.
 
