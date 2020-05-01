@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "NODE_ENV='development' MONGODB_URI='mongodb://localhost:27017/webratings' node ./bin/www",
     "localmachine": "NODE_ENV='development' MONGODB_URI='mongodb://localhost:27019/webratings' node ./bin/www",
-    "container": "NODE_ENV='development' node ./bin/www"
+    "container": "NODE_ENV='development' node ./bin/www",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "dependencies": {
     "async": "^2.6.0",
@@ -19,6 +21,8 @@
     "hbs": "~4.0.1",
     "mongoose": "^4.13.8",
     "morgan": "~1.9.0",
-    "serve-favicon": "~2.4.5"
-  }
+    "serve-favicon": "~2.4.5",
+    "snyk": "^1.316.1"
+  },
+  "snyk": true
 }
