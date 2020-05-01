@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "cross-env SITE_CODE='JLA' API='http://localhost:3000/' NODE_ENV=development webpack-dev-server --open --hot",
     "localmachine": "cross-env SITE_CODE='JLA' API='http://localhost:3000/' NODE_ENV='development' webpack-dev-server --open",
-    "container": "cross-env SITE_CODE='JLA' NODE_ENV='development' webpack-dev-server"
+    "container": "cross-env SITE_CODE='JLA' NODE_ENV='development' webpack-dev-server",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "dependencies": {
     "at-ui": "^1.2.0-beta",
@@ -16,7 +18,8 @@
     "numeral": "^2.0.6",
     "vue": "^2.3.4",
     "webpack": "^3.0.0",
-    "webpack-dev-server": "^2.5.0"
+    "webpack-dev-server": "^2.5.0",
+    "snyk": "^1.316.1"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.1",
@@ -40,5 +43,6 @@
     "webpack": "^3.0.0",
     "webpack-dev-server": "^2.5.0"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "snyk": true
 }
