@@ -16,7 +16,7 @@
     "numeral": "^2.0.6",
     "vue": "^2.3.4",
     "webpack": "^3.0.0",
-    "webpack-dev-server": "^2.5.0"
+    "webpack-dev-server": "^3.1.6"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.1",
