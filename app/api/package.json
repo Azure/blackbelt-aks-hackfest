@@ -9,14 +9,14 @@
     "container": "NODE_ENV='development' node ./bin/www"
   },
   "dependencies": {
-    "async": "^2.6.0",
+    "async": "^3.2.2",
     "body-parser": "~1.18.2",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
     "dotenv": "^4.0.0",
     "express": "~4.15.5",
     "hbs": "~4.0.1",
-    "mongoose": "^4.13.8",
+    "mongoose": "^5.7.3",
     "morgan": "~1.9.0",
     "serve-favicon": "~2.4.5"
   }
