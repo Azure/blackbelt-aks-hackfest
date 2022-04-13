@@ -9,7 +9,7 @@
     "container": "NODE_ENV='development' node ./bin/www"
   },
   "dependencies": {
-    "async": "^2.6.0",
+    "async": "^3.2.2",
     "bluebird": "^3.5.1",
     "body-parser": "~1.18.2",
     "cookie-parser": "~1.4.3",
