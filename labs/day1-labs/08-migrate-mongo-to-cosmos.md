@@ -2,7 +2,7 @@
 
 In this section we will be creating a CosmosDB instance in your Azure account to migrate/export your MongoDB data to CosmosDB.  You can use CosmosDB as a drop in replacement for MongoDB, since CosmosDB uses a MongoDB compatibale API.  As such, you are only required to replace/change the MongoDB URI connection string with one supplied by CosmosDB in the dashboard. 
 
-## Deploy Azure CosmosDB
+## Deploy Azure Cosmos DB
 
 1. Create a CosmosDB instance in Azure
 
