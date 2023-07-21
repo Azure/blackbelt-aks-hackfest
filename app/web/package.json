@@ -11,7 +11,7 @@
   "dependencies": {
     "at-ui": "^1.2.0-beta",
     "at-ui-style": "^1.3.2",
-    "axios": "^0.17.1",
+    "axios": "^0.21.3",
     "compression-webpack-plugin": "^1.1.3",
     "numeral": "^2.0.6",
     "vue": "^2.3.4",
